@@ -11,6 +11,12 @@ import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/g
 import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/gestionar-equipos.component';
 import { DashboardComponent } from './control-panel/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,17 @@ import { AppRoutingModule } from './app-routing.module';
     GestionarEquiposComponent,
     DashboardComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatCardModule,
+    MatTableModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

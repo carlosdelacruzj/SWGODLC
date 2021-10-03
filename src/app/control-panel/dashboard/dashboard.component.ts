@@ -9,7 +9,7 @@ import { DashboardService } from './service/dashboard.service';
 export class DashboardComponent implements OnInit {
   personajes: any = [];
   columnsToDisplay = ['id', 'name', 'species'];
-  constructor(private service: DashboardService) {}
+  constructor(private service: DashboardService) { }
 
   ngOnInit(): void {
     this.service.getAllNombres().subscribe((resp) => {

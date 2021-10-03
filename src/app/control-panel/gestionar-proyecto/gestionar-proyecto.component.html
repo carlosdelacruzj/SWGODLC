@@ -10,19 +10,19 @@
                 <!-- Position Column -->
                 <ng-container matColumnDef="ID">
                     <th mat-header-cell *matHeaderCellDef> ID </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.PK_Pro_Cod}} </td>
                 </ng-container>
 
                 <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Pro_Nombre}} </td>
                 </ng-container>
 
                 <!-- Weight Column -->
-                <ng-container matColumnDef="age">
-                    <th mat-header-cell *matHeaderCellDef> age </th>
-                    <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                <ng-container matColumnDef="fecha">
+                    <th mat-header-cell *matHeaderCellDef> fecha </th>
+                    <td mat-cell *matCellDef="let element"> {{element.EPro_Fecha_Inicio_Edicion}} </td>
                 </ng-container>
 
 

@@ -8,7 +8,7 @@ import { ProyectoService } from 'src/app/control-panel/gestionar-proyecto/servic
 })
 export class GestionarProyectoComponent implements OnInit {
   proyectos = [];
-  columnsToDisplay = ['ID','name', 'age']
+  columnsToDisplay = ['ID','nombre', 'fecha']
   constructor(private service: ProyectoService) {}
 
   ngOnInit(): void {
@@ -17,8 +17,6 @@ export class GestionarProyectoComponent implements OnInit {
   getProyecto() {
     this.service.getAllNombres().subscribe((response) => {
       this.proyectos = response;
-
-      console.log(this.proyectos);
     });
   }
 }

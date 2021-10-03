@@ -19,7 +19,7 @@ export class ProyectoService {
   };
 
   private API_PRUEBA =
-    'https://tp2021database.herokuapp.com/user/consultaUsuarios/3';
+    'https://tp2021database.herokuapp.com/proyecto/consulta/getAllProyecto';
   constructor(private http: HttpClient) {}
 
   public getAllNombres(): Observable<any> {

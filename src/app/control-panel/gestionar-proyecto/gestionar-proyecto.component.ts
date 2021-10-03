@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProyectoService } from 'src/app/service/proyecto.service';
+import { ProyectoService } from 'src/app/control-panel/gestionar-proyecto/service/proyecto.service';
 
 @Component({
   selector: 'app-gestionar-proyecto',

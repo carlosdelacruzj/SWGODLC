@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatTableModule } from '@angular/material/table';
     GestionarProyectoComponent,
     GestionarEquiposComponent,
     DashboardComponent,
+    AdministrarPaqueteServicioComponent,
   ],
   imports: [
     BrowserModule,

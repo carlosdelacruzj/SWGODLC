@@ -1,0 +1,171 @@
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <div class="ecommerce-widget">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Agregar Equipo </h2>
+                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit
+                            amet
+                            vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+
+                                    <li class="breadcrumb-item"><a href="ListarEquipos.aspx"
+                                            class="breadcrumb-link">Gestionar Equipos</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Agregar Equipo</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader -->
+            <!-- ============================================================== -->
+
+            <div class="row">
+                <!-- ============================================================== -->
+                <!-- validation form -->
+                <!-- ============================================================== -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <h5 class="card-header">Detalles del pedido</h5>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    <label for="txtNombre">N Pedido</label>
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                                            placeholder="">
+
+                                    </div>
+                                </div>
+                                <!-- marca -->
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+
+                                    <label for="ddlMarca">Evento</label>
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                                            placeholder="">
+
+                                    </div>
+                                </div>
+                                <!-- modelo -->
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+
+                                    <label>Fecha de registro</label>
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input type="date" class="form-control date-inputmask" id="date-mask"
+                                            placeholder="">
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <!-- fecha de ingreso -->
+    
+                                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
+                                    <label> de registro</label>
+                                    <input type="date" class="form-control date-inputmask">
+                                  
+                                  </mat-form-field>
+                            </div>
+                            
+                            <div class="row">
+
+                                <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12"
+                                    appearance="fill">
+                                    <label>Descripción Servicio</label>
+                                    <textarea class="form-control" rows="3"></textarea>
+                                </mat-form-field>
+
+
+                            </div>
+
+
+                            <div class="form-row">
+
+
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                    <button></button>
+                                    <button></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end validation form -->
+                <!-- ============================================================== -->
+            </div>
+            <div class="row">
+                <!-- ============================================================== -->
+                <!-- validation form -->
+                <!-- ============================================================== -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <mat-card>
+                            <mat-card-header class="card-header">
+                                <mat-card-title>Detalles del pedido</mat-card-title>
+
+                            </mat-card-header>
+
+                            <mat-card-content class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                        <label for="txtNombre">N Pedido</label>
+                                        <div class="form-group">
+                                            <label for=""></label>
+                                            <input type="text" class="form-control" name="" id=""
+                                                aria-describedby="helpId" placeholder="">
+
+                                        </div>
+                                    </div>
+                                    <!-- marca -->
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+
+                                        <label for="ddlMarca">Evento</label>
+
+                                        <mat-form-field>
+                                            <mat-label> Favorite food</mat-label>
+                                            <input matInput placeholder="Ex. Pizza" class="form-control" value="Sushi">
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- modelo -->
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                        <label for="txtNombre">Fecha</label>
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Enter a date range</mat-label>
+                                            <mat-date-range-input [rangePicker]="picker">
+                                                <input matStartDate placeholder="Start date">
+                                                <input matEndDate placeholder="End date">
+                                            </mat-date-range-input>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-date-range-picker #picker></mat-date-range-picker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end validation form -->
+                <!-- ============================================================== -->
+            </div>
+        </div>
+      
+    </div>
+</div>

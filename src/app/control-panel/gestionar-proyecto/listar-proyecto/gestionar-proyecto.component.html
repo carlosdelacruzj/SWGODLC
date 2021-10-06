@@ -4,12 +4,20 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <h3>GESTIONAR PROYECTOS</h3>
+
+
+
+                    <!-- <mat-form-field appearance="standard">
+                        <mat-label>Filter</mat-label>
+                        <input placeholder="Ex. Mia" #input>
+                    </mat-form-field> -->
+                    <div> <input placeholder="Ex. Mia" #input></div>
                     <table mat-table [dataSource]="proyectos" class="mat-elevation-z8 table">
 
                         <!--- Nota: cambio de prueba en rama carlos-dlc -->
 
                         <!-- Position Column -->
-                        <ng-container matColumnDef="ID" >
+                        <ng-container matColumnDef="ID">
                             <th mat-header-cell *matHeaderCellDef> ID </th>
                             <td mat-cell *matCellDef="let element"> {{element.PK_Pro_Cod}} </td>
                         </ng-container>
@@ -30,8 +38,7 @@
                         <tr mat-header-row *matHeaderRowDef="columnsToDisplay "></tr>
                         <tr mat-row *matRowDef="let row ; columns: columnsToDisplay ;  "></tr>
                     </table>
-                    <mat-paginator [length]="proyectos.length" [pageSize]="pageSize"
-                        (page)="cambiarpagina($event)" aria-label="Select page">
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
                     </mat-paginator>
                 </div>
             </div>

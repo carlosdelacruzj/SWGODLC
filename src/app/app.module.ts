@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatTableModule } from '@angular/material/table';
     GestionarProyectoComponent,
     GestionarEquiposComponent,
     DashboardComponent,
+    VerCalendarioComponent,
   ],
   imports: [
     BrowserModule,

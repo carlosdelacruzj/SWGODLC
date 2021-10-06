@@ -1,0 +1,7 @@
+th.mat-header-cell {
+  text-align: center !important;
+}
+.mat-cell {
+  text-align: center;
+  justify-content: center;
+}

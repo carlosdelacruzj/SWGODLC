@@ -1,1 +1,23 @@
-<p>administrar-paquete-servicio works!</p>
+
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <div *ngIf="base">
+            <h3>Listado de Eventos</h3>
+            <br>
+            <div class="ecommerce-widget" >
+                <div *ngFor="let evento of paquete">
+                    <app-event-card [id]="1" [titulo]="evento.E_Nombre" [imagen]="evento.E_Enlace" (emitAccion)="prueba($event)"></app-event-card>
+                </div> 
+            
+            </div>
+        </div>
+
+        <div *ngIf="!base">
+            <button (click)="base = true">Atras</button>
+            <h1>Hola Mundo</h1>
+        </div>
+        
+    </div>
+
+
+</div>

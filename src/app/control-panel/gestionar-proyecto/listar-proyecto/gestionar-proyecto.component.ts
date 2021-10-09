@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ProyectoService } from 'src/app/control-panel/gestionar-proyecto/service/proyecto.service';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -9,8 +11,13 @@ import { ProyectoService } from 'src/app/control-panel/gestionar-proyecto/servic
   styleUrls: ['./gestionar-proyecto.component.css'],
 })
 export class GestionarProyectoComponent implements OnInit {
-  proyectos = [];
-  columnsToDisplay = ['ID','nombre', 'fecha'];
+
+  displayedColumns = ['PK_Pro_Cod','Pro_Nombre','EPro_Fecha_Inicio_Edicion','actions'];
+  dataSource!:MatTableDataSource<any>;
+
+  @ViewChild('paginator') paginator! : MatPaginator; 
+  @ViewChild(MatSort) matSort! : MatSort;
+
 
   constructor(private service: ProyectoService) {}
 
@@ -19,8 +26,16 @@ export class GestionarProyectoComponent implements OnInit {
     this.getProyecto();
   }
   getProyecto() {
-    this.service.getAllNombres().subscribe((response) => {
-      this.proyectos = response;
-    });
+    this.service.getAllNombres().subscribe((response:any) =>{
+      this.dataSource = new MatTableDataSource(response);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.matSort;
+    })
+  }
+  getRecord(nombre: any){
+    alert(nombre);
+  }
+  filterData($event : any){
+    this.dataSource.filter = $event.target.value;
   }
 }

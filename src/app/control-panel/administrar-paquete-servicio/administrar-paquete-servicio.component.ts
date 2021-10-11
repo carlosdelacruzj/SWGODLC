@@ -1,6 +1,8 @@
 import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { PaqueteServicioService } from 'src/app/control-panel/administrar-paquete-servicio/service/paquete-servicio.service';
+import { EventoServicioService } from 'src/app/control-panel/administrar-paquete-servicio/service/evento-servicio.service';
+
 
 @Component({
   selector: 'app-administrar-paquete-servicio',
@@ -11,11 +13,13 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
 
   base: boolean = true;
   paquete: any[] = [];
+  servicio: any[] = [];
   columnsToDisplay = ['ID','nombre','enlace']
-  constructor(private service: PaqueteServicioService) {}
+  constructor(private service: PaqueteServicioService,private service2: EventoServicioService) {}
 
   ngOnInit(): void {
     this.getPaquete();
+    this.getServicio();
     console.log(this.paquete);
   }
 
@@ -25,6 +29,14 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
       console.log(this.paquete);
     });
   }
+
+  getServicio() {
+    this.service2.getAllNombres2().subscribe((response) => {
+      this.servicio = response;
+      console.log(this.servicio);
+    });
+  }
+
 
   prueba(event: number){  
     if(event === 1) this.base = false; console.log("Id: ", event)

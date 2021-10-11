@@ -14,7 +14,11 @@
 
         <div *ngIf="!base">
             <button (click)="base = true">Atras</button>
-            <h1>Hola Mundo</h1>
+            <h3></h3>          
+            <div *ngFor="let evento of servicio">
+                <app-event-service [id]="1" [titulo]="evento.Evento" [servicio]="evento.Servicio" [precio]="evento.Precio" [descripcion]="evento.Descripcion" [imagen]="evento.Enlace"></app-event-service>
+            </div> 
+                
         </div>
         
     </div>

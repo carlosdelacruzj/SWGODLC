@@ -53,6 +53,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { EventCardComponent } from './control-panel/administrar-paquete-servicio/components/event-card/event-card.component';
+import { EventServiceComponent } from './control-panel/administrar-paquete-servicio/components/event-service/event-service.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { EventCardComponent } from './control-panel/administrar-paquete-servicio
     DashboardComponent,
     AdministrarPaqueteServicioComponent,
     EventCardComponent,
+    EventServiceComponent,
   ],
   imports: [
     BrowserModule,

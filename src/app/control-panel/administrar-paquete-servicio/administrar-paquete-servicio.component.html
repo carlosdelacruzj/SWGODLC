@@ -6,20 +6,20 @@
             <br>
             <div class="ecommerce-widget" >
                 <div *ngFor="let evento of paquete">
-                    <app-event-card [id]="1" [titulo]="evento.E_Nombre" [imagen]="evento.E_Enlace" (emitAccion)="prueba($event)"></app-event-card>
+                    <app-event-card [id]="evento.PK_E_Cod" [titulo]="evento.E_Nombre" [imagen]="evento.E_Enlace" (emitAccion)="prueba($event)"></app-event-card>
                 </div> 
             
             </div>
         </div>
 
-        <div *ngIf="!base">
-            <button (click)="base = true">Atras</button>
-            <h3></h3>          
-            <div *ngFor="let evento of servicio">
-                <app-event-service [id]="1" [titulo]="evento.Evento" [servicio]="evento.Servicio" [precio]="evento.Precio" [descripcion]="evento.Descripcion" [imagen]="evento.Enlace"></app-event-service>
-            </div> 
-                
-        </div>
+            <div *ngIf="!base">
+                <div class="btn-action">
+                <button (click)="base = true">Atras</button>
+                <a class="addservice" mat-raised-button href="./components/detalle-servicios/detalle-servicios.component.html" target="_blank">Registrar Servicio</a>
+                </div>
+                <app-event-service [id]="servicioId" ></app-event-service>                     
+            </div>
+        
         
     </div>
 

@@ -5,6 +5,6 @@ export class Servicio {
       public Servicio: string,
       public Precio: number,
       public Descripcion: string,
-      public Enlace: string
+      public Titulo: string
     ) {}
   }

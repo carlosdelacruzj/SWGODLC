@@ -54,6 +54,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { EventCardComponent } from './control-panel/administrar-paquete-servicio/components/event-card/event-card.component';
 import { EventServiceComponent } from './control-panel/administrar-paquete-servicio/components/event-service/event-service.component';
+import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { EventServiceComponent } from './control-panel/administrar-paquete-servi
     AdministrarPaqueteServicioComponent,
     EventCardComponent,
     EventServiceComponent,
+    DetalleServiciosComponent,
   ],
   imports: [
     BrowserModule,

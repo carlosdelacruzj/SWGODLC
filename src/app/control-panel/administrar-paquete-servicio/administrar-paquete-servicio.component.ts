@@ -12,6 +12,7 @@ import { EventoServicioService } from 'src/app/control-panel/administrar-paquete
 export class AdministrarPaqueteServicioComponent implements OnInit {
 
   base: boolean = true;
+  servicioId: number = 0;
   paquete: any[] = [];
   servicio: any[] = [];
   columnsToDisplay = ['ID','nombre','enlace']
@@ -39,8 +40,7 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
 
 
   prueba(event: number){  
-    if(event === 1) this.base = false; console.log("Id: ", event)
-    if(event === 2) console.log("no hay data");
+    this.base = false; this.servicioId = event; console.log("Id: ", this.servicioId)
   }
 
 }

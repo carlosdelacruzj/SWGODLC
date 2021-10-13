@@ -25,3 +25,14 @@ h3{
     font-size: 20px;
     margin: auto;
 }
+
+.boton-action{
+    padding: 10px;
+    margin: auto;
+}
+.addservice{
+    font-size: 12px;
+    padding: 10px 15px;
+    display: left;
+
+}

@@ -14,14 +14,21 @@ export class EventoServicioService {
     Servicio: '',
     Precio: 0,
     Descripcion: '',
-    Enlace: ''
+    Titulo: ''
   };
 
   private API_PRUEBA = 
-  'https://tp2021database.herokuapp.com/eventos_servicios/consulta/getAllServiciosByEvento/1';
+  'https://tp2021database.herokuapp.com/eventos_servicios/consulta/getAllServiciosByEvento';
   constructor(private http: HttpClient) {}
+
+  
+  public api(id: number): Observable<any> {
+      const url = `${this.API_PRUEBA}/${id}`
+    return this.http.get(url);
+  }
 
   public getAllNombres2(): Observable<any> {
     return this.http.get(this.API_PRUEBA);
   }
 }
+

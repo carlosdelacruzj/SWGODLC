@@ -17,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
+import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { AdministrarPaqueteServicioComponent } from './control-panel/administrar
     GestionarProyectoComponent,
     GestionarEquiposComponent,
     DashboardComponent,
-    AdministrarPaqueteServicioComponent,
+    GestionarPedidoComponent,
   ],
   imports: [
     BrowserModule,

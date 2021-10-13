@@ -12,12 +12,28 @@ import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/ges
 import { DashboardComponent } from './control-panel/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+
 import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CommonModule } from '@angular/common';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+
+
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
+  dayGridPlugin,
+]);
+
+
 
 @NgModule({
   declarations: [
@@ -31,6 +47,8 @@ import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calen
     VerCalendarioComponent,
   ],
   imports: [
+    CommonModule,
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -40,6 +58,13 @@ import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calen
     MatGridListModule,
     MatCardModule,
     MatTableModule,
+    FullCalendarModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

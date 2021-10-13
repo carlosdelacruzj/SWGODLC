@@ -10,6 +10,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/listar-proyecto/gestionar-proyecto.component';
 import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/gestionar-equipos.component';
 import { DashboardComponent } from './control-panel/dashboard/dashboard.component';
+import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
@@ -25,6 +26,8 @@ import {
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +38,7 @@ import {
     GestionarEquiposComponent,
     DashboardComponent,
     AgregarProyectoComponent,
+    GestionarPedidoComponent,
   ],
   imports: [
     BrowserModule,

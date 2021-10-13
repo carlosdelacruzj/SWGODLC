@@ -60,7 +60,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Details </th>
           <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-              (click)="getProyecto1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
+              (click)="getPedido1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
               details</button> </td>
         </ng-container>
 
@@ -74,8 +74,8 @@
 
 
     </mat-tab>
-<!-- 
-    <mat-tab label="Lista de Proyectos">
+
+    <!-- <mat-tab label="Lista de Proyectos">
 
       <mat-form-field appearance="standard">
         <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">

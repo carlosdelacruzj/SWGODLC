@@ -18,8 +18,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 
 import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+//import { CalendarModule, DateAdapter } from 'angular-calendar';
+//import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CommonModule } from '@angular/common';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -60,11 +60,11 @@ FullCalendarModule.registerPlugins([
     MatTableModule,
     FullCalendarModule,
     NgbModalModule,
-    FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
+  //  FlatpickrModule.forRoot(),
+  //  CalendarModule.forRoot({
+  //   provide: DateAdapter,
+   //   useFactory: adapterFactory,
+  //  }),
   ],
   providers: [],
   bootstrap: [AppComponent],

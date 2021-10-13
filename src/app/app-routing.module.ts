@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'gestionar-equipos', component: GestionarEquiposComponent },
   { path: 'gestionar-proyecto', component: GestionarProyectoComponent },
-  { path: 'agregar-proyecto', component: AgregarProyectoComponent },
+  { path: 'gestionar-proyecto/agregar-proyecto', component: AgregarProyectoComponent },
+  
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
 

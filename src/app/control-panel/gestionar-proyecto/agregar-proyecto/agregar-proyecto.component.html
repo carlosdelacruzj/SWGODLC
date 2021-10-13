@@ -27,25 +27,17 @@
         <mat-card-content class="card-body">
             <div class="form-row">
                 <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>N Pedido</mat-label>
-                    <input matInput placeholder="001">
+                    <mat-label>holi</mat-label>
+                    <input matInput placeholder="001" name="nombre"  [(ngModel)]="service.selectProyecto.Pro_Nombre">
                 </mat-form-field>
                 <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                     <mat-label>Evento</mat-label>
                     <input matInput placeholder="Boda">
                 </mat-form-field>
-                <!-- <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
-                    <mat-label>Evento</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                            {{food.viewValue}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
 
                 <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                     <mat-label>Fecha de registro</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="service.selectProyecto.EPro_Fecha_Inicio_Edicion">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -56,30 +48,7 @@
 
 
             </div>
-            <!-- <div class="form-row">
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>N Pedido</mat-label>
-                    <input matInput placeholder="Ex. Pizza">
-                </mat-form-field>
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
-                    <mat-label>Favorite food</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                            {{food.viewValue}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
 
-                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Fecha de inicio</mat-label>
-                    <input matInput [matDatepicker]="picker3">
-                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                    <mat-datepicker #picker3></mat-datepicker>
-                </mat-form-field>
-
-
-
-            </div> -->
             <div class="form-row">
                 <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                     <mat-label>Leave a comment</mat-label>
@@ -127,33 +96,53 @@
             </div>
             <div class="form-row">
                 <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                    <mat-label>Leave a comment</mat-label>
-                    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                    <mat-label>Observación del cliente</mat-label>
+                    <textarea matInput placeholder="Observaciones..."></textarea>
                 </mat-form-field>
             </div>
         </mat-card-content>
     </mat-card>
-</div>
-<div class="container-fluid dashboard-content ">
-    <mat-card class="example-card">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-            <mat-form-field appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker2">
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
-            </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-        </mat-card-actions>
-    </mat-card>
 
+    <!-- card numero 3 -->
+    <mat-card class="card">
+        <mat-card-header class="card-header">
+            <mat-card-title>Detalles del Evento</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-body">
+            <div class="form-row">
+                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker4">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                    <mat-label>Hora</mat-label>
+                    <input matInput [matDatepicker]="picker5">
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                    <mat-label>Ubicación</mat-label>
+                    <input matInput placeholder="Av. 28 Calle Ignacio">
+                </mat-form-field>
+
+            </div>
+            <div class="form-row">
+                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                    <mat-label>Aqui se deberia ingresar un archivo xd</mat-label>
+                    <input matInput placeholder="001">
+                </mat-form-field>
+            </div>
+            <div class="form-row">
+                <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                    <mat-label>Comentario</mat-label>
+                    <textarea matInput placeholder="Observaciones..."></textarea>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>

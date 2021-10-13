@@ -17,6 +17,13 @@ import { AngularMaterialModule } from './shared/angular-material/angular-materia
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './shared/angular-material/spanish-paginator-intl';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -36,8 +43,14 @@ import { getSpanishPaginatorIntl } from './shared/angular-material/spanish-pagin
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    ReactiveFormsModule
   ],
-  providers: [{provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl()}],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

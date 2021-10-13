@@ -1,9 +1,10 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProyectoService } from 'src/app/control-panel/gestionar-proyecto/service/proyecto.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import { Proyecto } from '../model/proyecto.model';
+import { PedidoService } from '../service/pedido.service';
 
 @Component({
   selector: 'app-gestionar-proyecto',
@@ -11,31 +12,45 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./gestionar-proyecto.component.css'],
 })
 export class GestionarProyectoComponent implements OnInit {
+  displayedColumns = ['Nombre','Fecha','Servicio','Evento','Cliente','Estado', 'actions'];
+  displayedColumns2 = ['Nombre','Fecha','Servicio','Evento','Cliente','Estado', 'actions'];
 
-  displayedColumns = ['PK_Pro_Cod','Pro_Nombre','EPro_Fecha_Inicio_Edicion','actions'];
-  dataSource!:MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<any>;
+  dataSource2!: MatTableDataSource<any>;
 
-  @ViewChild('paginator') paginator! : MatPaginator; 
-  @ViewChild(MatSort) matSort! : MatSort;
+  @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild(MatSort) matSort!: MatSort;
 
-
-  constructor(private service: ProyectoService) {}
-
+  constructor(
+    public service: ProyectoService,
+    public service2: PedidoService
+  ) {}
 
   ngOnInit(): void {
     this.getProyecto();
+    this.getPedido();
   }
   getProyecto() {
-    this.service.getAllNombres().subscribe((response:any) =>{
+    this.service.getAllNombres().subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.matSort;
-    })
+    });
   }
-  getRecord(nombre: any){
-    alert(nombre);
+
+  getPedido() {
+    this.service2.getAllNombres().subscribe((response: any) => {
+      this.dataSource2 = new MatTableDataSource(response);
+      this.dataSource2.paginator = this.paginator;
+      this.dataSource2.sort = this.matSort;
+    });
   }
-  filterData($event : any){
+
+  filterData($event: any) {
     this.dataSource.filter = $event.target.value;
+  }
+  getProyecto1(proyecto: Proyecto) {
+    this.service.selectProyecto = proyecto;
+    console.log(this.service.selectProyecto);
   }
 }

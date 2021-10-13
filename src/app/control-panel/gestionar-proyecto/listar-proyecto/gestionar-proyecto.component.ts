@@ -50,6 +50,9 @@ export class GestionarProyectoComponent implements OnInit {
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;
   }
+  filterData2($event: any) {
+    this.dataSource2.filter = $event.target.value;
+  }
   getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
     console.log(this.service.selectProyecto);

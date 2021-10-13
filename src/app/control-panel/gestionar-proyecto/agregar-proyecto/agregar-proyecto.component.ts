@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
 import { Pedido } from '../model/pedido.model';
+import { DateAdapter } from '@angular/material/core';
 import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
@@ -22,21 +23,25 @@ interface Food {
   styleUrls: ['./agregar-proyecto.component.css'],
 })
 export class AgregarProyectoComponent implements OnInit {
-  formUser!: FormGroup;
+ 
   foods: Food[] = [
     { value: 'steak-0', viewValue: 'Boda' },
     { value: 'pizza-1', viewValue: 'Matrimonio' },
     { value: 'tacos-2', viewValue: '' },
   ];
-  constructor(public service: ProyectoService, public service2: PedidoService) {}
-
-  ngOnInit(): void {
-    
+  constructor(
+    public service: ProyectoService,
+    public service2: PedidoService,
+    private dateAdapter: DateAdapter<Date>
+  ) {
+    this.dateAdapter.setLocale('es');
   }
-  getProyecto1(proyecto :Proyecto) {
+
+  ngOnInit(): void {}
+  getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
-}
-getPedido1(pedido :Pedido) {
-  this.service2.selectPedido = pedido;
-}
+  }
+  getPedido1(pedido: Pedido) {
+    this.service2.selectPedido = pedido;
+  }
 }

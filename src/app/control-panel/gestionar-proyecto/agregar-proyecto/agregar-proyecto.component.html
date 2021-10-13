@@ -28,7 +28,7 @@
             <div class="form-row">
                 <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                     <mat-label>holi</mat-label>
-                    <input matInput placeholder="001" name="nombre"  [(ngModel)]="service.selectProyecto.Pro_Nombre">
+                    <input matInput placeholder="001" name="nombre"  [(ngModel)]="service2.selectPedido.Cliente">
                 </mat-form-field>
                 <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                     <mat-label>Evento</mat-label>
@@ -37,7 +37,7 @@
 
                 <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                     <mat-label>Fecha de registro</mat-label>
-                    <input matInput [matDatepicker]="picker" [(ngModel)]="service.selectProyecto.EPro_Fecha_Inicio_Edicion">
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="service2.selectPedido.Fecha">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>

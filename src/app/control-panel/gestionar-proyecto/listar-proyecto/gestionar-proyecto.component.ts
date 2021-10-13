@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
+import { Pedido } from '../model/pedido.model';
 
 @Component({
   selector: 'app-gestionar-proyecto',
@@ -52,5 +53,9 @@ export class GestionarProyectoComponent implements OnInit {
   getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
     console.log(this.service.selectProyecto);
+  }
+  getPedido1(pedido: Pedido) {
+    this.service2.selectPedido = pedido;
+    console.log(this.service2.selectPedido);
   }
 }

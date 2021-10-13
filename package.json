@@ -10,11 +10,8 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@angular-package/change-detection": "^1.0.0",
-=======
     "@angular-material-components/datetime-picker": "^6.0.3",
->>>>>>> carlos-dlc
+    "@angular-package/change-detection": "^1.0.0",
     "@angular/animations": "~12.1.0",
     "@angular/cdk": "^12.2.8",
     "@angular/common": "~12.1.0",
@@ -25,7 +22,6 @@
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
-<<<<<<< HEAD
     "@fullcalendar/angular": "^5.9.0",
     "@fullcalendar/daygrid": "^5.9.0",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
@@ -33,9 +29,7 @@
     "angularx-flatpickr": "^6.6.0",
     "date-fns": "^2.25.0",
     "flatpickr": "^4.6.9",
-=======
     "ngx-mat-datetime-picker": "^3.0.0",
->>>>>>> carlos-dlc
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

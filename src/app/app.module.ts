@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatTableModule } from '@angular/material/table';
     GestionarProyectoComponent,
     GestionarEquiposComponent,
     DashboardComponent,
+    GestionarPedidoComponent,
   ],
   imports: [
     BrowserModule,

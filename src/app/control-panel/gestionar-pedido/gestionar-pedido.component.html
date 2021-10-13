@@ -1,0 +1,196 @@
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <div class="container-fluid" *ngIf="botonVisualizar && botonRegistrar">
+
+
+            <!-- titulo -->
+            <h1>PEDIDO</h1>
+            <!-- titulo -->
+            <div>
+                <p>
+                    <button type="button" (click)="mostrarRegistro()" class="btn btn-primary btn-lg">Registro</button>
+                </p>
+            </div>
+            <!-- Tabla/Listado -->
+
+            <table mat-table [dataSource]="pedidos" class="table">
+
+                <!-- ID -->
+                <ng-container matColumnDef="ID">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+                </ng-container>
+
+                <!-- Nombre A REVISION -->
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+                </ng-container>
+
+                <!-- Fecha Evento -->
+                <ng-container matColumnDef="Fecha">
+                    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
+                </ng-container>
+                <!-- Servicio -->
+                <ng-container matColumnDef="Servicio">
+                    <th mat-header-cell *matHeaderCellDef> Servicio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Servicio}} </td>
+                </ng-container>
+                <!-- Evento -->
+                <ng-container matColumnDef="Evento">
+                    <th mat-header-cell *matHeaderCellDef> Evento </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Evento}} </td>
+                </ng-container>
+                <!-- Cliente -->
+                <ng-container matColumnDef="Cliente">
+                    <th mat-header-cell *matHeaderCellDef> Cliente</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Cliente}} </td>
+                </ng-container>
+                <!-- Estado -->
+                <ng-container matColumnDef="Estado">
+                    <th mat-header-cell *matHeaderCellDef> Estado </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Estado}} </td>
+                </ng-container>
+                <!-- Boton Visualizar -->
+                <ng-container matColumnDef="Visualizar">
+                    <th mat-header-cell *matHeaderCellDef> Visualizar </th>
+                    <td mat-cell *matCellDef="let element"> <button (click)="mostrarDetalles(element.ID)"
+                            class="btn mx-auto" style="background-color:transparent"><i
+                                class="fas fa-eye fa-2x"></i></button> </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+
+        </div>
+
+        <div class="container-fluid" *ngIf="!botonVisualizar">
+            <h1>{{pedido.NombrePedido}}</h1>
+            <div class="container-fluid d-flex flex-column">
+                <div class="container-fluid d-flex">
+                    <div class="container w-50">
+                        <div class="container-fluid">
+                            <h4>Detalles del pedido</h4>
+                            <div class="container-fluid">
+                                <div class="container-fluid d-flex justify-content-around">
+                                    <h5>Empleado</h5>
+                                    <input type="text" [(ngModel)]="pedido.Empleado" disabled>
+                                </div>
+                                <div class="container-fluid d-flex justify-content-around">
+                                    <h5>N Pedido</h5>
+                                    <input type="text" [(ngModel)]="pedido.N_Pedido" disabled>
+                                </div>
+                                <div class="container-fluid d-flex justify-content-around">
+                                    <h5>Contratante</h5>
+                                    <input type="text" [(ngModel)]="pedido.Cliente" disabled>
+                                </div>
+                                <div class="container-fluid d-flex justify-content-around">
+                                    <h5>F. Registro</h5>
+                                    <input type="text" [(ngModel)]="pedido.F_Registro" disabled>
+                                </div>
+                                <div class="container-fluid d-flex justify-content-around">
+                                    <h5>Estado Pedido</h5>
+                                    <input type="text" [(ngModel)]="pedido.EstadoPedido" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="container w-50">
+                        <h4>Detalles de Pago</h4>
+                        <div class="container-fluid">
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>Costo Total</h5>
+                                <input type="number" [(ngModel)]="pedido.Costo_Total" disabled>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>A cuenta</h5>
+                                <input type="number" [(ngModel)]="pedido.Acuenta" disabled>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>A saldo</h5>
+                                <input type="number" [(ngModel)]="saldo" disabled>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>Estado Pago</h5>
+                                <input type="text" [(ngModel)]="pedido.EstadoPago" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <h4>Detalles de Evento</h4>
+                    <div class="container-fluid d-flex">
+                        <div class="container w-50">
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>Evento</h5>
+                                <input type="text" [(ngModel)]="pedido.Evento" disabled>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>Servicio</h5>
+
+                                <input type="text" [(ngModel)]="pedido.Servicio" disabled>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>F. Evento</h5>
+                                <input type="text" [(ngModel)]="pedido.F_Evento" disabled>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>Hora</h5>
+                                <input type="text" [(ngModel)]="pedido.Hora_Evento" disabled>
+                            </div>
+                        </div>
+                        <div class="container w-50">
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>Ubicacion</h5>
+                                <input type="text" [(ngModel)]="pedido.Direccion" disabled>
+                            </div>
+                            <div class="container-fluid d-flex justify-content-around">
+                                <h5>Descripcion</h5>
+                                <textarea [(ngModel)]="pedido.Descripcion" cols="22" rows="8" disabled></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div><button (click)="cerrarDetalles()" class="btn btn-danger"> Cancelar</button>
+        </div>
+
+        <div class="container-fluid" *ngIf="!botonRegistrar">
+            <div class="container-fluid">
+                <div class="container-fluid d-flex justify-content-around">
+                    <h5>Cod.Empleado:</h5>
+                    <input type="text">
+                </div>
+                <div class="container-fluid d-flex justify-content-around">
+                    <h5>Nro.Pedido</h5>
+                    <input [(ngModel)]="nPedido" type="text" disabled>
+                </div>
+                <div class="container-fluid d-flex justify-content-around">
+                    <h5>F. Registro</h5>
+                    <input [(ngModel)]="fechaActual" type="text" disabled>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="container-fluid d-flex justify-content-around">
+                    <h5>Ingrese DNI</h5>
+                    <input [(ngModel)]="dniCliente" type="text">
+                </div>
+                <div class="container-fluid d-flex justify-content-around">
+                    <h5>Nombres</h5>
+                    <input [(ngModel)]="infoCliente.Nombre" type="text" disabled>
+                </div>
+                <div class="container-fluid d-flex justify-content-around">
+                    <h5>Apellidos</h5>
+                    <input [(ngModel)]="infoCliente.Apellido" type="text" disabled>
+                </div>
+
+            </div>
+            <button (click)="cerrarRegistro()" class="btn btn-danger"> Cancelar</button>
+            <button (click)="buscarCliente(dniCliente)" class="btn btn-primary"> Buscar</button>
+        </div>
+    </div>
+</div>

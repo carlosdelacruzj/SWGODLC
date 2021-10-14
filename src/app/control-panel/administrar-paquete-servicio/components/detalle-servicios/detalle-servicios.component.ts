@@ -6,17 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./detalle-servicios.component.css']
 })
 export class DetalleServiciosComponent implements OnInit {
-  servicios = [];
-  columnsToDisplay = ['ID','nombre', 'fecha']
-  @Input() titulo: string='';
-  @Input() servicio: string='';
-  @Input() precio: string='';
-  @Input() descripcion: string='';
-  @Input() imagen: string='';
-  @Input() id: number = 0;
-  constructor() { }
+  serviciosf = [];
+  @Input() ID: number=0;
+  @Input() Nombre: string='';
 
   ngOnInit(): void {
   }
+
 
 }

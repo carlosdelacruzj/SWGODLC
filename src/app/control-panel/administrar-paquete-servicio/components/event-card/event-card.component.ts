@@ -17,8 +17,10 @@ export class EventCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   cambioVista(){
     this.emitAccion.emit(this.id);
+    alert(this.id);
   }
 }
 

@@ -1,0 +1,50 @@
+<p>Hola Mundo</p>
+<h3></h3>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Filmacion" #input>
+  </mat-form-field>
+
+
+  <table mat-table [dataSource]="servicios" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+    The actual rendered columns are set as a property on the row definition" -->
+  <!-- Position Column -->
+  <ng-container matColumnDef="evento">
+  <th mat-header-cell *matHeaderCellDef> Tipo Servicio </th>
+  <td mat-cell *matCellDef="let element"> {{element.Servicio}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="precio">
+  <th mat-header-cell *matHeaderCellDef> Precio </th>
+  <td mat-cell *matCellDef="let element"> S/{{element.Precio}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="descripcion">
+  <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+  <td mat-cell *matCellDef="let element"> {{element.Descripcion}} </td>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="titulo">
+    <th mat-header-cell *matHeaderCellDef> Titulo </th>
+    <td mat-cell *matCellDef="let element"> {{element.Titulo}}</td>
+    </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="acciones">
+  <th mat-header-cell *matHeaderCellDef> Acciones </th>
+  <td mat-cell *matCellDef> 
+    <button mat-raised-button color="primary" class="acciones">Editar</button>
+    <button mat-raised-button class="acciones">Visualizar</button>
+  </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>

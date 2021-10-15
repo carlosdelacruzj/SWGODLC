@@ -25,3 +25,20 @@ h3{
     font-size: 20px;
     margin: auto;
 }
+
+.boton-action{
+    padding: 10px;
+    margin: auto;
+}
+.addservice{
+    font-size: 12px;
+    padding: 10px 15px;
+    display: left;
+}
+
+.registrarPaquete{
+    padding: 4px 6px;
+    margin: auto;
+    display: inline-block;   
+    font-size: 12px;
+}

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { EventoServicioService } from '../../service/evento-servicio.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class EventServiceComponent implements OnInit {
 
   servicios = [];
   columnsToDisplay = ['evento','precio', 'descripcion','titulo','acciones']
+  dataSource = new MatTableDataSource();
   // @Input() evento: string='';
   // @Input() servicio: string='';
   // @Input() precio: string='';
@@ -32,9 +34,11 @@ export class EventServiceComponent implements OnInit {
       console.log("RESPONSE> " + response);
       this.servicios = response;
   });
+  }
 
-  
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   
 

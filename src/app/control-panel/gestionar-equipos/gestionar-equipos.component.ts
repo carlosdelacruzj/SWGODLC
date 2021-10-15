@@ -1,5 +1,6 @@
 import { NgModule, Component, OnInit } from '@angular/core';
 import { GestionarEquipos } from './service/gestionar-equipos.service';
+import { AsignarEquipos } from './model/gestionar-equipos.model';
 
 @Component({
   selector: 'app-gestionar-equipos',
@@ -8,6 +9,7 @@ import { GestionarEquipos } from './service/gestionar-equipos.service';
 })
 export class GestionarEquiposComponent implements OnInit {
   proyectos = [];
+  equipos_proyecto = [];
   columnsToDisplay = [
     'nombre',
     'fecha',
@@ -17,6 +19,13 @@ export class GestionarEquiposComponent implements OnInit {
     'asignar',
   ];
   columnsToDisplay2 = ['codigo', 'marca', 'modelo', 'estado'];
+  columnsToDisplay3 = [
+    'empleado',
+    'codequipo',
+    'tipoequipo',
+    'nombreequipo',
+    'eliminar',
+  ];
   asignarPersonal = false;
   proyecto = {
     Nombre: '',
@@ -24,13 +33,14 @@ export class GestionarEquiposComponent implements OnInit {
   id_proyecto = 0;
   id_empleado = 1;
   id_tipo_equipo = 1;
-  empleados_disponibles = 2;
   empleados: any[] = [];
   tipo_equipos: any[] = [];
   ready_empleados = false;
   ready_proyectos = false;
   asignar_equipo = false;
   equipos = [];
+  lista_id: any[] = [];
+  cantidad_asigacion = 0;
   constructor(private service: GestionarEquipos) {}
 
   ngOnInit(): void {
@@ -42,6 +52,10 @@ export class GestionarEquiposComponent implements OnInit {
     this.id_tipo_equipo = 1;
     this.getProyectos();
     this.getEquiposId(1);
+  }
+
+  ngOnChanges(): void {
+    this.eliminarAsignacion;
   }
 
   // GET DATA
@@ -59,12 +73,17 @@ export class GestionarEquiposComponent implements OnInit {
       this.proyecto = {
         Nombre: data[0].Pro_Nombre,
       };
-
       //GET TODOS LOS EMPLEADOS
       this.service.getEmpleados().subscribe((data) => {
         this.empleados = data;
         this.ready_proyectos = true;
         this.ready_empleados = true;
+      });
+
+      //GET EQUIPOS BY PROYECTO ID
+      this.service.getEquiposByProyecto(id).subscribe((data) => {
+        this.equipos_proyecto = data;
+        this.cantidad_asigacion = this.equipos_proyecto.length;
       });
     });
   }
@@ -75,6 +94,8 @@ export class GestionarEquiposComponent implements OnInit {
       this.tipo_equipos = data;
     });
   }
+
+  //GET TIPOS DE EQUIPOS BY ID
 
   getEquiposId(id: number) {
     this.service.getEquipoId(id).subscribe((data) => {
@@ -117,5 +138,21 @@ export class GestionarEquiposComponent implements OnInit {
   asignarTipoEquipo(event: number) {
     this.id_tipo_equipo = event;
     this.getEquiposId(event);
+  }
+
+  registrarData(id_empleado: number, id_proyecto: number, id_equipo: string) {
+    alert(id_proyecto);
+    this.service.postEquiposProyectos(id_proyecto, id_empleado, id_equipo);
+  }
+
+  eliminarAsignacion(id: number) {
+    this.service.deleteAsignacion(id).subscribe({
+      next: (data) => {
+        this.getProyecto(this.id_proyecto);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
   }
 }

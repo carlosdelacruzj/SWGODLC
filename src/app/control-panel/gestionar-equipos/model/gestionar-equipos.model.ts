@@ -32,3 +32,22 @@ export class Equipos {
     public Estado: string
   ) {}
 }
+
+export class EquiposByProyecto {
+  constructor(
+    public ID: number,
+    public ID_Empleado: number,
+    public Empleado: string,
+    public CodigoEquipo: string,
+    public TipoEquipo: string,
+    public NombreEquipo: string
+  ) {}
+}
+
+export class AsignarEquipos {
+  constructor(
+    public proyecto: number,
+    public empleado: number,
+    public equipos: string
+  ) {}
+}

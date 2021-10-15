@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Proyecto, Empleado } from '../model/gestionar-equipos.model';
+import {
+  Proyecto,
+  Empleado,
+  EquiposByProyecto,
+  AsignarEquipos,
+} from '../model/gestionar-equipos.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +30,21 @@ export class GestionarEquipos {
     Car_Nombre: '',
   };
 
+  selectEquiposByProyecto: EquiposByProyecto = {
+    ID: 0,
+    ID_Empleado: 0,
+    Empleado: '',
+    CodigoEquipo: '',
+    TipoEquipo: '',
+    NombreEquipo: '',
+  };
+
+  postAsignarEquipos: AsignarEquipos = {
+    proyecto: 0,
+    empleado: 0,
+    equipos: '',
+  };
+
   private PROYECTOS_ASIGNAR =
     'https://tp2021database.herokuapp.com/proyecto/consulta/getAllAsignarEquipos';
 
@@ -39,6 +59,14 @@ export class GestionarEquipos {
 
   private EQUIPO_ID =
     'https://tp2021database.herokuapp.com/equipo/consulta/getByTipoEquipo/';
+
+  private EQUIPOS_BY_PROYECTO =
+    'https://tp2021database.herokuapp.com/proyecto/consulta/getAsignarEquiposById/';
+
+  private ASIGNAR_EQUIPOS =
+    'https://tp2021database.herokuapp.com/proyecto/registro/postAsignarPersonalEquipo';
+  private ELIMINAR_EQUIPOS =
+    'https://tp2021database.herokuapp.com/proyecto/delete/deleteAsignarEquipoById/';
 
   constructor(private http: HttpClient) {}
 
@@ -60,5 +88,31 @@ export class GestionarEquipos {
 
   public getEquipoId(id: number): Observable<any> {
     return this.http.get(this.EQUIPO_ID + `${id}`);
+  }
+
+  public getEquiposByProyecto(id: number): Observable<any> {
+    return this.http.get(this.EQUIPOS_BY_PROYECTO + `${id}`);
+  }
+
+  public deleteAsignacion(id: number): Observable<void> {
+    return this.http.delete<void>(this.ELIMINAR_EQUIPOS + id);
+  }
+
+  public postEquiposProyectos(
+    proyecto: number,
+    empleado: number,
+    equipos: string
+  ) {
+    this.http
+      .post(this.ASIGNAR_EQUIPOS, {
+        proyecto: proyecto,
+        empleado: empleado,
+        equipos: equipos,
+      })
+      .subscribe(
+        (data) => {},
+        (response) => {},
+        () => {}
+      );
   }
 }

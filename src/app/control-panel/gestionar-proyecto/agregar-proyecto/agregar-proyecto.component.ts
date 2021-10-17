@@ -23,7 +23,8 @@ interface Food {
   styleUrls: ['./agregar-proyecto.component.css'],
 })
 export class AgregarProyectoComponent implements OnInit {
-  fechaActual='';
+  fechaActual = '';
+  proyectos = [];
   foods: Food[] = [
     { value: 'steak-0', viewValue: 'Boda' },
     { value: 'pizza-1', viewValue: 'Matrimonio' },
@@ -48,7 +49,6 @@ export class AgregarProyectoComponent implements OnInit {
   }
   ngOnInit(): void {
     this.asignarFechaActual();
-    console.log(this.fechaActual);
   }
   getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
@@ -56,13 +56,28 @@ export class AgregarProyectoComponent implements OnInit {
   getPedido1(pedido: Pedido) {
     this.service2.selectPedido = pedido;
   }
-  
-  onSubmit(ProyectoForm: NgForm){
+  getProyecto() {
+    this.service.getAllNombres().subscribe((response) => {
+      this.proyectos = response.data;
+    });
+  }
+  // onSubmit(ProyectoForm: NgForm) {
+
+  //   this.service.registro(data).subscribe((response: any) => {
+  //     console.log(response);
+  //   });
+  // }
+
+  addProyecto(ProyectoForm: NgForm) {
     let data = {
-      ID: ProyectoForm.value.ID,
-      Evento: ProyectoForm.value.Evento,
-      fechaActual: ProyectoForm.value.fechaActual
+      proyecto_nombre: ProyectoForm.value.Nombre,
+      codigo_pedido: ProyectoForm.value.ID,
+      fecha_inicio_edicion: ProyectoForm.value.fechaActual,
     };
-    
+    console.log(data);
+    this.service.registro(data).subscribe(
+      (res) => {},
+      (err) => console.error(err)
+    );
   }
 }

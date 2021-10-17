@@ -70,7 +70,7 @@ export class GestionarProyectoComponent implements OnInit {
   }
   getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
-    console.log(this.service.selectProyecto);
+    // console.log(this.service.selectProyecto);
   }
   getPedido1(pedido: Pedido) {
     this.service2.selectPedido = pedido;

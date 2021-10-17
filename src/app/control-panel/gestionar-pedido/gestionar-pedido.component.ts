@@ -116,4 +116,8 @@ export class GestionarPedidoComponent implements OnInit {
     hoy = dd + '/' + mm + '/' + yyyy;
     this.fechaActual = hoy;
   }
+
+  filterData2($event: any) {
+    this.pedidos.filter = $event.target.value;
+  }
 }

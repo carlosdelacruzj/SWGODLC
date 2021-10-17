@@ -24,11 +24,19 @@ export class ProyectoService {
 
   proyecto: Proyecto[] = [];
   private API_PRUEBA =
-    'https://tp2021database.herokuapp.com/proyecto/consulta/getAllProyecto';
+    'https://tp2021database.herokuapp.com/proyecto';
   constructor(private http: HttpClient) {}
 
   public getAllNombres(): Observable<any> {
-    return this.http.get(this.API_PRUEBA);
+    return this.http.get(this.API_PRUEBA + '/consulta/getAllProyecto');
   }
+
+ registro(data:any): Observable<any> {
+  const fd = new FormData();
+  fd.append('proyecto_nombre', data.proyecto_nombre);
+  fd.append('codigo_pedido', data.codigo_pedido);
+  fd.append('fecha_inicio_edicion', data.fecha_inicio_edicion);
+  return this.http.post(this.API_PRUEBA + '/registro​/postProyecto', fd);
+}
   
 }

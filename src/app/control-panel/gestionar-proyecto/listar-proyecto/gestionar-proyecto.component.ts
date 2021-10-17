@@ -13,8 +13,23 @@ import { Pedido } from '../model/pedido.model';
   styleUrls: ['./gestionar-proyecto.component.css'],
 })
 export class GestionarProyectoComponent implements OnInit {
-  displayedColumns = ['Nombre','Fecha','Servicio','Evento','Cliente','Estado', 'actions'];
-  displayedColumns2 = ['Nombre','Fecha','Servicio','Evento','Cliente','Estado', 'actions'];
+  displayedColumns = [
+    'PK_Pro_Cod',
+    'Pro_Nombre',
+    'FK_P_Cod',
+    'EPro_Fecha_Inicio_Edicion',
+    'Pro_Fecha_Fin_Edicion',
+    'actions',
+  ];
+  displayedColumns2 = [
+    'Nombre',
+    'Fecha',
+    'Servicio',
+    'Evento',
+    'Cliente',
+    'Estado',
+    'actions',
+  ];
 
   dataSource!: MatTableDataSource<any>;
   dataSource2!: MatTableDataSource<any>;
@@ -26,7 +41,7 @@ export class GestionarProyectoComponent implements OnInit {
     public service: ProyectoService,
     public service2: PedidoService
   ) {}
-
+  fechaActual = '';
   ngOnInit(): void {
     this.getProyecto();
     this.getPedido();
@@ -60,5 +75,7 @@ export class GestionarProyectoComponent implements OnInit {
   getPedido1(pedido: Pedido) {
     this.service2.selectPedido = pedido;
     console.log(this.service2.selectPedido);
+
   }
+
 }

@@ -18,43 +18,51 @@
         </div>
     </div>
 
-
+    <form #ProyectoForm="ngForm" (ngSubmit)="onSubmit(ProyectoForm)">
     <!-- card numero 1 -->
     <mat-card class="card">
         <mat-card-header class="card-header">
             <mat-card-title>Detalle de Pedido</mat-card-title>
         </mat-card-header>
         <mat-card-content class="card-body">
-            <div class="form-row">
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>holi</mat-label>
-                    <input matInput placeholder="001" name="nombre"  [(ngModel)]="service2.selectPedido.Cliente ">
-                </mat-form-field>
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>Evento</mat-label>
-                    <input matInput placeholder="Boda">
-                </mat-form-field>
+            
+                
+                    <div class="form-row">
+                        <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                            <mat-label>N de pedido</mat-label>
+                            <input matInput placeholder="001" name="ID" #ID="ngModel"
+                                [(ngModel)]="service2.selectPedido.ID" disabled>
+                        </mat-form-field>
+                        <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                            <mat-label>Evento</mat-label>
+                            <input matInput placeholder="Boda" name="Evento" #Evento="ngModel"
+                                [(ngModel)]="service2.selectPedido.Evento" disabled>
+                        </mat-form-field>
 
-                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Fecha de registro</mat-label>
-                    <input matInput [matDatepicker]="picker" [(ngModel)]="service2.selectPedido.Fecha">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>Cliente</mat-label>
-                    <input matInput placeholder="Katya vergaray Carbajal">
-                </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                            <mat-label>Fecha de registro</mat-label>
+                            <input matInput [matDatepicker]="picker" name="Fecha" #Fecha="ngModel"
+                                [(ngModel)]="service2.selectPedido.Fecha" disabled>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                            <mat-label>Cliente</mat-label>
+                            <input matInput placeholder="Katya vergaray Carbajal" name="Cliente" #Cliente="ngModel"
+                                [(ngModel)]="service2.selectPedido.Cliente" disabled>
+                        </mat-form-field>
 
 
-            </div>
+                    </div>
 
-            <div class="form-row">
-                <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                    <mat-label>Leave a comment</mat-label>
-                    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-                </mat-form-field>
-            </div>
+                    <div class="form-row">
+                        <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                            <mat-label>Leave a comment</mat-label>
+                            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                        </mat-form-field>
+                    </div>
+           
+         
         </mat-card-content>
     </mat-card>
 
@@ -69,12 +77,13 @@
             <div class="form-row">
                 <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                     <mat-label>Fecha-Inicio</mat-label>
-                    <input matInput [matDatepicker]="picker2">
+                    <input matInput type="text" name="fechaActual"  [(ngModel)]="fechaActual" disabled>
+                    <!-- <input matInput [matDatepicker]="picker2"> -->
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Fecha de registro</mat-label>
+                    <mat-label>Fecha-Fin</mat-label>
                     <input matInput [matDatepicker]="picker3">
                     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                     <mat-datepicker #picker3></mat-datepicker>
@@ -145,4 +154,7 @@
             </div>
         </mat-card-content>
     </mat-card>
+    
+    <button mat-button color="primary">Basic</button>
+</form>
 </div>

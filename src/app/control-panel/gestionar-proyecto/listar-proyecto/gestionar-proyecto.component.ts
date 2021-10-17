@@ -75,7 +75,6 @@ export class GestionarProyectoComponent implements OnInit {
   getPedido1(pedido: Pedido) {
     this.service2.selectPedido = pedido;
     console.log(this.service2.selectPedido);
-
   }
 
 }

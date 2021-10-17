@@ -36,7 +36,9 @@ export class ProyectoService {
   //   fd.append('fecha_inicio_edicion', data.fecha_inicio_edicion);
   //   return this.http.post('https://tp2021database.herokuapp.com/proyecto/registro​/postProyecto', fd);
   // }
+
   registro(data: any) {
-    return this.http.post(this.API_PRUEBA + 'registro​/postProyecto', data);
+    const headers = { 'Content-Type': 'application/json'};
+    return this.http.post(this.API_PRUEBA + 'registro​/postProyecto', data, {headers} );
   }
 }

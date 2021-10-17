@@ -103,16 +103,10 @@ export class GestionarEquipos {
     empleado: number,
     equipos: string
   ) {
-    this.http
-      .post(this.ASIGNAR_EQUIPOS, {
-        proyecto: proyecto,
-        empleado: empleado,
-        equipos: equipos,
-      })
-      .subscribe(
-        (data) => {},
-        (response) => {},
-        () => {}
-      );
+    return this.http.post(this.ASIGNAR_EQUIPOS, {
+      proyecto: proyecto,
+      empleado: empleado,
+      equipos: equipos,
+    });
   }
 }

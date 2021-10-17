@@ -54,10 +54,6 @@ export class GestionarEquiposComponent implements OnInit {
     this.getEquiposId(1);
   }
 
-  ngOnChanges(): void {
-    this.eliminarAsignacion;
-  }
-
   // GET DATA
 
   // GET TODOS LOS PROYECTOS
@@ -141,8 +137,17 @@ export class GestionarEquiposComponent implements OnInit {
   }
 
   registrarData(id_empleado: number, id_proyecto: number, id_equipo: string) {
-    alert(id_proyecto);
-    this.service.postEquiposProyectos(id_proyecto, id_empleado, id_equipo);
+    this.service
+      .postEquiposProyectos(id_proyecto, id_empleado, id_equipo)
+      .subscribe({
+        next: () => {
+          this.getProyecto(this.id_proyecto);
+          this.getEquiposId(this.id_tipo_equipo);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 
   eliminarAsignacion(id: number) {

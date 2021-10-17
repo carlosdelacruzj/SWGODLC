@@ -63,5 +63,6 @@ export class AgregarProyectoComponent implements OnInit {
       Evento: ProyectoForm.value.Evento,
       fechaActual: ProyectoForm.value.fechaActual
     };
+    
   }
 }

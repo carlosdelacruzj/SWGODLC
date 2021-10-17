@@ -41,4 +41,23 @@ export class ProyectoService {
     const headers = { 'Content-Type': 'application/json'};
     return this.http.post(this.API_PRUEBA + 'registro​/postProyecto', data, {headers} );
   }
+
+
+  public postProyectos(
+    proyecto_nombre: string,
+    codigo_pedido: number,
+    fecha_inicio_edicion: string
+  ) {
+    this.http
+      .post(this.API_PRUEBA + 'registro​/postProyecto' , {
+        proyecto_nombre: proyecto_nombre,
+        codigo_pedido: codigo_pedido,
+        fecha_inicio_edicion: fecha_inicio_edicion,
+      })
+      .subscribe(
+        (data) => {},
+        (response) => {},
+        () => {}
+      );
+  }
 }

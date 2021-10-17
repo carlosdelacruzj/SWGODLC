@@ -68,16 +68,21 @@ export class AgregarProyectoComponent implements OnInit {
   //   });
   // }
 
-  addProyecto(ProyectoForm: NgForm) {
-    let data = {
-      proyecto_nombre: ProyectoForm.value.Nombre,
-      codigo_pedido: ProyectoForm.value.ID,
-      fecha_inicio_edicion: ProyectoForm.value.fechaActual,
-    };
-    console.log(data);
-    this.service.registro(data).subscribe(
-      (res) => {},
-      (err) => console.error(err)
-    );
+  // addProyecto(ProyectoForm: NgForm) {
+  //   let data = {
+  //     proyecto_nombre: ProyectoForm.value.Nombre,
+  //     codigo_pedido: ProyectoForm.value.ID,
+  //     fecha_inicio_edicion: ProyectoForm.value.fechaActual,
+  //   };
+  //   console.log(data);
+  //   this.service.registro(data).subscribe(
+  //     (res) => {},
+  //     (err) => console.error(err)
+  //   );
+  // }
+
+  registrarData(proyecto_nombre: string, codigo_pedido: number, fecha_inicio_edicion: string) {
+    alert(codigo_pedido);
+    this.service.postProyectos(proyecto_nombre, codigo_pedido, fecha_inicio_edicion);
   }
 }

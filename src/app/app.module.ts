@@ -15,11 +15,12 @@ import { AngularMaterialModule } from './shared/angular-material/angular-materia
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './shared/angular-material/spanish-paginator-intl';
 import { ReactiveFormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
-  NgxMatTimepickerModule,
+  NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 
 
@@ -58,7 +59,8 @@ import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gesti
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    NgbModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

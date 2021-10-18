@@ -8,14 +8,9 @@ export class Proyecto {
     public Pro_Fecha_Fin_Edicion: null | string,
     public Pro_Revision_Edicion: number,
     public Pro_Revision_Multimedia: number,
-<<<<<<< HEAD
-    public Pro_Enlace: null | string
-  ) { }
-=======
     public Pro_Enlace: string,
     public Pro_Asignado: number,
     public FK_ESPro_Cod: number,
     public Pro_Observacion: string
   ) {}
->>>>>>> hairon
 }

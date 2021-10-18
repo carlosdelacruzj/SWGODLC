@@ -7,16 +7,27 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/gestionar-proyecto.component';
+import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/listar-proyecto/gestionar-proyecto.component';
 import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/gestionar-equipos.component';
 import { DashboardComponent } from './control-panel/dashboard/dashboard.component';
+import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
+import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getSpanishPaginatorIntl } from './shared/angular-material/spanish-paginator-intl';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -27,6 +38,8 @@ import { MatTableModule } from '@angular/material/table';
     GestionarProyectoComponent,
     GestionarEquiposComponent,
     DashboardComponent,
+    AgregarProyectoComponent,
+    GestionarPedidoComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,12 +47,16 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatGridListModule,
-    MatCardModule,
-    MatTableModule,
+    AngularMaterialModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

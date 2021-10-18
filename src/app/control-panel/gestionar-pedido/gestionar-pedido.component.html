@@ -1,20 +1,22 @@
 <div class="container-fluid dashboard-content ">
         <div class="container-fluid" *ngIf="botonVisualizar && botonRegistrar">
 
+        <div class="container-fluid" *ngIf="botonVisualizar && botonRegistrar">
 
-            <!-- titulo -->
-            <h1>Pedido</h1>
-            <!-- titulo -->
-            <div class="d-flex justify-content-between">
-            
-                <div>
-
-                </div>
-                <div style="padding-bottom: 20px;">
-                    <button type="button" (click)="mostrarRegistro()" class="btn btn-primary btn-lg">Registrar Pedido</button>
-                </div>
-            
+            <!-- btn Registrar -->
+            <div style="text-align:right">
+                <p>
+                    <button type="button" (click)="mostrarRegistro()" class="btn btn-primary btn-lg">Registro</button>
+                </p>
             </div>
+            <br>
+
+            <div>
+                <!-- titulo -->
+                <h1>PEDIDO</h1>
+                <mat-divider></mat-divider>
+            </div>
+
             <!-- Tabla/Listado -->
             <div class=""> 
                 <mat-form-field appearance="standard">
@@ -23,183 +25,425 @@
 
                 <table mat-table [dataSource]="pedidos" class="table">
 
-                    <!-- ID -->
-                    <ng-container matColumnDef="ID">
-                        <th mat-header-cell *matHeaderCellDef> ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
-                    </ng-container>
-    
-                    <!-- Nombre A REVISION -->
-                    <ng-container matColumnDef="Nombre">
-                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
-                    </ng-container>
-    
-                    <!-- Fecha Evento -->
-                    <ng-container matColumnDef="Fecha">
-                        <th mat-header-cell *matHeaderCellDef> Fecha </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Fecha | date: "dd/MM/yyyy"}} </td>
-                    </ng-container>
-                    <!-- Servicio -->
-                    <ng-container matColumnDef="Servicio">
-                        <th mat-header-cell *matHeaderCellDef> Servicio </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Servicio}} </td>
-                    </ng-container>
-                    <!-- Evento -->
-                    <ng-container matColumnDef="Evento">
-                        <th mat-header-cell *matHeaderCellDef> Evento </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Evento}} </td>
-                    </ng-container>
-                    <!-- Cliente -->
-                    <ng-container matColumnDef="Cliente">
-                        <th mat-header-cell *matHeaderCellDef> Cliente</th>
-                        <td mat-cell *matCellDef="let element"> {{element.Cliente}} </td>
-                    </ng-container>
-                    <!-- Estado -->
-                    <ng-container matColumnDef="Estado">
-                        <th mat-header-cell *matHeaderCellDef> Estado </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Estado}} </td>
-                    </ng-container>
-                    <!-- Boton Visualizar -->
-                    <ng-container matColumnDef="Visualizar">
-                        <th mat-header-cell *matHeaderCellDef> Visualizar </th>
-                        <td mat-cell *matCellDef="let element"> <button (click)="mostrarDetalles(element.ID)"
-                                class="btn mx-auto" style="background-color:transparent"><i
-                                    class="fas fa-eye fa-2x"></i></button> </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-                    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-                </table>
-            </div>
-            
+                <!-- ID -->
+                <ng-container matColumnDef="ID">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+                </ng-container>
 
+                <!-- Nombre A REVISION -->
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+                </ng-container>
+
+                <!-- Fecha Evento -->
+                <ng-container matColumnDef="Fecha">
+                    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
+                </ng-container>
+                <!-- Servicio -->
+                <ng-container matColumnDef="Servicio">
+                    <th mat-header-cell *matHeaderCellDef> Servicio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Servicio}} </td>
+                </ng-container>
+                <!-- Evento -->
+                <ng-container matColumnDef="Evento">
+                    <th mat-header-cell *matHeaderCellDef> Evento </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Evento}} </td>
+                </ng-container>
+                <!-- Cliente -->
+                <ng-container matColumnDef="Cliente">
+                    <th mat-header-cell *matHeaderCellDef> Cliente</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Cliente}} </td>
+                </ng-container>
+                <!-- Estado -->
+                <ng-container matColumnDef="Estado">
+                    <th mat-header-cell *matHeaderCellDef> Estado </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Estado}} </td>
+                </ng-container>
+                <!-- Boton Visualizar -->
+                <ng-container matColumnDef="Visualizar">
+                    <th mat-header-cell *matHeaderCellDef> Visualizar </th>
+                    <td mat-cell *matCellDef="let element"> <button (click)="mostrarDetalles(element.ID)"
+                            class="btn mx-auto" style="background-color:transparent"><i
+                                class="fas fa-eye fa-2x"></i></button> </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+            <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+            </mat-paginator>
         </div>
+
+
+        <!-- INTERFAZ Visualizar  -->
 
         <div class="container-fluid" *ngIf="!botonVisualizar">
             <h1>{{pedido.NombrePedido}}</h1>
+            <mat-divider></mat-divider>
+            <br>
+
             <div class="container-fluid d-flex flex-column">
                 <div class="container-fluid d-flex">
                     <div class="container w-50">
+
                         <div class="container-fluid">
-                            <h4>Detalles del pedido</h4>
+                            <mat-card class="card">
+                                <mat-card-header class="card-header">
+                                    <mat-card-title>Detalles de Pedido</mat-card-title>
+                                </mat-card-header>
+                            </mat-card>
+                            <!-- INTfsfERFAZ sfsfsfs  -->
+
+
                             <div class="container-fluid">
-                                <div class="container-fluid d-flex justify-content-around">
-                                    <h5>Empleado</h5>
-                                    <input type="text" [(ngModel)]="pedido.Empleado" disabled>
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Empleado :</span>
+                                    <input type="text" aria-label="First name" class="form-control"
+                                        [(ngModel)]="pedido.Empleado" disabled />
                                 </div>
-                                <div class="container-fluid d-flex justify-content-around">
-                                    <h5>N Pedido</h5>
-                                    <input type="text" [(ngModel)]="pedido.N_Pedido" disabled>
+                                <br>
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Nº
+                                        Pedido :</span>
+                                    <input type="text" aria-label="First name" class="form-control"
+                                        [(ngModel)]="pedido.N_Pedido" disabled />
                                 </div>
-                                <div class="container-fluid d-flex justify-content-around">
-                                    <h5>Contratante</h5>
-                                    <input type="text" [(ngModel)]="pedido.Cliente" disabled>
+                                <br>
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Contratante :</span>
+                                    <input type="text" aria-label="First name" class="form-control"
+                                        [(ngModel)]="pedido.Cliente" disabled />
                                 </div>
-                                <div class="container-fluid d-flex justify-content-around">
-                                    <h5>F. Registro</h5>
-                                    <input type="text" [(ngModel)]="pedido.F_Registro" disabled>
+                                <br>
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">F.Registro :</span>
+                                    <input type="text" aria-label="First name" class="form-control"
+                                        [(ngModel)]="pedido.F_Registro" disabled />
                                 </div>
-                                <div class="container-fluid d-flex justify-content-around">
-                                    <h5>Estado Pedido</h5>
-                                    <input type="text" [(ngModel)]="pedido.EstadoPedido" disabled>
+                                <br>
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Estado Pedido :</span>
+                                    <input type="text" aria-label="First name" class="form-control"
+                                        [(ngModel)]="pedido.EstadoPedido" disabled />
                                 </div>
+                                <br>
+
                             </div>
+
                         </div>
 
                     </div>
+
                     <div class="container w-50">
-                        <h4>Detalles de Pago</h4>
+
+                        <mat-card class="card">
+                            <mat-card-header class="card-header">
+                                <mat-card-title>Detalles de Pago</mat-card-title>
+                            </mat-card-header>
+                        </mat-card>
+
                         <div class="container-fluid">
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>Costo Total</h5>
-                                <input type="number" [(ngModel)]="pedido.Costo_Total" disabled>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Costo
+                                    Total :</span>
+                                <input type="text" aria-label="First name" class="form-control"
+                                    [(ngModel)]="pedido.Costo_Total" disabled />
                             </div>
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>A cuenta</h5>
-                                <input type="number" [(ngModel)]="pedido.Acuenta" disabled>
+                            <br>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">A Cuenta
+                                    :</span>
+                                <input type="text" aria-label="First name" class="form-control"
+                                    [(ngModel)]="pedido.Acuenta" disabled />
                             </div>
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>A saldo</h5>
-                                <input type="number" [(ngModel)]="saldo" disabled>
+                            <br>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">A Saldo
+                                    :</span>
+                                <input type="text" aria-label="First name" class="form-control" [(ngModel)]="saldo"
+                                    disabled />
                             </div>
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>Estado Pago</h5>
-                                <input type="text" [(ngModel)]="pedido.EstadoPago" disabled>
+                            <br>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Estado
+                                    Pago :</span>
+                                <input type="text" class="form-control" [(ngModel)]="pedido.EstadoPago" disabled />
                             </div>
+                            <br>
+
                         </div>
                     </div>
+
                 </div>
+
+                <br>
+
 
                 <div class="container-fluid">
-                    <h4>Detalles de Evento</h4>
+                    <mat-card class="card">
+                        <mat-card-header class="card-header">
+                            <mat-card-title>Detalles de Evento</mat-card-title>
+                        </mat-card-header>
+                    </mat-card>
+
                     <div class="container-fluid d-flex">
                         <div class="container w-50">
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>Evento</h5>
-                                <input type="text" [(ngModel)]="pedido.Evento" disabled>
-                            </div>
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>Servicio</h5>
 
-                                <input type="text" [(ngModel)]="pedido.Servicio" disabled>
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Evento
+                                    :</span>
+                                <input type="text" class="form-control" [(ngModel)]="pedido.Evento" disabled />
                             </div>
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>F. Evento</h5>
-                                <input type="text" [(ngModel)]="pedido.F_Evento" disabled>
+                            <br>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Servicio
+                                    :</span>
+                                <input type="text" class="form-control" [(ngModel)]="pedido.Servicio" disabled />
                             </div>
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>Hora</h5>
-                                <input type="text" [(ngModel)]="pedido.Hora_Evento" disabled>
+                            <br>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">F.Evento
+                                    :</span>
+                                <input type="text" class="form-control" [(ngModel)]="pedido.F_Evento" disabled />
                             </div>
+                            <br>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Hora
+                                    :</span>
+                                <input type="text" class="form-control" [(ngModel)]="pedido.Hora_Evento" disabled />
+                            </div>
+                            <br>
+
                         </div>
+
+
                         <div class="container w-50">
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>Ubicacion</h5>
-                                <input type="text" [(ngModel)]="pedido.Direccion" disabled>
+
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;"
+                                    class="input-group-text">Ubicacion :</span>
+                                <input type="text" class="form-control" [(ngModel)]="pedido.Direccion" disabled />
                             </div>
-                            <div class="container-fluid d-flex justify-content-around">
-                                <h5>Descripcion</h5>
-                                <textarea [(ngModel)]="pedido.Descripcion" cols="22" rows="8" disabled></textarea>
+                            <br>
+
+                            <div class="input-group">
+                                <span style="width:150px;background-color:whitesmoke;"
+                                    class="input-group-text">Descripcion :</span>
+                                <textarea class="form-control" [(ngModel)]="pedido.Descripcion" cols="mx-auto"
+                                    rows="mx-auto" disabled></textarea>
                             </div>
+
                         </div>
+
                     </div>
 
                 </div>
 
-            </div><button (click)="cerrarDetalles()" class="btn btn-danger"> Cancelar</button>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <button (click)="cerrarDetalles()" class="btn btn-danger">Cancelar</button>
+            &nbsp;
+            <button type="button" (click)="mostrarEditable()" class="btn btn-warning">Editar</button>
         </div>
+
+        <!------------------------------------------>
+
 
         <div class="container-fluid" *ngIf="!botonRegistrar">
-            <div class="container-fluid">
-                <div class="container-fluid d-flex justify-content-around">
-                    <h5>Cod.Empleado:</h5>
-                    <input type="text">
-                </div>
-                <div class="container-fluid d-flex justify-content-around">
-                    <h5>Nro.Pedido</h5>
-                    <input [(ngModel)]="nPedido" type="text" disabled>
-                </div>
-                <div class="container-fluid d-flex justify-content-around">
-                    <h5>F. Registro</h5>
-                    <input [(ngModel)]="fechaActual" type="text" disabled>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="container-fluid d-flex justify-content-around">
-                    <h5>Ingrese DNI</h5>
-                    <input [(ngModel)]="dniCliente" type="text">
-                </div>
-                <div class="container-fluid d-flex justify-content-around">
-                    <h5>Nombres</h5>
-                    <input [(ngModel)]="infoCliente.Nombre" type="text" disabled>
-                </div>
-                <div class="container-fluid d-flex justify-content-around">
-                    <h5>Apellidos</h5>
-                    <input [(ngModel)]="infoCliente.Apellido" type="text" disabled>
-                </div>
 
+            <div>
+                <!-- titulo -->
+                <h1>REGISTRAR PEDIDO</h1>
+                <mat-divider></mat-divider>
             </div>
+            <br>
+
+
+            <mat-card class="card">
+                <mat-card-header class="card-header">
+                    <mat-card-title>Detalles de Pedido</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="card-body">
+                    <div class="form-row">
+
+                        <div class="container-fluid d-flex">
+                            <div class="container w-50">
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Cod.Empleado
+                                        :</span>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <br>
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Nº
+                                        Pedido
+                                        :</span>
+                                    <input type="text" class="form-control" [(ngModel)]="nPedido" disabled />
+                                </div>
+                                <br>
+
+                            </div>
+
+                            <div class="container w-50">
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Fecha
+                                        registro
+                                        :</span>
+                                    <input type="text" class="form-control" [(ngModel)]="fechaActual" disabled />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Detalles Contratante -registro -->
+            <mat-card class="card">
+                <mat-card-header class="card-header">
+                    <mat-card-title>Datos del Contratante</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="card-body">
+                    <div class="form-row">
+
+                        <div class="container-fluid d-flex">
+                            <div class="container w-50">
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Ingrese
+                                        DNI
+                                        :</span>
+                                    <input type="text" class="form-control" [(ngModel)]="dniCliente" />
+                                </div>
+                                <br>
+
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Nombres
+                                        :</span>
+                                    <input type="text" class="form-control" [(ngModel)]="infoCliente.Nombre" disabled />
+                                </div>
+                                <br>
+
+                            </div>
+
+                            <div class="container w-50">
+
+                                <div class="input-group">
+                                    <button (click)="buscarCliente(dniCliente)" class="btn btn-primary">Buscar</button>
+                                </div>
+                                <br>
+
+                                <div class="input-group">
+                                    <span style="width:150px;background-color:whitesmoke;"
+                                        class="input-group-text">Apellidos
+                                        :</span>
+                                    <input type="text" class="form-control" [(ngModel)]="infoCliente.Apellido"
+                                        disabled />
+                                </div>
+                                <br>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Registro- detalles de evento -->
+            <mat-card class="card">
+                <mat-card-header class="card-header">
+                    <mat-card-title>Detalles del Evento</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="card-body">
+                    <div class="form-row">
+
+                        <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
+                            <mat-label>Evento</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let food of foods" [value]="food.value">
+                                    {{food.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
+                            <mat-label>Servicio</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="" [value]="">
+
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                            <mat-label>Fecha Evento</mat-label>
+                            <input matInput [matDatepicker]="picker4">
+                            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                            <mat-datepicker #picker4></mat-datepicker>
+                        </mat-form-field>
+
+
+                        <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                            <mat-label>Hora</mat-label>
+                            <input matInput [matDatepicker]="picker5">
+                            <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                            <mat-datepicker #picker5></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                            <mat-label>Ubicación</mat-label>
+                            <input matInput placeholder="">
+                        </mat-form-field>
+
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                            <mat-label>Descripcion</mat-label>
+                            <textarea matInput placeholder="Observaciones..."></textarea>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+
             <button (click)="cerrarRegistro()" class="btn btn-danger"> Cancelar</button>
-            <button (click)="buscarCliente(dniCliente)" class="btn btn-primary"> Buscar</button>
+
+
         </div>
-</div>
+
+         <!-- POP UP EDITAR -->
+
+
+    </div>

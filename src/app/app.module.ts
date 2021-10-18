@@ -21,6 +21,7 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
@@ -58,7 +59,8 @@ import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gesti
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

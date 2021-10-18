@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
 import { Pedido } from '../model/pedido.model';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-gestionar-proyecto',
@@ -24,7 +25,7 @@ export class GestionarProyectoComponent implements OnInit {
 
   constructor(
     public service: ProyectoService,
-    public service2: PedidoService
+    public service2: PedidoService,private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -61,4 +62,28 @@ export class GestionarProyectoComponent implements OnInit {
     this.service2.selectPedido = pedido;
     console.log(this.service2.selectPedido);
   }
+
+ //DESDE AQUI BORRAS
+  closeResult = '';
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+
+  
 }

@@ -44,7 +44,7 @@ export class AgregarProyectoComponent implements OnInit {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    hoy = dd + '/' + mm + '/' + yyyy;
+    hoy = yyyy + '/' + mm + '/' + dd;
     this.fechaActual = hoy;
   }
   ngOnInit(): void {
@@ -68,21 +68,21 @@ export class AgregarProyectoComponent implements OnInit {
   //   });
   // }
 
-  // addProyecto(ProyectoForm: NgForm) {
-  //   let data = {
-  //     proyecto_nombre: ProyectoForm.value.Nombre,
-  //     codigo_pedido: ProyectoForm.value.ID,
-  //     fecha_inicio_edicion: ProyectoForm.value.fechaActual,
-  //   };
-  //   console.log(data);
-  //   this.service.registro(data).subscribe(
-  //     (res) => {},
-  //     (err) => console.error(err)
-  //   );
-  // }
-
-  registrarData(proyecto_nombre: string, codigo_pedido: number, fecha_inicio_edicion: string) {
-    alert(codigo_pedido);
-    this.service.postProyectos(proyecto_nombre, codigo_pedido, fecha_inicio_edicion);
+  addProyecto(ProyectoForm: NgForm) {
+    let data = {
+      proyecto_nombre: ProyectoForm.value.Nombre,
+      codigo_pedido: ProyectoForm.value.ID,
+      fecha_inicio_edicion: ProyectoForm.value.fechaActual
+    };
+    console.log(data);
+    this.service.registro(data).subscribe(
+      (res) => { console.log("DATA: ", res)},
+      (err) => console.error(err)
+    );
   }
+
+  // registrarData(proyecto_nombre: string, codigo_pedido: number, fecha_inicio_edicion: string) {
+  //   alert(codigo_pedido);
+  //   this.service.postProyectos(proyecto_nombre, codigo_pedido, fecha_inicio_edicion);
+  // }
 }

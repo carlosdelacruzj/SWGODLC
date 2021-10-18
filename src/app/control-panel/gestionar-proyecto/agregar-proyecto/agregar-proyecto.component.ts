@@ -61,12 +61,6 @@ export class AgregarProyectoComponent implements OnInit {
       this.proyectos = response.data;
     });
   }
-  // onSubmit(ProyectoForm: NgForm) {
-
-  //   this.service.registro(data).subscribe((response: any) => {
-  //     console.log(response);
-  //   });
-  // }
 
   addProyecto(ProyectoForm: NgForm) {
     let data = {
@@ -81,8 +75,7 @@ export class AgregarProyectoComponent implements OnInit {
     );
   }
 
-  // registrarData(proyecto_nombre: string, codigo_pedido: number, fecha_inicio_edicion: string) {
-  //   alert(codigo_pedido);
-  //   this.service.postProyectos(proyecto_nombre, codigo_pedido, fecha_inicio_edicion);
-  // }
+  
+
+  
 }

@@ -4,7 +4,9 @@
 
 
   <div class="example-container">
-  
+
+    <form #servicioForm="ngForm" (ngSubmit)="addServicio(servicioForm)">  
+
     <mat-form-field appearance="fill">
       <mat-label>Tipo de Servicio</mat-label>
       <mat-select>
@@ -26,6 +28,8 @@
       <mat-label>Ingresar Descripcion</mat-label>
       <textarea matInput class="descripcion"></textarea>
     </mat-form-field>
+    
+  </form>
 
   </div>
 

@@ -56,6 +56,8 @@ export class GestionarPedidoComponent implements OnInit {
   fechaActual = '';
   dniCliente = 0;
   infoCliente = { Nombre: '', Apellido: '' };
+
+
   constructor(private service: PedidoService, private service2: VisualizarService) { }
 
   ngOnInit(): void {

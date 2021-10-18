@@ -18,6 +18,8 @@ export class DetalleServiciosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  
   addServicio(ServicioForm: NgForm) {
     let data = {
       proyecto_nombre: ServicioForm.value.Nombre,

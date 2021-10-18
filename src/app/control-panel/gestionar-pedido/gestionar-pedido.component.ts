@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { PedidoService } from './service/pedido.service';
 import { VisualizarService } from './service/visualizar.service';
 
+
+
+interface Food {
+  value: string;
+  viewValue: string;
+  
+}
+
 @Component({
   selector: 'app-gestionar-pedido',
   templateUrl: './gestionar-pedido.component.html',
@@ -10,8 +18,17 @@ import { VisualizarService } from './service/visualizar.service';
 export class GestionarPedidoComponent implements OnInit {
   pedidos = [];
   columnsToDisplay = ['ID', 'Nombre', 'Fecha', 'Servicio', 'Evento', 'Cliente', 'Estado', 'Visualizar',]
+
+
   botonVisualizar = true;
   botonRegistrar = true;
+  botonEditar = true;
+
+  foods: Food[] = [
+    { value: 'steak-0', viewValue: 'Boda' },
+    { value: 'pizza-1', viewValue: 'Matrimonio' },
+    { value: 'tacos-2', viewValue: 'Divorcio' },
+  ];
 
   pedido = {
     Empleado: '',
@@ -43,7 +60,6 @@ export class GestionarPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.botonVisualizar = true;
-
     this.getPedido();
   }
   getPedido() {
@@ -52,6 +68,10 @@ export class GestionarPedidoComponent implements OnInit {
 
     });
 
+  }
+  mostrarEditable(){
+    this.botonEditar=false;
+    
   }
   mostrarDetalles(valor: number) {
     this.botonVisualizar = false;

@@ -35,7 +35,9 @@ export class GestionarProyectoComponent implements OnInit {
   dataSource2!: MatTableDataSource<any>;
 
   @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild('paginator2') paginator2!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
+  
 
   constructor(
     public service: ProyectoService,
@@ -49,7 +51,7 @@ export class GestionarProyectoComponent implements OnInit {
   getProyecto() {
     this.service.getAllNombres().subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator2;
       this.dataSource.sort = this.matSort;
     });
   }

@@ -36,6 +36,8 @@ export class ProyectoService {
     const url = 'https://tp2021database.herokuapp.com/proyecto/registro/postProyecto';
     return this.http.post(url, data);
   }
-
+  public getById(id: number): Observable<any> {
+    return this.http.get('https://tp2021database.herokuapp.com/pedido/consulta/getByIDPedido/' + `${id}`);
+  }
 
 }

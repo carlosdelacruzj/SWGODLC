@@ -1,5 +1,6 @@
-<div class="container-fluid dashboard-content ">
-        <div class="container-fluid" *ngIf="botonVisualizar && botonRegistrar">
+<div class="dashboard-ecommerce">
+
+    <div class="container-fluid dashboard-content ">
 
         <div class="container-fluid" *ngIf="botonVisualizar && botonRegistrar">
 
@@ -18,12 +19,8 @@
             </div>
 
             <!-- Tabla/Listado -->
-            <div class=""> 
-                <mat-form-field appearance="standard">
-                    <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
-                  </mat-form-field>
 
-                <table mat-table [dataSource]="pedidos" class="table">
+            <table mat-table [dataSource]="pedidos" class="table">
 
                 <!-- ID -->
                 <ng-container matColumnDef="ID">

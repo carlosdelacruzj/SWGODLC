@@ -17,137 +17,151 @@
         </div>
       </div>
     </div> -->
-  
-    <mat-tab-group>
-  
-      <mat-tab label="Lista de Pedidos">
-  
-        <mat-form-field appearance="standard">
-          <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
-        </mat-form-field>
-  
-        <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8 table">
-          <ng-container matColumnDef="Nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="Fecha">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef> Fecha </th>
-            <td mat-cell *matCellDef="let element"> {{element.Fecha | date: "dd/MM/yyyy"}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="Servicio">
-            <th mat-header-cell *matHeaderCellDef> Servicio </th>
-            <td mat-cell *matCellDef="let element"> {{element.Servicio }} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="Evento">
-            <th mat-header-cell *matHeaderCellDef> Evento </th>
-            <td mat-cell *matCellDef="let element"> {{element.Evento }} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="Estado">
-            <th mat-header-cell *matHeaderCellDef> Estado </th>
-            <td mat-cell *matCellDef="let element"> {{element.Estado }} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="Cliente">
-            <th mat-header-cell *matHeaderCellDef> Cliente </th>
-            <td mat-cell *matCellDef="let element"> {{element.Cliente }} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Details </th>
-            <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-                (click)="getPedido1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
-                details</button> </td>
-          </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns2; "></tr>
-  
-  
-        </table>
-        <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
-        </mat-paginator>
-  
-  
-      </mat-tab>
-  
-      <!-- <mat-tab label="Lista de Proyectos">
-  
-        <mat-form-field appearance="standard">
-          <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
-        </mat-form-field>
-  
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">
-          <ng-container matColumnDef="PK_Pro_Cod">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.PK_Pro_Cod}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="Pro_Nombre">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef> nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.Pro_Nombre}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="EPro_Fecha_Inicio_Edicion">
-            <th mat-header-cell *matHeaderCellDef> fecha </th>
-            <td mat-cell *matCellDef="let element"> {{element.EPro_Fecha_Inicio_Edicion | date: "dd/MM/yyyy"}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Details </th>
-            <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-                (click)="getProyecto1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
-                details</button> </td>
-          </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
-  
-  
-        </table>
-        <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
-        </mat-paginator>
-  
-  
-      </mat-tab> -->
-  
-  
-    </mat-tab-group>
+
+
+    <mat-tab label="Pedidos">
+
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8 table">
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Fecha">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.Fecha | date: "dd/MM/yyyy"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Servicio">
+          <th mat-header-cell *matHeaderCellDef> Servicio </th>
+          <td mat-cell *matCellDef="let element"> {{element.Servicio }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Evento">
+          <th mat-header-cell *matHeaderCellDef> Evento </th>
+          <td mat-cell *matCellDef="let element"> {{element.Evento }} </td>
+        </ng-container>
+        <ng-container matColumnDef="Cliente">
+          <th mat-header-cell *matHeaderCellDef> Cliente </th>
+          <td mat-cell *matCellDef="let element"> {{element.Cliente }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{element.Estado }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EstadoPago">
+          <th mat-header-cell *matHeaderCellDef> EstadoPago </th>
+          <td mat-cell *matCellDef="let element"> {{element.EstadoPago }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Details </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
+              (click)="getPedido1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
+              details</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2; "></tr>
+
+
+      </table>
+      <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+      </mat-paginator>
+
+
+    </mat-tab>
+
+    <mat-tab label="Proyectos">
+
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">
+        <ng-container matColumnDef="PK_Pro_Cod">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.PK_Pro_Cod}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Pro_Nombre">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.Pro_Nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FK_P_Cod">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Codigo Pedido </th>
+          <td mat-cell *matCellDef="let element"> {{element.FK_P_Cod}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EPro_Fecha_Inicio_Edicion">
+          <th mat-header-cell *matHeaderCellDef> fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.EPro_Fecha_Inicio_Edicion | date: "dd/MM/yyyy"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Pro_Fecha_Fin_Edicion">
+          <th mat-header-cell *matHeaderCellDef> fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.Pro_Fecha_Fin_Edicion | date: "dd/MM/yyyy"}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Details </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
+              (click)="getProyecto1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
+              details</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+
+
+      </table>
+      <mat-paginator #paginator2 [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+      </mat-paginator>
+
+
+    </mat-tab>
+
+
+  </mat-tab-group>
+</div>
+
+
+ <!--DESDE AQUI BORRAR-->
+ <ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-
-
-  <!--DESDE AQUI BORRAR-->
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="dateOfBirth">Date of birth</label>
-          <div class="input-group">
-            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-            </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-  </ng-template>
-  
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-  
-  <hr>
-  
-  <pre>{{ closeResult }}</pre>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+<hr>
+
+<pre>{{ closeResult }}</pre>
+<mat-tab-group>

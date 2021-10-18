@@ -8,7 +8,7 @@ import { Detalle } from '../model/detalle-servicios.model';
   })
   export class EventoAllServiciosService {
   
-    selectProyecto: Detalle = {
+      selectProyecto: Detalle = {
       ID: 0,
       Nombre: ''
     };

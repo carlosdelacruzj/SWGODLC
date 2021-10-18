@@ -1,6 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { EventoServicioService } from '../../service/evento-servicio.service';
+import { Detalle } from '../../model/detalle-servicios.model';
+import { EventoAllServiciosService } from './../../service/detalle-servicios.service';
 
 @Component({
   selector: 'app-event-service',
@@ -11,14 +15,18 @@ export class EventServiceComponent implements OnInit {
 
   servicios = [];
   columnsToDisplay = ['evento','precio', 'descripcion','titulo','acciones']
-  dataSource = new MatTableDataSource();
+  dataSource2! : MatTableDataSource<any>;
+
+  @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild(MatSort) matSort!: MatSort;
+
   // @Input() evento: string='';
   // @Input() servicio: string='';
   // @Input() precio: string='';
   // @Input() descripcion: string='';
   // @Input() titulo: string='';
   @Input() id: number = 0;
-  constructor(private service: EventoServicioService) { }
+  constructor(private service: EventoServicioService, private service3: EventoAllServiciosService) { }
 
   ngOnInit(): void {
     console.log("EVENT SERVICE  ID: " + this.id);
@@ -30,16 +38,24 @@ export class EventServiceComponent implements OnInit {
     this.getServicios();
   }
   getServicios() {
-    this.service.api(this.id).subscribe((response) => {
+      this.service.api(this.id).subscribe((response:any) => {
       console.log("RESPONSE> " + response);
       this.servicios = response;
+      this.dataSource2 = new MatTableDataSource(response);
+      this.dataSource2.paginator = this.paginator;
+      this.dataSource2.sort = this.matSort;
   });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  getServicio1(servicio: Detalle) {
+    this.service3.selectProyecto = servicio;
+    console.log(this.service3.selectProyecto);
   }
+
+  filterData2($event: any) {
+    this.dataSource2.filter = $event.target.value;
+  }
+
   
 
 }

@@ -1,10 +1,9 @@
 <p>Hola Mundo</p>
 <h3></h3>
 
-  <mat-form-field appearance="standard">
-    <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Filmacion" #input>
-  </mat-form-field>
+<mat-form-field appearance="standard">
+  <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
+</mat-form-field>
 
 
   <table mat-table [dataSource]="servicios" class="mat-elevation-z8">
@@ -39,8 +38,7 @@
   <ng-container matColumnDef="acciones">
   <th mat-header-cell *matHeaderCellDef> Acciones </th>
   <td mat-cell *matCellDef> 
-    <button mat-raised-button color="primary" class="acciones">Editar</button>
-    <button mat-raised-button class="acciones">Visualizar</button>
+    <button mat-raised-button color="primary" class="acciones" (click)="getServicio1" [routerLink]="['/administrar-paquete-servicio/components/detalle-servicios']">Editar</button>
   </td>
   </ng-container>
 

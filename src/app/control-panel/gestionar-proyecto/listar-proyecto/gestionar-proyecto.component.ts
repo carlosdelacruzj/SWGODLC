@@ -14,20 +14,37 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./gestionar-proyecto.component.css'],
 })
 export class GestionarProyectoComponent implements OnInit {
-  displayedColumns = ['Nombre','Fecha','Servicio','Evento','Cliente','Estado', 'actions'];
-  displayedColumns2 = ['Nombre','Fecha','Servicio','Evento','Cliente','Estado', 'actions'];
+  displayedColumns = [
+    'PK_Pro_Cod',
+    'Pro_Nombre',
+    'FK_P_Cod',
+    'EPro_Fecha_Inicio_Edicion',
+    'Pro_Fecha_Fin_Edicion',
+    'actions',
+  ];
+  displayedColumns2 = [
+    'Nombre',
+    'Fecha',
+    'Servicio',
+    'Evento',
+    'Cliente',
+    'Estado',
+    'actions',
+  ];
 
   dataSource!: MatTableDataSource<any>;
   dataSource2!: MatTableDataSource<any>;
 
   @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild('paginator2') paginator2!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
+  
 
   constructor(
     public service: ProyectoService,
     public service2: PedidoService,private modalService: NgbModal
   ) {}
-
+  fechaActual = '';
   ngOnInit(): void {
     this.getProyecto();
     this.getPedido();
@@ -35,7 +52,7 @@ export class GestionarProyectoComponent implements OnInit {
   getProyecto() {
     this.service.getAllNombres().subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator2;
       this.dataSource.sort = this.matSort;
     });
   }
@@ -56,7 +73,7 @@ export class GestionarProyectoComponent implements OnInit {
   }
   getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
-    console.log(this.service.selectProyecto);
+    // console.log(this.service.selectProyecto);
   }
   getPedido1(pedido: Pedido) {
     this.service2.selectPedido = pedido;

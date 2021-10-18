@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Proyecto } from '../model/proyecto.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -19,16 +18,53 @@ export class ProyectoService {
     Pro_Enlace: '',
     Pro_Asignado: 0,
     FK_ESPro_Cod: 0,
-    Pro_Observacion: ''
+    Pro_Observacion: '',
   };
 
   proyecto: Proyecto[] = [];
-  private API_PRUEBA =
-    'https://tp2021database.herokuapp.com/proyecto/consulta/getAllProyecto';
+  private API_PRUEBA = 'https://tp2021database.herokuapp.com/proyecto/';
   constructor(private http: HttpClient) {}
 
   public getAllNombres(): Observable<any> {
-    return this.http.get(this.API_PRUEBA);
+    return this.http.get(this.API_PRUEBA + 'consulta/getAllProyecto');
   }
-  
+
+   public registro(data:any): Observable<any> {
+    // const fd = new FormData();
+    // fd.append('proyecto_nombre', data.proyecto_nombre);
+    // fd.append('codigo_pedido', data.codigo_pedido);
+    // fd.append('fecha_inicio_edicion', data.fecha_inicio_edicion);
+    console.log('Probando');
+    // const data1 = {
+    //   "proyecto_nombre": "PRUEBA SIN TOKEN",
+    //   "codigo_pedido": 8,
+    //   "fecha_inicio_edicion": "2021-10-18"
+    // };
+    const url = 'https://tp2021database.herokuapp.com/proyecto/registro/postProyecto';
+    return this.http.post(url, data);
+  }
+
+  // registro(data: any) {
+  //   const headers = { 'Content-Type': 'application/json'};
+  //   return this.http.post(this.API_PRUEBA + 'registro​/postProyecto', data, {headers} );
+  // }
+
+
+  // public postProyectos(
+  //   proyecto_nombre: string,
+  //   codigo_pedido: number,
+  //   fecha_inicio_edicion: string
+  // ) {
+  //   this.http
+  //     .post(this.API_PRUEBA + 'registro​/postProyecto' , {
+  //       proyecto_nombre: proyecto_nombre,
+  //       codigo_pedido: codigo_pedido,
+  //       fecha_inicio_edicion: fecha_inicio_edicion,
+  //     })
+  //     .subscribe(
+  //       (data) => {},
+  //       (response) => {},
+  //       () => {}
+  //     );
+  // }
 }

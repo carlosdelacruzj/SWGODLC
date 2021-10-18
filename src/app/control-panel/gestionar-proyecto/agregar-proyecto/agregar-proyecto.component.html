@@ -18,131 +18,152 @@
         </div>
     </div>
 
+    <form #proyectoForm="ngForm" (ngSubmit)="addProyecto(proyectoForm)">
+        <!-- card numero 1 -->
+        <mat-card class="card">
+            <mat-card-header class="card-header">
+                <mat-card-title>Detalle de Pedido</mat-card-title>
 
-    <!-- card numero 1 -->
-    <mat-card class="card">
-        <mat-card-header class="card-header">
-            <mat-card-title>Detalle de Pedido</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body">
-            <div class="form-row">
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>holi</mat-label>
-                    <input matInput placeholder="001" name="nombre"  [(ngModel)]="service2.selectPedido.Cliente ">
-                </mat-form-field>
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>Evento</mat-label>
-                    <input matInput placeholder="Boda">
-                </mat-form-field>
-
-                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Fecha de registro</mat-label>
-                    <input matInput [matDatepicker]="picker" [(ngModel)]="service2.selectPedido.Fecha">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>Cliente</mat-label>
-                    <input matInput placeholder="Katya vergaray Carbajal">
-                </mat-form-field>
+            </mat-card-header>
+            <mat-card-content class="card-body">
 
 
-            </div>
+                <div class="form-row">
 
-            <div class="form-row">
-                <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                    <mat-label>Leave a comment</mat-label>
-                    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-                </mat-form-field>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>N de pedido</mat-label>
+                        <input matInput type="text" name="ID" #ID="ngModel" [(ngModel)]="service2.selectPedido.ID"
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Evento</mat-label>
+                        <input matInput type="text" name="Evento" #Evento="ngModel"
+                            [(ngModel)]="service2.selectPedido.Evento" disabled>
+                    </mat-form-field>
 
-
-
-    <!-- card numero 2 prueba-->
-    <mat-card class="card">
-        <mat-card-header class="card-header">
-            <mat-card-title>Edición</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body">
-            <div class="form-row">
-                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Fecha-Inicio</mat-label>
-                    <input matInput [matDatepicker]="picker2">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Fecha de registro</mat-label>
-                    <input matInput [matDatepicker]="picker3">
-                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                    <mat-datepicker #picker3></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
-                    <mat-label>Multimedia</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                            {{food.viewValue}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="form-row">
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>Aqui se deberia ingresar un archivo xd</mat-label>
-                    <input matInput placeholder="001">
-                </mat-form-field>
-            </div>
-            <div class="form-row">
-                <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                    <mat-label>Observación del cliente</mat-label>
-                    <textarea matInput placeholder="Observaciones..."></textarea>
-                </mat-form-field>
-            </div>
-        </mat-card-content>
-    </mat-card>
-
-    <!-- card numero 3 -->
-    <mat-card class="card">
-        <mat-card-header class="card-header">
-            <mat-card-title>Detalles del Evento</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body">
-            <div class="form-row">
-                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Fecha</mat-label>
-                    <input matInput [matDatepicker]="picker4">
-                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-                    <mat-datepicker #picker4></mat-datepicker>
-                </mat-form-field>
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha de registro</mat-label>
+                        <input matInput [matDatepicker]="picker" type="text" name="Fecha" #Fecha="ngModel"
+                            [(ngModel)]="service2.selectPedido.Fecha" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Cliente</mat-label>
+                        <input matInput type="text" name="Cliente" #Cliente="ngModel"
+                            [(ngModel)]="service2.selectPedido.Cliente" disabled>
+                    </mat-form-field>
 
 
-                <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                    <mat-label>Hora</mat-label>
-                    <input matInput [matDatepicker]="picker5">
-                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
-                    <mat-datepicker #picker5></mat-datepicker>
-                </mat-form-field>
+                </div>
 
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>Ubicación</mat-label>
-                    <input matInput placeholder="Av. 28 Calle Ignacio">
-                </mat-form-field>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                        <mat-label>Leave a comment</mat-label>
+                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                    </mat-form-field>
+                </div>
 
-            </div>
-            <div class="form-row">
-                <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                    <mat-label>Aqui se deberia ingresar un archivo xd</mat-label>
-                    <input matInput placeholder="001">
-                </mat-form-field>
-            </div>
-            <div class="form-row">
-                <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                    <mat-label>Comentario</mat-label>
-                    <textarea matInput placeholder="Observaciones..."></textarea>
-                </mat-form-field>
-            </div>
-        </mat-card-content>
-    </mat-card>
+
+            </mat-card-content>
+        </mat-card>
+
+
+
+        <!-- card numero 2 prueba-->
+        <mat-card class="card">
+            <mat-card-header class="card-header">
+                <mat-card-title>Edición</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card-body">
+                <div class="form-row">
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha-Inicio</mat-label>
+                        <input matInput type="text" name="fechaActual" [(ngModel)]="fechaActual" disabled>
+                        <!-- <input matInput [matDatepicker]="picker2"> -->
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha-Fin</mat-label>
+                        <input matInput [matDatepicker]="picker3">
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
+                        <mat-label>Multimedia</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Aqui se deberia ingresar un archivo xd</mat-label>
+                        <input matInput placeholder="001">
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                        <mat-label>Observación del cliente</mat-label>
+                        <textarea matInput placeholder="Observaciones..."></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- card numero 3 -->
+        <mat-card class="card">
+            <mat-card-header class="card-header">
+                <mat-card-title>Detalles del Evento</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card-body">
+                <div class="form-row">
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput [matDatepicker]="picker4">
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Hora</mat-label>
+                        <input matInput [matDatepicker]="picker5">
+                        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                        <mat-datepicker #picker5></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Ubicación</mat-label>
+                        <input matInput placeholder="Av. 28 Calle Ignacio">
+                    </mat-form-field>
+
+                </div>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Aqui se deberia ingresar un archivo xd</mat-label>
+                        <input matInput placeholder="001">
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                        <mat-label>Comentario</mat-label>
+                        <textarea matInput placeholder="Observaciones..."></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <button class="btn btn-primary mb-2 mr-1" type="submit">
+            Registrar
+        </button>
+        <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+            <input matInput type="text" name="Nombre" #Nombre="ngModel" [(ngModel)]="service2.selectPedido.Nombre"
+                disabled>
+        </mat-form-field>
+    </form>
+    <!-- <button mat-button color="primary" type="submit">Basic</button> -->
+
 </div>

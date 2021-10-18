@@ -29,6 +29,7 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
     this.getAllService();
     //this.postDetalle();
     console.log(this.paquete);
+    console.log(this.serviciosf);
   }
 
   getPaquete() {
@@ -51,7 +52,7 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
 
   getAllService() {
     this.allserivicios.getAllServicios().subscribe((response) => {
-      this.serviciosf = response.servicios;
+      this.serviciosf = response;
       console.log(this.serviciosf)
     });
   }

@@ -50,23 +50,13 @@ export class AgregarProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.asignarFechaActual();
   }
-  getProyecto1(proyecto: Proyecto) {
-    this.service.selectProyecto = proyecto;
-  }
-  getPedido1(pedido: Pedido) {
-    this.service2.selectPedido = pedido;
-  }
-  getProyecto() {
-    this.service.getAllNombres().subscribe((response) => {
-      this.proyectos = response.data;
-    });
-  }
+ 
 
   addProyecto(ProyectoForm: NgForm) {
     let data = {
-      proyecto_nombre: ProyectoForm.value.Nombre,
+      proyecto_nombre: ProyectoForm.value.NombrePedido,
       codigo_pedido: ProyectoForm.value.ID,
-      fecha_inicio_edicion: ProyectoForm.value.fechaActual
+      fecha_inicio_edicion: ProyectoForm.value.F_Evento
     };
     console.log(data);
     this.service.registro(data).subscribe(

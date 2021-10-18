@@ -26,6 +26,10 @@
       </mat-form-field>
 
       <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8 table">
+        <ng-container matColumnDef="ID">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+        </ng-container>
         <ng-container matColumnDef="Nombre">
           <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
           <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
@@ -63,7 +67,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Details </th>
           <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-              (click)="getPedido1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
+              (click)="getPedidoID(element.ID)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
               details</button> </td>
         </ng-container>
 
@@ -113,7 +117,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Details </th>
           <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-              (click)="getProyecto1(element)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
+            (click)="open(content)" >get
               details</button> </td>
         </ng-container>
 

@@ -5,8 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
-import { Pedido } from '../model/pedido.model';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Pedido, Pedido2 } from '../model/pedido.model';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-gestionar-proyecto',
@@ -23,12 +23,14 @@ export class GestionarProyectoComponent implements OnInit {
     'actions',
   ];
   displayedColumns2 = [
+    'ID',
     'Nombre',
     'Fecha',
     'Servicio',
     'Evento',
     'Cliente',
     'Estado',
+    'EstadoPago',
     'actions',
   ];
 
@@ -38,17 +40,19 @@ export class GestionarProyectoComponent implements OnInit {
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild('paginator2') paginator2!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
-  
 
   constructor(
     public service: ProyectoService,
-    public service2: PedidoService,private modalService: NgbModal
+    public service2: PedidoService,
+    private modalService: NgbModal
   ) {}
   fechaActual = '';
   ngOnInit(): void {
     this.getProyecto();
     this.getPedido();
   }
+
+  // para llenar las tablas
   getProyecto() {
     this.service.getAllNombres().subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response);
@@ -65,30 +69,46 @@ export class GestionarProyectoComponent implements OnInit {
     });
   }
 
+  // para hacer los filtros
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;
   }
   filterData2($event: any) {
     this.dataSource2.filter = $event.target.value;
   }
+
   getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
     // console.log(this.service.selectProyecto);
   }
+
+  // para guardar el dato escogido
   getPedido1(pedido: Pedido) {
     this.service2.selectPedido = pedido;
     console.log(this.service2.selectPedido);
   }
 
- //DESDE AQUI BORRAS
+  getPedidoID(valor: number) {
+    this.service2.getAllNombresID(valor).subscribe((responde) => {
+      this.service2.selectPedido2 = responde[0];
+      console.log(this.service2.selectPedido2);
+    });
+  }
+
+  //DESDE AQUI BORRAS
   closeResult = '';
 
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
   }
 
   private getDismissReason(reason: any): string {
@@ -100,7 +120,4 @@ export class GestionarProyectoComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
-
-  
 }

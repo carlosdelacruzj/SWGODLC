@@ -7,6 +7,7 @@ import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
 import { Pedido, Pedido2 } from '../model/pedido.model';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-gestionar-proyecto',
@@ -33,7 +34,7 @@ export class GestionarProyectoComponent implements OnInit {
     'EstadoPago',
     'actions',
   ];
-
+  id2 =0;
   dataSource!: MatTableDataSource<any>;
   dataSource2!: MatTableDataSource<any>;
 
@@ -98,7 +99,7 @@ export class GestionarProyectoComponent implements OnInit {
   //DESDE AQUI BORRAS
   closeResult = '';
 
-  open(content: any) {
+  open(content: any,id: number) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -109,6 +110,8 @@ export class GestionarProyectoComponent implements OnInit {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
+      this.id2 = id;
+      this.service.selectProyecto.PK_Pro_Cod = this.id2;
   }
 
   private getDismissReason(reason: any): string {
@@ -119,5 +122,18 @@ export class GestionarProyectoComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  updateProyecto(ProyectoForm2: NgForm) {
+    let data = {
+      id: ProyectoForm2.value.id,
+      nombreProyecto: ProyectoForm2.value.ID,
+      fechaFinEdicion: ProyectoForm2.value.F_Evento
+    };
+    console.log(data);
+    // this.service.registro(data).subscribe(
+    //   (res) => { console.log("DATA: ", res)},
+    //   (err) => console.error(err)
+    // );
   }
 }

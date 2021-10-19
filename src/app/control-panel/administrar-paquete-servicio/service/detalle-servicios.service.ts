@@ -9,6 +9,7 @@ import { Detalle } from '../model/detalle-servicios.model';
   export class EventoAllServiciosService {
   
       selectProyecto: Detalle = {
+      ID:0,
       servicio: 0,
       evento: 0,
       precio: 0,

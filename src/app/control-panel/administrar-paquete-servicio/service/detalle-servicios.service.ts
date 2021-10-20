@@ -17,9 +17,14 @@ import { Detalle } from '../model/detalle-servicios.model';
       titulo: ""
     };
   
+    private API_POST='https://tp2021database.herokuapp.com/eventos_servicios/registro/postEventoxServicio';
+
     private API_PRUEBA = 
     'https://tp2021database.herokuapp.com/servicio/consulta/getAllServicios';
     constructor(private http: HttpClient) {}
+    
+
+
     
     public getAllServicios(): Observable<any> {
       return this.http.get(this.API_PRUEBA);

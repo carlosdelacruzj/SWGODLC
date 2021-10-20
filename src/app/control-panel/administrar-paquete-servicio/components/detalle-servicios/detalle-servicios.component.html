@@ -31,16 +31,19 @@
       <mat-label>Ingresar Descripcion</mat-label>
       <textarea matInput class="descripcion"></textarea>
     </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button class="btn btn-primary mb-2 mr-1" type="submit">
+      Registrar
+    </button>
+
     
   </form>
 
   </div>
 
-
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Registrar</button>
 
 
 </mat-dialog-actions>

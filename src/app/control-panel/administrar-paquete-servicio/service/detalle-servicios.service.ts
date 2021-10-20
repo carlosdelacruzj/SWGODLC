@@ -23,25 +23,16 @@ import { Detalle } from '../model/detalle-servicios.model';
     'https://tp2021database.herokuapp.com/servicio/consulta/getAllServicios';
     constructor(private http: HttpClient) {}
     
+    public registro(data:any): Observable<any> {
 
+      console.log('Probando');
+  
+      const url = 'https://tp2021database.herokuapp.com/eventos_servicios/registro/postEventoxServicio';
+      return this.http.post(url, data);
+    }
 
     
     public getAllServicios(): Observable<any> {
       return this.http.get(this.API_PRUEBA);
-    }
-
-    public registro(data:any): Observable<any> {
-      // const fd = new FormData();
-      // fd.append('proyecto_nombre', data.proyecto_nombre);
-      // fd.append('codigo_pedido', data.codigo_pedido);
-      // fd.append('fecha_inicio_edicion', data.fecha_inicio_edicion);
-      console.log('Probando');
-      // const data1 = {
-      //   "proyecto_nombre": "PRUEBA SIN TOKEN",
-      //   "codigo_pedido": 8,
-      //   "fecha_inicio_edicion": "2021-10-18"
-      // };
-      const url = 'https://tp2021database.herokuapp.com/eventos_servicios/registro/postEventoxServicio';
-      return this.http.post(url, data);
     }
   }

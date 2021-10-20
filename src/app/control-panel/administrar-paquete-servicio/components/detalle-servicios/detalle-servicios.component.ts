@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EventoAllServiciosService } from '../../service/detalle-servicios.service';
+import { EventoServicioService } from '../../service/evento-servicio.service';
 
 interface sServicios {
   ID: number;
@@ -20,8 +21,11 @@ export class DetalleServiciosComponent implements OnInit {
   sServicio: sServicios[] = [];
 
   constructor(
-    public service: EventoAllServiciosService
+    public service: EventoAllServiciosService,
+    private service2: EventoServicioService
   ) {}
+
+
   ngOnInit(): void {
     this.getSelect();
   }
@@ -34,9 +38,9 @@ export class DetalleServiciosComponent implements OnInit {
   
   addServicio(ServicioForm: NgForm) {
     let data = {
-      proyecto_nombre: ServicioForm.value.Nombre,
-      codigo_pedido: ServicioForm.value.ID,
-      fecha_inicio_edicion: ServicioForm.value.fechaActual
+      servicio_precio: ServicioForm.value.precio,
+      servicio_pedido: ServicioForm.value.titulo,
+      fecha_inicio_edicion: ServicioForm.value.descripcion
     };
     console.log(data);
     this.service.registro(data).subscribe(

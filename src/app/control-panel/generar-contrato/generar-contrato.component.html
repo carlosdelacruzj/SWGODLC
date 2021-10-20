@@ -1,0 +1,196 @@
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content">
+        <h1 class="mb-4">Contrato</h1>
+        <div class="row">
+            <div class="col-6 input-group mb-4 ml-3 p-0 rounded bg-white border border-secondary">
+                <input matInput type="search" placeholder="Buscar"
+                    class="form-control bg-transparent pl-2 border-0 shadow-none">
+                <button class="bg-transparent border-0 fa fa-search"></button>
+            </div>
+        </div>
+        <div class="shadow">
+            <div class="table-responsive">
+                <table mat-table [dataSource]="contratos" matSort class="table">
+                    <ng-container matColumnDef="ID">
+                        <div class="text-center">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                        </div>
+                        <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                        <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="fecha">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+                        <td mat-cell *matCellDef="let element"> {{element.Fecha.substring(0,10)}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="servicio">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Servicio</th>
+                        <td mat-cell *matCellDef="let element">{{element.Servicio}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="evento">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Evento</th>
+                        <td mat-cell *matCellDef="let element">{{element.Evento}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cliente">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</th>
+                        <td mat-cell *matCellDef="let element">{{element.Cliente}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+                        <td mat-cell *matCellDef="let element">{{element.Estado}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="estadoPago">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado de pago</th>
+                        <td mat-cell *matCellDef="let element">{{element.EstadoPago}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="acciones">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Contrato </th>
+                        <td mat-cell *matCellDef="let row">
+                            <button class="btn bg-transparent p-1" data-toggle="modal" data-target="#contratoModal">
+                                <span class="fas fa-sticky-note"></span>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="contratoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Generar Contrato</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-1">
+
+                            </div>
+                            <div class="col-5">
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>N°:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Contratante:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Costo total:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>A cuenta:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>A saldo:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-5">
+                                <h3 class="col-form-label">Detalles del evento</h3>
+                            </div>
+                        </div>
+                        <div class="row mx-5 rounded border border-gray">
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Evento:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Servicio:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Fecha:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Hora:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Ubicación:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3 col-form-label">
+                                        <label>Descripción:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <textarea class="form-control" rows="5" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Generar contrato</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

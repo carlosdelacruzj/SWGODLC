@@ -22,6 +22,7 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
+import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 
 
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
@@ -50,6 +51,7 @@ import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/
     EventServiceComponent,
     DetalleServiciosComponent,
     ActualizarProyectoComponent,
+    GenerarContratoComponent,
   ],
   imports: [
     BrowserModule,

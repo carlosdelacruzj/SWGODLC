@@ -40,6 +40,7 @@ export class GestionarEquiposComponent implements OnInit {
   asignar_equipo = false;
   equipos = [];
   lista_id: any[] = [];
+  fecha_proyecto = '';
   cantidad_asigacion = 0;
   constructor(private service: GestionarEquipos) {}
 
@@ -94,14 +95,17 @@ export class GestionarEquiposComponent implements OnInit {
   //GET TIPOS DE EQUIPOS BY ID
 
   getEquiposId(id: number) {
-    this.service.getEquipoId(id).subscribe((data) => {
-      this.equipos = data;
-    });
+    this.service
+      .getEquipoId(this.fecha_proyecto, this.id_proyecto, id)
+      .subscribe((data) => {
+        this.equipos = data;
+      });
   }
 
   //ABRIR VENTAN PARA ASIGNAR PERSONAL
-  ventanaAsignarPersonal(valor: number) {
+  ventanaAsignarPersonal(valor: number, fecha: string) {
     this.asignarPersonal = true;
+    this.fecha_proyecto = fecha;
     this.id_proyecto = valor;
     this.getProyecto(valor);
   }
@@ -109,6 +113,7 @@ export class GestionarEquiposComponent implements OnInit {
   //CERRAR VENTANA PARA ASIGNAR PERSONAL
 
   closeAsignarPersonal() {
+    this.getProyectos();
     this.asignarPersonal = false;
     this.ready_proyectos = false;
     this.ready_empleados = false;
@@ -119,6 +124,7 @@ export class GestionarEquiposComponent implements OnInit {
     if (this.id_empleado != 0) {
       this.asignar_equipo = true;
       this.getTiposEquipos();
+      this.getEquiposId(1);
     }
   }
 

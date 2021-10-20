@@ -49,7 +49,7 @@
         <th mat-header-cell *matHeaderCellDef class="text-center">Asignar</th>
         <td mat-cell *matCellDef="let element" class="text-center">
           <button class="btn mx-auto" style="background-color: transparent; color: #101c30"
-            (click)="ventanaAsignarPersonal(element.ID)">
+            (click)="ventanaAsignarPersonal(element.ID,element.Fecha)">
             <i class="fas fa-plus-square fa-2x"></i>
           </button>
         </td>

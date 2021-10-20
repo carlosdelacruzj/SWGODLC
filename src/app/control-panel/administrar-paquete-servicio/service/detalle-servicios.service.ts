@@ -24,7 +24,7 @@ import { Detalle } from '../model/detalle-servicios.model';
     
     public registro(data:any): Observable<any> {
 
-      console.log('Probando');
+      console.log(data);
   
       const url = 'https://tp2021database.herokuapp.com/eventos_servicios/registro/postEventoxServicio';
       return this.http.post(url, data);

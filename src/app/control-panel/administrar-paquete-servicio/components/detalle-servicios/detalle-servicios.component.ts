@@ -20,12 +20,14 @@ export class DetalleServiciosComponent implements OnInit {
   @Input() ID: number=0;
   @Input() Nombre: string='';
 
+  
+
   sServicio: sServicios[] = [];
 
   constructor(
     public service: EventoAllServiciosService,
     private service2: EventoServicioService,
-    public service4: EventServiceComponent
+    public service4: EventoAllServiciosService
   ) {}
 
 

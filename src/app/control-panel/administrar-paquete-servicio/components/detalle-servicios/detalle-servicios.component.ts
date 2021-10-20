@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EventoAllServiciosService } from '../../service/detalle-servicios.service';
 import { EventoServicioService } from '../../service/evento-servicio.service';
+import { EventServiceComponent } from '../event-service/event-service.component';
+
 
 interface sServicios {
   ID: number;
@@ -22,7 +24,8 @@ export class DetalleServiciosComponent implements OnInit {
 
   constructor(
     public service: EventoAllServiciosService,
-    private service2: EventoServicioService
+    private service2: EventoServicioService,
+    public service4: EventServiceComponent
   ) {}
 
 

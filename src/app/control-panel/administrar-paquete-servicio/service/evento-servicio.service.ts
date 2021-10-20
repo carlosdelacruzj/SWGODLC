@@ -30,5 +30,6 @@ export class EventoServicioService {
   public getAllNombres2(): Observable<any> {
     return this.http.get(this.API_PRUEBA);
   }
+
 }
 

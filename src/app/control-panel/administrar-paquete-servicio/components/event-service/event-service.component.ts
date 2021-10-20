@@ -26,7 +26,7 @@ export class EventServiceComponent implements OnInit {
   // @Input() descripcion: string='';
   // @Input() titulo: string='';
   @Input() id: number = 0;
-  constructor(private service: EventoServicioService, private service3: EventoAllServiciosService) { }
+  constructor(private service: EventoServicioService, private service3: EventoAllServiciosService, public service4: EventoAllServiciosService) { }
 
   ngOnInit(): void {
     console.log("EVENT SERVICE  ID: " + this.id);
@@ -35,9 +35,9 @@ export class EventServiceComponent implements OnInit {
       2. llamo a mi servicio detalle con el id que obtengo
       3. Muestras en la tabla la de tu servicio
     */
-    this.getServicios();
+    this.getServicio();
   }
-  getServicios() {
+  getServicio() {
       this.service.api(this.id).subscribe((response:any) => {
       console.log("RESPONSE> " + response);
       this.servicios = response;
@@ -56,6 +56,12 @@ export class EventServiceComponent implements OnInit {
     this.dataSource2.filter = $event.target.value;
   }
 
+  getServicioID(valor: number) {
+    this.service4.getAllNombresID(valor).subscribe((responde) => {
+      this.service4.selectProyecto = responde[0];
+      console.log(this.service4.selectProyecto);
+    });
+  }
   
 
 }

@@ -30,41 +30,14 @@ export class ProyectoService {
   }
 
    public registro(data:any): Observable<any> {
-    // const fd = new FormData();
-    // fd.append('proyecto_nombre', data.proyecto_nombre);
-    // fd.append('codigo_pedido', data.codigo_pedido);
-    // fd.append('fecha_inicio_edicion', data.fecha_inicio_edicion);
+
     console.log('Probando');
-    // const data1 = {
-    //   "proyecto_nombre": "PRUEBA SIN TOKEN",
-    //   "codigo_pedido": 8,
-    //   "fecha_inicio_edicion": "2021-10-18"
-    // };
+
     const url = 'https://tp2021database.herokuapp.com/proyecto/registro/postProyecto';
     return this.http.post(url, data);
   }
+  public getById(id: number): Observable<any> {
+    return this.http.get('https://tp2021database.herokuapp.com/pedido/consulta/getByIDPedido/' + `${id}`);
+  }
 
-  // registro(data: any) {
-  //   const headers = { 'Content-Type': 'application/json'};
-  //   return this.http.post(this.API_PRUEBA + 'registro​/postProyecto', data, {headers} );
-  // }
-
-
-  // public postProyectos(
-  //   proyecto_nombre: string,
-  //   codigo_pedido: number,
-  //   fecha_inicio_edicion: string
-  // ) {
-  //   this.http
-  //     .post(this.API_PRUEBA + 'registro​/postProyecto' , {
-  //       proyecto_nombre: proyecto_nombre,
-  //       codigo_pedido: codigo_pedido,
-  //       fecha_inicio_edicion: fecha_inicio_edicion,
-  //     })
-  //     .subscribe(
-  //       (data) => {},
-  //       (response) => {},
-  //       () => {}
-  //     );
-  // }
 }

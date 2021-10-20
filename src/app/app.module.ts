@@ -26,6 +26,7 @@ import {
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 
 
 
@@ -40,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashboardComponent,
     AgregarProyectoComponent,
     GestionarPedidoComponent,
+    GenerarContratoComponent,
   ],
   imports: [
     BrowserModule,

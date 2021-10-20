@@ -64,8 +64,9 @@
 
                 <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                        <mat-label>Leave a comment</mat-label>
-                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                        <mat-label>Descripción</mat-label>
+                        <textarea matInput  type="text" name="Descripcion" #Descripcion="ngModel"
+                        [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
                     </mat-form-field>
                 </div>
 
@@ -91,30 +92,28 @@
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                        <mat-label>Fecha-Fin</mat-label>
-                        <input matInput [matDatepicker]="picker3">
+                        <mat-label>Fecha-Fin</mat-label >
+                        <input matInput [matDatepicker]="picker3" disabled>
                         <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                         <mat-datepicker #picker3></mat-datepicker>
                     </mat-form-field>
-                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
-                        <mat-label>Multimedia</mat-label>
-                        <mat-select>
-                            <mat-option *ngFor="let food of foods" [value]="food.value">
-                                {{food.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+               
                 </div>
                 <div class="form-row">
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                        <mat-label>Aqui se deberia ingresar un archivo xd</mat-label>
-                        <input matInput placeholder="001">
+                        <mat-label>Aqui se se agrega un enlace</mat-label>
+                        <input matInput placeholder="001" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
+                        <mat-label>Multimedia 001</mat-label>
+                        <input matInput placeholder="001" disabled>
                     </mat-form-field>
                 </div>
                 <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                         <mat-label>Observación del cliente</mat-label>
-                        <textarea matInput placeholder="Observaciones..."></textarea>
+                        <textarea matInput placeholder="Observaciones..." disabled></textarea>
                     </mat-form-field>
                 </div>
             </mat-card-content>
@@ -152,16 +151,11 @@
                 </div>
                 <div class="form-row">
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                        <mat-label>Aqui se deberia ingresar un archivo xd</mat-label>
+                        <mat-label>aqui deneria haber un boton gaa</mat-label>
                         <input matInput placeholder="001">
                     </mat-form-field>
                 </div>
-                <div class="form-row">
-                    <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                        <mat-label>Comentario</mat-label>
-                        <textarea matInput placeholder="Observaciones..."></textarea>
-                    </mat-form-field>
-                </div>
+            
             </mat-card-content>
         </mat-card>
         <button class="btn btn-primary mb-2 mr-1" type="submit">

@@ -26,9 +26,9 @@ export class AgregarProyectoComponent implements OnInit {
   fechaActual = '';
   proyectos = [];
   foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Boda' },
-    { value: 'pizza-1', viewValue: 'Matrimonio' },
-    { value: 'tacos-2', viewValue: '' },
+    { value: 'steak-0', viewValue: '1' },
+    { value: 'pizza-1', viewValue: '2' },
+    { value: 'tacos-2', viewValue: '3' },
   ];
   constructor(
     public service: ProyectoService,
@@ -37,18 +37,9 @@ export class AgregarProyectoComponent implements OnInit {
   ) {
     this.dateAdapter.setLocale('es');
   }
-  asignarFechaActual() {
-    var today = new Date();
-    var hoy;
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
 
-    hoy = yyyy + '/' + mm + '/' + dd;
-    this.fechaActual = hoy;
-  }
+
   ngOnInit(): void {
-    this.asignarFechaActual();
   }
  
 

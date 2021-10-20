@@ -1,4 +1,11 @@
+import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { PaqueteServicioService } from 'src/app/control-panel/administrar-paquete-servicio/service/paquete-servicio.service';
+import { EventoServicioService } from 'src/app/control-panel/administrar-paquete-servicio/service/evento-servicio.service';
+import { EventoAllServiciosService } from 'src/app/control-panel/administrar-paquete-servicio/service/detalle-servicios.service';
+import { DetalleServiciosComponent } from './components/detalle-servicios/detalle-servicios.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-administrar-paquete-servicio',
@@ -7,9 +14,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministrarPaqueteServicioComponent implements OnInit {
 
-  constructor() { }
+  base: boolean = true;
+  servicioId: number = 0;
+  paquete: any[] = [];
+  servicio: any[] = [];
+  serviciosf: any[] = [];
+
+  columnsToDisplay = ['ID','nombre','enlace']
+  constructor(private service: PaqueteServicioService,private service2: EventoServicioService, public dialog: MatDialog, private allserivicios: EventoAllServiciosService) {}
 
   ngOnInit(): void {
+    this.getPaquete();
+    this.getServicio();
+    this.getAllService();
+    //this.postDetalle();
+    console.log(this.paquete);
+    console.log(this.serviciosf);
+  }
+
+  getPaquete() {
+    this.service.getAllNombres().subscribe((response) => {
+      this.paquete = response;
+      console.log(this.paquete);
+    });
+  }
+
+  getServicio() {
+    this.service2.getAllNombres2().subscribe((response) => {
+      this.servicio = response;
+      console.log(this.servicio);
+    });
+  }
+
+  openDialog() {
+    const dialogPaq = this.dialog.open(DetalleServiciosComponent);
+  }
+
+  getAllService() {
+    this.allserivicios.getAllServicios().subscribe((response) => {
+      this.serviciosf = response;
+      console.log(this.serviciosf)
+    });
+  }
+
+
+  prueba(event: number){  
+    this.base = false; this.servicioId = event; console.log("Id: ", this.servicioId)
   }
 
 }

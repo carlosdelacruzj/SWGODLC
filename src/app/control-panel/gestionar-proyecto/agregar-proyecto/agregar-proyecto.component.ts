@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProyectoService } from '../service/proyecto.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
 import { Pedido } from '../model/pedido.model';
+import { DateAdapter } from '@angular/material/core';
 import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
@@ -22,21 +23,40 @@ interface Food {
   styleUrls: ['./agregar-proyecto.component.css'],
 })
 export class AgregarProyectoComponent implements OnInit {
-  formUser!: FormGroup;
+  fechaActual = '';
+  proyectos = [];
   foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Boda' },
-    { value: 'pizza-1', viewValue: 'Matrimonio' },
-    { value: 'tacos-2', viewValue: '' },
+    { value: 'steak-0', viewValue: '1' },
+    { value: 'pizza-1', viewValue: '2' },
+    { value: 'tacos-2', viewValue: '3' },
   ];
-  constructor(public service: ProyectoService, public service2: PedidoService) {}
+  constructor(
+    public service: ProyectoService,
+    public service2: PedidoService,
+    private dateAdapter: DateAdapter<Date>
+  ) {
+    this.dateAdapter.setLocale('es');
+  }
+
 
   ngOnInit(): void {
-    
   }
-  getProyecto1(proyecto :Proyecto) {
-    this.service.selectProyecto = proyecto;
-}
-getPedido1(pedido :Pedido) {
-  this.service2.selectPedido = pedido;
-}
+ 
+
+  addProyecto(ProyectoForm: NgForm) {
+    let data = {
+      proyecto_nombre: ProyectoForm.value.NombrePedido,
+      codigo_pedido: ProyectoForm.value.ID,
+      fecha_inicio_edicion: ProyectoForm.value.F_Evento
+    };
+    console.log(data);
+    this.service.registro(data).subscribe(
+      (res) => { console.log("DATA: ", res)},
+      (err) => console.error(err)
+    );
+  }
+
+  
+
+  
 }

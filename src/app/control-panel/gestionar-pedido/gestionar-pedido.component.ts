@@ -5,6 +5,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from '@angular/material/select';
+import { NgForm } from '@angular/forms';
 
 interface Car {
   value: string;
@@ -239,10 +240,29 @@ descripcionid =[];
       });
   }
 
-descripcionSeleccionada(id :number){
-}
-}
 
+
+  addProyecto(ProyectoForm: NgForm, fecha: string) {
+    //Para poder cambiar el orden de como mando la fecha
+
+    // console.log(fecha.substr(2,4)); //-MM-
+    // console.log(fecha.substr(0,2)); //dd
+    // console.log(fecha.substr(6)); //yyyy
+    // this.fechaOk = fecha.substr(6) + fecha.substr(2, 4) + fecha.substr(0, 2); //yyyy-MM-dd
+
+    let data = {
+      proyecto_nombre: ProyectoForm.value.NombrePedido,
+      codigo_pedido: ProyectoForm.value.ID,
+      // fecha_inicio_edicion: this.fechaOk,
+    };
+    console.log(data);
+    // this.service.registro(data).subscribe(
+    //   (res) => {
+    //     console.log('DATA: ', res);
+    //   },
+    //   (err) => console.error(err)
+    // );
+  }
   //  postPedido() {
   //    this.service2.postPedido(
   //     2, this.fechaActual, this.nPedido, this.infoCliente.Nombre, this.infoCliente.Apellido, this.eventoSeleccionado,this.servicioSeleccionado,

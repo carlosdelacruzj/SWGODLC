@@ -332,132 +332,106 @@
       <br>
 
 
-      <mat-card class="card">
-        <mat-card-header class="card-header">
-          <mat-card-title>Detalles de Pedido</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body">
-          <div class="form-row">
-
-            <div class="container-fluid d-flex">
-              <div class="container w-50">
-
-                <div class="input-group">
-                  <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Cod.Empleado
-                    :</span>
-                  <input type="text" class="form-control" />
+      <form action="">
+        <mat-card class="card">
+          <mat-card-header class="card-header">
+            <mat-card-title>Detalles de Pedido</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-body">
+            <div class="form-row">
+              <div class="container-fluid d-flex">
+                <div class="container w-50">
+                  <div class="input-group">
+                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Cod.Empleado
+                      :</span>
+                    <input type="text" class="form-control" />
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Nº
+                      Pedido
+                      :</span>
+                    <input type="text" class="form-control" [(ngModel)]="nPedido" disabled />
+                  </div>
+                  <br>
                 </div>
-                <br>
-
-                <div class="input-group">
-                  <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Nº
-                    Pedido
-                    :</span>
-                  <input type="text" class="form-control" [(ngModel)]="nPedido" disabled />
-                </div>
-                <br>
-
-              </div>
-
-              <div class="container w-50">
-
-                <div class="input-group">
-                  <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Fecha
-                    registro
-                    :</span>
-                  <input type="text" class="form-control" [(ngModel)]="fechaActual" disabled />
+                <div class="container w-50">
+                  <div class="input-group">
+                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Fecha
+                      registro
+                      :</span>
+                    <input type="text" class="form-control" [(ngModel)]="fechaActual" disabled />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-
-        </mat-card-content>
-      </mat-card>
-
-      <!-- Detalles Contratante -registro -->
-      <mat-card class="card">
-        <mat-card-header class="card-header">
-          <mat-card-title>Datos del Contratante</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body">
-          <div class="form-row">
-
-            <div class="container-fluid d-flex">
-              <div class="container w-50">
-
-                <div class="input-group">
-                  <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Ingrese
-                    DNI
-                    :</span>
-                  <input type="text" class="form-control" [(ngModel)]="dniCliente" />
+          </mat-card-content>
+        </mat-card>
+        <!-- Detalles Contratante -registro -->
+        <mat-card class="card">
+          <mat-card-header class="card-header">
+            <mat-card-title>Datos del Contratante</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-body">
+            <div class="form-row">
+              <div class="container-fluid d-flex">
+                <div class="container w-50">
+                  <div class="input-group">
+                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Ingrese
+                      DNI
+                      :</span>
+                    <input type="text" class="form-control" [(ngModel)]="dniCliente" />
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Nombres
+                      :</span>
+                    <input type="text" class="form-control" [(ngModel)]="infoCliente.Nombre" disabled />
+                  </div>
+                  <br>
                 </div>
-                <br>
-
-
-                <div class="input-group">
-                  <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Nombres
-                    :</span>
-                  <input type="text" class="form-control" [(ngModel)]="infoCliente.Nombre" disabled />
+                <div class="container w-50">
+                  <div class="input-group">
+                    <button (click)="buscarCliente(dniCliente)" class="btn btn-primary">Buscar</button>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Apellidos
+                      :</span>
+                    <input type="text" class="form-control" [(ngModel)]="infoCliente.Apellido" disabled />
+                  </div>
+                  <br>
                 </div>
-                <br>
-
               </div>
-
-              <div class="container w-50">
-
-                <div class="input-group">
-                  <button (click)="buscarCliente(dniCliente)" class="btn btn-primary">Buscar</button>
-                </div>
-                <br>
-
-                <div class="input-group">
-                  <span style="width:150px;background-color:whitesmoke;" class="input-group-text">Apellidos
-                    :</span>
-                  <input type="text" class="form-control" [(ngModel)]="infoCliente.Apellido" disabled />
-                </div>
-                <br>
-
-              </div>
-
-
             </div>
-          </div>
-
-
-        </mat-card-content>
-      </mat-card>
-
-      <!-- Registro- detalles de evento -->
-      <mat-card class="card">
-        <mat-card-header class="card-header">
-          <mat-card-title>Detalles del Evento</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body">
-          <div class="form-row d-flex flex-column justify-content-start align-items-start">
-
-            <select [(ngModel)]="servicioSeleccionado" (ngModelChange)="asignarServicio($event)">
-              <option *ngFor="let servicio of servicios" [value]="servicio.ID">{{servicio.Nombre}}
-              </option>
-            </select>
-            <br>
-
-
-            <select [(ngModel)]="eventoSeleccionado" (ngModelChange)="asignarEvento($event)">
-              <option *ngFor="let data of evento" [value]="data.PK_E_Cod">{{data.E_Nombre}}
-              </option>
-            </select>
-            <br>
-
-
-            <form>
-              <div class="form-group">
-                <label for="dateOfBirth">Fecha Evento</label>
-                <div class="input-group">
-                  <input id="dateOfBirth" class="form-control" [(ngModel)]="fecharegistrada" name="dp" ngbDatepicker
-                    #dp="ngbDatepicker">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </mat-card-content>
+        </mat-card>
+        <!-- Registro- detalles de evento -->
+        <mat-card class="card">
+          <mat-card-header class="card-header">
+            <mat-card-title>Detalles del Evento</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-body">
+            <div class="form-row d-flex flex-column justify-content-start align-items-start">
+              <select [(ngModel)]="servicioSeleccionado" (ngModelChange)="asignarServicio($event)">
+                <option *ngFor="let servicio of servicios" [value]="servicio.ID">{{servicio.Nombre}}
+                </option>
+              </select>
+              <br>
+              <select [(ngModel)]="eventoSeleccionado" (ngModelChange)="asignarEvento($event)">
+                <option *ngFor="let data of evento" [value]="data.PK_E_Cod">{{data.E_Nombre}}
+                </option>
+              </select>
+              <br>
+              <form>
+                <div class="form-group">
+                  <label for="dateOfBirth">Fecha Evento</label>
+                  <div class="input-group">
+                    <input id="dateOfBirth" class="form-control" [(ngModel)]="fecharegistrada" name="dp" ngbDatepicker
+                      #dp="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                    </div>
                   </div>
                 </div>
               </div>

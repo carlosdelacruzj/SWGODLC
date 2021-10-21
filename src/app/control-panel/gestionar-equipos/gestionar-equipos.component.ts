@@ -1,6 +1,9 @@
-import { NgModule, Component, OnInit } from '@angular/core';
+import { NgModule, Component, OnInit,ViewChild } from '@angular/core';
 import { GestionarEquipos } from './service/gestionar-equipos.service';
 import { AsignarEquipos } from './model/gestionar-equipos.model';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-gestionar-equipos',
@@ -8,6 +11,10 @@ import { AsignarEquipos } from './model/gestionar-equipos.model';
   styleUrls: ['./gestionar-equipos.component.css'],
 })
 export class GestionarEquiposComponent implements OnInit {
+
+  @ViewChild(MatSort) matSort!: MatSort;
+  @ViewChild('paginator') paginator!: MatPaginator;
+  dataSource!: MatTableDataSource<any>;
   proyectos = [];
   equipos_proyecto = [];
   columnsToDisplay = [
@@ -58,10 +65,21 @@ export class GestionarEquiposComponent implements OnInit {
   // GET DATA
 
   // GET TODOS LOS PROYECTOS
+  // getProyectos() {
+  //   this.service.getAll().subscribe((data) => {
+  //     this.proyectos = data;
+
+  //   });
+  // }
   getProyectos() {
-    this.service.getAll().subscribe((data) => {
-      this.proyectos = data;
+    this.service.getAll().subscribe((response: any) => {
+      this.dataSource = new MatTableDataSource(response);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.matSort;
     });
+  }
+  filterData($event: any) {
+    this.dataSource.filter = $event.target.value;
   }
 
   //GET PROYECTO POR ID
@@ -126,9 +144,6 @@ export class GestionarEquiposComponent implements OnInit {
       this.getTiposEquipos();
       this.getEquiposId(1);
     }
-  }
-  filterData($event: any) {
-    this.proyectos.filter = $event.target.value;
   }
 
   //CERRAR VENTANA ASIGNAR EQUIPOS

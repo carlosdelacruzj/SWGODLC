@@ -80,6 +80,16 @@ export class VisualizarService {
     });
   }
 
+
+  public registro(data:any): Observable<any> {
+
+    console.log('Probando');
+
+    
+    return this.http.post(this.API_AGREGARPEDIDO, data);
+  }
+
+
   public postPedido(
     EP_Cod: number,
     F_Registro: string,

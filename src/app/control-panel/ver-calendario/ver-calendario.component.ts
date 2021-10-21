@@ -1,63 +1,19 @@
-import { Component, OnInit, ViewChild,AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterContentInit, ChangeDetectorRef } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridnPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/core/locales/es';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import esLocale from '@fullcalendar/core/locales/es';
+import { add } from 'date-fns';
 import { CitaCalendario } from './model/calendario.model';
 import { CalendarioService } from './service/calendario.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatTab } from '@angular/material/tabs';
-import { trackByWeekAllDayEvent } from 'angular-calendar/modules/common/util';
 
 @Component({
   selector: 'app-ver-calendario',
   templateUrl: './ver-calendario.component.html',
-  styleUrls: ['./ver-calendario.component.css']
+  styleUrls: ['./ver-calendario.component.css'],
 })
-
-export class VerCalendarioComponent implements OnInit{
-  /*
-  displayedColumns = ['ID','Nombre','Estado','Fecha','Hora','Direccion','Cliente','Telefono'];
-  displayedColumns2 = ['ID','Nombre','Estado','Fecha','Hora','Direccion','Cliente','Telefono'];
-  
-  dataSource!: MatTableDataSource<any>;
-  dataSource2!: MatTableDataSource<any>;
-
-  @ViewChild('paginator') paginator!: MatPaginator;
-  @ViewChild(MatSort) matSort!: MatSort;
-  */
-   /*mockCitas: Citacalendario[] = [
-    {
-      //title:'Matrimonio',
-      ID:'',
-      title:'',
-      EstadoProyecto:'',
-   //   start:'',
-      date:'',
-      HoraEvento: '',
-      Direccion: '',
-      Cliente: '',
-      Telefono: ''
-     // 2021-11-30T00:00:00.000Z
-    },
-   ];
-
-   */
+export class VerCalendarioComponent implements OnInit {
+  mockCitas: CitaCalendario[];
 
   
-   mockCitas: CitaCalendario[] = [
-    { title: '', date: '',end: '',id:'' },
-  ];
-
-/*
-  mockCitas: CitaCalendario[] = [
-    { title: 'Evento 1', date: '2021-10-30 19:30:00', end: '2021-10-30', id: '1'   },
-    { title: 'Evento 2', date: '2021-10-29 19:30:00',end: '2021-10-29 20:30:00', id: '2' }
-  ];
-*/
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -75,48 +31,47 @@ export class VerCalendarioComponent implements OnInit{
       minute: '2-digit',
       meridiem: false,
     },
-     events: this.mockCitas,
     showNonCurrentDates: false,
   };
 
-  constructor(public service : CalendarioService) {}
-  
-  ngOnInit(): void {
-      this.getEventos();
-      console.log('MOCKS', this.mockCitas);
-      this.addEventCalendar(this.mockCitas);
-
-      //this.getEventos1(this.service.selectcalendario);      
- }
-
- 
-
-
-  getEventos(){
-   this.service.getAllEventos().subscribe((response: any)=>{
-   //   alert(JSON.stringify(response))
-        this.mockCitas=response;
-      // alert(JSON.stringify(this.mockCitas));
-        console.log(this.mockCitas);
-        
-   });
-
-   
+  constructor(public service: CalendarioService, private _cdRef: ChangeDetectorRef) {
+    // this.mockCitas = [
+    //   // {id:'1',title:'Katya y Carlos',date:'2021-11-30 20:00:00',end:'2021-11-30 22:00:00', allDay: false},
+    //   // {id:'2',title:'Cumpleaños Ricardo',date:'2021-11-30 20:00:00',end:'2021-11-30 22:00:00', allDay: false}
+    //   {  title: 'Evento 1', date: '2021-10-30 19:30:00', allDay: false,end: '2021-10-30 20:30:00', id: '1'   },
+    //   { title: 'Evento 2', date: '2021-10-29 19:30:00',allDay: false,end: '2021-10-29 20:30:00', id: '2' }
+    // ];
   }
 
+  async ngOnInit() {
+    await this.getEventos();
+    this.addCitas(this.mockCitas);
+  }
 
-  eventClick(arg:any ) {
+  async getEventos() {
+    try {
+      // const data = await this.service.getAllEventos();
+      this.mockCitas = await this.service.getAllEventos();
+      this.mockCitas.map(p => {
+        p.allDay = false;
+        p.id = p.id.toString();
+        return p;
+      });
+      // console.log('CITAS SERVICE: ', data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  eventClick(arg: any) {
     alert(JSON.stringify(arg));
-   // console.log(arg);
   }
 
-  addEventCalendar(mockCitas: CitaCalendario[]):void {
-   // for(String i=0,i<(mockCitas).length,i++){
-    
-    this.calendarOptions.events = this.mockCitas;
-    console.log(this.calendarOptions);
-  // 
-                }
-
-  
+  addCitas(citas: CitaCalendario[]) {
+    console.log('CITAS: ', citas);
+    this.calendarOptions.events = citas;
+    this._cdRef.detectChanges();
+    console.log('CALENDAR: ', this.calendarOptions);
+  }
 }

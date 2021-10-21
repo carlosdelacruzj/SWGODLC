@@ -16,6 +16,6 @@ export interface CitaCalendario  {
     id: string;
     title: string;
     date: string;
-   // allDay: boolean;
+    allDay: boolean;
     end: string;
   }

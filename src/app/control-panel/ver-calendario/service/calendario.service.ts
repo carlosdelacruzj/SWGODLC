@@ -12,7 +12,7 @@ export class CalendarioService {
   "https://tp2021database.herokuapp.com/proyecto/consulta/getAllEventosProyectos";
   constructor(private http: HttpClient) {}
 
-  public getAllEventos(): Observable<any> {
-    return this.http.get(this.API_PRUEBA);
+  public getAllEventos(): Promise<any> {
+    return this.http.get(this.API_PRUEBA).toPromise();
   }
 }

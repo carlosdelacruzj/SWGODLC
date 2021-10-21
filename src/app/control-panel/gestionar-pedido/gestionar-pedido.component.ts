@@ -76,7 +76,7 @@ export class GestionarPedidoComponent implements OnInit {
   estadoEditado = 0;
   fechaEditada = { day: '', month: '', year: '' };
   fecharegistrada = { day: '', month: '', year: '' };
-
+descripcionid =[];
   horaEditada = '';
 
   constructor(
@@ -191,7 +191,7 @@ export class GestionarPedidoComponent implements OnInit {
 
     let fecha = year + '-' + month + '-' + day;
 
-    this.service2.putPedido(4, fecha, '17:00:00', 8).subscribe({
+    this.service2.putPedido(this.estadoEditado, fecha, this.horaEditada, 8).subscribe({
       next: (res) => {
         alert(JSON.stringify(res));
       },
@@ -266,9 +266,8 @@ export class GestionarPedidoComponent implements OnInit {
   //  postPedido() {
   //    this.service2.postPedido(
   //     2, this.fechaActual, this.nPedido, this.infoCliente.Nombre, this.infoCliente.Apellido, this.eventoSeleccionado,this.servicioSeleccionado,
-  //     this.fechaRegistro(),"21:00:00","Av.prueba123","Foto123prue").subscribe((responde) => {
+  //     this.fechaRegistro(),"21:00:00","Av.prueba123",this.descripcionSeleccionada).subscribe((responde) => {
   //       alert(responde)
 
   //     }
   // }
-}

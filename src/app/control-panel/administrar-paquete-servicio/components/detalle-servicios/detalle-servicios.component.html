@@ -4,36 +4,53 @@
 
 
   <div class="example-container">
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Tipo de Servicio</mat-label>
-      <mat-select>
-      <mat-option value="option">Lista Servicios</mat-option>    
-      </mat-select>
-      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-    </mat-form-field>
-    <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-      <mat-label>Precio</mat-label>
-      <input matInput #input maxlength="10" placeholder="Ex. Nougat">
-      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-    </mat-form-field>
-    <mat-form-field hintLabel="Max 20 characters" appearance="fill">
-      <mat-label>Titulo</mat-label>
-      <input matInput #input maxlength="20" placeholder="Ex. Nougat">
-      <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Ingresar Descripcion</mat-label>
-      <textarea matInput class="descripcion"></textarea>
-    </mat-form-field>
+
+    <form #servicioForm="ngForm" (ngSubmit)="addServicio(servicioForm)">  
+
+
+        <!--Select Tipo de Servicio-->
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo de Servicio</mat-label>
+          <mat-select name="servicio" [(ngModel)]="service4.selectProyecto.servicio" #Servicio="ngModel">
+            <mat-option *ngFor="let servicio of sServicio" [value]="servicio.ID">
+              {{servicio.Nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      <!--Input Precio-->
+      <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input matInput type="text" name="precio" #Precio="ngModel" [(ngModel)]="service4.selectProyecto.precio">
+       
+      </mat-form-field>
+
+
+      <!--Input Titulo-->
+      <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+        <mat-label>Titulo</mat-label>
+        <input matInput type="text" name="titulo" #Titulo="ngModel" [(ngModel)]="service4.selectProyecto.titulo">
+
+      </mat-form-field>
+
+      <!--Area Descripcion-->
+      <mat-form-field appearance="fill">
+        <mat-label>Ingresar Descripcion</mat-label>
+        <textarea matInput class="descripcion" type="text" name="descripcion" #Descripcion="ngModel" [(ngModel)]="service4.selectProyecto.descripcion"></textarea>
+      </mat-form-field>
+
+
+      <!--Action Buttom-->
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button class="btn btn-primary mb-2 mr-1" type="submit">
+          Registrar
+        </button>
+      </mat-dialog-actions>
+
+    
+    </form>
 
   </div>
 
-
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Registrar</button>
-
-
-</mat-dialog-actions>

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AddPedido, EditarPedido, Proyecto } from '../model/visualizar.model';
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class VisualizarService {
   selectProyecto: Proyecto = {
@@ -21,14 +21,16 @@ export class VisualizarService {
     Hora_Evento: '',
     Direccion: '',
     Descripcion: '',
-    NombrePedido: '',
+    NombrePedido: ''
+
   };
 
   putEditarPedido: EditarPedido = {
     EP_Cod: 0,
     fecha: '',
     hora: '',
-    id: 0,
+    id: 0
+
   };
 
   selectAgregarPedido: AddPedido = {
@@ -43,6 +45,7 @@ export class VisualizarService {
     Hora_Evento: '',
     Direccion: '',
     Descripcion: '',
+
   };
 
   private API_VISUALIZAR =
@@ -53,31 +56,19 @@ export class VisualizarService {
 
   private API_AGREGARPEDIDO =
     'https://tp2021database.herokuapp.com/pedido/registro/postPedido';
+  constructor(private http: HttpClient) { }
 
-  private GET_EVENTO_BY_SERVICIOS =
-    'https://tp2021database.herokuapp.com/eventos_servicios/consulta/getAllServiciosByEventoServ/';
-  constructor(private http: HttpClient) {}
 
   public getPedidoID(id: any): Observable<any> {
-    return this.http.get(this.API_VISUALIZAR + id);
+    return this.http.get(this.API_VISUALIZAR + id)
   }
-  public getEventoServicio(evento: number, servicio: number): Observable<any> {
-    return this.http.get(
-      this.GET_EVENTO_BY_SERVICIOS + `${evento}` + '/' + `${servicio}`
-    );
-  }
-  public putPedido(
-    estado: number,
-    fecha: string,
-    hora: string,
-    id: number
-  ): Observable<any> {
+  public putPedido(estado: number, fecha: string, hora: string, id: number): Observable<any> {
     return this.http.put(this.API_EDITARPEDIDO, {
-      EP_Cod: estado,
-      fecha: fecha,
-      hora: hora,
-      id: id,
-    });
+      "EP_Cod": estado,
+      "fecha": fecha,
+      "hora": hora,
+      "id": id
+    })
   }
 
 
@@ -104,6 +95,7 @@ export class VisualizarService {
     Descripcion: Event
   ): Observable<any> {
     return this.http.post(this.API_AGREGARPEDIDO, {
+
       EP_Cod: EP_Cod,
       F_Registro: F_Registro,
       N_Pedido: N_Pedido,
@@ -115,6 +107,6 @@ export class VisualizarService {
       Hora_Evento: Hora_Evento,
       Direccion: Direccion,
       Descripcion: Descripcion,
-    });
+    })
   }
 }

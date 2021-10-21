@@ -8,7 +8,12 @@
       <h1>Asignar Equipos</h1>
     </div>
     
-    <table mat-table [dataSource]="proyectos" class="table">
+
+    <mat-form-field appearance="standard">
+      <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="proyectos"  class="table">
       <!-- Nombre de Proyecto  prueba -->
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef class="text-center">

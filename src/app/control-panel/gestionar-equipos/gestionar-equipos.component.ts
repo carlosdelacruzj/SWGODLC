@@ -127,6 +127,9 @@ export class GestionarEquiposComponent implements OnInit {
       this.getEquiposId(1);
     }
   }
+  filterData($event: any) {
+    this.proyectos.filter = $event.target.value;
+  }
 
   //CERRAR VENTANA ASIGNAR EQUIPOS
   closeAsingarEquipo() {

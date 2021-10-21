@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Detalle } from '../model/detalle-servicios.model';
+import { Detalle, Detalle2 } from '../model/detalle-servicios.model';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +15,14 @@ import { Detalle } from '../model/detalle-servicios.model';
       Precio: 0,
       Descripcion: "",
       Titulo: ""
+    };
+
+    selectProyecto2: Detalle2 = {
+      servicio: 0,
+      titulo: "",
+      precio: 0,
+      concepto: "",
+      id: 0
     };
   
 
@@ -34,6 +42,14 @@ import { Detalle } from '../model/detalle-servicios.model';
       return this.http.get('https://tp2021database.herokuapp.com/eventos_servicios/consulta/getEventoxServicioById/'+ id);
     }
     
+
+    public registro2(data:any): Observable<any> {
+
+      console.log(data);
+  
+      const url = 'https://tp2021database.herokuapp.com/eventos_servicios/actualiza/putByIdEventoxServicio';
+      return this.http.put(url, data);
+    }
 
 
     public getAllServicios(): Observable<any> {

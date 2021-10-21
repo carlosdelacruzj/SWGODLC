@@ -51,6 +51,7 @@ export class GestionarProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.getProyecto();
     this.getPedido();
+   
   }
 
   // para llenar las tablas
@@ -92,7 +93,7 @@ export class GestionarProyectoComponent implements OnInit {
   getPedidoID(valor: number) {
     this.service2.getAllNombresID(valor).subscribe((responde) => {
       this.service2.selectPedido2 = responde[0];
-      // console.log(this.service2.selectPedido2);
+      console.log(this.service2.selectPedido2);
     });
   }
 

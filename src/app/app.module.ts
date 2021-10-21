@@ -32,6 +32,7 @@ import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/l
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/actualizar-proyecto/actualizar-proyecto.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })

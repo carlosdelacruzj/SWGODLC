@@ -45,6 +45,7 @@ export class GestionarEquipos {
     equipos: '',
   };
 
+   fecha2= "";
   private PROYECTOS_ASIGNAR =
     'https://tp2021database.herokuapp.com/proyecto/consulta/getAllAsignarEquipos';
 
@@ -91,6 +92,7 @@ export class GestionarEquipos {
     proyecto: number,
     id: number
   ): Observable<any> {
+
     return this.http.get(
       this.EQUIPO_ID + `${fecha}` + '/' + `${proyecto}` + '/' + `${id}`
     );

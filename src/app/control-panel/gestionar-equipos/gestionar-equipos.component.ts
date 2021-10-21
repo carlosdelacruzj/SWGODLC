@@ -1,4 +1,4 @@
-import { NgModule, Component, OnInit,ViewChild } from '@angular/core';
+import { NgModule, Component, OnInit, ViewChild } from '@angular/core';
 import { GestionarEquipos } from './service/gestionar-equipos.service';
 import { AsignarEquipos } from './model/gestionar-equipos.model';
 import { MatSort } from '@angular/material/sort';
@@ -11,10 +11,13 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./gestionar-equipos.component.css'],
 })
 export class GestionarEquiposComponent implements OnInit {
-
   @ViewChild(MatSort) matSort!: MatSort;
   @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild('paginator2') paginator2!: MatPaginator;
+  @ViewChild('paginator2') paginator3!: MatPaginator;
   dataSource!: MatTableDataSource<any>;
+  dataSource2!: MatTableDataSource<any>;
+  dataSource3!: MatTableDataSource<any>;
   proyectos = [];
   equipos_proyecto = [];
   columnsToDisplay = [
@@ -49,6 +52,7 @@ export class GestionarEquiposComponent implements OnInit {
   lista_id: any[] = [];
   fecha_proyecto = '';
   cantidad_asigacion = 0;
+  fechaok="";
   constructor(private service: GestionarEquipos) {}
 
   ngOnInit(): void {
@@ -78,8 +82,16 @@ export class GestionarEquiposComponent implements OnInit {
       this.dataSource.sort = this.matSort;
     });
   }
+
+  
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;
+  }
+  filterData2($event: any) {
+    this.dataSource2.filter = $event.target.value;
+  }
+  filterData3($event: any) {
+    this.dataSource3.filter = $event.target.value;
   }
 
   //GET PROYECTO POR ID
@@ -96,8 +108,17 @@ export class GestionarEquiposComponent implements OnInit {
       });
 
       //GET EQUIPOS BY PROYECTO ID
-      this.service.getEquiposByProyecto(id).subscribe((data) => {
-        this.equipos_proyecto = data;
+
+      // this.service.getEquiposByProyecto(id).subscribe((data) => {
+      //   this.equipos_proyecto = data;
+      //   this.cantidad_asigacion = this.equipos_proyecto.length;
+      // });
+
+      this.service.getEquiposByProyecto(id).subscribe((response: any) => {
+        this.dataSource2 = new MatTableDataSource(response);
+        this.dataSource2.paginator = this.paginator2;
+        this.dataSource2.sort = this.matSort;
+        this.equipos_proyecto = response;
         this.cantidad_asigacion = this.equipos_proyecto.length;
       });
     });
@@ -112,11 +133,26 @@ export class GestionarEquiposComponent implements OnInit {
 
   //GET TIPOS DE EQUIPOS BY ID
 
+  // getEquiposId(id: number) {
+  //   this.service
+  //     .getEquipoId(this.fecha_proyecto, this.id_proyecto, id)
+  //     .subscribe((data) => {
+  //       this.equipos = data;
+  //     });
+  // }
+
   getEquiposId(id: number) {
+  
+    this.fechaok = this.fecha_proyecto.substr(6) + this.fecha_proyecto.substr(2, 4) + this.fecha_proyecto.substr(0, 2); //yyyy-MM-dd
+   console.log(this.fechaok);
     this.service
-      .getEquipoId(this.fecha_proyecto, this.id_proyecto, id)
-      .subscribe((data) => {
-        this.equipos = data;
+      .getEquipoId(this.fechaok, this.id_proyecto, id)
+      .subscribe((response: any) => {
+        this.dataSource3 = new MatTableDataSource(response);
+        this.dataSource3.paginator = this.paginator3;
+        this.dataSource3.sort = this.matSort;
+        this.equipos = response;
+    
       });
   }
 

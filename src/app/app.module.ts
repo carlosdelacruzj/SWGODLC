@@ -26,7 +26,7 @@ import {
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EditDataComponent } from './control-panel/gestionar-pedido/edit-data/edit-data.component';
+
 
 
 
@@ -42,7 +42,6 @@ import { EditDataComponent } from './control-panel/gestionar-pedido/edit-data/ed
     DashboardComponent,
     AgregarProyectoComponent,
     GestionarPedidoComponent,
-    EditDataComponent,
  
   ],
   imports: [

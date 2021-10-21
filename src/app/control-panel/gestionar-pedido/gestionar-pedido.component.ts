@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from './service/pedido.service';
 import { VisualizarService } from './service/visualizar.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { MatSelectModule } from '@angular/material/select';
 
-
-
-interface Food {
+interface Car {
   value: string;
   viewValue: string;
-  
 }
 
 @Component({
@@ -15,20 +16,24 @@ interface Food {
   templateUrl: './gestionar-pedido.component.html',
   styleUrls: ['./gestionar-pedido.component.css'],
 })
+
 export class GestionarPedidoComponent implements OnInit {
+  cars: Car[] = [
+    { value: '1', viewValue: 'Solicitado' },
+    { value: '2', viewValue: 'Aceptado' },
+    { value: '3', viewValue: 'Cancelado' },
+    { value: '4', viewValue: 'En Curso' },
+    { value: '5', viewValue: 'Finalizado' },
+    { value: '6', viewValue: 'Anulado' }
+
+  ];
+
   pedidos = [];
   columnsToDisplay = ['ID', 'Nombre', 'Fecha', 'Servicio', 'Evento', 'Cliente', 'Estado', 'Visualizar',]
 
 
   botonVisualizar = true;
   botonRegistrar = true;
-  botonEditar = true;
-
-  foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Boda' },
-    { value: 'pizza-1', viewValue: 'Matrimonio' },
-    { value: 'tacos-2', viewValue: 'Divorcio' },
-  ];
 
   pedido = {
     Empleado: '',
@@ -50,15 +55,22 @@ export class GestionarPedidoComponent implements OnInit {
   idPedido = 0;
   idregistrar = 0;
   saldo = 0;
-  servicios = [];
+  servicioSeleccionado = 1;
+  servicios: any[] = [];
+  eventoSeleccionado = 1;
+  evento: any[] = [];
   nPedido = 0;
   NombrePed: any;
   fechaActual = '';
   dniCliente = 0;
   infoCliente = { Nombre: '', Apellido: '' };
+  estadoEditado = 0;
+  fechaEditada = { day: "", month: "", year: "" };
+  fecharegistrada = { day: "", month: "", year: "" };
 
+  horaEditada = '';
 
-  constructor(private service: PedidoService, private service2: VisualizarService) { }
+  constructor(private service: PedidoService, private service2: VisualizarService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.botonVisualizar = true;
@@ -71,10 +83,6 @@ export class GestionarPedidoComponent implements OnInit {
     });
 
   }
-  mostrarEditable(){
-    this.botonEditar=false;
-    
-  }
   mostrarDetalles(valor: number) {
     this.botonVisualizar = false;
     this.idPedido = valor;
@@ -85,6 +93,8 @@ export class GestionarPedidoComponent implements OnInit {
     this.botonRegistrar = false;
     this.getN_Pedido2();
     this.asignarFechaActual();
+    this.getServi();
+    this.getEventos();
 
   }
   buscarCliente(valor: number) {
@@ -132,10 +142,83 @@ export class GestionarPedidoComponent implements OnInit {
     var today = new Date();
     var hoy;
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
     hoy = dd + '/' + mm + '/' + yyyy;
     this.fechaActual = hoy;
   }
+  closeResult = '';
+
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  editarModal() {
+    let day = (this.fechaEditada.day).toString();
+    let month = (this.fechaEditada.month).toString();
+    let year = (this.fechaEditada.year).toString();
+
+    let fecha = (year + "-" + month + "-" + day);
+
+    this.service2.putPedido(4, fecha, "17:00:00", 8).subscribe({ next: (res) => { alert(JSON.stringify(res)) }, error: (error) => { alert(JSON.stringify(error)) } })
+
+  }
+  //SERVICIOS
+
+  getServi() {
+    this.service.getServicios().subscribe((responde) => {
+      this.servicios = responde;
+
+    })
+  }
+  asignarServicio(event: number) {
+    this.servicioSeleccionado = event;
+  }
+
+  // EVENTOS
+  getEventos() {
+    this.service.getEventos().subscribe((responde) => {
+      this.evento = responde;
+
+    })
+  }
+  asignarEvento(event: number) {
+    this.eventoSeleccionado = event;
+
+  }
+
+  fechaRegistro(){
+    let day = (this.fecharegistrada.day).toString();
+    let month = (this.fecharegistrada.month).toString();
+    let year = (this.fecharegistrada.year).toString();
+
+    let fecharegistro = (year + "-" + month + "-" + day);
+    return fecharegistro
+  }
+
+
+
+  //  postPedido() {
+  //    this.service2.postPedido(
+  //     2, this.fechaActual, this.nPedido, this.infoCliente.Nombre, this.infoCliente.Apellido, this.eventoSeleccionado,this.servicioSeleccionado,
+  //     this.fechaRegistro(),"21:00:00","Av.prueba123","Foto123prue").subscribe((responde) => {
+  //       alert(responde)
+
+  //     }
+  // }
 }

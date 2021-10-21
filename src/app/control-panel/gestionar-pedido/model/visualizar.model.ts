@@ -25,3 +25,29 @@ export class N_Pedido{
 
   }
 }
+
+export class EditarPedido {
+  constructor(
+public EP_Cod:number,
+public fecha:string,
+public hora:string,
+public id:number
+
+
+ ){}}
+
+ export class AddPedido {
+  constructor(
+public EP_Cod:number,
+public F_Registro : String,
+public N_Pedido : number,
+public Nombre : String,
+public Apellido:String,
+public Evento : String,
+public Servicio : String,
+public F_Evento :String,
+public Hora_Evento : String,
+public  Direccion : String,
+public  Descripcion :String,
+
+ ){}}

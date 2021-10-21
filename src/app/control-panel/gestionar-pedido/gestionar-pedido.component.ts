@@ -16,7 +16,6 @@ interface Car {
   templateUrl: './gestionar-pedido.component.html',
   styleUrls: ['./gestionar-pedido.component.css'],
 })
-
 export class GestionarPedidoComponent implements OnInit {
   cars: Car[] = [
     { value: '1', viewValue: 'Solicitado' },
@@ -24,16 +23,24 @@ export class GestionarPedidoComponent implements OnInit {
     { value: '3', viewValue: 'Cancelado' },
     { value: '4', viewValue: 'En Curso' },
     { value: '5', viewValue: 'Finalizado' },
-    { value: '6', viewValue: 'Anulado' }
-
+    { value: '6', viewValue: 'Anulado' },
   ];
 
   pedidos = [];
-  columnsToDisplay = ['ID', 'Nombre', 'Fecha', 'Servicio', 'Evento', 'Cliente', 'Estado', 'Visualizar',]
-
+  columnsToDisplay = [
+    'ID',
+    'Nombre',
+    'Fecha',
+    'Servicio',
+    'Evento',
+    'Cliente',
+    'Estado',
+    'Visualizar',
+  ];
 
   botonVisualizar = true;
   botonRegistrar = true;
+  pedidos_ready = false;
 
   pedido = {
     Empleado: '',
@@ -50,13 +57,14 @@ export class GestionarPedidoComponent implements OnInit {
     Hora_Evento: '',
     Direccion: '',
     Descripcion: '',
-    NombrePedido: ''
-  }
+    NombrePedido: '',
+  };
   idPedido = 0;
   idregistrar = 0;
   saldo = 0;
   servicioSeleccionado = 1;
   servicios: any[] = [];
+  descripciones: any[] = [];
   eventoSeleccionado = 1;
   evento: any[] = [];
   nPedido = 0;
@@ -65,29 +73,32 @@ export class GestionarPedidoComponent implements OnInit {
   dniCliente = 0;
   infoCliente = { Nombre: '', Apellido: '' };
   estadoEditado = 0;
-  fechaEditada = { day: "", month: "", year: "" };
-  fecharegistrada = { day: "", month: "", year: "" };
+  fechaEditada = { day: '', month: '', year: '' };
+  fecharegistrada = { day: '', month: '', year: '' };
 
   horaEditada = '';
 
-  constructor(private service: PedidoService, private service2: VisualizarService, private modalService: NgbModal) { }
+  constructor(
+    private service: PedidoService,
+    private service2: VisualizarService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
+    this.pedidos_ready = false;
     this.botonVisualizar = true;
     this.getPedido();
   }
   getPedido() {
     this.service.getAllNombres().subscribe((response) => {
       this.pedidos = response;
-
+      this.pedidos_ready = true;
     });
-
   }
   mostrarDetalles(valor: number) {
     this.botonVisualizar = false;
     this.idPedido = valor;
     this.getPedidoID(this.idPedido);
-
   }
   mostrarRegistro() {
     this.botonRegistrar = false;
@@ -95,10 +106,9 @@ export class GestionarPedidoComponent implements OnInit {
     this.asignarFechaActual();
     this.getServi();
     this.getEventos();
-
+    this.getDescripcion();
   }
   buscarCliente(valor: number) {
-
     this.getDataCliente(valor);
   }
   cerrarDetalles() {
@@ -110,12 +120,12 @@ export class GestionarPedidoComponent implements OnInit {
   getN_Pedido2() {
     this.service.getN_Pedido().subscribe((responde) => {
       this.nPedido = responde[0].N_Pedido + 1;
-    })
+    });
   }
   getDataCliente(valor: number) {
     this.service.getDni(valor).subscribe((responde) => {
       this.infoCliente = responde[0];
-    })
+    });
   }
   getPedidoID(valor: number) {
     this.service2.getPedidoID(valor).subscribe((responde) => {
@@ -135,7 +145,7 @@ export class GestionarPedidoComponent implements OnInit {
       this.pedido.Descripcion = responde[0].Descripcion;
       this.pedido.NombrePedido = responde[0].NombrePedido;
       this.saldo = this.pedido.Costo_Total - this.pedido.Acuenta;
-    })
+    });
   }
 
   asignarFechaActual() {
@@ -151,11 +161,16 @@ export class GestionarPedidoComponent implements OnInit {
   closeResult = '';
 
   open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
   }
 
   private getDismissReason(reason: any): string {
@@ -169,49 +184,60 @@ export class GestionarPedidoComponent implements OnInit {
   }
 
   editarModal() {
-    let day = (this.fechaEditada.day).toString();
-    let month = (this.fechaEditada.month).toString();
-    let year = (this.fechaEditada.year).toString();
+    let day = this.fechaEditada.day.toString();
+    let month = this.fechaEditada.month.toString();
+    let year = this.fechaEditada.year.toString();
 
-    let fecha = (year + "-" + month + "-" + day);
+    let fecha = year + '-' + month + '-' + day;
 
-    this.service2.putPedido(4, fecha, "17:00:00", 8).subscribe({ next: (res) => { alert(JSON.stringify(res)) }, error: (error) => { alert(JSON.stringify(error)) } })
-
+    this.service2.putPedido(4, fecha, '17:00:00', 8).subscribe({
+      next: (res) => {
+        alert(JSON.stringify(res));
+      },
+      error: (error) => {
+        alert(JSON.stringify(error));
+      },
+    });
   }
   //SERVICIOS
 
   getServi() {
     this.service.getServicios().subscribe((responde) => {
       this.servicios = responde;
-
-    })
+    });
   }
   asignarServicio(event: number) {
     this.servicioSeleccionado = event;
+    this.getDescripcion();
   }
 
   // EVENTOS
   getEventos() {
     this.service.getEventos().subscribe((responde) => {
       this.evento = responde;
-
-    })
+    });
   }
   asignarEvento(event: number) {
     this.eventoSeleccionado = event;
-
+    this.getDescripcion();
   }
 
-  fechaRegistro(){
-    let day = (this.fecharegistrada.day).toString();
-    let month = (this.fecharegistrada.month).toString();
-    let year = (this.fecharegistrada.year).toString();
+  fechaRegistro() {
+    let day = this.fecharegistrada.day.toString();
+    let month = this.fecharegistrada.month.toString();
+    let year = this.fecharegistrada.year.toString();
 
-    let fecharegistro = (year + "-" + month + "-" + day);
-    return fecharegistro
+    let fecharegistro = year + '-' + month + '-' + day;
+    return fecharegistro;
   }
 
-
+  getDescripcion() {
+    this.service2
+      .getEventoServicio(this.eventoSeleccionado, this.servicioSeleccionado)
+      .subscribe((res) => {
+        this.descripciones = res;
+      });
+  }
 
   //  postPedido() {
   //    this.service2.postPedido(

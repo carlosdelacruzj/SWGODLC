@@ -1,10 +1,10 @@
 export class Detalle {
     constructor(
         public ID: number,
-        public servicio: number,
-        public evento: number,
-        public precio: number,
-        public descripcion: string,
-        public titulo: string
+        public Servicio: number,
+        public Evento: number,
+        public Precio: number,
+        public Descripcion: string,
+        public Titulo: string
     ){}
   }

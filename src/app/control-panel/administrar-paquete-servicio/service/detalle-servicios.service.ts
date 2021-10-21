@@ -10,11 +10,11 @@ import { Detalle } from '../model/detalle-servicios.model';
   
       selectProyecto: Detalle = {
       ID:0,
-      servicio: 0,
-      evento: 0,
-      precio: 0,
-      descripcion: "",
-      titulo: ""
+      Servicio: 0,
+      Evento: 0,
+      Precio: 0,
+      Descripcion: "",
+      Titulo: ""
     };
   
 
@@ -31,7 +31,7 @@ import { Detalle } from '../model/detalle-servicios.model';
     }
 
     public getAllNombresID(id: any): Observable<any> {
-      return this.http.get('https://tp2021database.herokuapp.com//eventos_servicios/actualiza/putByIdEventoxServicio/'+ id);
+      return this.http.get('https://tp2021database.herokuapp.com/eventos_servicios/consulta/getEventoxServicioById/'+ id);
     }
     
 

@@ -71,4 +71,6 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
     this.base = false; this.servicioId = event; console.log("Id: ", this.servicioId)
   }
 
+  
+
 }

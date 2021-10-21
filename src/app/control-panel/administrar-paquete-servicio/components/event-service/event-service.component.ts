@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -32,6 +32,14 @@ export class EventServiceComponent implements OnInit {
   // @Input() descripcion: string='';
   // @Input() titulo: string='';
   @Input() id: number = 0;
+
+
+  base: boolean = true;
+  servicioId = 0;
+  @Input() ID: number = 0;
+  @Output() emitAccion: EventEmitter<number> = new EventEmitter();
+
+
   constructor(private service: EventoServicioService, 
     private service3: EventoAllServiciosService, 
     public service4: EventoAllServiciosService,
@@ -131,6 +139,15 @@ export class EventServiceComponent implements OnInit {
       this.getServicio();
     })
     
+  }
+
+  cambioVista(){
+    this.emitAccion.emit(this.ID);
+    alert(this.ID);
+  }
+
+  prueba(event: number){  
+    this.base = false; this.servicioId = event; console.log("Id: ", this.servicioId)
   }
 
 }

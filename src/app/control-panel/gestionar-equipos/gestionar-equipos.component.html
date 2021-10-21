@@ -1,3 +1,211 @@
-<p>gestionar-equipos works!</p>
+<div class="container-fluid p-3">
+  <h1 class="font-bold">Asignar Equipos</h1>
 
-<p>holaa</p>
+  <div class="container-fluid" *ngIf="!asignarPersonal">
+    <table mat-table [dataSource]="proyectos" class="table">
+      <!-- Nombre de Proyecto  -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef class="text-center">
+          Nombre Proyecto
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+          {{ element.Nombre }}
+        </td>
+      </ng-container>
+
+      <!-- Fecha del Evento -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Fecha</th>
+        <td mat-cell *matCellDef="let element" class="text-center">
+          {{ element.Fecha }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="servicio">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Servicio</th>
+        <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+          {{ element.Servicio }}
+        </td>
+      </ng-container>
+
+      <!-- Tipo de Evento  -->
+      <ng-container matColumnDef="evento">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Evento</th>
+        <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+          {{ element.Evento }}
+        </td>
+      </ng-container>
+
+      <!-- Estado Proyecto  -->
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Estado</th>
+        <td mat-cell *matCellDef="let element" class="text-center">
+          <div *ngIf="element.Estado == '0'">Pendiente</div>
+          <div *ngIf="element.Estado == '1'">Asignado</div>
+        </td>
+      </ng-container>
+      <!-- Accion de Asignar  -->
+      <ng-container matColumnDef="asignar">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Asignar</th>
+        <td mat-cell *matCellDef="let element" class="text-center">
+          <button class="btn mx-auto" style="background-color: transparent; color: #101c30"
+            (click)="ventanaAsignarPersonal(element.ID)">
+            <i class="fas fa-plus-square fa-2x"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+    </table>
+  </div>
+
+  <div class="container-fluid" *ngIf="asignarPersonal && ready_empleados && ready_proyectos && !asignar_equipo">
+    <h1>Proyecto : {{ proyecto.Nombre }}</h1>
+
+
+
+
+    <div class="container-fluid">
+      <table class="table">
+        <thead cl>
+          <th class="text-center">Miembro del Staff</th>
+          <th class="text-center">Equipo Asignado</th>
+        </thead>
+        <tbody class="">
+          <tr>
+            <td style="text-align: center; vertical-align: middle;">
+              <select class="form-select p-4" [ngModel]="id_empleado" (ngModelChange)="asignarEmpleado($event)">
+                <option *ngFor="let empleado of empleados" [value]="empleado.ID">
+                  {{ empleado.Nombre }} {{ empleado.Apellido }} -
+                  {{ empleado.Car_Nombre }}
+                </option>
+              </select>
+            </td>
+            <td style="text-align:center; vertical-align: middle;">
+              <button (click)="ventanaAsignarEquipo()" class="btn" style="background-color:transparent"><i
+                  class="fas fa-edit fa-2x" style="color: #101c30"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="cantidad_asigacion!==0">
+      <h1>Equipos Asignados</h1>
+
+      <table mat-table [dataSource]="equipos_proyecto" class="table">
+        <!-- Nombre de Proyecto  -->
+        <ng-container matColumnDef="empleado">
+          <th mat-header-cell *matHeaderCellDef class="text-center">
+            Empleado
+          </th>
+          <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+            {{ element.Empleado }}
+          </td>
+        </ng-container>
+
+        <!-- Fecha del Evento -->
+        <ng-container matColumnDef="codequipo">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Codigo Equipo</th>
+          <td mat-cell *matCellDef="let element" class="text-center">
+            {{ element.CodigoEquipo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoequipo">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Tipo de Equipo</th>
+          <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+            {{ element.TipoEquipo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreequipo">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Nombre de Equipo</th>
+          <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+            {{ element.NombreEquipo }}
+          </td>
+        </ng-container>
+
+
+        <!-- Accion de Asignar  -->
+        <ng-container matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Eliminar</th>
+          <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+            <button (click)="eliminarAsignacion(element.ID)" class="btn bg-transparent"><i
+                class="fas fa-trash fa-lg"></i></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay3"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay3"></tr>
+      </table>
+
+    </div>
+
+    <button class="btn btn-danger" (click)="closeAsignarPersonal()">
+      Cancelar
+    </button>
+  </div>
+
+  <div class="container" *ngIf="asignar_equipo">
+    <h1>Equipos Disponibles</h1>
+    <div class="container-fluid d-flex align-items-center m-b-20">
+      <label>Tipo</label>
+      <select class="form-select p-2" [ngModel]="id_tipo_equipo" (ngModelChange)="asignarTipoEquipo($event)">
+        <option *ngFor="let tipo of tipo_equipos" [value]="tipo.PK_TE_Cod"> {{ tipo.TE_Nombre }}
+        </option>
+      </select>
+    </div>
+    <div class="container-fluid">
+
+      <table mat-table [dataSource]="equipos" class="table">
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef class="text-center">
+            Codigo
+          </th>
+          <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+            {{ element.Codigo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Marca</th>
+          <td mat-cell *matCellDef="let element" class="text-center">
+            {{ element.Marca }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modelo">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Modelo</th>
+          <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
+            {{ element.Modelo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Estado</th>
+
+          <td mat-cell *matCellDef="let element" class="text-center text-capitalize p-1">
+            <div *ngIf="element.Estado=='Disponible'">
+              <button class="btn bg-transparent" (click)="registrarData(id_empleado,id_proyecto,element.Codigo)"><i
+                  class="fas fa-plus-circle fa-2x" style="color:green"></i></button>
+            </div>
+          </td>
+
+
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay2"></tr>
+      </table>
+
+    </div>
+
+    <div class="container m-2">
+      <button class="btn btn-danger" (click)="closeAsingarEquipo()">Cancelar</button>
+
+    </div>
+  </div>
+</div>

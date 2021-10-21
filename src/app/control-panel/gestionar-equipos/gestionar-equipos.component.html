@@ -1,7 +1,13 @@
-<div class="container-fluid p-3">
-  <h1 class="font-bold">Asignar Equipos</h1>
+
+<div class="dashboard-ecommerce">
+<div class="container-fluid dashboard-content">
+  
 
   <div class="container-fluid" *ngIf="!asignarPersonal">
+    <div style="margin-bottom: 28px;">
+      <h1>Asignar Equipos</h1>
+    </div>
+    
     <table mat-table [dataSource]="proyectos" class="table">
       <!-- Nombre de Proyecto  prueba -->
       <ng-container matColumnDef="nombre">
@@ -50,7 +56,7 @@
         <td mat-cell *matCellDef="let element" class="text-center">
           <button class="btn mx-auto" style="background-color: transparent; color: #101c30"
             (click)="ventanaAsignarPersonal(element.ID)">
-            <i class="fas fa-plus-square fa-2x"></i>
+            <i class="far fa-plus-square fa-2x"></i>
           </button>
         </td>
       </ng-container>
@@ -58,42 +64,48 @@
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
     </table>
+    <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+    </mat-paginator>
   </div>
 
   <div class="container-fluid" *ngIf="asignarPersonal && ready_empleados && ready_proyectos && !asignar_equipo">
-    <h1>Proyecto : {{ proyecto.Nombre }}</h1>
+    <h1 style="margin-bottom: 30px;">Proyecto: {{ proyecto.Nombre }}</h1>
 
+    <mat-card class="card">
+      <mat-card-header>
+          <mat-card-title>Staff y equipos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-body">
+          <div class="form-row">
+            
+                <div class="col-lg-3 col-f">
+                  <label>Miembro del staff:</label>
+                </div>
+                <div class="col-lg-4 col-f box">
+                  <select mat-select  [ngModel]="id_empleado" (ngModelChange)="asignarEmpleado($event)">
+                    <option matInput *ngFor="let empleado of empleados" [value]="empleado.ID">
+                      {{ empleado.Nombre }} {{ empleado.Apellido }} -
+                      {{ empleado.Car_Nombre }}
+                    </option>
+                  </select>
+              </div>
+            <div class="col-lg-2 col-f">
+              <label>Equipos:  </label>
+             </div>
+             <div class="col-lg-2">
+              <button mat-button (click)="ventanaAsignarEquipo()" class="btn" style="background-color:transparent"><i
+                class="fas fa-edit fa-2x"></i></button>
+             </div>
+          </div>
+      </mat-card-content>
+    </mat-card>
 
-
-
-    <div class="container-fluid">
-      <table class="table">
-        <thead cl>
-          <th class="text-center">Miembro del Staff</th>
-          <th class="text-center">Equipo Asignado</th>
-        </thead>
-        <tbody class="">
-          <tr>
-            <td style="text-align: center; vertical-align: middle;">
-              <select class="form-select p-4" [ngModel]="id_empleado" (ngModelChange)="asignarEmpleado($event)">
-                <option *ngFor="let empleado of empleados" [value]="empleado.ID">
-                  {{ empleado.Nombre }} {{ empleado.Apellido }} -
-                  {{ empleado.Car_Nombre }}
-                </option>
-              </select>
-            </td>
-            <td style="text-align:center; vertical-align: middle;">
-              <button (click)="ventanaAsignarEquipo()" class="btn" style="background-color:transparent"><i
-                  class="fas fa-edit fa-2x" style="color: #101c30"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+    <mat-card class="card">
+      <mat-card-header>
+          <mat-card-title>Equipos Asignados</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-body">
     <div *ngIf="cantidad_asigacion!==0">
-      <h1>Equipos Asignados</h1>
-
       <table mat-table [dataSource]="equipos_proyecto" class="table">
         <!-- Nombre de Proyecto  -->
         <ng-container matColumnDef="empleado">
@@ -133,7 +145,7 @@
           <th mat-header-cell *matHeaderCellDef class="text-center">Eliminar</th>
           <td mat-cell *matCellDef="let element" class="text-center text-capitalize">
             <button (click)="eliminarAsignacion(element.ID)" class="btn bg-transparent"><i
-                class="fas fa-trash fa-lg"></i></button>
+                class="fas fa-trash fa-2x"></i></button>
           </td>
         </ng-container>
 
@@ -142,20 +154,32 @@
       </table>
 
     </div>
-
-    <button class="btn btn-danger" (click)="closeAsignarPersonal()">
-      Cancelar
-    </button>
+  </mat-card-content>
+</mat-card>
+      <div style="text-align: center;">
+        <button class="btn btn-danger" (click)="closeAsignarPersonal()">
+          Cancelar
+        </button>
+      </div>
   </div>
 
+
   <div class="container" *ngIf="asignar_equipo">
+    
     <h1>Equipos Disponibles</h1>
+    
     <div class="container-fluid d-flex align-items-center m-b-20">
-      <label>Tipo</label>
-      <select class="form-select p-2" [ngModel]="id_tipo_equipo" (ngModelChange)="asignarTipoEquipo($event)">
-        <option *ngFor="let tipo of tipo_equipos" [value]="tipo.PK_TE_Cod"> {{ tipo.TE_Nombre }}
-        </option>
-      </select>
+      <div class="row">
+        <div class="col-lg-3 col-f">
+          <label>Tipo:  </label>
+        </div>
+        <div class="col-lg-4 col-f box">
+          <select [ngModel]="id_tipo_equipo" (ngModelChange)="asignarTipoEquipo($event)">
+            <option *ngFor="let tipo of tipo_equipos" [value]="tipo.PK_TE_Cod"> {{ tipo.TE_Nombre }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="container-fluid">
 
@@ -189,7 +213,7 @@
           <td mat-cell *matCellDef="let element" class="text-center text-capitalize p-1">
             <div *ngIf="element.Estado=='Disponible'">
               <button class="btn bg-transparent" (click)="registrarData(id_empleado,id_proyecto,element.Codigo)"><i
-                  class="fas fa-plus-circle fa-2x" style="color:green"></i></button>
+                  class="fas fa-plus fa-2x"></i></button>
             </div>
           </td>
 
@@ -203,9 +227,10 @@
 
     </div>
 
-    <div class="container m-2">
-      <button class="btn btn-danger" (click)="closeAsingarEquipo()">Cancelar</button>
+    <div style="text-align: center;">
+      <button class="btn btn-danger" (click)="closeAsingarEquipo()">Atrás</button>
 
     </div>
   </div>
+</div>
 </div>

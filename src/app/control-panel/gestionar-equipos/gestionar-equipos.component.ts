@@ -141,8 +141,8 @@ export class GestionarEquiposComponent implements OnInit {
   }
 
   registrarData(id_empleado: number, id_proyecto: number, id_equipo: string) {
-    alert(id_proyecto);
     this.service.postEquiposProyectos(id_proyecto, id_empleado, id_equipo);
+    this.getProyecto(id_proyecto);
   }
 
   eliminarAsignacion(id: number) {

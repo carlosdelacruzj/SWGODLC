@@ -282,6 +282,44 @@ input[type=file] {
 .col-form-label {
     font-size: 15px;
 }
+.box {
+
+  }
+  
+  .box select {
+    background-color: white;
+    color: #0f1c30;
+    padding: 3px;
+    width: 250px;
+    appearance: button;
+    outline: none;
+    border-style: solid;
+    border-color: #0f1c30;
+    border-radius: 10px;
+  }
+  
+  .box::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+  
+  .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .box select option {
+    padding: 30px;
+  }
 
 input {}
 
@@ -1952,19 +1990,25 @@ Container / Wrapper
     position: relative;
     left: 0;
     margin-left: 264px;
-    min-height: 870px !important;
+    
     background-color: white;
 }
 
 .dashboard-content {
-    padding: 50px 20px 70px 20px;
+    padding: 40px 40px 40px 40px;
 }
-
+.col-f{
+    text-align: center; 
+    margin-top: 10px;
+}
 
 /*-----------------------
 Splash Container / Wrapper
 -------------------------*/
-
+.mat-card-header .mat-card-title {
+   color:#0f1c30;
+   font-weight: 200;
+}
 .splash-container {
     width: 100%;
     max-width: 375px;
@@ -2272,7 +2316,9 @@ Pageheader
   5. Dashboard Ecommerce
    ========================================================================== */
 
-.dashboard-ecommerce {}
+.dashboard-ecommerce {
+    background: white;
+}
 
 
 /* -------------- social sales -------------------*/
@@ -2695,7 +2741,7 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 .btn-primary:not(:disabled):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle {
     color: #0f1c30;
-    background-color: #c0d0ef;
+    background-color: white;
     border-color: #c0d0ef;
 }
 
@@ -2706,12 +2752,14 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     color: #0f1c30;
     background-color: #fff;
     border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 .btn-secondary:hover {
     color: #0f1c30;
     background-color: #c2c6ce;
     border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 .btn-secondary.focus,
@@ -2720,6 +2768,7 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     background-color: #c2c6ce;
     border-color: #c2c6ce;
     box-shadow: 0 0 0 1px #929499;
+    border-radius: 10px;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active,
@@ -2728,6 +2777,7 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     color: #0f1c30;
     background-color: #c2c6ce;
     border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 
@@ -2768,12 +2818,14 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     color: #0f1c30;
     background-color: #fff;
     border-color: #668dc0;
+    border-radius: 10px;
 }
 
 .btn-danger:hover {
     color: #fff;
     background-color: #668dc0;
     border-color: #668dc0;
+    border-radius: 10px;
 }
 
 .btn-danger.focus,
@@ -2782,6 +2834,7 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     background-color: #668dc0;
     border-color: #668dc0;
     box-shadow: 0 0 0 1px #6095db;
+    border-radius: 10px;
 }
 
 .btn-danger:not(:disabled):not(.disabled).active,
@@ -2790,6 +2843,7 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     color: #6095db;
     background-color: #c2c6ce;
     border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 
@@ -3129,8 +3183,8 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 }
 
 .btn-lg {
-    padding: 11px 20px;
-    font-size: 15px;
+    padding: 5px 20px;
+    font-size: 14px;
 }
 
 
@@ -4506,14 +4560,20 @@ Pills vertical
 
 .table {
     margin-bottom: 0px;
+    width: 100% !important;
+    overflow-x: auto !important;
 }
+
 
 .table td,
 .table th {
-    padding: 8px;
-    vertical-align: middle;
-    border-top: 1px solid #e6e6f2;
-    font-weight: normal;
+    padding: 8px!important; 
+    border-bottom-width: 0.5px!important;
+    border-bottom-style: solid!important;
+}
+.fa-2x {
+    color:#304a6e;
+    font-size: 1.5em !important;
 }
 
 .table thead th {

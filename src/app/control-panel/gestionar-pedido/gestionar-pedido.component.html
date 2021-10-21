@@ -4,19 +4,21 @@
 
         <div class="container-fluid" *ngIf="botonVisualizar && botonRegistrar">
 
+            <div>
+                <!-- titulo -->
+                <h1>Pedido</h1>
+               <!--  <mat-divider></mat-divider>-->
+            </div>
+
             <!-- btn Registrar -->
             <div style="text-align:right">
                 <p>
-                    <button type="button" (click)="mostrarRegistro()" class="btn btn-primary btn-lg">Registro</button>
+                    <button type="button" (click)="mostrarRegistro()" class="btn btn-primary btn-lg">Registrar Pedido</button>
                 </p>
             </div>
             <br>
 
-            <div>
-                <!-- titulo -->
-                <h1>PEDIDO</h1>
-                <mat-divider></mat-divider>
-            </div>
+            
 
             <!-- Tabla/Listado -->
 
@@ -434,9 +436,9 @@
                 </mat-card-content>
             </mat-card>
 
-
-            <button (click)="cerrarRegistro()" class="btn btn-danger"> Cancelar</button>
-
+             <div style="text-align: center;">
+                <button (click)="cerrarRegistro()" class="btn btn-danger"> Cancelar</button>
+            </div>
 
         </div>
 

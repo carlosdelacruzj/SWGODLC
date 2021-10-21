@@ -36,8 +36,7 @@ export class EditarServicioComponent implements OnInit {
   editarServicio(ServicioForm: NgForm){
     let data = {
       //evento: ServicioForm.value.Evento,
-      evento:this.data,
-      servicio: ServicioForm.value.Servicio,
+      //servicio: ServicioForm.value.Servicio,
       precio: ServicioForm.value.Precio,
       titulo: ServicioForm.value.Titulo,
       descripcion: ServicioForm.value.Descripcion

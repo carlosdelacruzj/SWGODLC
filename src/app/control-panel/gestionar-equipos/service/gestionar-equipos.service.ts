@@ -58,7 +58,7 @@ export class GestionarEquipos {
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllTipoEquipo';
 
   private EQUIPO_ID =
-    'https://tp2021database.herokuapp.com/equipo/consulta/getByTipoEquipo/';
+    'https://tp2021database.herokuapp.com/proyecto/consulta/getAllEquiposFiltrados/';
 
   private EQUIPOS_BY_PROYECTO =
     'https://tp2021database.herokuapp.com/proyecto/consulta/getAsignarEquiposById/';
@@ -86,8 +86,14 @@ export class GestionarEquipos {
     return this.http.get(this.TIPOS_EQUIPO);
   }
 
-  public getEquipoId(id: number): Observable<any> {
-    return this.http.get(this.EQUIPO_ID + `${id}`);
+  public getEquipoId(
+    fecha: string,
+    proyecto: number,
+    id: number
+  ): Observable<any> {
+    return this.http.get(
+      this.EQUIPO_ID + `${fecha}` + '/' + `${proyecto}` + '/' + `${id}`
+    );
   }
 
   public getEquiposByProyecto(id: number): Observable<any> {
@@ -103,16 +109,10 @@ export class GestionarEquipos {
     empleado: number,
     equipos: string
   ) {
-    this.http
-      .post(this.ASIGNAR_EQUIPOS, {
-        proyecto: proyecto,
-        empleado: empleado,
-        equipos: equipos,
-      })
-      .subscribe(
-        (data) => {},
-        (response) => {},
-        () => {}
-      );
+    return this.http.post(this.ASIGNAR_EQUIPOS, {
+      proyecto: proyecto,
+      empleado: empleado,
+      equipos: equipos,
+    });
   }
 }

@@ -14,5 +14,6 @@ export class CalendarioService {
 
   public getAllEventos(): Promise<any> {
     return this.http.get(this.API_PRUEBA).toPromise();
+    //HOLA CARLOS NO SE POR QUE NO SE PUSHEA BIEN
   }
 }

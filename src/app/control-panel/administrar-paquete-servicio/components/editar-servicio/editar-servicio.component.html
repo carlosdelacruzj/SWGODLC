@@ -4,9 +4,19 @@
 <form #servicioForm="ngForm" (ngSubmit)="editarServicio(servicioForm)">
 
 
+  <!--Select Tipo de Servicio-->
+  <!--<mat-form-field appearance="fill">
+    <mat-label>Tipo de Servicio</mat-label>
+    <mat-select name="Servicio" [(ngModel)]="service4.selectProyecto.Servicio" #Servicio="ngModel">
+      <mat-option *ngFor="let servicio of sServicio" [value]="servicio.ID">
+        {{servicio.Nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>-->
+
   <mat-form-field appearance="fill">
-    <mat-label>Tipo Servicio</mat-label>
-    <input matInput type="text" name="Servicio" #Servicio="ngModel" [(ngModel)]="service4.selectProyecto.Servicio" disabled>
+    <mat-label>Tipo de Servicio</mat-label>
+    <input matInput type="text" name="Servicio" #Servicio="ngModel" [(ngModel)]="service4.selectProyecto.Servicio" disabled> 
   </mat-form-field>
 
 

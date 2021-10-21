@@ -3,6 +3,10 @@ import { NgForm } from '@angular/forms';
 import { EventoAllServiciosService } from './../../service/detalle-servicios.service';
 import { EventoServicioService } from '../../service/evento-servicio.service';
 
+interface sServicios {
+  ID: number;
+  Nombre: string;
+}
 @Component({
   selector: 'app-editar-servicio',
   templateUrl: './editar-servicio.component.html',
@@ -11,7 +15,7 @@ import { EventoServicioService } from '../../service/evento-servicio.service';
 export class EditarServicioComponent implements OnInit {
   servicio = [];
   data: any;
-  
+  sServicio: sServicios[] = [];
 
   constructor(
     public service5: EventoAllServiciosService,
@@ -22,24 +26,17 @@ export class EditarServicioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addServicio(ServicioForm: NgForm) {
-    let data = {
-      evento: this.data,
-      servicio: ServicioForm.value.servicio,
-      precio: ServicioForm.value.precio,
-      titulo: ServicioForm.value.titulo,
-      descripcion: ServicioForm.value.descripcion
-    };
-    this.service4.registro(data).subscribe(
-      (res) => { console.log("DATA: ", res)},
-      (err) => console.error(err)
-    );
-  }
-
+  
+  getSelect(){
+    this.service.getAllServicios().subscribe(
+      res =>{this.sServicio= res;
+      },err => console.error(err)
+    )}
 
   editarServicio(ServicioForm: NgForm){
     let data = {
-      evento: ServicioForm.value.Evento,
+      //evento: ServicioForm.value.Evento,
+      evento:this.data,
       servicio: ServicioForm.value.Servicio,
       precio: ServicioForm.value.Precio,
       titulo: ServicioForm.value.Titulo,

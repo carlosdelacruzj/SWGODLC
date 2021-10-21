@@ -242,7 +242,7 @@ export class GestionarPedidoComponent implements OnInit {
 
 
 
-  addProyecto(ProyectoForm: NgForm, fecha: string) {
+  addPedido(ProyectoForm: NgForm) {
     //Para poder cambiar el orden de como mando la fecha
 
     // console.log(fecha.substr(2,4)); //-MM-

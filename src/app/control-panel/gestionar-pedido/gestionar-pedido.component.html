@@ -340,7 +340,7 @@
       <br>
 
 
-      <form action="">
+      <form #pedidoForm="ngForm" (ngSubmit)="addPedido(pedidoForm)">
         <mat-card class="card">
           <mat-card-header class="card-header">
             <mat-card-title>Detalles de Pedido</mat-card-title>

@@ -8,3 +8,13 @@ export class Detalle {
         public Titulo: string
     ){}
   }
+
+  export class Detalle2 {
+    constructor(
+        public servicio: number,
+        public titulo: string,
+        public precio: number,
+        public concepto: string,
+        public id: number,
+    ){}
+  }

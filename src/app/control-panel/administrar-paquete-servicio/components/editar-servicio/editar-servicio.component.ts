@@ -24,6 +24,8 @@ export class EditarServicioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getSelect();
+    console.log(this.data);
   }
 
   
@@ -33,15 +35,29 @@ export class EditarServicioComponent implements OnInit {
       },err => console.error(err)
     )}
 
+
+
   editarServicio(ServicioForm: NgForm){
     let data = {
       //evento: ServicioForm.value.Evento,
       //servicio: ServicioForm.value.Servicio,
-      precio: ServicioForm.value.Precio,
+  
+      /*
+      servicio: ServicioForm.value.Servicio,
       titulo: ServicioForm.value.Titulo,
-      descripcion: ServicioForm.value.Descripcion
-    };
-    this.service4.registro(data).subscribe(
+      precio: ServicioForm.value.Precio,  
+      descripcion: ServicioForm.value.Descripcion,
+      id: ServicioForm.value.ID
+      */
+      servicio: ServicioForm.value.Servicio,
+      titulo: ServicioForm.value.Titulo,
+      precio: ServicioForm.value.Precio,
+      concepto: ServicioForm.value.Descripcion,
+      id: ServicioForm.value.ID
+
+      };
+
+    this.service4.registro2(data).subscribe(
       (res) => { console.log("DATA: ", res)},
       (err) => console.error(err)
     );

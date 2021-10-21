@@ -76,7 +76,7 @@ export class GestionarPedidoComponent implements OnInit {
   estadoEditado = 0;
   fechaEditada = { day: '', month: '', year: '' };
   fecharegistrada = { day: '', month: '', year: '' };
-descripcionid =[];
+  descripcionid = [];
   horaEditada = '';
 
   constructor(
@@ -191,14 +191,16 @@ descripcionid =[];
 
     let fecha = year + '-' + month + '-' + day;
 
-    this.service2.putPedido(this.estadoEditado, fecha, this.horaEditada, 8).subscribe({
-      next: (res) => {
-        alert(JSON.stringify(res));
-      },
-      error: (error) => {
-        alert(JSON.stringify(error));
-      },
-    });
+    this.service2
+      .putPedido(this.estadoEditado, fecha, this.horaEditada, 8)
+      .subscribe({
+        next: (res) => {
+          alert(JSON.stringify(res));
+        },
+        error: (error) => {
+          alert(JSON.stringify(error));
+        },
+      });
   }
   //SERVICIOS
 
@@ -240,8 +242,6 @@ descripcionid =[];
       });
   }
 
-
-
   addPedido(ProyectoForm: NgForm) {
     //Para poder cambiar el orden de como mando la fecha
 
@@ -270,4 +270,4 @@ descripcionid =[];
   //       alert(responde)
 
   //     }
-  // }
+}

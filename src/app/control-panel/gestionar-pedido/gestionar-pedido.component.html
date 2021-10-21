@@ -272,14 +272,23 @@
 
           <form>
             <mat-form-field appearance="fill">
-              <mat-label>{{pedido.EstadoPedido}}</mat-label>
+              <mat-label>Estado Pedido</mat-label>
               <select matNativeControl [(ngModel)]="estadoEditado" name="car">
-                <option value="" selected></option>{{pedido.EstadoPedido}}
+                <option value="" selected></option>
                 <option *ngFor="let car of cars" [value]="car.value">
                   {{car.viewValue}}
                 </option>
               </select>
             </mat-form-field>
+          </form>
+
+          <form>
+            <div class="form-group">
+              <label>Estado Pedido</label>
+              <div class="input-group">
+                <input class="form-control" type="number" [(ngModel)]="estadoEditado">
+              </div>
+            </div>
           </form>
 
           <form>
@@ -298,9 +307,8 @@
           <form>
             <div class="form-group">
               <label for="dateOfBirth">Hora Evento</label>
-              <div class="input-group" > 
-                <input id="dateOfBirth" class="form-control" [(ngModel)]="horaEditada" >{{pedido.Hora_Evento}}
-
+              <div class="input-group">
+                <input id="dateOfBirth" class="form-control" [(ngModel)]="horaEditada">
               </div>
             </div>
           </form>
@@ -434,44 +442,48 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
-            <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-              <mat-label>Hora</mat-label>
-              <input matInput placeholder="">
-            </mat-form-field>
-
-            <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-              <mat-label>Ubicación</mat-label>
-              <input matInput placeholder="">
-            </mat-form-field>
-
-          </div>
-          <div class="form-row">
-            <table class="table">
-              <thead>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Seleccionar</th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let des of descripciones">
-                  <th>{{des.Descripcion}}</th>
-                  <th>{{des.Precio}}</th>
-                  <th>
-                    <mat-radio-button value={des.ID} [(ngModel)]="descripcionSeleccionada"></mat-radio-button>
-                  </th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </mat-card-content>
-      </mat-card>
+              </form>
+              <!-- <form>
+                              <div class="ngx-timepicker-field-example">
+                                  <ngx-timepicker-field [format]="24" [defaultTime]="'23:11'"></ngx-timepicker-field>
+                              </div>
+                          </form> -->
+              <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                <mat-label>Hora</mat-label>
+                <input matInput [matDatepicker]="picker5">
+                <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                <mat-datepicker #picker5></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                <mat-label>Ubicación</mat-label>
+                <input matInput placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="form-row">
+              <table class="table">
+                <thead>
+                  <th>Descripcion</th>
+                  <th>Precio</th>
+                  <th>Seleccionar</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let des of descripciones">
+                    <th>{{des.Descripcion}}</th>
+                    <th>{{des.Precio}}</th>
+                    <th>
+                      <mat-radio-button value={des.ID}></mat-radio-button>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
 
       <div class="container-fluid d-flex justify-content-center"><button (click)="cerrarRegistro()"
           class="btn btn-danger mx-5"> Cancelar</button>
-        <button class="btn btn-success mx-5">GUARDAR</button>
-      </div>
+        <button class="btn btn-success mx-5">GUARDAR</button></div>
 
 
 

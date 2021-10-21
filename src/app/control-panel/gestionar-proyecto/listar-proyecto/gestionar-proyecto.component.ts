@@ -30,6 +30,7 @@ export class GestionarProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.getProyecto();
     this.getPedido();
+   
   }
   getProyecto() {
     this.service.getAllNombres().subscribe((response: any) => {

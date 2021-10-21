@@ -1,6 +1,9 @@
-import { NgModule, Component, OnInit } from '@angular/core';
+import { NgModule, Component, OnInit, ViewChild } from '@angular/core';
 import { GestionarEquipos } from './service/gestionar-equipos.service';
 import { AsignarEquipos } from './model/gestionar-equipos.model';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-gestionar-equipos',
@@ -8,6 +11,13 @@ import { AsignarEquipos } from './model/gestionar-equipos.model';
   styleUrls: ['./gestionar-equipos.component.css'],
 })
 export class GestionarEquiposComponent implements OnInit {
+  @ViewChild(MatSort) matSort!: MatSort;
+  @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild('paginator2') paginator2!: MatPaginator;
+  @ViewChild('paginator2') paginator3!: MatPaginator;
+  dataSource!: MatTableDataSource<any>;
+  dataSource2!: MatTableDataSource<any>;
+  dataSource3!: MatTableDataSource<any>;
   proyectos = [];
   equipos_proyecto = [];
   columnsToDisplay = [
@@ -40,7 +50,9 @@ export class GestionarEquiposComponent implements OnInit {
   asignar_equipo = false;
   equipos = [];
   lista_id: any[] = [];
+  fecha_proyecto = '';
   cantidad_asigacion = 0;
+  fechaok="";
   constructor(private service: GestionarEquipos) {}
 
   ngOnInit(): void {
@@ -54,17 +66,32 @@ export class GestionarEquiposComponent implements OnInit {
     this.getEquiposId(1);
   }
 
-  ngOnChanges(): void {
-    this.eliminarAsignacion;
-  }
-
   // GET DATA
 
   // GET TODOS LOS PROYECTOS
+  // getProyectos() {
+  //   this.service.getAll().subscribe((data) => {
+  //     this.proyectos = data;
+
+  //   });
+  // }
   getProyectos() {
-    this.service.getAll().subscribe((data) => {
-      this.proyectos = data;
+    this.service.getAll().subscribe((response: any) => {
+      this.dataSource = new MatTableDataSource(response);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.matSort;
     });
+  }
+
+  
+  filterData($event: any) {
+    this.dataSource.filter = $event.target.value;
+  }
+  filterData2($event: any) {
+    this.dataSource2.filter = $event.target.value;
+  }
+  filterData3($event: any) {
+    this.dataSource3.filter = $event.target.value;
   }
 
   //GET PROYECTO POR ID
@@ -81,8 +108,17 @@ export class GestionarEquiposComponent implements OnInit {
       });
 
       //GET EQUIPOS BY PROYECTO ID
-      this.service.getEquiposByProyecto(id).subscribe((data) => {
-        this.equipos_proyecto = data;
+
+      // this.service.getEquiposByProyecto(id).subscribe((data) => {
+      //   this.equipos_proyecto = data;
+      //   this.cantidad_asigacion = this.equipos_proyecto.length;
+      // });
+
+      this.service.getEquiposByProyecto(id).subscribe((response: any) => {
+        this.dataSource2 = new MatTableDataSource(response);
+        this.dataSource2.paginator = this.paginator2;
+        this.dataSource2.sort = this.matSort;
+        this.equipos_proyecto = response;
         this.cantidad_asigacion = this.equipos_proyecto.length;
       });
     });
@@ -97,15 +133,33 @@ export class GestionarEquiposComponent implements OnInit {
 
   //GET TIPOS DE EQUIPOS BY ID
 
+  // getEquiposId(id: number) {
+  //   this.service
+  //     .getEquipoId(this.fecha_proyecto, this.id_proyecto, id)
+  //     .subscribe((data) => {
+  //       this.equipos = data;
+  //     });
+  // }
+
   getEquiposId(id: number) {
-    this.service.getEquipoId(id).subscribe((data) => {
-      this.equipos = data;
-    });
+  
+    this.fechaok = this.fecha_proyecto.substr(6) + this.fecha_proyecto.substr(2, 4) + this.fecha_proyecto.substr(0, 2); //yyyy-MM-dd
+   console.log(this.fechaok);
+    this.service
+      .getEquipoId(this.fechaok, this.id_proyecto, id)
+      .subscribe((response: any) => {
+        this.dataSource3 = new MatTableDataSource(response);
+        this.dataSource3.paginator = this.paginator3;
+        this.dataSource3.sort = this.matSort;
+        this.equipos = response;
+    
+      });
   }
 
   //ABRIR VENTAN PARA ASIGNAR PERSONAL
-  ventanaAsignarPersonal(valor: number) {
+  ventanaAsignarPersonal(valor: number, fecha: string) {
     this.asignarPersonal = true;
+    this.fecha_proyecto = fecha;
     this.id_proyecto = valor;
     this.getProyecto(valor);
   }
@@ -113,6 +167,7 @@ export class GestionarEquiposComponent implements OnInit {
   //CERRAR VENTANA PARA ASIGNAR PERSONAL
 
   closeAsignarPersonal() {
+    this.getProyectos();
     this.asignarPersonal = false;
     this.ready_proyectos = false;
     this.ready_empleados = false;
@@ -123,6 +178,7 @@ export class GestionarEquiposComponent implements OnInit {
     if (this.id_empleado != 0) {
       this.asignar_equipo = true;
       this.getTiposEquipos();
+      this.getEquiposId(1);
     }
   }
 
@@ -141,8 +197,17 @@ export class GestionarEquiposComponent implements OnInit {
   }
 
   registrarData(id_empleado: number, id_proyecto: number, id_equipo: string) {
-    this.service.postEquiposProyectos(id_proyecto, id_empleado, id_equipo);
-    this.getProyecto(id_proyecto);
+    this.service
+      .postEquiposProyectos(id_proyecto, id_empleado, id_equipo)
+      .subscribe({
+        next: () => {
+          this.getProyecto(this.id_proyecto);
+          this.getEquiposId(this.id_tipo_equipo);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 
   eliminarAsignacion(id: number) {

@@ -8,7 +8,12 @@
       <h1>Asignar Equipos</h1>
     </div>
     
-    <table mat-table [dataSource]="proyectos" class="table">
+
+    <mat-form-field appearance="standard">
+      <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource"  class="table">
       <!-- Nombre de Proyecto  prueba -->
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef class="text-center">
@@ -55,8 +60,8 @@
         <th mat-header-cell *matHeaderCellDef class="text-center">Asignar</th>
         <td mat-cell *matCellDef="let element" class="text-center">
           <button class="btn mx-auto" style="background-color: transparent; color: #101c30"
-            (click)="ventanaAsignarPersonal(element.ID)">
-            <i class="far fa-plus-square fa-2x"></i>
+            (click)="ventanaAsignarPersonal(element.ID,element.Fecha)">
+            <i class="fas fa-plus-square fa-2x"></i>
           </button>
         </td>
       </ng-container>
@@ -64,7 +69,7 @@
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
     </table>
-    <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+    <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5,10, 25, 100]">
     </mat-paginator>
   </div>
 
@@ -106,7 +111,11 @@
       </mat-card-header>
       <mat-card-content class="card-body">
     <div *ngIf="cantidad_asigacion!==0">
-      <table mat-table [dataSource]="equipos_proyecto" class="table">
+
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource2" class="table">
         <!-- Nombre de Proyecto  -->
         <ng-container matColumnDef="empleado">
           <th mat-header-cell *matHeaderCellDef class="text-center">
@@ -152,7 +161,8 @@
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay3"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay3"></tr>
       </table>
-
+      <mat-paginator #paginator2 [pageSize]="5" [pageSizeOptions]="[5,10, 25, 100]">
+      </mat-paginator>
     </div>
   </mat-card-content>
 </mat-card>
@@ -182,8 +192,10 @@
       </div>
     </div>
     <div class="container-fluid">
-
-      <table mat-table [dataSource]="equipos" class="table">
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData3($event)">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource3" class="table">
         <ng-container matColumnDef="codigo">
           <th mat-header-cell *matHeaderCellDef class="text-center">
             Codigo
@@ -224,6 +236,8 @@
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay2"></tr>
       </table>
+      <mat-paginator #paginator3 [pageSize]="10" [pageSizeOptions]="[10, 25, 100]">
+      </mat-paginator>
 
     </div>
 

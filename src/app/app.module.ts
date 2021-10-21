@@ -51,6 +51,7 @@ import { EditarServicioComponent } from './control-panel/administrar-paquete-ser
     EventCardComponent,
     EventServiceComponent,
     DetalleServiciosComponent,
+    ActualizarProyectoComponent,
     EditarServicioComponent,
   ],
   imports: [

@@ -1,5 +1,5 @@
 import { ConstantPool } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PaqueteServicioService } from 'src/app/control-panel/administrar-paquete-servicio/service/paquete-servicio.service';
 import { EventoServicioService } from 'src/app/control-panel/administrar-paquete-servicio/service/evento-servicio.service';
 import { EventoAllServiciosService } from 'src/app/control-panel/administrar-paquete-servicio/service/detalle-servicios.service';
@@ -19,9 +19,10 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
   paquete: any[] = [];
   servicio: any[] = [];
   serviciosf: any[] = [];
+  tempDialog: boolean = false;
 
   columnsToDisplay = ['ID','nombre','enlace']
-  constructor(private service: PaqueteServicioService,private service2: EventoServicioService, public dialog: MatDialog, private allserivicios: EventoAllServiciosService) {}
+  constructor(private service: PaqueteServicioService,private service2: EventoServicioService, public dialog: MatDialog, private allserivicios: EventoAllServiciosService, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getPaquete();
@@ -47,7 +48,15 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogPaq = this.dialog.open(DetalleServiciosComponent);
+    const dialogPaq = this.dialog.open(DetalleServiciosComponent,{data:this.servicioId});
+    dialogPaq.afterClosed().subscribe(resp =>{
+      this.tempDialog = true;
+      this.cdRef.detectChanges();
+      // setTimeout(() => {
+      //   this.tempDialog = false;
+      // }, 3000);
+    })
+    
   }
 
   getAllService() {
@@ -61,5 +70,7 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
   prueba(event: number){  
     this.base = false; this.servicioId = event; console.log("Id: ", this.servicioId)
   }
+
+  
 
 }

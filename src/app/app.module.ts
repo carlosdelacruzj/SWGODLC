@@ -33,6 +33,7 @@ import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agr
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/actualizar-proyecto/actualizar-proyecto.component';
 import { DatePipe } from '@angular/common';
+import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { DatePipe } from '@angular/common';
     EventCardComponent,
     EventServiceComponent,
     DetalleServiciosComponent,
-    ActualizarProyectoComponent,
+    EditarServicioComponent,
   ],
   imports: [
     BrowserModule,

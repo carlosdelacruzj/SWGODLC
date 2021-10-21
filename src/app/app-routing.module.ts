@@ -7,12 +7,15 @@ import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agr
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
+import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
+import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'gestionar-equipos', component: GestionarEquiposComponent },
   { path: 'gestionar-proyecto', component: GestionarProyectoComponent },
   { path: 'gestionar-proyecto/agregar-proyecto', component: AgregarProyectoComponent },
+  { path: 'administrar-paquete-servicio/editar-servicio', component: EditarServicioComponent },
   { path: 'gestionar-pedido', component: GestionarPedidoComponent },
   { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },

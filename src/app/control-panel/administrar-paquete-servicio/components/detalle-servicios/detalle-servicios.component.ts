@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventoAllServiciosService } from '../../service/detalle-servicios.service';
 import { EventoServicioService } from '../../service/evento-servicio.service';
 import { EventServiceComponent } from '../event-service/event-service.component';
@@ -27,12 +28,15 @@ export class DetalleServiciosComponent implements OnInit {
   constructor(
     public service: EventoAllServiciosService,
     private service2: EventoServicioService,
-    public service4: EventoAllServiciosService
+    public service4: EventoAllServiciosService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<DetalleServiciosComponent>
   ) {}
 
 
   ngOnInit(): void {
     this.getSelect();
+    console.log(this.data);
   }
   
   getSelect(){
@@ -43,16 +47,17 @@ export class DetalleServiciosComponent implements OnInit {
   
   addServicio(ServicioForm: NgForm) {
     let data = {
-      evento:1, //COLOCAR EL ID POR EL EVENTO A REGISTRAR
+      evento:this.data, //COLOCAR EL ID POR EL EVENTO A REGISTRAR
       servicio: ServicioForm.value.servicio,
       precio: ServicioForm.value.precio,
       titulo: ServicioForm.value.titulo,
       descripcion: ServicioForm.value.descripcion
     };
     this.service.registro(data).subscribe(
-      (res) => { console.log("DATA: ", res)},
+      (res) => { console.log("DATA: ", res); this.dialogRef.close();},
       (err) => console.error(err)
     );
+    
   }
 
 }

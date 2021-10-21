@@ -31,7 +31,7 @@ import { Detalle } from '../model/detalle-servicios.model';
     }
 
     public getAllNombresID(id: any): Observable<any> {
-      return this.http.get('https://tp2021database.herokuapp.com/eventos_servicios/consulta/getAllServiciosByEvento/'+ id);
+      return this.http.get('https://tp2021database.herokuapp.com//eventos_servicios/actualiza/putByIdEventoxServicio/'+ id);
     }
     
 

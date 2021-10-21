@@ -48,10 +48,10 @@ export class DetalleServiciosComponent implements OnInit {
   addServicio(ServicioForm: NgForm) {
     let data = {
       evento:this.data, //COLOCAR EL ID POR EL EVENTO A REGISTRAR
-      servicio: ServicioForm.value.servicio,
-      precio: ServicioForm.value.precio,
-      titulo: ServicioForm.value.titulo,
-      descripcion: ServicioForm.value.descripcion
+      servicio: ServicioForm.value.Servicio,
+      precio: ServicioForm.value.Precio,
+      titulo: ServicioForm.value.Titulo,
+      descripcion: ServicioForm.value.Descripcion
     };
     this.service.registro(data).subscribe(
       (res) => { console.log("DATA: ", res); this.dialogRef.close();},

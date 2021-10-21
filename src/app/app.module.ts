@@ -30,6 +30,7 @@ import { DetalleServiciosComponent } from './control-panel/administrar-paquete-s
 import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/listar-proyecto/gestionar-proyecto.component';
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
+import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gesti
     EventCardComponent,
     EventServiceComponent,
     DetalleServiciosComponent,
+    EditarServicioComponent,
   ],
   imports: [
     BrowserModule,

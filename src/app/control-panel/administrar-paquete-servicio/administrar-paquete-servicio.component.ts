@@ -16,6 +16,7 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
 
   base: boolean = true;
   servicioId: number = 0;
+  servicioNombre: string='';
   paquete: any[] = [];
   servicio: any[] = [];
   serviciosf: any[] = [];
@@ -28,22 +29,17 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
     this.getPaquete();
     this.getServicio();
     this.getAllService();
-    //this.postDetalle();
-    console.log(this.paquete);
-    console.log(this.serviciosf);
   }
 
   getPaquete() {
     this.service.getAllNombres().subscribe((response) => {
       this.paquete = response;
-      console.log(this.paquete);
     });
   }
 
   getServicio() {
     this.service2.getAllNombres2().subscribe((response) => {
       this.servicio = response;
-      console.log(this.servicio);
     });
   }
 
@@ -62,13 +58,13 @@ export class AdministrarPaqueteServicioComponent implements OnInit {
   getAllService() {
     this.allserivicios.getAllServicios().subscribe((response) => {
       this.serviciosf = response;
-      console.log(this.serviciosf)
     });
   }
 
 
   prueba(event: number){  
-    this.base = false; this.servicioId = event; console.log("Id: ", this.servicioId)
+    this.base = false; this.servicioId = event;
+    this.servicioNombre= event.toString();
   }
 
   

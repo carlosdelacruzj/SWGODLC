@@ -1,7 +1,7 @@
 <div class="dashboard-ecommerce">
-    <div class="container-fluid dashboard-content ">
+    <div class="container-fluid dashboard-content" style="padding-top: 0px;">
         <div *ngIf="base">
-            <h3>Listado de Eventos</h3>
+            <h1>Listado de Eventos</h1>
             <br>
             <div class="ecommerce-widget">
                 <div *ngFor="let evento of paquete">
@@ -12,11 +12,16 @@
         </div>
 
             <div *ngIf="!base">
-                <div class="btn-action">
-                <button (click)="base = true">Atras</button>
-                <!-- <button mat-raised-button color="primary" class="registrarPaquete" (click)="openDialog()">Registrar Paquete</button> -->
+                <div class="dashboard-ecommerce">
+                    <div class="container-fluid dashboard-content ">
+                        <div>
+                            <button (click)="base = true" class="btn-danger">Atras</button>
+                            <!-- <button mat-raised-button color="primary" class="registrarPaquete" (click)="openDialog()">Registrar Paquete</button> -->
+                            </div>
+                    </div>  
+                    <app-event-service [id]="servicioId" ></app-event-service>  
                 </div>
-                <app-event-service [id]="servicioId"  ></app-event-service>                     
+                     
             </div>
         
         

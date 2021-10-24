@@ -1,0 +1,165 @@
+<div class="container-fluid dashboard-content ">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">Form Validations </h2>
+                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet
+                    vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Forms</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Form Validations</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form #proyectoForm="ngForm" (ngSubmit)="addProyecto(proyectoForm)">
+        <!-- card numero 1 -->
+        <mat-card class="card">
+            <mat-card-header class="card-header">
+                <mat-card-title>Detalle de Pedido</mat-card-title>
+
+            </mat-card-header>
+            <mat-card-content class="card-body">
+
+
+                <div class="form-row">
+
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>N de pedido</mat-label>
+                        <input matInput type="text" name="ID" #ID="ngModel" [(ngModel)]="service2.selectPedido2.N_Pedido"
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Evento</mat-label>
+                        <input matInput type="text" name="Evento" #Evento="ngModel"
+                            [(ngModel)]="service2.selectPedido2.Evento" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha de registro</mat-label>
+                        <input matInput [matDatepicker]="picker" type="text" name="Fecha" #Fecha="ngModel"
+                            [(ngModel)]="service2.selectPedido2.F_Registro" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Cliente</mat-label>
+                        <input matInput type="text" name="Cliente" #Cliente="ngModel"
+                            [(ngModel)]="service2.selectPedido2.Cliente" disabled>
+                    </mat-form-field>
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Nombre del Pedido</mat-label>
+                        <input matInput type="text" name="NombrePedido" #NombrePedido="ngModel"
+                            [(ngModel)]="service2.selectPedido2.NombrePedido" disabled>
+                    </mat-form-field>
+
+
+                </div>
+
+                <div class="form-row">
+                    <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                        <mat-label>Descripción</mat-label>
+                        <textarea matInput  type="text" name="Descripcion" #Descripcion="ngModel"
+                        [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
+                    </mat-form-field>
+                </div>
+
+
+            </mat-card-content>
+        </mat-card>
+
+
+
+        <!-- card numero 2 prueba-->
+        <mat-card class="card">
+            <mat-card-header class="card-header">
+                <mat-card-title>Edición</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card-body">
+                <div class="form-row">
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha-Inicio</mat-label>
+                        <input matInput  [matDatepicker]="picker2" type="text" name="F_Evento" #F_Evento="ngModel"
+                        [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
+                        
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha-Fin</mat-label >
+                        <input matInput [matDatepicker]="picker3" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+               
+                </div>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Aqui se se agrega un enlace</mat-label>
+                        <input matInput placeholder="001" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
+                        <mat-label>Multimedia 001</mat-label>
+                        <input matInput placeholder="001" disabled>
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
+                        <mat-label>Observación del cliente</mat-label>
+                        <textarea matInput placeholder="Observaciones..." disabled></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- card numero 3 -->
+        <mat-card class="card">
+            <mat-card-header class="card-header">
+                <mat-card-title>Detalles del Evento</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card-body">
+                <div class="form-row">
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput [matDatepicker]="picker4" type="text" name="F_Evento" #F_Evento="ngModel"
+                            [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                        <mat-label>Hora</mat-label>
+                        <input matInput type="text" name="Hora_Evento" #Hora_Evento="ngModel"
+                            [(ngModel)]="service2.selectPedido2.Hora_Evento" disabled>
+                        
+                    </mat-form-field>
+
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>Ubicación</mat-label>
+                        <input matInput type="text" name="Direccion" #Direccion="ngModel"
+                        [(ngModel)]="service2.selectPedido2.Direccion" disabled>
+                    </mat-form-field>
+
+                </div>
+                <div class="form-row">
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                        <mat-label>aqui deneria haber un boton gaa</mat-label>
+                        <input matInput placeholder="001">
+                    </mat-form-field>
+                </div>
+            
+            </mat-card-content>
+        </mat-card>
+        <button class="btn btn-primary mb-2 mr-1" type="submit">
+            Registrar
+        </button>
+    </form>
+    <!-- <button mat-button color="primary" type="submit">Basic</button> -->

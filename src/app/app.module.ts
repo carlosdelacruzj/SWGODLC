@@ -33,6 +33,7 @@ import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/l
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/actualizar-proyecto/actualizar-proyecto.component';
+import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/
     DetalleServiciosComponent,
     ActualizarProyectoComponent,
     GenerarContratoComponent,
+    ContratoComponent,
   ],
   imports: [
     BrowserModule,

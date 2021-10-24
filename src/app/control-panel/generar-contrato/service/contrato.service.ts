@@ -21,6 +21,7 @@ selectContrato: Contrato = {
 
   private API_PRUEBA =
     'https://tp2021database.herokuapp.com/contrato/consulta/getAllContratos';
+  selectPedido2: any;
   constructor(private http: HttpClient) {}
 
   public getAllContratos(): Observable<any> {

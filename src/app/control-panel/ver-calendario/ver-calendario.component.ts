@@ -56,12 +56,11 @@ export class VerCalendarioComponent implements OnInit {
 
   eventClick(arg: any) {
     alert(JSON.stringify(arg));
+    console.log(arg);
   }
 
   addCitas(citas: CitaCalendario[]) {
-    console.log('CITAS: ', citas);
     this.calendarOptions.events = citas;
     this._cdRef.detectChanges();
-    console.log('CALENDAR: ', this.calendarOptions);
   }
 }

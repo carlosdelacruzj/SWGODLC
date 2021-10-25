@@ -5,6 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
 import { Pedido } from '../model/pedido.model';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { DateAdapter } from '@angular/material/core';
 import {
   NgxMatDatetimePickerModule,
@@ -56,5 +59,51 @@ export class ContratoComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
+  createPdf(ContratoForm: NgForm){
+    var proyecto_nombre = ContratoForm.value.Cliente;
+    const  codigo_pedido = ContratoForm.value.ID;
+    const  fecha_inicio_edicion = ContratoForm.value.F_Evento;
+    const pdfDefinition : any = {
+      content: [
+        // if you don't need styles, you can use a simple string to define a paragraph
+        'Edwin De La Cruz',
+    
+        // using a { text: '...' } object lets you set styling properties
+        { text: 'CONTRATO DE VIDEO', style: 'header' },
+    
+        // if you set the value of text to an array instead of a string, you'll be able
+        // to style any part individually
+        {
+          text: [
+            "Conste por el presente documento, contrato de video que se celebran de una parte Foto Video D' la Cruz representado por el Sr. EDWIN DE LA CRUZ quien en adelante se denominará EL CONTRATADO y de la otra parte ",
+            { text: proyecto_nombre, fontSize: 15 },
+            ' quien se denominará EL O LA CONTRATANTE.'
+            
+          ]
+        },
+
+        'En los términos siguientes:'
+      ],
+
+      styles: {
+        header: {
+          fontSize: 15,
+          alignment: "center",
+          bold: true,
+          margin: 16
+        },
+        anotherStyle: {
+          italics: true,
+          alignment: 'right'
+        }
+      }
+    }
+
+    const pdf = pdfMake.createPdf(pdfDefinition);
+    pdf.open();
+  }
+
+
 
 }

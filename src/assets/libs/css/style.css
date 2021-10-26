@@ -282,10 +282,51 @@ input[type=file] {
 .col-form-label {
     font-size: 15px;
 }
+.box {
+
+  }
+  
+  .box select {
+    background-color: white;
+    color: #0f1c30;
+    padding: 3px;
+    width: 250px;
+    appearance: button;
+    outline: none;
+    border-style: solid;
+    border-color: #0f1c30;
+    border-radius: 10px;
+  }
+  
+  .box::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+  
+  .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .box select option {
+    padding: 30px;
+  }
 
 input {}
 
-button {}
+button {
+    background-color: white;
+    padding: 8px 20px 8px 20px;
+}
 
 button:focus {
     outline: 0;
@@ -1942,24 +1983,32 @@ Container / Wrapper
     min-height: 100%;
     padding-top: 60px;
     position: relative;
+    background-color: white;
 }
 
 .dashboard-wrapper {
     position: relative;
     left: 0;
     margin-left: 264px;
-    min-height: 870px !important;
+    
+    background-color: white;
 }
 
 .dashboard-content {
-    padding: 30px 30px 60px 30px;
+    padding: 40px 40px 40px 40px;
 }
-
+.col-f{
+    text-align: center; 
+    margin-top: 10px;
+}
 
 /*-----------------------
 Splash Container / Wrapper
 -------------------------*/
-
+.mat-card-header .mat-card-title {
+   color:#0f1c30;
+   font-weight: 200;
+}
 .splash-container {
     width: 100%;
     max-width: 375px;
@@ -2267,7 +2316,9 @@ Pageheader
   5. Dashboard Ecommerce
    ========================================================================== */
 
-.dashboard-ecommerce {}
+.dashboard-ecommerce {
+    background: white;
+}
 
 
 /* -------------- social sales -------------------*/
@@ -2659,68 +2710,74 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 /*--- btn primary --*/
 
 .btn-primary {
-    color: #fff;
-    background-color: #5969ff;
-    border-color: #5969ff;
+    color: #0f1c30;
+    background-color: #fff;
+    border-color: #0f1c30;
+    border-radius: 10px;
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #4656e9;
-    border-color: #4656e9;
+    background-color: #0f1c30;
+    border-color: #0f1c30;
+    border-radius: 10px;
 }
 
 .btn-primary.focus,
 .btn-primary:focus {
     color: #fff;
-    background-color: #4656e9;
-    border-color: #4656e9;
-    box-shadow: 0 0 0 1px rgb(37, 52, 158);
+    background-color: #0f1c30;
+    border-color: #0f1c30;
+    box-shadow: 0 0 0 1px #0f1c30;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgb(37, 52, 158);
+    box-shadow: 0 0 0 0.2rem #304a6e;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #4656e9;
-    border-color: #4656e9;
+    color: #0f1c30;
+    background-color: white;
+    border-color: #c0d0ef;
 }
 
 
 /*--- btn secondary --*/
 
 .btn-secondary {
-    color: #fff;
-    background-color: #ff407b;
-    border-color: #ff407b;
+    color: #0f1c30;
+    background-color: #fff;
+    border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 .btn-secondary:hover {
-    color: #fff;
-    background-color: #f0346e;
-    border-color: #f0346e;
+    color: #0f1c30;
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 .btn-secondary.focus,
 .btn-secondary:focus {
-    color: #fff;
-    background-color: #f0346e;
-    border-color: #f0346e;
-    box-shadow: 0 0 0 1px rgb(222, 17, 80);
+    color: #0f1c30;
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
+    box-shadow: 0 0 0 1px #929499;
+    border-radius: 10px;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active,
 .btn-secondary:not(:disabled):not(.disabled):active,
 .show>.btn-secondary.dropdown-toggle {
-    color: #fff;
-    background-color: #f0346e;
-    border-color: #f0346e;
+    color: #0f1c30;
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 
@@ -2758,31 +2815,35 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 /*--- btn danger --*/
 
 .btn-danger {
-    color: #fff;
-    background-color: #ef172c;
-    border-color: #ef172c;
+    color: #0f1c30;
+    background-color: #fff;
+    border-color: #668dc0;
+    border-radius: 10px;
 }
 
 .btn-danger:hover {
     color: #fff;
-    background-color: #da0419;
-    border-color: #da0419;
+    background-color: #668dc0;
+    border-color: #668dc0;
+    border-radius: 10px;
 }
 
 .btn-danger.focus,
 .btn-danger:focus {
     color: #fff;
-    background-color: #da0419;
-    border-color: #da0419;
-    box-shadow: 0 0 0 1px rgb(218, 4, 25);
+    background-color: #668dc0;
+    border-color: #668dc0;
+    box-shadow: 0 0 0 1px #6095db;
+    border-radius: 10px;
 }
 
 .btn-danger:not(:disabled):not(.disabled).active,
 .btn-danger:not(:disabled):not(.disabled):active,
 .show>.btn-danger.dropdown-toggle {
-    color: #fff;
-    background-color: #da0419;
-    border-color: #da0419;
+    color: #6095db;
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
+    border-radius: 10px;
 }
 
 
@@ -2920,54 +2981,54 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 /*--- btn outline primary --*/
 
 .btn-outline-primary {
-    color: #5969ff;
+    color: #0f1c30;
     background-color: transparent;
-    border-color: #5969ff;
+    border-color: #0f1c30;
 }
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: #5969ff;
-    border-color: #5969ff;
+    background-color: #0f1c30;
+    border-color: #0f1c30;
 }
 
 .btn-outline-primary.focus,
 .btn-outline-primary:focus {
     color: #fff;
-    background-color: #5969ff;
-    border-color: #5969ff;
-    box-shadow: 0 0 0 1px rgb(65, 77, 167);
+    background-color: #0f1c30;
+    border-color: #0f1c30;
+    box-shadow: 0 0 0 1px #0f1c30;
 }
 
 
 /*--- btn outline secondary --*/
 
 .btn-outline-secondary {
-    color: #ff407b;
+    color: #c2c6ce;
     background-color: transparent;
-    border-color: #ff407b;
+    border-color: #c2c6ce;
 }
 
 .btn-outline-secondary:hover {
     color: #fff;
-    background-color: #ff407b;
-    border-color: #ff407b;
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
 }
 
 .btn-outline-secondary.focus,
 .btn-outline-secondary:focus {
     color: #fff;
-    background-color: #ff407b;
-    border-color: #ff407b;
-    box-shadow: 0 0 0 1px rgb(227, 45, 201);
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
+    box-shadow: 0 0 0 1px #c2c6ce;
 }
 
 .btn-outline-secondary:not(:disabled):not(.disabled).active,
 .btn-outline-secondary:not(:disabled):not(.disabled):active,
 .show>.btn-outline-secondary.dropdown-toggle {
     color: #fff;
-    background-color: #ff407b;
-    border-color: #ff407b;
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
 }
 
 
@@ -2997,23 +3058,23 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 /*--- btn outline danger --*/
 
 .btn-outline-danger {
-    color: #ef172c;
+    color: #c2c6ce;
     background-color: transparent;
-    border-color: #ef172c;
+    border-color: #c2c6ce;
 }
 
 .btn-outline-danger:hover {
     color: #fff;
-    background-color: #ef172c;
-    border-color: #ef172c;
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
 }
 
 .btn-outline-danger.focus,
 .btn-outline-danger:focus {
     color: #fff;
-    background-color: #ef172c;
-    border-color: #ef172c;
-    box-shadow: 0 0 0 1px rgb(239, 23, 44);
+    background-color: #c2c6ce;
+    border-color: #c2c6ce;
+    box-shadow: 0 0 0 1px #a5a8ad;
 }
 
 
@@ -3122,8 +3183,8 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 }
 
 .btn-lg {
-    padding: 11px 20px;
-    font-size: 15px;
+    padding: 5px 20px;
+    font-size: 14px;
 }
 
 
@@ -4499,14 +4560,20 @@ Pills vertical
 
 .table {
     margin-bottom: 0px;
+    width: 100% !important;
+    overflow-x: auto !important;
 }
+
 
 .table td,
 .table th {
-    padding: 10px;
-    vertical-align: middle;
-    border-top: 1px solid #e6e6f2;
-    font-weight: normal;
+    padding: 8px!important; 
+    border-bottom-width: 0.5px!important;
+    border-bottom-style: solid!important;
+}
+.fa-2x {
+    color:#304a6e;
+    font-size: 1.5em !important;
 }
 
 .table thead th {

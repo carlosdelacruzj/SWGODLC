@@ -76,50 +76,9 @@
 
 
 
-        <!-- card numero 2 prueba-->
-        <mat-card class="card">
-            <mat-card-header class="card-header">
-                <mat-card-title>Edición</mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="card-body">
-                <div class="form-row">
-                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                        <mat-label>Fecha-Inicio</mat-label>
-                        <input matInput  [matDatepicker]="picker2" type="text" name="F_Evento" #F_Evento="ngModel"
-                        [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
-                        
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                        <mat-label>Fecha-Fin</mat-label >
-                        <input matInput [matDatepicker]="picker3" disabled>
-                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                        <mat-datepicker #picker3></mat-datepicker>
-                    </mat-form-field>
-               
-                </div>
-                <div class="form-row">
-                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                        <mat-label>Aqui se se agrega un enlace</mat-label>
-                        <input matInput placeholder="001" disabled>
-                    </mat-form-field>
+        
 
-                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2" appearance="fill">
-                        <mat-label>Multimedia 001</mat-label>
-                        <input matInput placeholder="001" disabled>
-                    </mat-form-field>
-                </div>
-                <div class="form-row">
-                    <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
-                        <mat-label>Observación del cliente</mat-label>
-                        <textarea matInput placeholder="Observaciones..." disabled></textarea>
-                    </mat-form-field>
-                </div>
-            </mat-card-content>
-        </mat-card>
-
-        <!-- card numero 3 -->
+        <!-- card numero 2 -->
         <mat-card class="card">
             <mat-card-header class="card-header">
                 <mat-card-title>Detalles del Evento</mat-card-title>

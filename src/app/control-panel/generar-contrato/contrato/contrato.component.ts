@@ -78,12 +78,31 @@ export class ContratoComponent implements OnInit {
           text: [
             "Conste por el presente documento, contrato de video que se celebran de una parte Foto Video D' la Cruz representado por el Sr. EDWIN DE LA CRUZ quien en adelante se denominará EL CONTRATADO y de la otra parte ",
             { text: proyecto_nombre, fontSize: 15 },
-            ' quien se denominará EL O LA CONTRATANTE.'
+            ' quien se denominará EL O LA CONTRATANTE.',
+            'En los términos siguientes:'
             
           ]
         },
 
-        'En los términos siguientes:'
+        
+          
+        {text:"2. Foto Video D' la Cruz utilizará su equipo y personal, siendo protestad del mismo el de dejar el lugar de trabajo, en caso sucedieran hechos que atenten contra el normal desenvolvimiento de su trabajo, o cuando consideren innecesaria su presencia en el lugar de trabajo."},
+        {text:"3. El plazo de entrega del trabajo final será 20 días aproximadamente después de realizado el trabajo."},
+        {text:"4. Foto Video D' la Cruz se compromete a realizar su trabajo de filmación en función a la muestra que previamente ha sido visualizada por el contratante, respetando las pautas que, con anterioridad, sean sugeridas."},
+        {text:"5. EL CONTRATANTE se compromete a facilitar a todo el personal de Foto Video D' la Cruz el ingreso, ubicación y desplazamiento con absoluta libertad donde se realice el evento."},
+        {text:"6. Foto Video D' la Cruz tendrá especial cuidado para realizar el trabajo, sin embargo, si falláramos en el cumplimiento de los terminos de este contrato por eventos o actos ajenos a su control la responsabilidad presente o futura limitada a la devolución del depósito como total y única compensación, sin ninguna otra responsabilidad presente o futura."},
+
+        {
+          text: [
+            
+            { text: "Nota: ", bold: true },
+            "Queda expresamente acordado en la eventualidad de posponer o cancelar el trabajo cualquiera sea la causa que lo motive Foto Video D' la Cruz retendrá el total de los depósitos pagados en compensación por los daños y perjuicios ocasionados"
+            
+          ]
+        },
+        
+
+        
       ],
 
       styles: {

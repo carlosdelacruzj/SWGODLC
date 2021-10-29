@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GestionarEquiposComponent } from './gestionar-equipos.component';
+import { EventServiceComponent } from './event-service.component';
 
-describe('GestionarEquiposComponent', () => {
-  let component: GestionarEquiposComponent;
-  let fixture: ComponentFixture<GestionarEquiposComponent>;
+describe('EventServiceComponent', () => {
+  let component: EventServiceComponent;
+  let fixture: ComponentFixture<EventServiceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GestionarEquiposComponent ]
+      declarations: [ EventServiceComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GestionarEquiposComponent);
+    fixture = TestBed.createComponent(EventServiceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -39,11 +39,11 @@ export class PedidoService {
   pedido: Pedido[] = [];
   pedido2: Pedido2[] = [];
   private API_PRUEBA =
-    'https://tp2021database.herokuapp.com/pedido/consulta/getAllPedido';
+    'https://tp2021database.herokuapp.com/contrato/consulta/getAllContratos';
   constructor(private http: HttpClient) {}
 
   public getAllNombres(): Observable<any> {
-    return this.http.get('https://tp2021database.herokuapp.com/proyecto/consulta/getAllPedidosContratado');
+    return this.http.get('https://tp2021database.herokuapp.com/contrato/consulta/getAllContratos');
   }
 
   public getAllNombresID(id: any): Observable<any> {

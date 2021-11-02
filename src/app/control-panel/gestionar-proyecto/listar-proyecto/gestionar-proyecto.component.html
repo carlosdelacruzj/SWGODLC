@@ -1,0 +1,177 @@
+<div class="container-fluid dashboard-content ">
+  <!-- <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+          <h2 class="pageheader-title">Form Validations </h2>
+          <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet
+            vestibulum mi. Morbi lobortis pulvinar quam.</p>
+          <div class="page-breadcrumb">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Forms</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Form Validations</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  <mat-tab-group>
+    <mat-tab label="Pedidos">
+
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8 table">
+        <ng-container matColumnDef="ID">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Fecha">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Servicio">
+          <th mat-header-cell *matHeaderCellDef> Servicio </th>
+          <td mat-cell *matCellDef="let element"> {{element.Servicio }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Evento">
+          <th mat-header-cell *matHeaderCellDef> Evento </th>
+          <td mat-cell *matCellDef="let element"> {{element.Evento }} </td>
+        </ng-container>
+        <ng-container matColumnDef="Cliente">
+          <th mat-header-cell *matHeaderCellDef> Cliente </th>
+          <td mat-cell *matCellDef="let element"> {{element.Cliente }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{element.Estado }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EstadoPago">
+          <th mat-header-cell *matHeaderCellDef> EstadoPago </th>
+          <td mat-cell *matCellDef="let element"> {{element.EstadoPago }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Details </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
+              (click)="getPedidoID(element.ID)" [routerLink]="['/gestionar-proyecto/agregar-proyecto']">get
+              details</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2; "></tr>
+
+
+      </table>
+      <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+      </mat-paginator>
+
+
+    </mat-tab>
+
+    <mat-tab label="Proyectos">
+
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table">
+        <ng-container matColumnDef="PK_Pro_Cod">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.PK_Pro_Cod}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Pro_Nombre">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.Pro_Nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FK_P_Cod">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Codigo Pedido </th>
+          <td mat-cell *matCellDef="let element"> {{element.FK_P_Cod}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EPro_Fecha_Inicio_Edicion">
+          <th mat-header-cell *matHeaderCellDef> fecha Inicio edicion </th>
+          <td mat-cell *matCellDef="let element"> {{element.EPro_Fecha_Inicio_Edicion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Pro_Fecha_Fin_Edicion">
+          <th mat-header-cell *matHeaderCellDef> fecha Fin Edicion</th>
+          <td mat-cell *matCellDef="let element"> {{element.Pro_Fecha_Fin_Edicion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Details </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="open(content,element.PK_Pro_Cod)">get
+              details</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+
+
+      </table>
+      <mat-paginator #paginator2 [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+      </mat-paginator>
+
+
+    </mat-tab>
+
+
+  </mat-tab-group>
+</div>
+
+
+<!--DESDE AQUI BORRAR-->
+<ng-template #content let-modal>
+  <form #proyectoForm2="ngForm" (ngSubmit)="updateProyecto(proyectoForm2)"> 
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Actualizar Proyecto</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>ID</mat-label>
+          <input matInput type="text" name="id" #id="ngModel"
+          [(ngModel)]="service.selectProyecto.PK_Pro_Cod" disabled>
+        </mat-form-field>
+      </div>
+        <div class="form-group">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Aqui va otra cosa</mat-label>
+          <input matInput>
+        </mat-form-field>
+
+      </div>
+   
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+    <button type="submit" class="btn btn-outline-dark">Save</button>
+  </div>
+</form>
+</ng-template>
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+
+<hr>
+
+<pre>{{ closeResult }}</pre>

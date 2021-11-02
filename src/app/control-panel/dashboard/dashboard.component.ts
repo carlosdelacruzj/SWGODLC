@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from 'src/app/service/dashboard.service';
+import { DashboardService } from './service/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,14 +7,13 @@ import { DashboardService } from 'src/app/service/dashboard.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  personajes: any = {};
+  personajes: any = [];
   columnsToDisplay = ['id', 'name', 'species'];
-  constructor(private service: DashboardService) {}
+  constructor(private service: DashboardService) { }
 
   ngOnInit(): void {
     this.service.getAllNombres().subscribe((resp) => {
       this.personajes = resp.results;
-      console.log(this.personajes);
     });
   }
 }

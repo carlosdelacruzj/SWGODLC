@@ -9,8 +9,8 @@ import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gesti
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
-import { GestionarPersonalComponent } from './gestionar-personal/gestionar-personal.component';
-import { AgregarPersonalComponent } from './gestionar-personal/agregar-personal/agregar-personal.component';
+import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
+import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },

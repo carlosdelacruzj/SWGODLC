@@ -150,7 +150,9 @@
 /* ==========================================================================
    0. ELEMENT
    ========================================================================== */
-
+.mm{
+    margin-bottom: 5px !important;margin-top: 10px !important;
+}
 
 /* 0.1. Body / Typography
    ========================================================================== */
@@ -171,7 +173,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #3d405c;
+    color: #3d405c !important;
     margin: 0px 0px 15px 0px;
     font-family: 'Circular Std Medium';
 }
@@ -186,7 +188,7 @@ h2 {
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 20px !important;
 }
 
 h4 {
@@ -282,6 +284,10 @@ input[type=file] {
 
 .col-form-label {
     font-size: 15px;
+}
+
+.col-form-label1 {
+    font-size: 12px;
 }
 .box {
 

@@ -36,7 +36,7 @@ export class GestionarPersonalComponent implements OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
   }
-  fechaActual = '';
+  
   ngOnInit(): void {
     this.getEmpleados();
    

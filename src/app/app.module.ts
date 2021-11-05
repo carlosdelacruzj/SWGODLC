@@ -34,9 +34,9 @@ import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gesti
 import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/actualizar-proyecto/actualizar-proyecto.component';
 import { DatePipe } from '@angular/common';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
-import { GestionarPersonalComponent } from './gestionar-personal/gestionar-personal.component';
-import { AgregarPersonalComponent } from './gestionar-personal/agregar-personal/agregar-personal.component';
-import { ActualizarPersonalComponent } from './gestionar-personal/actualizar-personal/actualizar-personal.component';
+import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
+import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
+
 
 
 @NgModule({
@@ -58,7 +58,6 @@ import { ActualizarPersonalComponent } from './gestionar-personal/actualizar-per
     EditarServicioComponent,
     GestionarPersonalComponent,
     AgregarPersonalComponent,
-    ActualizarPersonalComponent,
   ],
   imports: [
     BrowserModule,

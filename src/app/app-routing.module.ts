@@ -9,6 +9,8 @@ import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gesti
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
+import { GestionarPersonalComponent } from './gestionar-personal/gestionar-personal.component';
+import { AgregarPersonalComponent } from './gestionar-personal/agregar-personal/agregar-personal.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -16,8 +18,14 @@ const routes: Routes = [
   { path: 'gestionar-proyecto', component: GestionarProyectoComponent },
   { path: 'gestionar-proyecto/agregar-proyecto', component: AgregarProyectoComponent },
   { path: 'administrar-paquete-servicio/editar-servicio', component: EditarServicioComponent },
-  { path: 'gestionar-pedido', component: GestionarPedidoComponent },
+  
   { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent},
+  //PEDIDO RUTAS
+  { path: 'gestionar-pedido', component: GestionarPedidoComponent },
+  //PERSONAL RUTAS
+  { path: 'gestionar-personal', component: GestionarPersonalComponent},
+  { path: 'gestionar-personal/agregar', component: AgregarPersonalComponent},
+  
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
 

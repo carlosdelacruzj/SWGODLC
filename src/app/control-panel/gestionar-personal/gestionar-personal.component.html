@@ -15,7 +15,10 @@
                     Registrar Empleado</button> 
         </div>
         <br>
-        
+
+        <mat-form-field appearance="standard">
+          <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
+        </mat-form-field>
         <!-- Tabla/Listado -->
         <table mat-table [dataSource]="dataSource" class="table">
 

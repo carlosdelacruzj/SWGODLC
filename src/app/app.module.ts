@@ -34,6 +34,7 @@ import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gesti
 import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/actualizar-proyecto/actualizar-proyecto.component';
 import { DatePipe } from '@angular/common';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
+import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { EditarServicioComponent } from './control-panel/administrar-paquete-ser
     DetalleServiciosComponent,
     ActualizarProyectoComponent,
     EditarServicioComponent,
+    RegistrarPagoComponent,
   ],
   imports: [
     BrowserModule,

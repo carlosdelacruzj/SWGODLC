@@ -1,7 +1,7 @@
 import { Injectable, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Personal } from '../model/personal.model';
+import { Personal, PersonalListar } from '../model/personal.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +11,23 @@ export class PersonalService {
         nombre: '',
         apellido: '',
         correo : '',
-        contrasena : '',
         celular : '',
         doc : '',
         direccion : '',
         autonomo: 0,
         cargo: 0
   };
+  selectListar: PersonalListar = {
+      ID:0,
+      Nombres: '',
+      Apellidos: '',
+      DNI : '',
+      Celular : '',
+      Correo : '',
+      Autonomo : 0,
+      Cargo: '',
+      Estado :''
+};
   private  URL_API = 'https://tp2021database.herokuapp.com/empleado/';
 
  
@@ -32,6 +42,9 @@ export class PersonalService {
   }
 
   public getEmpleadoID(id: any): Observable<any> {
-    return this.http.get('consulta/getEmpleadoByID/'+ id);
+    console.log(id);
+    return this.http.get(this.URL_API+'consulta/getEmpleadoByID/'+ `${id}`);
+    
   }
+  
 }

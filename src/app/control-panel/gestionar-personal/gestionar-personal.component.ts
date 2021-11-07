@@ -4,7 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PersonalService } from './service/personal.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgForm } from '@angular/forms';
+import { PersonalListar } from './model/personal.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-gestionar-personal',
@@ -23,8 +25,9 @@ export class GestionarPersonalComponent implements OnInit {
         'Estado',
         'Acciones'
   ];
-  id2 =0;
   dataSource!: MatTableDataSource<any>;
+  personal=[];
+  id2 =0;
 
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
@@ -53,15 +56,15 @@ export class GestionarPersonalComponent implements OnInit {
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;
   }
-
-  getEmpleadoID(ID: number) {
-    this.service.getEmpleadoID(ID).subscribe((response: any) => {
-      this.dataSource = new MatTableDataSource(response);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.matSort;
-    });
-  }
-  open(content:any) {
+  open(content:any,p:PersonalListar) {
     this.modalService.open(content);
+    this.getEmpleadoView(p);
+  }
+  getEmpleadoView(p:PersonalListar) {
+    
+    this.service.selectListar = p;
+    console.log(p.Correo);
+
+    
   }
 }

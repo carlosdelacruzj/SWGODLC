@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { RegistrarPagoService } from './service/registrar-pago.service';
+import { PedidoVoucher } from './model/pedidosvoucher.model';
+import { Monto } from './model/monto.model';
+import { MetodoPago } from './model/metodopago.model';
+import { Voucher } from './model/vouchers.model';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-];
 @Component({
   selector: 'app-registrar-pago',
   templateUrl: './registrar-pago.component.html',
@@ -19,11 +13,72 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class RegistrarPagoComponent implements OnInit {
   displayedColumns: string[] = ['Id', 'Proyecto', 'Fecha', 'Editar'];
   displayedColumns2: string[] = ['Codigo', 'Fecha', 'Monto', 'Imagen'];
-  dataSource = ELEMENT_DATA;
   costo = 's./12.00';
   estado = 'Aceptado';
+  pedidosContratados: PedidoVoucher[] = [];
+  pedidosPagados: PedidoVoucher[] = [];
+  informacionPagos: Monto[] = [];
+  vouchersPago: Voucher[] = [];
+  metodosPago: MetodoPago[] = [];
+  monto = {
+    total: 0,
+    abonado: 0,
+    pendiente: 0,
+  };
+  detallePedido = false;
+  listadoPedidos = true;
 
-  constructor() {}
+  constructor(private service: RegistrarPagoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listadoPedidos = true;
+    this.detallePedido = false;
+    this.getPedidosContratados();
+    this.getPedidosPagados();
+  }
+
+  async getPedidosContratados() {
+    this.service.getPedidosContratados().subscribe((response: any) => {
+      this.pedidosContratados = response;
+    });
+  }
+
+  async getPedidosPagados() {
+    this.service.getPedidosPagados().subscribe((response: any) => {
+      this.pedidosPagados = response;
+    });
+  }
+
+  async getVoucherPedido(id: number) {
+    this.service.getVoucherPedido(id).subscribe((response: any) => {
+      this.monto.abonado = response[0].MontoAbonado;
+      this.monto.total = response[0].CostoTotal;
+      this.monto.pendiente = this.monto.total - this.monto.abonado;
+    });
+  }
+
+  async getMetodosPago() {
+    this.service.getMetodosPago().subscribe((response: any) => {
+      this.metodosPago = response;
+    });
+  }
+
+  async getVouchers(id: number) {
+    this.service.getVouchersPedido(id).subscribe((response: any) => {
+      this.vouchersPago = response;
+    });
+  }
+
+  getIdPedido(id: number) {
+    this.listadoPedidos = false;
+    this.detallePedido = true;
+    this.getMetodosPago();
+    this.getVoucherPedido(id);
+    this.getVouchers(id);
+  }
+
+  mostrarListado() {
+    this.listadoPedidos = true;
+    this.detallePedido = false;
+  }
 }

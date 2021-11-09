@@ -18,6 +18,7 @@ export class PersonalService {
         cargo: 0
   };
   selectListar: PersonalListar = {
+    0:{
       ID:0,
       Nombres: '',
       Apellidos: '',
@@ -26,7 +27,7 @@ export class PersonalService {
       Correo : '',
       Autonomo : 0,
       Cargo: '',
-      Estado :''
+      Estado :''}
 };
   private  URL_API = 'https://tp2021database.herokuapp.com/empleado/';
 
@@ -46,5 +47,7 @@ export class PersonalService {
     return this.http.get(this.URL_API+'consulta/getEmpleadoByID/'+ `${id}`);
     
   }
-  
+  public getCargos(): Observable<any> {
+    return this.http.get(this.URL_API+'consulta/getAllCargo');
+  }
 }

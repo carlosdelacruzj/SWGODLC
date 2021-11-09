@@ -12,15 +12,17 @@ export class Personal {
   }
 
   export class PersonalListar {
-    constructor(
-        public ID: number,
-        public Nombres: string,
-        public Apellidos: string,
-        public DNI : string,
-        public Celular : string,
-        public Correo : string,
-        public Autonomo : 0,
-        public Cargo: string,
-        public Estado: string
-    ) {}
+    0:{
+       ID: number,
+         Nombres: string,
+         Apellidos: string,
+         DNI : string,
+         Celular : string,
+         Correo : string,
+         Autonomo : 0,
+         Cargo: string,
+         Estado: string
+
+    }   
+      
   }

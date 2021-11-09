@@ -4,9 +4,15 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PersonalService } from './service/personal.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { PersonalListar } from './model/personal.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+interface Cargo {
+  ID: string;
+  Nombre: string;
+}
+
 
 @Component({
   selector: 'app-gestionar-personal',
@@ -25,10 +31,13 @@ export class GestionarPersonalComponent implements OnInit {
         'Estado',
         'Acciones'
   ];
-  dataSource!: MatTableDataSource<any>;
-  personal=[];
-  id2 =0;
 
+  cargos: Cargo[]=[];
+  dataSource!: MatTableDataSource<any>;
+  form = new FormGroup({
+    cargoF: new FormControl(null, Validators.required)
+  });
+  
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
 
@@ -39,10 +48,9 @@ export class GestionarPersonalComponent implements OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
   }
-  
+    
   ngOnInit(): void {
     this.getEmpleados();
-   
   }
 
   getEmpleados() {
@@ -52,19 +60,30 @@ export class GestionarPersonalComponent implements OnInit {
       this.dataSource.sort = this.matSort;
     });
   }
+  getCargos() {
+    this.service.getCargos().subscribe(
+      response =>{
+        this.cargos=response;
+        console.log(response);
+        console.log(this.cargos);
+        
+    });
+  }
 
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;
   }
-  open(content:any,p:PersonalListar) {
-    this.modalService.open(content);
-    this.getEmpleadoView(p);
-  }
-  getEmpleadoView(p:PersonalListar) {
-    
-    this.service.selectListar = p;
-    console.log(p.Correo);
 
+  open(content:any,ID:Number) {
+    this.modalService.open(content);
+    this.getEmpleadoView(ID);
+    this.getCargos();
+  }
+  getEmpleadoView(ID:Number) {
     
+    this.service.getEmpleadoID(ID).subscribe(
+      response =>{
+        this.service.selectListar=response;
+    });
   }
 }

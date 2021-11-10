@@ -39,17 +39,17 @@ export class Eventos {
 
   }
 }
-
-// export class EventServ{
+// export class EventServi{
 //   constructor(
-// public ID
-// public Evento
-// public Servicio 
-// public Precio
-// public   
-// public 
+// public ID : number,
+// public Evento : string,
+// public Servicio : String,
+// public Precio : number,
+// public Descripcion : String,
+// public Titulo : String,
 
+//   ){
 
-
-//   ){}
+//   }
 // }
+

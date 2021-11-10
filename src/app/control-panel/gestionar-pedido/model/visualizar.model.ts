@@ -21,7 +21,9 @@ export class Proyecto {
  ){}
 }
 export class N_Pedido{
-  constructor(public N_Pedido : number){
+  constructor(
+    public N_Pedido : number
+    ){
 
   }
 }
@@ -36,18 +38,31 @@ public id:number
 
  ){}}
 
- export class AddPedido {
+ export class AgregarPedido {
   constructor(
-public EP_Cod:number,
-public F_Registro : String,
-public N_Pedido : number,
-public Nombre : String,
-public Apellido:String,
-public Evento : String,
-public Servicio : String,
-public F_Evento :String,
-public Hora_Evento : String,
-public  Direccion : String,
-public  Descripcion :String,
+ 
+public Nombre:string,
+public ExS :number,
+public doc : string,
+public fechaCreate : string,
+public fechaEvent : string,
+public horaEvent: string,
+public CodEmp : number,
+public Direccion : string,
+public Observacion : string,
 
  ){}}
+
+ export class EventServi2{
+  constructor(
+public ID : number,
+public Evento : string,
+public Servicio : String,
+public Precio : number,
+public Descripcion : String,
+public Titulo : String,
+
+  ){
+
+  }
+}

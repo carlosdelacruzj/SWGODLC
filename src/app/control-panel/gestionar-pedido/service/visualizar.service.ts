@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AddPedido, EditarPedido, Proyecto } from '../model/visualizar.model';
+import { AgregarPedido, EditarPedido, Proyecto, EventServi2 } from '../model/visualizar.model';
+import { Pedido } from '../../gestionar-proyecto/model/pedido.model';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VisualizarService {
   selectProyecto: Proyecto = {
@@ -21,7 +22,7 @@ export class VisualizarService {
     Hora_Evento: '',
     Direccion: '',
     Descripcion: '',
-    NombrePedido: ''
+    NombrePedido: '',
 
   };
 
@@ -29,24 +30,23 @@ export class VisualizarService {
     EP_Cod: 0,
     fecha: '',
     hora: '',
-    id: 0
+    id: 0,
 
   };
 
-  selectAgregarPedido: AddPedido = {
-    EP_Cod: 0,
-    F_Registro: '',
-    N_Pedido: 0,
+  selectAgregarPedido: AgregarPedido = {
     Nombre: '',
-    Apellido: '',
-    Evento: '',
-    Servicio: '',
-    F_Evento: '',
-    Hora_Evento: '',
+    ExS: 0,
+    doc: '',
+    fechaCreate: '',
+    fechaEvent: '',
+    horaEvent: '',
+    CodEmp: 0,
     Direccion: '',
-    Descripcion: '',
+    Observacion: '',
 
   };
+
 
   private API_VISUALIZAR =
     'https://tp2021database.herokuapp.com/pedido/consulta/getByIDPedido/';
@@ -56,11 +56,18 @@ export class VisualizarService {
 
   private API_AGREGARPEDIDO =
     'https://tp2021database.herokuapp.com/pedido/registro/postPedido';
+    
+  private GET_EVENTO_BY_SERVICIOS =
+  'https://tp2021database.herokuapp.com/eventos_servicios/consulta/getAllServiciosByEventoServ/';
+
   constructor(private http: HttpClient) { }
 
 
   public getPedidoID(id: any): Observable<any> {
-    return this.http.get(this.API_VISUALIZAR + id)
+    return this.http.get(this.API_VISUALIZAR + id);
+  }
+  public getEventosServicio(evento:number,servicio:number):Observable<any>{
+    return this.http.get(this.GET_EVENTO_BY_SERVICIOS + `${evento}` + '/' + `${servicio}`);
   }
   public putPedido(estado: number, fecha: string, hora: string, id: number): Observable<any> {
     return this.http.put(this.API_EDITARPEDIDO, {
@@ -72,41 +79,22 @@ export class VisualizarService {
   }
 
 
-  public registro(data:any): Observable<any> {
+  // public postPedido(Nombre: string, ExS:number,doc: string, fechaCreate: string, fechaEvent: string, horaEvent: string, CodEmp: number, Direccion: string): Observable<any> {
+  //   return this.http.post<AddPedido>(this.API_AGREGARPEDIDO + "/gestionar-pedido", AddPedido);
+  // }
 
-    console.log('Probando');
-
-    
-    return this.http.post(this.API_AGREGARPEDIDO, data);
-  }
-
-
-  public postPedido(
-    EP_Cod: number,
-    F_Registro: string,
-    N_Pedido: number,
-    Nombre: string,
-    Apellido: string,
-    Evento: String,
-    Servicio: String,
-    F_Evento: String,
-    Hora_Evento: String,
-    Direccion: string,
-    Descripcion: Event
-  ): Observable<any> {
+  public postPedidos(Nombre: string, ExS: number, doc: string, fechaCreate: string, fechaEvent: string, horaEvent: string, CodEmp: number, Direccion: string, Observacion:string) {
     return this.http.post(this.API_AGREGARPEDIDO, {
-
-      EP_Cod: EP_Cod,
-      F_Registro: F_Registro,
-      N_Pedido: N_Pedido,
       Nombre: Nombre,
-      Apellido: Apellido,
-      Evento: Evento,
-      Servicio: Servicio,
-      F_Evento: F_Evento,
-      Hora_Evento: Hora_Evento,
+      ExS: ExS,
+      doc: doc,
+      fechaCreate: fechaCreate,
+      fechaEvent: fechaEvent,
+      horaEvent: horaEvent,
+      CodEmp: CodEmp,
       Direccion: Direccion,
-      Descripcion: Descripcion,
+      Observacion:Observacion,
     })
   }
+
 }

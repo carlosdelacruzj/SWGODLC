@@ -39,9 +39,14 @@ export class PedidoService {
   };
 
 
-// selectEventosxServicios : EventServ = {
-
-// };
+  // selectEventosxServicios: EventServi = {
+  //   ID: 0,
+  //   Evento: '',
+  //   Servicio: '',
+  //   Precio: 0,
+  //   Descripcion: '',
+  //   Titulo: '',
+  // };
 
   private API_PRUEBA =
     'https://tp2021database.herokuapp.com/pedido/consulta/getAllPedido';
@@ -56,6 +61,9 @@ export class PedidoService {
 
   private API_EVENTOS =
     'https://tp2021database.herokuapp.com/eventos/consulta/getAllEventos';
+
+  // private API_SERVICIOSxEVENTOS =
+  //   'https://tp2021database.herokuapp.com/eventos_servicios/consulta/getAllServiciosByEventoServ/';
 
   constructor(private http: HttpClient) { }
 
@@ -75,5 +83,8 @@ export class PedidoService {
   public getEventos(): Observable<any> {
     return this.http.get(this.API_EVENTOS);
   }
+  // public getEventServicios(): Observable<any> {
+  //   return this.http.get(this.API_SERVICIOSxEVENTOS);
+  // }
 
 }

@@ -7,11 +7,7 @@ import { PedidoService } from '../service/pedido.service';
 import { Pedido } from '../model/pedido.model';
 import { DateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-  NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
+import swal from 'sweetalert2';
 
 interface Food {
   value: string;
@@ -26,6 +22,7 @@ interface Food {
 export class AgregarProyectoComponent implements OnInit {
   fechaOk = '';
   proyectos = [];
+  btnDisabled = false;
   foods: Food[] = [
     { value: 'steak-0', viewValue: '1' },
     { value: 'pizza-1', viewValue: '2' },
@@ -40,7 +37,7 @@ export class AgregarProyectoComponent implements OnInit {
     this.dateAdapter.setLocale('es');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   addProyecto(ProyectoForm: NgForm, fecha: string) {
     //Para poder cambiar el orden de como mando la fecha
@@ -59,8 +56,36 @@ export class AgregarProyectoComponent implements OnInit {
     this.service.registro(data).subscribe(
       (res) => {
         console.log('DATA: ', res);
+        this.btnDisabled = true;
+        swal.fire({
+          text: 'Registro exitoso',
+          icon: 'success',
+          showCancelButton: false,
+          customClass: {
+            confirmButton: 'btn btn-success',
+          },
+          buttonsStyling: false
+        });
       },
-      (err) => console.error(err)
+      (err) => {
+        console.error(err)
+        swal.fire({
+          text: 'Ocurrió un error, volver a intentar.',
+          icon: 'warning',
+          showCancelButton: false,
+          customClass: {
+            confirmButton: 'btn btn-warning',
+          },
+          buttonsStyling: false
+        });
+      }
     );
+
   }
+ 
+ 
+    
+
+
+
 }

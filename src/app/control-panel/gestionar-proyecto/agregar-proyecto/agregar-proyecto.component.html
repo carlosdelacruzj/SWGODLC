@@ -32,8 +32,8 @@
 
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>N de pedido</mat-label>
-                        <input matInput type="text" name="ID" #ID="ngModel" [(ngModel)]="service2.selectPedido2.N_Pedido"
-                            disabled>
+                        <input matInput type="text" name="ID" #ID="ngModel"
+                            [(ngModel)]="service2.selectPedido2.N_Pedido" disabled>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Evento</mat-label>
@@ -65,8 +65,8 @@
                 <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                         <mat-label>Descripción</mat-label>
-                        <textarea matInput  type="text" name="Descripcion" #Descripcion="ngModel"
-                        [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
+                        <textarea matInput type="text" name="Descripcion" #Descripcion="ngModel"
+                            [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
                     </mat-form-field>
                 </div>
 
@@ -86,18 +86,18 @@
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                         <mat-label>Fecha-Inicio</mat-label>
                         <input matInput type="text" name="F_Evento" #F_Evento="ngModel"
-                        [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
-                        
+                            [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
+
                         <mat-datepicker-toggle matSuffix [for]="picker2" disabled></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                        <mat-label>Fecha-Fin</mat-label >
+                        <mat-label>Fecha-Fin</mat-label>
                         <input matInput [matDatepicker]="picker3" disabled>
                         <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                         <mat-datepicker #picker3></mat-datepicker>
                     </mat-form-field>
-               
+
                 </div>
                 <div class="form-row">
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
@@ -139,13 +139,13 @@
                         <mat-label>Hora</mat-label>
                         <input matInput type="text" name="Hora_Evento" #Hora_Evento="ngModel"
                             [(ngModel)]="service2.selectPedido2.Hora_Evento" disabled>
-                        
+
                     </mat-form-field>
 
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Ubicación</mat-label>
                         <input matInput type="text" name="Direccion" #Direccion="ngModel"
-                        [(ngModel)]="service2.selectPedido2.Direccion" disabled>
+                            [(ngModel)]="service2.selectPedido2.Direccion" disabled>
                     </mat-form-field>
 
                 </div>
@@ -155,12 +155,16 @@
                         <input matInput placeholder="001">
                     </mat-form-field>
                 </div>
-            
+
             </mat-card-content>
         </mat-card>
-        <button class="btn btn-primary mb-2 mr-1" type="submit">
-            Registrar
-        </button>
+
+        <div style="text-align: center;">
+            
+            <button class="btn btn-primary btn-lg" type="submit" [disabled]="btnDisabled">Registrar</button>
+            <button class="btn btn-primary btn-lg" [routerLink]="['/gestionar-proyecto']">Atras</button>
+
+        </div>
     </form>
     <!-- <button mat-button color="primary" type="submit">Basic</button> -->
 

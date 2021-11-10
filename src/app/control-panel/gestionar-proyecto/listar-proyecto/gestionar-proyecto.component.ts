@@ -34,24 +34,25 @@ export class GestionarProyectoComponent implements OnInit {
     'EstadoPago',
     'actions',
   ];
-  id2 =0;
+  id2 = 0;
   dataSource!: MatTableDataSource<any>;
   dataSource2!: MatTableDataSource<any>;
 
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild('paginator2') paginator2!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
+  @ViewChild(MatSort) gato!: MatSort;
 
   constructor(
     public service: ProyectoService,
     public service2: PedidoService,
     private modalService: NgbModal
-  ) {}
+  ) { }
   fechaActual = '';
   ngOnInit(): void {
     this.getProyecto();
     this.getPedido();
-   
+
   }
 
   // para llenar las tablas
@@ -59,7 +60,7 @@ export class GestionarProyectoComponent implements OnInit {
     this.service.getAllNombres().subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator2;
-      this.dataSource.sort = this.matSort;
+      this.dataSource.sort = this.gato;
     });
   }
 
@@ -81,7 +82,6 @@ export class GestionarProyectoComponent implements OnInit {
 
   getProyecto1(proyecto: Proyecto) {
     this.service.selectProyecto = proyecto;
-    // console.log(this.service.selectProyecto);
   }
 
   // para guardar el dato escogido
@@ -100,7 +100,7 @@ export class GestionarProyectoComponent implements OnInit {
   //DESDE AQUI BORRAS
   closeResult = '';
 
-  open(content: any,id: number) {
+  open(content: any, id: number) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -111,8 +111,8 @@ export class GestionarProyectoComponent implements OnInit {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         }
       );
-      this.id2 = id;
-      this.service.selectProyecto.PK_Pro_Cod = this.id2;
+    this.id2 = id;
+    this.service.selectProyecto.PK_Pro_Cod = this.id2;
   }
 
   private getDismissReason(reason: any): string {

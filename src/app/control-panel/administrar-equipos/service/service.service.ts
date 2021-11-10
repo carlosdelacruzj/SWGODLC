@@ -1,9 +1,118 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO } from '../models/modeloprueba.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService {
+export class AdministrarEquiposService {
+  selectTipoAll: EquipoTipoAll = {
+    PK_TE_Cod: 0,
+    TE_Nombre: ''
+  };
 
-  constructor() { }
+  selectAll: EquipoAll = {
+    Nombre: '',
+    Marca: '',
+    Modelo: '',
+    Estado: '',
+  };
+
+  selectTipoAllID: EquipoTipoAllID = {
+    Codigo: '',
+    Marca: '',
+    Modelo: '',
+    Estado: ''
+  };
+
+  selectTipoAllIDMARCAMODELO: EquipoTipoAllIDMARCAMODELO = {
+    Equipo: '',
+    Marca: '',
+    Modelo: '',
+    Codigo: '',
+    Fecha: '',
+    Estado: ''
+  };
+
+  selectGroup: EquipoAllGroup = {
+    Equipo: '',
+    Marca: '',
+    Modelo: '',
+    IdEquipo: 0,
+    IdMarca: 0,
+    IdModelo: 0,
+  };
+
+  selectAllMarca: EquipoAllMARCA = {
+    Id: 0,
+    Nombre: ''
+  }
+
+  selectMarcaTipo: EquipoAllMarcaTipo = {
+    Id: 0,
+    Nombre: ''
+  }
+
+  registerEquipo: EquipoRegistrar = {
+    idEquipo: '',
+    fecha: '',
+    modelo: 0
+  };
+
+  private EQUIPO_TIPOALL =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllTipoEquipo';
+
+  private EQUIPO_ALL =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquipo';
+
+  private EQUIPO_TIPOALLID =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getByTipoEquipo/';
+
+  private EQUIPO_TIPOIDMARCAMODELO =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup/';
+
+  private EQUIPO_ALLGROUP =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposGroup';
+
+  private EQUIPO_ALLMARCA =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllMarca';
+
+  private EQUIPO_ALLMODELO =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllModelo/';
+
+  private REGISTER_EQUIPO =
+    'https://tp2021database.herokuapp.com/equipo/registro/postEquipo';
+
+  constructor(private http: HttpClient) {}
+
+  // definir los gets
+  public getAll(): Observable<any> {
+    return this.http.get(this.EQUIPO_ALL);
+  }
+  // TRAER DATOS | ( EQUIPO, MARCA, MODELO)
+  public getAllGroup(): Observable<any> {
+    return this.http.get(this.EQUIPO_ALLGROUP);
+  }
+  // POR TIPO DE EQUIPO
+  public getTipoEquipo(): Observable<any> {
+    return this.http.get(this.EQUIPO_TIPOALL);
+  }
+  // POR MARCA DE EQUIPO
+  public getMarcaEquipo(): Observable<any> {
+    return this.http.get(this.EQUIPO_ALLMARCA);
+  }
+
+  //prueba de post
+  public postRegistrarEquipo(
+    idEquipo: string,
+    fecha: string,
+    modelo: number
+  ) {
+    return this.http.post(this.REGISTER_EQUIPO, {
+      idEquipo: idEquipo,
+      fecha: fecha,
+      modelo: modelo,
+    });
+  }
 }

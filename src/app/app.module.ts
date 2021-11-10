@@ -35,6 +35,9 @@ import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/
 import { DatePipe } from '@angular/common';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
 import { AdministrarEquiposComponent } from './control-panel/administrar-equipos/administrar-equipos.component';
+import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
+import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
+
 
 
 @NgModule({
@@ -55,6 +58,8 @@ import { AdministrarEquiposComponent } from './control-panel/administrar-equipos
     ActualizarProyectoComponent,
     EditarServicioComponent,
     AdministrarEquiposComponent,
+    GestionarPersonalComponent,
+    AgregarPersonalComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,8 @@ import { AdministrarPaqueteServicioComponent } from './control-panel/administrar
 import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
 import { AdministrarEquiposComponent } from './control-panel/administrar-equipos/administrar-equipos.component';
+import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
+import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -29,6 +31,16 @@ const routes: Routes = [
     component: AdministrarPaqueteServicioComponent,
   },
   { path: 'administrar-equipos', component: AdministrarEquiposComponent },
+  { path: 'gestionar-proyecto/agregar-proyecto', component: AgregarProyectoComponent },
+  { path: 'administrar-paquete-servicio/editar-servicio', component: EditarServicioComponent },
+
+  { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent },
+  //PEDIDO RUTAS
+  { path: 'gestionar-pedido', component: GestionarPedidoComponent },
+  //PERSONAL RUTAS
+  { path: 'gestionar-personal', component: GestionarPersonalComponent },
+  { path: 'gestionar-personal/agregar', component: AgregarPersonalComponent },
+
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
 
@@ -36,4 +48,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

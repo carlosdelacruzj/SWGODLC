@@ -40,6 +40,8 @@ import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agr
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +62,7 @@ import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agr
     AdministrarEquiposComponent,
     GestionarPersonalComponent,
     AgregarPersonalComponent,
+ 
   ],
   imports: [
     BrowserModule,

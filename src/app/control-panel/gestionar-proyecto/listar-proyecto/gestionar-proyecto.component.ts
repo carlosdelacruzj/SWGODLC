@@ -5,8 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Proyecto } from '../model/proyecto.model';
 import { PedidoService } from '../service/pedido.service';
-import { Pedido, Pedido2 } from '../model/pedido.model';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Pedido } from '../model/pedido.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -101,28 +101,9 @@ export class GestionarProyectoComponent implements OnInit {
   closeResult = '';
 
   open(content: any, id: number) {
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          this.closeResult = `Closed with: ${result}`;
-        },
-        (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        }
-      );
+    this.modalService.open(content);
     this.id2 = id;
     this.service.selectProyecto.PK_Pro_Cod = this.id2;
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 
   updateProyecto(ProyectoForm2: NgForm) {
@@ -132,9 +113,5 @@ export class GestionarProyectoComponent implements OnInit {
       fechaFinEdicion: ProyectoForm2.value.F_Evento
     };
     console.log(data);
-    // this.service.registro(data).subscribe(
-    //   (res) => { console.log("DATA: ", res)},
-    //   (err) => console.error(err)
-    // );
   }
 }

@@ -1,23 +1,4 @@
 <div class="container-fluid dashboard-content ">
-  <!-- <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="page-header">
-          <h2 class="pageheader-title">Form Validations </h2>
-          <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet
-            vestibulum mi. Morbi lobortis pulvinar quam.</p>
-          <div class="page-breadcrumb">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Forms</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Form Validations</li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
   <mat-tab-group>
     <mat-tab label="Pedidos">
 
@@ -116,9 +97,11 @@
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Details </th>
-          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary"
-              (click)="open(content,element.PK_Pro_Cod)">get
-              details</button> </td>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button style="background-color:transparent" (click)="open(contentUpdate,element.ID)"><i
+                class="fas fa-edit fa-2x"></i></button>
+            <button mat-button style="background-color:transparent" (click)="open(contentView,element.ID)"><i
+                class="fas fa-eye fa-2x"></i></button>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -137,40 +120,165 @@
 </div>
 
 
-<!--DESDE AQUI BORRAR-->
-<ng-template #content let-modal>
-  <form #proyectoForm2="ngForm" (ngSubmit)="updateProyecto(proyectoForm2)">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Actualizar Proyecto</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
 
-      <div class="form-group">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>ID</mat-label>
-          <input matInput type="text" name="id" #id="ngModel" [(ngModel)]="service.selectProyecto.PK_Pro_Cod" disabled>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Aqui va otra cosa</mat-label>
-          <input matInput>
-        </mat-form-field>
+<!-- Modal Update -->
 
-      </div>
+<ng-template #contentUpdate let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3 class="modal-title mm" id="modal-basic-title">Actualizar Empleado</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #EmpleadoUpdateForm="ngForm">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>
+            <h4>Datos personales</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-body" style="padding-top: 10px;">
+          <div class="form-group">
+            <label class='col-form-label1'>Nombres</label>
+            <input type="text" class="form-control form-control-sm" name="Nombres" disabled>
+          </div>
 
-    </div>
-    <div class="modal-footer">
-      <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
-      <button type="submit" class="btn btn-outline-dark">Save</button>
-    </div>
-  </form>
+          <div class="form-group">
+            <label class='col-form-label1'>Apellidos</label>
+            <input type="text" class="form-control form-control-sm" name="Apellidos" disabled>
+          </div>
+
+          <div class="form-group">
+            <label class='col-form-label1'>N° documento de identidad</label>
+            <input type="text" class="form-control form-control-sm" name="DNI" disabled>
+          </div>
+
+          <div class="form-group">
+            <label class='col-form-label1'>Celular</label>
+            <input type="text" class="form-control form-control-sm" name="Celular">
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>Email</label>
+            <input type="text" class="form-control form-control-sm" name="Correo">
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>Detalle</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-body" style="padding-top: 10px;">
+          <div class="form-group">
+            <label class='col-form-label1'>Autonomo</label>
+            <select mat-select name="Autonomo" class="form-control form-control-sm" id="input-select" requiered>
+              <!-- <option *ngIf="service.selectListar[0].Autonomo<=0" hidden value="" disabled selected>Si</option>
+              <option *ngIf="service.selectListar[0].Autonomo >=1" hidden value="" disabled selected>No</option> -->
+              <option matInput value="0">Si</option>
+              <option matInput value="1">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>Cargo</label>
+            <select mat-select name="Cargo" class="form-control form-control-sm" id="input-select">
+              <option [ngValue]="" disabled selected hidden></option>
+              <option matInput></option>
+            </select>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Actualizar</button>
+  </div>
 </ng-template>
 
-<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+<!-- Modal Visualizar -->
+<ng-template #contentView let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3 class="modal-title mm" id="modal-basic-title">Visualizar Proyecto</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #EmpleadoUpdateForm="ngForm">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>
+            <h4>Datos personales</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-body" style="padding-top: 10px;">
+          <div class="form-group">
+            <label class='col-form-label1'>Nombre del proyecto</label>
+            <input type="text" class="form-control form-control-sm" name="Nombre_Proyecto" disabled>
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>Cliente</label>
+            <input type="text" class="form-control form-control-sm" name="Cliente" disabled>
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>Evento</label>
+            <input type="text" class="form-control form-control-sm" name="Evento" disabled>
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>Descripcion</label>
+            <textarea matInput rows="3" type="text" class="form-control form-control-sm" name="Descripcion"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class='col-form-label1'>Fecha Evento</label>
+            <input type="text" class="form-control form-control-sm" name="Fecha" disabled>
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>Inicio de edicion</label>
+            <input type="text" class="form-control form-control-sm" name="Fecha" disabled>
+          </div>
+
+          <div class="form-group">
+            <label class='col-form-label1'>Fin de edicion</label>
+            <input type="text" class="form-control form-control-sm" name="Fecha" disabled>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>Detalle</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-body" style="padding-top: 10px;">
+          <div class="form-group">
+            <label class='col-form-label1'>Autonomo</label>
+            <select mat-select name="Autonomo" class="form-control form-control-sm" id="input-select" requiered>
+              <!-- <option *ngIf="service.selectListar[0].Autonomo<=0" hidden value="" disabled selected>Si</option>
+              <option *ngIf="service.selectListar[0].Autonomo >=1" hidden value="" disabled selected>No</option> -->
+              <option matInput value="0">Si</option>
+              <option matInput value="1">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>Cargo</label>
+            <select mat-select name="Cargo" class="form-control form-control-sm" id="input-select">
+              <option [ngValue]="" disabled selected hidden></option>
+              <option matInput></option>
+            </select>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Actualizar</button>
+  </div>
+</ng-template>
 
 <hr>
 

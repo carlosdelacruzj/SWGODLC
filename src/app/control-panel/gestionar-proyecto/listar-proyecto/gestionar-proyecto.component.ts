@@ -41,7 +41,7 @@ export class GestionarProyectoComponent implements OnInit {
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild('paginator2') paginator2!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
-  @ViewChild(MatSort) gato!: MatSort;
+
 
   constructor(
     public service: ProyectoService,
@@ -60,7 +60,7 @@ export class GestionarProyectoComponent implements OnInit {
     this.service.getAllNombres().subscribe((response: any) => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator2;
-      this.dataSource.sort = this.gato;
+      this.dataSource.sort = this.matSort;
     });
   }
 
@@ -96,14 +96,21 @@ export class GestionarProyectoComponent implements OnInit {
       console.log(this.service2.selectPedido2);
     });
   }
+  getProyectoID(valor: number) {
+    this.service.getProyectoID(valor).subscribe((responde) => {
+      this.service.selectProyecto = responde[0];
+      console.log(this.service.selectProyecto)
+    })
+  }
 
   //DESDE AQUI BORRAS
   closeResult = '';
 
-  open(content: any, id: number) {
+  open(content: any, idpedido: number, idproyecto: number) {
     this.modalService.open(content);
-    this.id2 = id;
-    this.service.selectProyecto.PK_Pro_Cod = this.id2;
+    this.getPedidoID(idpedido);
+    this.getProyectoID(idproyecto);
+
   }
 
   updateProyecto(ProyectoForm2: NgForm) {

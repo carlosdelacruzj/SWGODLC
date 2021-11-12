@@ -1,16 +1,12 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnInit, Pipe, ViewChild } from '@angular/core';
 import { PedidoService } from './service/pedido.service';
 import { VisualizarService } from './service/visualizar.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { MatSelectModule } from '@angular/material/select';
-import { NgForm } from '@angular/forms';
-import { AgregarPedido } from './model/visualizar.model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { MatDatetimePickerInputEvent } from '@angular-material-components/datetime-picker';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 interface Car {
   value: string;
@@ -36,7 +32,9 @@ export class GestionarPedidoComponent implements OnInit {
     { value: '6', viewValue: 'Anulado' },
   ];
 
-  pedidos = [];
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatSort) matSort!: MatSort;
+  @ViewChild('paginator') paginator!: MatPaginator;
   columnsToDisplay = [
     'ID',
     'Nombre',
@@ -83,7 +81,7 @@ export class GestionarPedidoComponent implements OnInit {
   horaEditada = '';
 
   //REGISTRO
-  dniCliente :any ;
+  dniCliente: any;
   infoCliente = { Nombre: '', Apellido: '' };
   //descripcionregistro
   servicioSeleccionado = 1;
@@ -117,7 +115,18 @@ export class GestionarPedidoComponent implements OnInit {
   }
   getPedido() {
     this.service.getAllNombres().subscribe((response) => {
-      this.pedidos = response;
+      this.dataSource = new MatTableDataSource(response);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.matSort;
+
+      // this.dataSource.sortingDataAccessor = (item, property) => {
+      //   switch (property) {
+      //     case 'Fecha': return new Date(item.Fecha);
+      //     default: return item[property];
+      //   }
+      // };
+
+
       this.pedidos_ready = true;
     })
   }
@@ -204,7 +213,7 @@ export class GestionarPedidoComponent implements OnInit {
 
   postPedido() {
     alert(this.fechaActual)
-    this.fechaActual= this.fechaActual.substr(6) + this.fechaActual.substr(2, 4) + this.fechaActual.substr(0, 2);
+    this.fechaActual = this.fechaActual.substr(6) + this.fechaActual.substr(2, 4) + this.fechaActual.substr(0, 2);
     this.fechaRegis = this.fechaRegis.substr(6) + this.fechaRegis.substr(2, 4) + this.fechaRegis.substr(0, 2);
     console.log(this.fechaActual);
     console.log(this.fechaRegis);
@@ -226,7 +235,7 @@ export class GestionarPedidoComponent implements OnInit {
     this.desID = id;
   }
 
-  registrarFecha2(type: string , event: MatDatepickerInputEvent<Date>) {
+  registrarFecha2(type: string, event: MatDatepickerInputEvent<Date>) {
     const regishora = new DatePipe('en-US')
     let formato = regishora.transform(event.value, 'dd/MM/yyyy')
     if (formato != null) {
@@ -293,7 +302,7 @@ export class GestionarPedidoComponent implements OnInit {
     this.fechaActual = hoy;
   }
 
-  filterData2($event: any) {
-    this.pedidos.filter = $event.target.value;
+  filterData($event: any) {
+    this.dataSource.filter = $event.target.value;
   }
 }

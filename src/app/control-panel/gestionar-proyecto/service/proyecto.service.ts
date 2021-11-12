@@ -23,13 +23,13 @@ export class ProyectoService {
 
   proyecto: Proyecto[] = [];
   private API_PRUEBA = 'https://tp2021database.herokuapp.com/proyecto/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getAllNombres(): Observable<any> {
     return this.http.get(this.API_PRUEBA + 'consulta/getAllProyecto');
   }
 
-   public registro(data:any): Observable<any> {
+  public registro(data: any): Observable<any> {
 
     console.log('Probando');
 
@@ -38,6 +38,10 @@ export class ProyectoService {
   }
   public getById(id: number): Observable<any> {
     return this.http.get('https://tp2021database.herokuapp.com/pedido/consulta/getByIDPedido/' + `${id}`);
+  }
+
+  public getProyectoID(id: number): Observable<any> {
+    return this.http.get(this.API_PRUEBA + 'consulta/getByIdProyecto/' + id);
   }
 
 }

@@ -1,5 +1,3 @@
-
-
 export class Proyecto {
   constructor(
     public PK_Pro_Cod: number,
@@ -13,5 +11,6 @@ export class Proyecto {
     public Pro_Asignado: number,
     public FK_ESPro_Cod: number,
     public Pro_Observacion: string
-  ) {}
+  ) { }
 }
+

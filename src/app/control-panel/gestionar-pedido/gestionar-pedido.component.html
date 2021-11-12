@@ -54,7 +54,7 @@
             <input matInput [(ngModel)]="horaRegis">
           </mat-form-field>
           &nbsp;&nbsp;&nbsp;
-          
+
           <!-- <mat-form-field appearance="fill">
             <mat-label>FechaEvento1</mat-label>
             <input matInput (dateChange)="registrarFecha2" [(ngModel)]="fechaRegis" >
@@ -69,7 +69,8 @@
           </mat-form-field> -->
           <mat-form-field appearance="fill" class="example-form-field">
             <mat-label>Fecha Evento</mat-label>
-            <input matInput [matDatepicker]="datepicker" (dateChange)="registrarFecha2('change',$event)" [(ngModel)]="fechaRegis" >{{this.fechaRegis}}
+            <input matInput [matDatepicker]="datepicker" (dateChange)="registrarFecha2('change',$event)"
+              [(ngModel)]="fechaRegis">{{this.fechaRegis}}
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
               <mat-datepicker-actions>
@@ -150,23 +151,27 @@
       <mat-divider></mat-divider>
       <!-- LISTA DE PEDIDOS -->
 
-      <table mat-table [dataSource]="pedidos" class="table">
 
+
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" matSort class="table">
         <!-- ID -->
         <ng-container matColumnDef="ID">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> ID </th>
           <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
         </ng-container>
 
         <!-- Nombre A REVISION -->
         <ng-container matColumnDef="Nombre">
-          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
           <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
         </ng-container>
 
         <!-- Fecha Evento -->
         <ng-container matColumnDef="Fecha">
-          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Fecha </th>
           <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
         </ng-container>
         <!-- Servicio -->
@@ -199,7 +204,7 @@
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
       </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+      <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
       </mat-paginator>
     </div>
     <!-- INTERFAZ VISUALIZAR -->

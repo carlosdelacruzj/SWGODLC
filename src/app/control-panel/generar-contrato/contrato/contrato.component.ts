@@ -1,13 +1,12 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { FormGroup, NgForm, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NgForm, } from '@angular/forms';
 import { PedidoService } from '../service/pedido.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { DateAdapter } from '@angular/material/core';
-import { HttpClient} from '@angular/common/http';
-
-
+import { HttpClient } from '@angular/common/http';
+import { fileURLToPath } from 'url';
 
 @Component({
   selector: 'app-contrato',
@@ -18,6 +17,7 @@ import { HttpClient} from '@angular/common/http';
 export class ContratoComponent implements OnInit {
 
   file: any = null;
+
   constructor(
     public service2: PedidoService,
     private dateAdapter: DateAdapter<Date>,
@@ -127,23 +127,23 @@ export class ContratoComponent implements OnInit {
         }
       }
     }
-    
+
     const pdf = pdfMake.createPdf(pdfDefinition);
     pdf.open();
     pdf.getBlob((blob) => {
       this.file = new Blob([blob]);
       console.log(blob);
+      const fd = new FormData();
+      fd.append('file', this.file, 'Contrato.pdf')
+      fd.append('subject', 'subject');
+      fd.append('email', 'black567_@hotmail.com');
+      fd.append('message', 'message');
+      this.http.post('https://tp2021database.herokuapp.com/send-email', fd).subscribe((res) => {
+        console.log(res);
+      });
     });
+
   }
 
-  vacio(email: string, subject: string, message: string) {
-    const fd = new FormData();
-    fd.append('file', this.file, 'Contrato.pdf')
-    fd.append('subject', subject);
-    fd.append('email', email);
-    fd.append('message', message);
-    this.http.post('https://tp2021database.herokuapp.com/send-email', fd).subscribe((res) => {
-      console.log(res);
-    });
-  }
+
 }

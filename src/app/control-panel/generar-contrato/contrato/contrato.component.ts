@@ -31,6 +31,7 @@ export class ContratoComponent implements OnInit {
 
   async createPdf(ContratoForm: NgForm) {
 
+    var pedido_ID = ContratoForm.value.ID;
     var pedido_cliente = ContratoForm.value.Cliente;
     var pedido_servicio = ContratoForm.value.Servicio;
     var pedido_evento = ContratoForm.value.Evento;
@@ -139,6 +140,13 @@ export class ContratoComponent implements OnInit {
       fd.append('email', 'black567_@hotmail.com');
       fd.append('message', 'message');
       this.http.post('https://tp2021database.herokuapp.com/send-email', fd).subscribe((res) => {
+        console.log(res);
+      });
+      const fd2 = new FormData();
+      fd2.append('file', this.file, 'Contrato.pdf')
+      fd2.append('pedido', pedido_ID);
+      fd2.append('fecha', pedido_fecha);
+      this.http.post('https://tp2021database.herokuapp.com/postContrato', fd2).subscribe((res) => {
         console.log(res);
       });
     });

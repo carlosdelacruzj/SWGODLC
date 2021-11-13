@@ -38,7 +38,6 @@ import { AdministrarEquiposComponent } from './control-panel/administrar-equipos
 import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
-import { RegistrarequipoComponent } from './control-panel/administrar-equipos/registrarequipo/registrarequipo.component';
 
 
 
@@ -63,7 +62,6 @@ import { RegistrarequipoComponent } from './control-panel/administrar-equipos/re
     GestionarPersonalComponent,
     AgregarPersonalComponent,
     ListarportipoComponent,
-    RegistrarequipoComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +73,7 @@ import { RegistrarequipoComponent } from './control-panel/administrar-equipos/re
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     NgbModule
   ],
   providers: [

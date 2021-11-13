@@ -18,7 +18,13 @@ export class ListarportipoComponent implements OnInit {
   @Input() idEquipo=0;
   @Input() idMarca=0;
   @Input() idModelo=0;
-  goListar: boolean=true;
+
+  btnStatus = true;
+  status = 'check_circle';
+  enableDisableRule() {
+    this.btnStatus = !this.btnStatus;
+    this.status = this.btnStatus ? 'check_circle' : 'privacy_tip';
+  }
 
   dataSource1!: MatTableDataSource<any>;
 

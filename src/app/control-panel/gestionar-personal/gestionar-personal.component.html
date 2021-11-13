@@ -65,7 +65,7 @@
             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
             <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
         </table>
-        <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
+        <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20, 50 ]">
         </mat-paginator>
 
 
@@ -87,32 +87,60 @@
               </mat-card-header>
               <mat-card-content class="card-body" style="padding-top: 10px;">
                 <div class="form-group">
+                  <input type="text" name="ID" [(ngModel)]="service.selectListar.ID"
+                      class="form-control text-input" style="display: none;">
+              </div>
+                <div class="form-group">
                   <label class='col-form-label1'>Nombres</label>
                   <input  type="text" class="form-control form-control-sm"
-                  name="Nombres" #Nombres="ngModel" [(ngModel)]="service.selectListar[0].Nombres" disabled>
+                  name="Nombres"  [(ngModel)]="service.selectListar.Nombres" disabled>
               </div>
               
               <div class="form-group">
                 <label class='col-form-label1'>Apellidos</label>
                 <input  type="text" class="form-control form-control-sm"
-                   name="Apellidos" #Apellidos="ngModel" [(ngModel)]="service.selectListar[0].Apellidos" disabled>
+                   name="Apellidos" [(ngModel)]="service.selectListar.Apellidos" disabled>
               </div>
   
               <div class="form-group">
                 <label class='col-form-label1'>N° documento de identidad</label>
                 <input  type="text" class="form-control form-control-sm"
-                   name="DNI" #DNI="ngModel" [(ngModel)]="service.selectListar[0].DNI" disabled>
+                   name="DNI"  [(ngModel)]="service.selectListar.DNI" disabled>
               </div>
-              
+              <div class="form-group">
+                <label class='col-form-label1'>Direccion</label>
+                <input  type="text" class="form-control form-control-sm"
+                   name="Direccion" #Direccion="ngModel" [(ngModel)]="service.selectListar.Direccion"required>
+
+                   <div *ngIf="Direccion.errors?.pattern">
+                    <p>*Ingrese una Dirección correcta</p>
+                  </div>
+                  <div *ngIf="Direccion.errors?.required">
+                    <p>*Campo Requerido</p>
+                  </div>
+              </div>
               <div class="form-group">
                 <label class='col-form-label1'>Celular</label>
                 <input  type="text" class="form-control form-control-sm"
-                   name="Celular" #Celular="ngModel" [(ngModel)]="service.selectListar[0].Celular">
+                   name="Celular" #Celular="ngModel" [(ngModel)]="service.selectListar.Celular"[pattern]="celularPattern" required>
+                   <div *ngIf="Celular.errors?.pattern">
+                    <p>*Sólo números</p>
+                  </div>
+                  <div *ngIf="Celular.errors?.required">
+                    <p>*Campo Requerido</p>
+                  </div> 
               </div>
               <div class="form-group">
                 <label class='col-form-label1'>Email</label>
                 <input  type="text" class="form-control form-control-sm"
-                name="Correo" #Correo="ngModel" [(ngModel)]="service.selectListar[0].Correo">
+                name="Correo" #Correo="ngModel"[(ngModel)]="service.selectListar.Correo"[pattern]="correoPattern" required>
+
+                <div *ngIf="Correo.errors?.pattern">
+                  <p>*Ingrese un email correcto</p>
+                </div>
+                <div *ngIf="Correo.errors?.required">
+                  <p>*Campo Requerido</p>
+                </div>
               </div>
           </mat-card-content>
             </mat-card>
@@ -122,27 +150,32 @@
                   <mat-card-title>Detalle</mat-card-title>
               </mat-card-header>
               <mat-card-content class="card-body" style="padding-top: 10px;">
+                <div class="form-group">
+                  <label class='col-form-label1'>Estado</label>
+                    <select  type="text" class="form-control form-control-sm"
+                    name="Estado" #service.selectListar.Estado="ngModel" #Estado="ngModel" 
+                    [ngModel]="service.selectListar.Estado"     [value]="service.selectListar.Estado" requiered>
+                    <option [ngValue]=""disabled selected hidden>{{service.selectListar.Estado}}</option>
+                      <option matInput  value="Disponible">Disponible</option>
+                      <option matInput  value="No Disponible">No Disponible</option>
+                    </select>
+
+                    <div *ngIf="Estado.errors?.required">
+                      <p>*Campo Requerido</p>
+                    </div> 
+                </div>
                     <div class="form-group">
                       <label class='col-form-label1'>Autonomo</label>
-                      <select  mat-select   name="Autonomo"  #service.selectListar[0].Autonomo="ngModel"
-                      [(ngModel)]="service.selectListar[0].Autonomo"
-                      class="form-control form-control-sm" id="input-select" requiered>
-                      <option *ngIf="service.selectListar[0].Autonomo<=0"
-                      hidden value="" disabled selected>Si</option>
-                      <option *ngIf="service.selectListar[0].Autonomo >=1"
-                      hidden value="" disabled selected>No</option>
-                        <option matInput  value="0">Si</option>
-                        <option matInput  value="1">No</option>
-                      </select>
+                      <input  type="text" class="form-control form-control-sm" *ngIf="service.selectListar.Autonomo<=0"
+                       name="Autonomo" #Autonomo="ngModel" ngModel="Si" disabled>
+
+                       <input  type="text" class="form-control form-control-sm" *ngIf="service.selectListar.Autonomo>=1"
+                       name="Autonomo" #Autonomo="ngModel" ngModel="No" disabled>
                   </div>
                   <div class="form-group">
                     <label class='col-form-label1'>Cargo</label>
-                    <select  mat-select  name="Cargo" #service.selectListar[0].Cargo="ngModel" 
-                    [ngModel]="service.selectListar[0].Cargo" [value]="service.selectListar[0].Cargo"
-                    class="form-control form-control-sm" id="input-select"  >
-                    <option [ngValue]=""disabled selected hidden>{{service.selectListar[0].Cargo}}</option>
-                      <option matInput *ngFor="let Cargo of cargos" [value]="Cargo.ID">{{Cargo.Nombre}}</option>
-                    </select>
+                    <input  type="text" class="form-control form-control-sm"
+                      name="Cargo" #Cargo="ngModel"  [ngModel]="service.selectListar.Cargo"  disabled>
                 </div>
                   
               </mat-card-content>
@@ -151,7 +184,10 @@
           </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Actualizar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="UpdateEmpleado(EmpleadoUpdateForm)"
+      [disabled]="EmpleadoUpdateForm.invalid">Actualizar</button>
+    
+      <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancelar</button>
     </div>
   </ng-template>
 
@@ -172,30 +208,35 @@
                     <div class="form-group">
                       <label class='col-form-label1'>Nombres</label>
                       <input  type="text" class="form-control form-control-sm"
-                      name="Nombres" #Nombres="ngModel" [(ngModel)]="service.selectListar[0].Nombres" disabled>
+                      name="Nombres"  [(ngModel)]="service.selectListar.Nombres" disabled>
                   </div>
                   
                   <div class="form-group">
                     <label class='col-form-label1'>Apellidos</label>
                     <input  type="text" class="form-control form-control-sm"
-                       name="Apellidos" #Apellidos="ngModel" [(ngModel)]="service.selectListar[0].Apellidos" disabled>
+                       name="Apellidos" [(ngModel)]="service.selectListar.Apellidos" disabled>
                   </div>
       
                   <div class="form-group">
                     <label class='col-form-label1'>N° documento de identidad</label>
                     <input  type="text" class="form-control form-control-sm"
-                       name="DNI" #DNI="ngModel" [(ngModel)]="service.selectListar[0].DNI" disabled>
+                       name="DNI"  [(ngModel)]="service.selectListar.DNI" disabled>
                   </div>
                   
                   <div class="form-group">
                     <label class='col-form-label1'>Celular</label>
                     <input  type="text" class="form-control form-control-sm"
-                       name="Celular" #Celular="ngModel" [(ngModel)]="service.selectListar[0].Celular" disabled>
+                       name="Celular"  [(ngModel)]="service.selectListar.Celular" disabled>
                   </div>
                   <div class="form-group">
                     <label class='col-form-label1'>Email</label>
                     <input  type="text" class="form-control form-control-sm"
-                    name="Correo" #Correo="ngModel" [(ngModel)]="service.selectListar[0].Correo" disabled>
+                    name="Correo" [(ngModel)]="service.selectListar.Correo" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label class='col-form-label1'>Direccion</label>
+                    <input  type="text" class="form-control form-control-sm"
+                       name="Direccion" #Direccion="ngModel" [(ngModel)]="service.selectListar.Direccion" disabled>
                   </div>
               </mat-card-content>
             </mat-card>
@@ -205,19 +246,24 @@
                   <mat-card-title>Detalle</mat-card-title>
               </mat-card-header>
               <mat-card-content class="card-body" style="padding-top: 10px;">
+                <div class="form-group">
+                  <label class='col-form-label1'>Estado</label>
+                    <input  type="text" class="form-control form-control-sm"
+                    name="Estado" #Eargo="ngModel"  [ngModel]="service.selectListar.Estado"  disabled>
+                </div>
                   <div class="form-group">
                     <label class='col-form-label1'>Autonomo</label>
-                    <input  type="text" class="form-control form-control-sm" *ngIf="service.selectListar[0].Autonomo<=0"
+                    <input  type="text" class="form-control form-control-sm" *ngIf="service.selectListar.Autonomo<=0"
                        name="Autonomo" #Autonomo="ngModel" ngModel="Si" disabled>
 
-                       <input  type="text" class="form-control form-control-sm" *ngIf="service.selectListar[0].Autonomo>=1"
+                       <input  type="text" class="form-control form-control-sm" *ngIf="service.selectListar.Autonomo>=1"
                        name="Autonomo" #Autonomo="ngModel" ngModel="No" disabled>
                   </div>
                   <div class="form-group">
                     <label class='col-form-label1'>Cargo</label>
-                      <input  type="text" class="form-control form-control-sm"
-                      name="cargo" #cargo="ngModel"  [ngModel]="service.selectPersonal.cargo"  disabled>
-                  </div>
+                    <input  type="text" class="form-control form-control-sm"
+                      name="Cargo" #Cargo="ngModel"  [ngModel]="service.selectListar.Cargo"  disabled>
+                </div>
                   
               </mat-card-content>
             </mat-card>

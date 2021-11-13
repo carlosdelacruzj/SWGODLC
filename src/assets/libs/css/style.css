@@ -4576,6 +4576,7 @@ Pills vertical
     padding: 8px!important; 
     border-bottom-width: 0.5px!important;
     border-bottom-style: solid!important;
+    text-align: center;
 }
 .fa-2x {
     color:#304a6e;
@@ -4591,6 +4592,7 @@ Pills vertical
 .table th {
     color: #3d405c;
     font-family: 'Circular Std Medium';
+    text-align: center;
 }
 
 .table-bordered {

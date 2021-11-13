@@ -20,11 +20,7 @@ export class ListarportipoComponent implements OnInit {
   @Input() idModelo=0;
 
   btnStatus = true;
-  status = 'check_circle';
-  enableDisableRule() {
-    this.btnStatus = !this.btnStatus;
-    this.status = this.btnStatus ? 'check_circle' : 'privacy_tip';
-  }
+  status = 'Disponible';
 
   dataSource1!: MatTableDataSource<any>;
 
@@ -90,6 +86,11 @@ export class ListarportipoComponent implements OnInit {
   }
   clear(equipoForm: NgForm){
     equipoForm.reset();
- }
+  }
+
+  enableDisableRule() {
+    this.btnStatus = !this.btnStatus;
+    this.status = this.btnStatus ? 'Disponible' : 'Mantenimiento';
+  }
 
 }

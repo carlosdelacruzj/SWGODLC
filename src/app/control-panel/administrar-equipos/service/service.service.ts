@@ -16,7 +16,7 @@ export class AdministrarEquiposService {
     Nombre: '',
     Marca: '',
     Modelo: '',
-    Estado: '',
+    Estado: ''
   };
 
   selectTipoAllID: EquipoTipoAllID = {
@@ -30,7 +30,7 @@ export class AdministrarEquiposService {
     Equipo: '',
     Marca: '',
     Modelo: '',
-    Codigo: '',
+    Serie: '',
     Fecha: '',
     Estado: ''
   };
@@ -41,7 +41,7 @@ export class AdministrarEquiposService {
     Modelo: '',
     IdEquipo: 0,
     IdMarca: 0,
-    IdModelo: 0,
+    IdModelo: 0
   };
 
   selectAllMarca: EquipoAllMARCA = {
@@ -70,7 +70,7 @@ export class AdministrarEquiposService {
     'https://tp2021database.herokuapp.com/equipo/consulta/getByTipoEquipo/';
 
   private EQUIPO_TIPOIDMARCAMODELO =
-    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup/';
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup'; //FECHA?
 
   private EQUIPO_ALLGROUP =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposGroup';
@@ -102,17 +102,13 @@ export class AdministrarEquiposService {
   public getMarcaEquipo(): Observable<any> {
     return this.http.get(this.EQUIPO_ALLMARCA);
   }
+  // POR EQUIPO MARCA MODELO https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup/1/1/1
+  public getEquipoMarcaModelo(idEquipo: number,idMarca:number,idModelo:number): Observable<any> {
+    return this.http.get(`${this.EQUIPO_TIPOIDMARCAMODELO}/${idEquipo}/${idMarca}/${idModelo}`);
+  }
 
-  //prueba de post
-  public postRegistrarEquipo(
-    idEquipo: string,
-    fecha: string,
-    modelo: number
-  ) {
-    return this.http.post(this.REGISTER_EQUIPO, {
-      idEquipo: idEquipo,
-      fecha: fecha,
-      modelo: modelo,
-    });
+
+  public rEquipo(data:any): Observable<any> {
+    return this.http.post(this.REGISTER_EQUIPO,data);
   }
 }

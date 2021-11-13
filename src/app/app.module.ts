@@ -37,6 +37,8 @@ import { EditarServicioComponent } from './control-panel/administrar-paquete-ser
 import { AdministrarEquiposComponent } from './control-panel/administrar-equipos/administrar-equipos.component';
 import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
+import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
+import { RegistrarequipoComponent } from './control-panel/administrar-equipos/registrarequipo/registrarequipo.component';
 
 
 
@@ -60,6 +62,8 @@ import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agr
     AdministrarEquiposComponent,
     GestionarPersonalComponent,
     AgregarPersonalComponent,
+    ListarportipoComponent,
+    RegistrarequipoComponent,
   ],
   imports: [
     BrowserModule,

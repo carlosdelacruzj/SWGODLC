@@ -20,12 +20,12 @@ export class EquipoTipoAllID { //Filtro
     public Modelo: string,
     public Estado: string) {}
 }
-export class EquipoTipoAllIDMARCAMODELO { //Filtro
+export class EquipoTipoAllIDMARCAMODELO { //Filtro 3 ids
   constructor(
     public Equipo: String,
     public Marca: string,
     public Modelo: string,
-    public Codigo: String,
+    public Serie: String,
     public Fecha: String,
     public Estado: string) {}
 }

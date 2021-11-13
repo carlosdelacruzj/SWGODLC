@@ -26,8 +26,12 @@ export class AdministrarEquiposComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   equipos: TEquipo[]=[];
   marcas: MEquipo[]=[];
-  columnsToDisplay = ['equipo','marca','modelo','ver'];
+  esPrincipal: boolean=true;
+  idEquipo: number=0;
+  idMarca: number=0;
+  idModelo: number=0;
 
+  columnsToDisplay = ['equipo','marca','modelo','ver'];
 
   constructor(private service: AdministrarEquiposService) {}
 
@@ -60,6 +64,13 @@ export class AdministrarEquiposComponent implements OnInit {
   // FILTRO GENERAL
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;
+  }
+
+  verDetalle(idEquipo: number, idMarca: number, idModelo:number){
+    this.esPrincipal = false;
+    this.idEquipo = idEquipo;
+    this.idMarca = idMarca;
+    this.idModelo = idModelo;
   }
 
 }

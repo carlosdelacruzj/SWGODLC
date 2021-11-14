@@ -133,7 +133,7 @@
       <mat-card class="card">
         <mat-card-header>
           <mat-card-title>
-            <h4>Datos personales</h4>
+            <h4>Datos Proyecto</h4>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="card-body" style="padding-top: 10px;">
@@ -184,35 +184,18 @@
           <div class="form-group">
             <label class='col-form-label1'>Fin de edicion</label>
             <input type="text" class="form-control form-control-sm" name="Pro_Fecha_Fin_Edicion"
-              #Pro_Fecha_Fin_Edicion="ngModel" [(ngModel)]="service.selectProyecto.Pro_Fecha_Fin_Edicion" disabled>
+              #Pro_Fecha_Fin_Edicion="ngModel" [(ngModel)]="service.selectProyecto.Pro_Fecha_Fin_Edicion">
 
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>enlace</label>
+
+            <textarea rows="3" type="text" class="form-control form-control-sm" name="enlace" #enlace="ngModel"
+              [(ngModel)]="service.selectProyecto.Pro_Enlace"></textarea>
           </div>
 
         </mat-card-content>
       </mat-card>
-
-      <!-- <mat-card class="card">
-        <mat-card-header>
-          <mat-card-title>Detalle</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body" style="padding-top: 10px;">
-          <div class="form-group">
-            <label class='col-form-label1'>Autonomo</label>
-            <select mat-select name="Autonomo" class="form-control form-control-sm" id="input-select" requiered>
-              <option matInput value="0">Si</option>
-              <option matInput value="1">No</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class='col-form-label1'>Cargo</label>
-            <select mat-select name="Cargo" class="form-control form-control-sm" id="input-select">
-              <option [ngValue]="" disabled selected hidden></option>
-              <option matInput></option>
-            </select>
-          </div>
-
-        </mat-card-content>
-      </mat-card> -->
 
     </form>
   </div>
@@ -220,7 +203,6 @@
     <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Atras</button>
   </div>
 </ng-template>
-
 <!-- Modal Visualizar -->
 <ng-template #contentView let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -234,7 +216,7 @@
       <mat-card class="card">
         <mat-card-header>
           <mat-card-title>
-            <h4>Datos personales</h4>
+            <h4>Datos Proyecto</h4>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="card-body" style="padding-top: 10px;">
@@ -258,7 +240,6 @@
             <textarea rows="3" type="text" class="form-control form-control-sm" name="Descripcion"
               #Descripcion="ngModel" [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
           </div>
-
           <div class="form-group">
             <label class='col-form-label1'>Fecha Evento</label>
             <input type="text" class="form-control form-control-sm" name="F_Evento" #F_Evento="ngModel"
@@ -281,39 +262,20 @@
               #EPro_Fecha_Inicio_Edicion="ngModel" [(ngModel)]="service.selectProyecto.EPro_Fecha_Inicio_Edicion"
               disabled>
           </div>
-
           <div class="form-group">
             <label class='col-form-label1'>Fin de edicion</label>
             <input type="text" class="form-control form-control-sm" name="Pro_Fecha_Fin_Edicion"
               #Pro_Fecha_Fin_Edicion="ngModel" [(ngModel)]="service.selectProyecto.Pro_Fecha_Fin_Edicion" disabled>
+          </div>
+          <div class="form-group">
+            <label class='col-form-label1'>enlace</label>
 
+            <textarea rows="3" type="text" class="form-control form-control-sm" name="enlace" #enlace="ngModel"
+              [(ngModel)]="service.selectProyecto.Pro_Enlace"></textarea>
           </div>
 
         </mat-card-content>
       </mat-card>
-
-      <!-- <mat-card class="card">
-        <mat-card-header>
-          <mat-card-title>Detalle</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="card-body" style="padding-top: 10px;">
-          <div class="form-group">
-            <label class='col-form-label1'>Autonomo</label>
-            <select mat-select name="Autonomo" class="form-control form-control-sm" id="input-select" requiered>
-              <option matInput value="0">Si</option>
-              <option matInput value="1">No</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class='col-form-label1'>Cargo</label>
-            <select mat-select name="Cargo" class="form-control form-control-sm" id="input-select">
-              <option [ngValue]="" disabled selected hidden></option>
-              <option matInput></option>
-            </select>
-          </div>
-
-        </mat-card-content>
-      </mat-card> -->
 
     </form>
   </div>

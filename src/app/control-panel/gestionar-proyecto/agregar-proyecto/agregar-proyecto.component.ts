@@ -52,6 +52,7 @@ export class AgregarProyectoComponent implements OnInit {
       codigo_pedido: ProyectoForm.value.ID,
       fecha_inicio_edicion: this.fechaOk,
     };
+    console.log("aaaaaah")
     console.log(data);
     this.service.registro(data).subscribe(
       (res) => {

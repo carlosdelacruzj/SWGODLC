@@ -100,6 +100,7 @@ export class GestionarProyectoComponent implements OnInit {
     this.service.getProyectoID(valor).subscribe((responde) => {
       this.service.selectProyecto = responde[0];
       console.log(this.service.selectProyecto)
+
     })
   }
 

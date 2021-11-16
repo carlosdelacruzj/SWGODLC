@@ -7,22 +7,23 @@ export class Personal {
         public doc : string,
         public direccion : string,
         public autonomo: 0,
-        public cargo: 0
+        public cargo: 0,
+        public estado:0
     ) {}
   }
 
   export class PersonalListar {
-    0:{
-       ID: number,
-         Nombres: string,
-         Apellidos: string,
-         DNI : string,
-         Celular : string,
-         Correo : string,
-         Autonomo : 0,
-         Cargo: string,
-         Estado: string
-
-    }   
+    constructor(
+    public      ID: number,
+    public     Nombres: string,
+    public     Apellidos: string,
+    public     DNI : string,
+    public     Celular : string,
+    public     Correo : string,
+    public     Autonomo : 0,
+    public     Cargo: string,
+    public     Estado: string,
+    public     Direccion:string
+    ) {}
       
   }

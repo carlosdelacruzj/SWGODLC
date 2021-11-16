@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { PersonalService } from '../service/personal.service';
+import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 
 @Component({
@@ -21,10 +21,6 @@ export class AgregarPersonalComponent implements OnInit {
   
   ngOnInit(): void {
   }
-  //correo: EmpleadoForm.value.correo.pattern(/\w+@\w+\.+[a-z]/),
-  //celular: EmpleadoForm.value.celular.pattern(/(9)([0-9][-]*){8}/),
-  //doc: EmpleadoForm.value.doc.pattern(/^\d{8}(?:[-\s]\d{4})?$/),
-
   AddEmpleado(EmpleadoForm: NgForm) {
     let data = {
       empleado:this.data, 
@@ -39,7 +35,7 @@ export class AgregarPersonalComponent implements OnInit {
         cargo: EmpleadoForm.value.cargo
     };
     this.service.createEmpleado(data).subscribe(
-      (res) => { console.log("DATA: ", res);
+      (res) => { 
       this.clear(EmpleadoForm);
       swal.fire({
         text: 'Registro exitoso',

@@ -5,14 +5,12 @@ import { MatSort } from '@angular/material/sort';
 import { PersonalService } from './service/personal.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { PersonalListar } from './model/personal.model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import swal from 'sweetalert2';
 
 interface Cargo {
   ID: string;
   Nombre: string;
 }
-
 
 @Component({
   selector: 'app-gestionar-personal',
@@ -37,6 +35,13 @@ export class GestionarPersonalComponent implements OnInit {
   form = new FormGroup({
     cargoF: new FormControl(null, Validators.required)
   });
+
+  public data: any;
+  nombresPattern = "^[a-zA-Z ]{2,20}$"; 
+  apellidoPattern = "^[a-zA-Z ]{2,30}$"; 
+  docPattern = "^[0-9]{1}[0-9]{7}$"; 
+  celularPattern = "^[1-9]{1}[0-9]{6,8}$"; 
+  correoPattern = "^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"; 
   
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
@@ -64,9 +69,6 @@ export class GestionarPersonalComponent implements OnInit {
     this.service.getCargos().subscribe(
       response =>{
         this.cargos=response;
-        console.log(response);
-        console.log(this.cargos);
-        
     });
   }
 
@@ -83,7 +85,43 @@ export class GestionarPersonalComponent implements OnInit {
     
     this.service.getEmpleadoID(ID).subscribe(
       response =>{
-        this.service.selectListar=response;
+        this.service.selectListar=response[0];
     });
+  }
+  UpdateEmpleado(EmpleadoForm: NgForm) {
+    let data = {
+        ID: EmpleadoForm.value.ID,
+        Correo: EmpleadoForm.value.Correo,
+        Celular: EmpleadoForm.value.Celular,
+        Direccion:EmpleadoForm.value.Direccion,
+        Estado: EmpleadoForm.value.Estado
+    };
+    this.service.updateEmpleado(EmpleadoForm.value).subscribe(
+       (res) => { 
+         this.getEmpleados();
+        this.getEmpleadoView(EmpleadoForm.value.ID);
+
+       swal.fire({
+         text: 'Se actulizó al empleado exitosamente',
+         icon: 'success',
+         showCancelButton: false,
+         customClass: {
+             confirmButton: 'btn btn-success' ,
+         },
+         buttonsStyling: false
+     });
+     },
+       (err) => {console.error(err)
+         swal.fire({
+           text: 'Ocurrió un error, volver a intentar.',
+           icon: 'warning',
+           showCancelButton: false,
+           customClass: {
+               confirmButton: 'btn btn-warning',
+           },
+           buttonsStyling: false
+       });
+       }
+     );
   }
 }

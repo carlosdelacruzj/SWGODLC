@@ -14,17 +14,22 @@ import swal from 'sweetalert2';
 })
 export class ListarportipoComponent implements OnInit {
   @ViewChild(MatSort) matSort1!: MatSort;
+  @ViewChild(MatSort) matSort2!: MatSort;
   @ViewChild('paginator') paginator1!: MatPaginator;
   @Input() idEquipo=0;
   @Input() idMarca=0;
   @Input() idModelo=0;
+  @Input() Modelo = '';
 
-  btnStatus = true;
-  status = 'Disponible';
+  toggle = true;
+  Estado: string='';
+  txtEstado: string = this.Estado;
 
   dataSource1!: MatTableDataSource<any>;
+  dataSource2!: MatTableDataSource<any>;
 
   columnsToDisplay = ['equipo','marca','modelo','serie','fecha','estado','estados'];
+  columnsToDisplay2 = ['disponible','enUso','mantenimiento','noDisponible'];
 
   constructor(public service: AdministrarEquiposService, config: NgbModalConfig, private modalService: NgbModal) {
       config.backdrop = 'static';
@@ -33,6 +38,7 @@ export class ListarportipoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEquipoMarcaModeloAll();
+    this.getCEstados();
   }
   //Muestra la tabla
   getEquipoMarcaModeloAll(){
@@ -42,7 +48,7 @@ export class ListarportipoComponent implements OnInit {
       this.dataSource1.sort = this.matSort1;
     });
   }
-  // FILTRO GENERAL
+  // BUSCADOR GENERAL
   filterData($event: any) {
     this.dataSource1.filter = $event.target.value;
   }
@@ -50,7 +56,12 @@ export class ListarportipoComponent implements OnInit {
     this.modalService.open(content);
     this.service.registerEquipo.modelo = this.idModelo;
   }
-
+  getCEstados(){
+    this.service.getCountEstados(this.idModelo).subscribe((response: any) => {
+      this.dataSource2 = new MatTableDataSource(response);
+      this.dataSource2.sort = this.matSort2;
+    });
+  }
   addEquipo(equipoForm: NgForm) {
     let data = {
       idEquipo: equipoForm.value.idEquipo,
@@ -61,6 +72,7 @@ export class ListarportipoComponent implements OnInit {
       (res) => {
       this.clear(equipoForm);
       this.getEquipoMarcaModeloAll();
+      this.getCEstados();
       swal.fire({
         text: 'Registro exitoso',
         icon: 'success',
@@ -88,9 +100,18 @@ export class ListarportipoComponent implements OnInit {
     equipoForm.reset();
   }
 
-  enableDisableRule() {
-    this.btnStatus = !this.btnStatus;
-    this.status = this.btnStatus ? 'Disponible' : 'Mantenimiento';
+  putStatus(idEquipo: string){
+    console.log("Ejecutandose");
+    this.service.updateStatus(idEquipo).subscribe((response: any) => {
+      this.getEquipoMarcaModeloAll();
+      this.getCEstados();
+    });
   }
 
+  isDisable(Estado: string){
+    if(Estado === 'En Uso'||Estado === 'No Disponible'){
+      return true;
+    }
+    return false;
+  }
 }

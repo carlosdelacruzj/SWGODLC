@@ -24,14 +24,16 @@ export class AdministrarEquiposComponent implements OnInit {
   @ViewChild(MatSort) matSort!: MatSort;
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource!: MatTableDataSource<any>;
+
   equipos: TEquipo[]=[];
   marcas: MEquipo[]=[];
   esPrincipal: boolean=true;
   idEquipo: number=0;
   idMarca: number=0;
   idModelo: number=0;
+  Modelo: string='';
 
-  columnsToDisplay = ['equipo','marca','modelo','ver'];
+  columnsToDisplay = ['equipo','marca','modelo','cEquipo','ver'];
 
   constructor(private service: AdministrarEquiposService) {}
 
@@ -48,7 +50,7 @@ export class AdministrarEquiposComponent implements OnInit {
       this.dataSource.sort = this.matSort;
     });
   }
-  //FiLTROS
+  //
   getTipoEquipos() {
     this.service.getTipoEquipo().subscribe(
       response =>{
@@ -61,16 +63,16 @@ export class AdministrarEquiposComponent implements OnInit {
         this.marcas=response;
     });
   }
-  // FILTRO GENERAL
+  //BUSCADOR GENERAL
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;
   }
-
-  verDetalle(idEquipo: number, idMarca: number, idModelo:number){
+  //Segunda vista
+  verDetalle(idEquipo: number, idMarca: number, idModelo:number, Modelo:string){
     this.esPrincipal = false;
     this.idEquipo = idEquipo;
     this.idMarca = idMarca;
     this.idModelo = idModelo;
+    this.Modelo = Modelo;
   }
-
 }

@@ -10,7 +10,7 @@ interface sServicios {
 @Component({
   selector: 'app-editar-servicio',
   templateUrl: './editar-servicio.component.html',
-  styleUrls: ['./editar-servicio.component.css']
+  styleUrls: ['./editar-servicio.component.css'],
 })
 export class EditarServicioComponent implements OnInit {
   servicio = [];
@@ -21,27 +21,26 @@ export class EditarServicioComponent implements OnInit {
     public service5: EventoAllServiciosService,
     public service: EventoAllServiciosService,
     public service4: EventoAllServiciosService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getSelect();
-    console.log(this.data);
   }
 
-  
-  getSelect(){
+  getSelect() {
     this.service.getAllServicios().subscribe(
-      res =>{this.sServicio= res;
-      },err => console.error(err)
-    )}
+      (res) => {
+        this.sServicio = res;
+      },
+      (err) => console.error(err)
+    );
+  }
 
-
-
-  editarServicio(ServicioForm: NgForm){
+  editarServicio(ServicioForm: NgForm) {
     let data = {
       //evento: ServicioForm.value.Evento,
       //servicio: ServicioForm.value.Servicio,
-  
+
       /*
       servicio: ServicioForm.value.Servicio,
       titulo: ServicioForm.value.Titulo,
@@ -53,14 +52,14 @@ export class EditarServicioComponent implements OnInit {
       titulo: ServicioForm.value.Titulo,
       precio: ServicioForm.value.Precio,
       concepto: ServicioForm.value.Descripcion,
-      id: ServicioForm.value.ID
-
-      };
+      id: ServicioForm.value.ID,
+    };
 
     this.service4.registro2(data).subscribe(
-      (res) => { console.log("DATA: ", res)},
+      (res) => {
+        console.log('DATA: ', res);
+      },
       (err) => console.error(err)
     );
   }
-
 }

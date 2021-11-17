@@ -3,4 +3,5 @@ export interface Voucher {
   Fecha: string;
   Monto: number;
   Link: string;
+  MetodoPago: string;
 }

@@ -17,6 +17,8 @@ export class RegistrarPagoService {
   private GET_METODOS =
     'https://tp2021database.herokuapp.com/voucher/consulta/getAllMetodoPago';
 
+  private POST_PAGO = 'https://tp2021database.herokuapp.com/postVoucher';
+
   constructor(private http: HttpClient) {}
 
   public getPedidosContratados(): Observable<any> {
@@ -37,5 +39,23 @@ export class RegistrarPagoService {
 
   public getMetodosPago(): Observable<any> {
     return this.http.get(this.GET_METODOS);
+  }
+
+  public postPago(
+    selectedFile: any,
+    monto: string,
+    fechaRegistro: string,
+    idPedido: string,
+    estadoVoucher: string,
+    metodoPago: string
+  ) {
+    const fd = new FormData();
+    fd.append('file', selectedFile, selectedFile.name);
+    fd.append('monto', monto);
+    fd.append('fechaRegistro', fechaRegistro);
+    fd.append('idPedido', idPedido);
+    fd.append('estadoVoucher', estadoVoucher);
+    fd.append('metodoPago', metodoPago);
+    return this.http.post(this.POST_PAGO, fd).toPromise();
   }
 }

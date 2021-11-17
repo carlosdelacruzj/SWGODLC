@@ -14,3 +14,14 @@ export class Proyecto {
   ) { }
 }
 
+export class ProyectoListar {
+  constructor(
+  public      finFecha: string,
+  public     multimedia: number,
+  public     edicion: number,
+  public     enlace : string,
+  public     Observacion : string,
+  public     id : number,
+  ) {}
+    
+}

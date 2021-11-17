@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Proyecto } from '../model/proyecto.model';
+import { Proyecto, ProyectoListar } from '../model/proyecto.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,15 @@ export class ProyectoService {
     Pro_Asignado: 0,
     FK_ESPro_Cod: 0,
     Pro_Observacion: '',
+  };
+
+  selectListar: ProyectoListar = {
+    finFecha: "",
+    multimedia: 0,
+    edicion: 0,
+    enlace: "",
+    Observacion: "",
+    id: 115
   };
 
   proyecto: Proyecto[] = [];
@@ -44,4 +53,8 @@ export class ProyectoService {
     return this.http.get(this.API_PRUEBA + 'consulta/getByIdProyecto/' + id);
   }
 
+  public updateProyecto(Proyecto1: ProyectoListar) {
+
+    return this.http.put(`https://tp2021database.herokuapp.com/proyecto/actualiza/putProyectoById`, Proyecto1);
+  }
 }

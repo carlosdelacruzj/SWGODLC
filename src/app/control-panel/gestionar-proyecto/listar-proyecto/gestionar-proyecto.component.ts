@@ -8,6 +8,7 @@ import { PedidoService } from '../service/pedido.service';
 import { Pedido } from '../model/pedido.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-gestionar-proyecto',
@@ -15,6 +16,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./gestionar-proyecto.component.css'],
 })
 export class GestionarProyectoComponent implements OnInit {
+  fechaOk = '';
   displayedColumns = [
     'PK_Pro_Cod',
     'Pro_Nombre',
@@ -93,13 +95,13 @@ export class GestionarProyectoComponent implements OnInit {
   getPedidoID(valor: number) {
     this.service2.getAllNombresID(valor).subscribe((responde) => {
       this.service2.selectPedido2 = responde[0];
-      console.log(this.service2.selectPedido2);
+      // console.log(this.service2.selectPedido2);
     });
   }
   getProyectoID(valor: number) {
     this.service.getProyectoID(valor).subscribe((responde) => {
       this.service.selectProyecto = responde[0];
-      console.log(this.service.selectProyecto)
+      // console.log(this.service.selectProyecto)
 
     })
   }
@@ -114,12 +116,72 @@ export class GestionarProyectoComponent implements OnInit {
 
   }
 
-  updateProyecto(ProyectoForm2: NgForm) {
+  UpdateEmpleado(EmpleadoForm: NgForm, fecha: string, id: number) {
+    this.fechaOk = fecha.substr(6) + fecha.substr(2, 4) + fecha.substr(0, 2); //yyyy-MM-dd
+    console.log(id)
+    console.log(fecha);
     let data = {
-      id: ProyectoForm2.value.id,
-      nombreProyecto: ProyectoForm2.value.ID,
-      fechaFinEdicion: ProyectoForm2.value.F_Evento
+      finFecha: this.fechaOk,
+      multimedia: 1,
+      edicion: 1,
+      enlace: EmpleadoForm.value.enlace,
+      Observacion: 'Esto es una prueba',
+      id: id
     };
+
     console.log(data);
+
+    this.service.updateProyecto(data).subscribe((res) => {
+      this.getProyecto();
+      swal.fire({
+        text: 'Se actulizó al empleado exitosamente',
+        icon: 'success',
+        showCancelButton: false,
+        customClass: {
+          confirmButton: 'btn btn-success',
+        },
+        buttonsStyling: false
+      });
+    },
+      (err) => {
+        console.error(err)
+        swal.fire({
+          text: 'Ocurrió un error, volver a intentar.',
+          icon: 'warning',
+          showCancelButton: false,
+          customClass: {
+            confirmButton: 'btn btn-warning',
+          },
+          buttonsStyling: false
+        });
+      }
+    )
+    //   this.service.updateEmpleado(EmpleadoForm.value).subscribe(
+    //      (res) => { 
+    //        this.getEmpleados();
+    //       this.getEmpleadoView(EmpleadoForm.value.ID);
+
+    //      swal.fire({
+    //        text: 'Se actulizó al empleado exitosamente',
+    //        icon: 'success',
+    //        showCancelButton: false,
+    //        customClass: {
+    //            confirmButton: 'btn btn-success' ,
+    //        },
+    //        buttonsStyling: false
+    //    });
+    //    },
+    //      (err) => {console.error(err)
+    //        swal.fire({
+    //          text: 'Ocurrió un error, volver a intentar.',
+    //          icon: 'warning',
+    //          showCancelButton: false,
+    //          customClass: {
+    //              confirmButton: 'btn btn-warning',
+    //          },
+    //          buttonsStyling: false
+    //      });
+    //      }
+    //    );
   }
 }

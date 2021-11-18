@@ -105,22 +105,22 @@
 
             <div class="form-group">
               <label class='col-form-label'>Cargo</label>
-                <select mat-select class="form-control" name="cargo" [ngModel]="service.selectPersonal.cargo" >
-                  <option matInput  value="1">Fotográfo</option>
-                  <option matInput  value="2">Camarográfo</option>
+                <select  type="text" class="form-control form-control-sm"
+                name="cargo"  #cargo="ngModel"  [ngModel]="service.selectPersonal.cargo" requiered>
+                <option *ngFor="let c of cargos" [value]="c.ID">{{c.Nombre}}</option>
                 </select>
             </div>
-            
-            
-
-
 
         </mat-card-content>
       </mat-card>
 
-      <div style="text-align: center;">
-        <button class="btn btn-outline-dark"  type="submit" [disabled]="EmpleadoForm.invalid">Registrar</button>
-        <button class="btn btn-danger btn-lg" id="botonGuardar" [routerLink]="['/gestionar-personal']" (click)="clear(EmpleadoForm)">Atrás</button>
+      <div  class="row" style="text-align: center;">
+        <div class="col-6" style="text-align: right;"> 
+          <button  type="button" class="btn btn-outline-dark" [disabled]="EmpleadoForm.invalid">Registrar</button>
+        </div>
+        <div class="col-6" style="text-align: left;">
+          <button type="button" class="btn btn-outline-dark"  [routerLink]="['/gestionar-personal']" (click)="clear(EmpleadoForm)">Atrás</button>
+        </div> 
       </div>
       
     </form>

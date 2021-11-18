@@ -156,8 +156,8 @@
                     name="Estado" #service.selectListar.Estado="ngModel" #Estado="ngModel" 
                     [(ngModel)]="service.selectListar.Estado"      requiered>
                     <option disabled selected hidden>{{service.selectListar.Estado}}</option>
-                      <option matInput [ngValue]="0">Disponible</option>
-                      <option matInput  [ngValue]="1">No Disponible</option>
+                      <option matInput [ngValue]="1">Disponible</option>
+                      <option matInput  [ngValue]="2">No Disponible</option>
                     </select>
 
                     <div *ngIf="Estado.errors?.required">

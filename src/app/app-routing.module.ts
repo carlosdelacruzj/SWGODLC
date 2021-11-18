@@ -7,6 +7,8 @@ import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agr
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 
+import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
+import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
@@ -48,6 +50,9 @@ const routes: Routes = [
 
 
   { path: 'registrar-pago', component: RegistrarPagoComponent },
+  { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent},
+  { path: 'generar-contrato', component: GenerarContratoComponent },
+  { path: 'generar-contrato/contrato', component: ContratoComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
 

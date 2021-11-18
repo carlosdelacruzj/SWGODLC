@@ -22,6 +22,7 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
+import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 
 
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
@@ -42,6 +43,7 @@ import { ListarportipoComponent } from './control-panel/administrar-equipos/list
 
 
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
+import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
 
 
 @NgModule({
@@ -66,6 +68,8 @@ import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar
     AgregarPersonalComponent,
     ListarportipoComponent,
     RegistrarPagoComponent,
+    GenerarContratoComponent,
+    ContratoComponent,
   ],
   imports: [
     BrowserModule,

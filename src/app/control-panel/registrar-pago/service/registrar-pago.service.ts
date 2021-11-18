@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RegistrarPagoService {
+  private GET_PEDIDOS_PENDIENTES =
+    'https://tp2021database.herokuapp.com/voucher/consulta/getAllPedidoVoucher/1';
   private GET_PEDIDOS_CONTRATADOS =
     'https://tp2021database.herokuapp.com/voucher/consulta/getAllPedidoVoucher/2';
   private GET_PEDIDOS_PAGADOS =
@@ -23,6 +25,9 @@ export class RegistrarPagoService {
 
   public getPedidosContratados(): Observable<any> {
     return this.http.get(this.GET_PEDIDOS_CONTRATADOS);
+  }
+  public getPedidosPendientes(): Observable<any> {
+    return this.http.get(this.GET_PEDIDOS_PENDIENTES);
   }
 
   public getPedidosPagados(): Observable<any> {

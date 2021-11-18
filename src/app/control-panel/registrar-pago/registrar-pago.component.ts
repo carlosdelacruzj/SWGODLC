@@ -5,7 +5,7 @@ import { Monto } from './model/monto.model';
 import { MetodoPago } from './model/metodopago.model';
 import { Voucher } from './model/vouchers.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {OpenDialogComponent} from './open-dialog-img/open-dialog.component'
+import { OpenDialogComponent } from './open-dialog-img/open-dialog.component'
 import {
   MatDialog,
 } from '@angular/material/dialog';
@@ -28,6 +28,7 @@ export class RegistrarPagoComponent implements OnInit {
   estado = 'Aceptado';
   pedidosContratados: PedidoVoucher[] = [];
   pedidosPagados: PedidoVoucher[] = [];
+  pedidosPendientes: PedidoVoucher[] = [];
   informacionPagos: Monto[] = [];
   vouchersPago: Voucher[] = [];
   metodosPago: MetodoPago[] = [];
@@ -51,13 +52,14 @@ export class RegistrarPagoComponent implements OnInit {
     private service: RegistrarPagoService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.listadoPedidos = true;
     this.detallePedido = false;
     this.getPedidosContratados();
     this.getPedidosPagados();
+    this.getPedidosPendientes();
   }
 
   async getPedidosContratados() {
@@ -69,6 +71,11 @@ export class RegistrarPagoComponent implements OnInit {
   async getPedidosPagados() {
     this.service.getPedidosPagados().subscribe((response: any) => {
       this.pedidosPagados = response;
+    });
+  }
+  async getPedidosPendientes() {
+    this.service.getPedidosPendientes().subscribe((response: any) => {
+      this.pedidosPendientes = response;
     });
   }
 
@@ -200,7 +207,7 @@ export class RegistrarPagoComponent implements OnInit {
     `,
   ],
 })
-export class errorComponent {}
+export class errorComponent { }
 
 @Component({
   selector: 'pago-registrado',
@@ -214,11 +221,11 @@ export class errorComponent {}
     `,
   ],
 })
-export class registroComponent {}
+export class registroComponent { }
 
 @Component({
   selector: 'dialog-content-example-dialog',
   template: '<p>Dialog de prueba</p>',
-  
+
 })
-export class DialogContentExampleDialog {}
+export class DialogContentExampleDialog { }

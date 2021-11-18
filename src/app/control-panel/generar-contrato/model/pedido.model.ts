@@ -27,6 +27,7 @@ export class Pedido {
       public Hora_Evento: string,
       public Direccion: string,
       public Descripcion: string,
-      public NombrePedido: string
+      public NombrePedido: string,
+      public correo: string
     ) {}
   }

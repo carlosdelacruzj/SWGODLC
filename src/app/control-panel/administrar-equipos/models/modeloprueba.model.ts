@@ -20,12 +20,12 @@ export class EquipoTipoAllID { //Filtro
     public Modelo: string,
     public Estado: string) {}
 }
-export class EquipoTipoAllIDMARCAMODELO { //Filtro
+export class EquipoTipoAllIDMARCAMODELO { //Filtro 3 ids
   constructor(
     public Equipo: String,
     public Marca: string,
     public Modelo: string,
-    public Codigo: String,
+    public Serie: String,
     public Fecha: String,
     public Estado: string) {}
 }
@@ -37,6 +37,7 @@ export class EquipoAllGroup { //PRIMERA VISTA | EQUIPO MARCA MODELO ¿VER?
     public IdEquipo: number,
     public IdMarca: number,
     public IdModelo: number,
+    public Cantidad: number
   ) {}
 }
 
@@ -57,4 +58,19 @@ export class EquipoRegistrar { //registrar nuevo equipo
     public idEquipo: string,
     public fecha: string,
     public modelo: number) {}
+}
+
+export class countEstadosPorModelo {
+  constructor(
+    public Disponible: number,
+    public EnUso: number,
+    public Mantenimiento: number,
+    public NoDisponible: number
+    ){}
+}
+
+export class updateStatus {
+  constructor(
+    public idEquipo: string,
+  ){}
 }

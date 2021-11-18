@@ -12,6 +12,7 @@ import { EditarServicioComponent } from './control-panel/administrar-paquete-ser
 import { AdministrarEquiposComponent } from './control-panel/administrar-equipos/administrar-equipos.component';
 import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
+import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -40,6 +41,9 @@ const routes: Routes = [
   //PERSONAL RUTAS
   { path: 'gestionar-personal', component: GestionarPersonalComponent },
   { path: 'gestionar-personal/agregar', component: AgregarPersonalComponent },
+
+  //LISTAR EQUIPO
+  { path: 'administrar-equipos/listarportipo', component: ListarportipoComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];

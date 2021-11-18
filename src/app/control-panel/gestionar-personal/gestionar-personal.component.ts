@@ -89,13 +89,8 @@ export class GestionarPersonalComponent implements OnInit {
     });
   }
   UpdateEmpleado(EmpleadoForm: NgForm) {
-    let data = {
-        ID: EmpleadoForm.value.ID,
-        Correo: EmpleadoForm.value.Correo,
-        Celular: EmpleadoForm.value.Celular,
-        Direccion:EmpleadoForm.value.Direccion,
-        Estado: EmpleadoForm.value.Estado
-    };
+    console.log(EmpleadoForm.value.Estado);
+    console.log(EmpleadoForm.value);
     this.service.updateEmpleado(EmpleadoForm.value).subscribe(
        (res) => { 
          this.getEmpleados();

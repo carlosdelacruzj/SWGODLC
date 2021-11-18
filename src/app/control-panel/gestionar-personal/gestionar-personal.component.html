@@ -154,10 +154,10 @@
                   <label class='col-form-label1'>Estado</label>
                     <select  type="text" class="form-control form-control-sm"
                     name="Estado" #service.selectListar.Estado="ngModel" #Estado="ngModel" 
-                    [ngModel]="service.selectListar.Estado"     [value]="service.selectListar.Estado" requiered>
-                    <option [ngValue]=""disabled selected hidden>{{service.selectListar.Estado}}</option>
-                      <option matInput  value="Disponible">Disponible</option>
-                      <option matInput  value="No Disponible">No Disponible</option>
+                    [(ngModel)]="service.selectListar.Estado"      requiered>
+                    <option disabled selected hidden>{{service.selectListar.Estado}}</option>
+                      <option matInput [ngValue]="0">Disponible</option>
+                      <option matInput  [ngValue]="1">No Disponible</option>
                     </select>
 
                     <div *ngIf="Estado.errors?.required">
@@ -249,7 +249,7 @@
                 <div class="form-group">
                   <label class='col-form-label1'>Estado</label>
                     <input  type="text" class="form-control form-control-sm"
-                    name="Estado" #Eargo="ngModel"  [ngModel]="service.selectListar.Estado"  disabled>
+                    name="Estado" #Estado="ngModel"  [ngModel]="service.selectListar.Estado"  disabled>
                 </div>
                   <div class="form-group">
                     <label class='col-form-label1'>Autonomo</label>

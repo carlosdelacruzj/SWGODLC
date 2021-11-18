@@ -27,3 +27,19 @@ export class Personal {
     ) {}
       
   }
+
+  export class PersonalActualizar {
+    constructor(
+    public      ID: number,
+    public     Nombres: string,
+    public     Apellidos: string,
+    public     DNI : string,
+    public     Celular : string,
+    public     Correo : string,
+    public     Autonomo : 0,
+    public     Cargo: string,
+    public     Estado: 0,
+    public     Direccion:string
+    ) {}
+      
+  }

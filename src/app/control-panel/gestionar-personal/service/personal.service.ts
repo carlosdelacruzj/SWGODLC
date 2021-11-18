@@ -1,7 +1,7 @@
 import { Injectable, OnChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Personal, PersonalListar } from '../model/personal.model';
+import { Personal, PersonalActualizar, PersonalListar } from '../model/personal.model';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +52,7 @@ export class PersonalService {
   public getCargos(): Observable<any> {
     return this.http.get(this.URL_API+'consulta/getAllCargo');
   }
-  public updateEmpleado(Personal:PersonalListar) {
+  public updateEmpleado(Personal:PersonalActualizar) {
     
     return this.http.put(this.URL_API+'actualiza/putEmpleadoById',Personal);
   }  

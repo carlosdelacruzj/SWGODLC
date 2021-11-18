@@ -171,6 +171,8 @@ export class GestionarPedidoComponent implements OnInit {
       this.pedido.Descripcion = responde[0].Descripcion;
       this.pedido.NombrePedido = responde[0].NombrePedido;
       this.saldo = this.pedido.Costo_Total - this.pedido.Acuenta;
+
+      console.log(this.service2.getPedidoID(valor));
     });
   }
 
@@ -200,7 +202,7 @@ export class GestionarPedidoComponent implements OnInit {
     let year = this.fechaEditada.year.toString();
     let fecha = year + '-' + month + '-' + day;
 
-   
+
     this.service2.putPedido(this.estadoEditado, fecha, this.horaEditada, this.idPedido).subscribe({
       next: (res) => {
         alert(JSON.stringify(res));
@@ -233,7 +235,7 @@ export class GestionarPedidoComponent implements OnInit {
           alert(JSON.stringify(err));
         },
       });
-      
+
   }
 
   asignarDescripcion(id: number) {

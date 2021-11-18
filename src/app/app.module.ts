@@ -41,6 +41,7 @@ import { ListarportipoComponent } from './control-panel/administrar-equipos/list
 
 
 
+import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ListarportipoComponent } from './control-panel/administrar-equipos/list
     GestionarPersonalComponent,
     AgregarPersonalComponent,
     ListarportipoComponent,
+    RegistrarPagoComponent,
   ],
   imports: [
     BrowserModule,

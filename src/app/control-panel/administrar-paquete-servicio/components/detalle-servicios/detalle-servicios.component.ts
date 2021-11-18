@@ -5,7 +5,6 @@ import { EventoAllServiciosService } from '../../service/detalle-servicios.servi
 import { EventoServicioService } from '../../service/evento-servicio.service';
 import { EventServiceComponent } from '../event-service/event-service.component';
 
-
 interface sServicios {
   ID: number;
   Nombre: string;
@@ -14,14 +13,12 @@ interface sServicios {
 @Component({
   selector: 'app-detalle-servicios',
   templateUrl: './detalle-servicios.component.html',
-  styleUrls: ['./detalle-servicios.component.css']
+  styleUrls: ['./detalle-servicios.component.css'],
 })
 export class DetalleServiciosComponent implements OnInit {
   serviciosf = [];
-  @Input() ID: number=0;
-  @Input() Nombre: string='';
-
-  
+  @Input() ID: number = 0;
+  @Input() Nombre: string = '';
 
   sServicio: sServicios[] = [];
 
@@ -33,31 +30,33 @@ export class DetalleServiciosComponent implements OnInit {
     public dialogRef: MatDialogRef<DetalleServiciosComponent>
   ) {}
 
-
   ngOnInit(): void {
     this.getSelect();
-    console.log(this.data);
   }
-  
-  getSelect(){
+
+  getSelect() {
     this.service.getAllServicios().subscribe(
-      res =>{this.sServicio= res;
-      },err => console.error(err)
-    )}
-  
+      (res) => {
+        this.sServicio = res;
+      },
+      (err) => console.error(err)
+    );
+  }
+
   addServicio(ServicioForm: NgForm) {
     let data = {
-      evento:this.data, //COLOCAR EL ID POR EL EVENTO A REGISTRAR
+      evento: this.data, //COLOCAR EL ID POR EL EVENTO A REGISTRAR
       servicio: ServicioForm.value.Servicio,
       precio: ServicioForm.value.Precio,
       titulo: ServicioForm.value.Titulo,
-      descripcion: ServicioForm.value.Descripcion
+      descripcion: ServicioForm.value.Descripcion,
     };
     this.service.registro(data).subscribe(
-      (res) => { console.log("DATA: ", res); this.dialogRef.close();},
+      (res) => {
+        console.log('DATA: ', res);
+        this.dialogRef.close();
+      },
       (err) => console.error(err)
     );
-    
   }
-
 }

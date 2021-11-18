@@ -5,6 +5,7 @@ import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/ges
 import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/listar-proyecto/gestionar-proyecto.component';
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
+import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
@@ -45,6 +46,8 @@ const routes: Routes = [
   //LISTAR EQUIPO
   { path: 'administrar-equipos/listarportipo', component: ListarportipoComponent },
 
+
+  { path: 'registrar-pago', component: RegistrarPagoComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
 

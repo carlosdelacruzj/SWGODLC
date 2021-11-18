@@ -161,6 +161,9 @@ export class RegistrarPagoComponent implements OnInit {
           this.okPago();
           this.getVoucherPedido(this.idPedido);
           this.getVouchers(this.idPedido);
+          this.getPedidosContratados();
+          this.getPedidosPendientes();
+          this.getPedidosPagados();
         })
         .catch(() => {
           this.errorPago();

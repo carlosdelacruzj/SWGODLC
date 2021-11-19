@@ -5,6 +5,9 @@ import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/ges
 import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/listar-proyecto/gestionar-proyecto.component';
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
+import { GestionarClienteComponent } from './control-panel/gestionar-cliente/gestionar-cliente.component';
+import { RegistrarClienteComponent } from './control-panel/gestionar-cliente/registrar-cliente/registrar-cliente.component';
+import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar-cliente/editar-cliente.component';
 import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
@@ -13,7 +16,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'gestionar-equipos', component: GestionarEquiposComponent },
   { path: 'gestionar-proyecto', component: GestionarProyectoComponent },
+  { path: 'gestionar-cliente', component: GestionarClienteComponent },
   { path: 'gestionar-proyecto/agregar-proyecto', component: AgregarProyectoComponent },
+  { path: 'gestionar-cliente/registrar-cliente', component: RegistrarClienteComponent },
+  { path: 'gestionar-cliente/editar-cliente', component: EditarClienteComponent},
   { path: 'gestionar-pedido', component: GestionarPedidoComponent },
   { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent},
   { path: 'generar-contrato', component: GenerarContratoComponent },

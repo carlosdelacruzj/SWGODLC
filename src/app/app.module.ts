@@ -34,6 +34,9 @@ import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agr
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/actualizar-proyecto/actualizar-proyecto.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
+import { GestionarClienteComponent } from './control-panel/gestionar-cliente/gestionar-cliente.component';
+import { RegistrarClienteComponent } from './control-panel/gestionar-cliente/registrar-cliente/registrar-cliente.component';
+import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar-cliente/editar-cliente.component';
 
 
 @NgModule({
@@ -54,6 +57,9 @@ import { ContratoComponent } from './control-panel/generar-contrato/contrato/con
     ActualizarProyectoComponent,
     GenerarContratoComponent,
     ContratoComponent,
+    GestionarClienteComponent,
+    RegistrarClienteComponent,
+    EditarClienteComponent,
   ],
   imports: [
     BrowserModule,

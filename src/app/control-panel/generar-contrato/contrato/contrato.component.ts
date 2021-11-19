@@ -150,7 +150,6 @@ export class ContratoComponent implements OnInit {
         console.log(res);
       });
     });
-
   }
 
 

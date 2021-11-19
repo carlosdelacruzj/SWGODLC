@@ -33,6 +33,7 @@ export class PedidoService {
     Direccion: '',
     Descripcion: '',
     NombrePedido: '',
+    correo:''
   };
   
 

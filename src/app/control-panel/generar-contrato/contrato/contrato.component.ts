@@ -42,6 +42,9 @@ export class ContratoComponent implements OnInit {
     var pedido_costoTotal = ContratoForm.value.Costo_Total;
     var pedido_Acuenta = ContratoForm.value.Acuenta;
     var pedido_costoRestante = pedido_costoTotal - pedido_Acuenta;
+    var pedido_Email = this.service2.selectPedido2.correo
+
+    console.log(pedido_Email);
     const tiempoTranscurrido = Date.now();
     const hoy = new Date(tiempoTranscurrido);
     const pdfDefinition: any = {
@@ -136,8 +139,8 @@ export class ContratoComponent implements OnInit {
       console.log(blob);
       const fd = new FormData();
       fd.append('file', this.file, 'Contrato.pdf')
-      fd.append('subject', 'subject');
-      fd.append('email', 'black567_@hotmail.com');
+      fd.append('subject', 'Generación de contrato');
+      fd.append('email', pedido_Email);
       fd.append('message', 'message');
       this.http.post('https://tp2021database.herokuapp.com/send-email', fd).subscribe((res) => {
         console.log(res);

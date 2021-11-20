@@ -121,7 +121,7 @@
         </ng-container>
         <!-- Accion de Estados  -->
         <ng-container matColumnDef="estados">
-          <th mat-header-cell *matHeaderCellDef class="text-center">Estados</th>
+          <th mat-header-cell *matHeaderCellDef class="text-center">Actualizar Estado</th>
           <td mat-cell *matCellDef="let element" class="text-center">
             <button class="mat-raised-button" (click)="putStatus(element.Serie)"
             [disabled]="isDisable(element.Estado) ? 'true' : null"
@@ -141,7 +141,7 @@
 
 <ng-template #contentCreate let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h3 class="modal-title mm" id="modal-basic-title" >Registrar Equipo</h3>
+    <h3 class="modal-title mm" id="modal-basic-title" >Registrar Equipo del Modelo {{Modelo}}</h3>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -150,7 +150,7 @@
       <form #EquipoCreateForm="ngForm" >
           <mat-card class="card">
             <mat-card-header>
-                <mat-card-title><h4>Datos del Equipo</h4></mat-card-title>
+                <mat-card-title><h4>Registro</h4></mat-card-title>
             </mat-card-header>
             <mat-card-content class="card-body" style="padding-top: 10px;">
               <div class="form-group">
@@ -160,8 +160,8 @@
               </div>
               <div class="form-group">
                 <label class='col-form-label1'>Fecha</label>
-                <input  type="datetime-local" class="form-control form-control-sm"
-                name="fecha" #fecha="ngModel" [(ngModel)]="service.registerEquipo.fecha">
+                <input  type="text" class="form-control form-control-sm"
+                name="fecha" #fecha="ngModel" [(ngModel)]="service.registerEquipo.fecha" readonly>
               </div>
             <div class="form-group" style="display: none;">
               <label class='col-form-label1'>Modelo</label>
@@ -176,3 +176,6 @@
     <button type="button" class="btn btn-outline-dark" (click)="addEquipo(EquipoCreateForm)">Registrar</button>
   </div>
 </ng-template>
+
+
+

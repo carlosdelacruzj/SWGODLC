@@ -6,6 +6,8 @@ import { AdministrarEquiposService } from '../service/service.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
+import {formatDate } from '@angular/common';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-listarportipo',
@@ -25,6 +27,9 @@ export class ListarportipoComponent implements OnInit {
   Estado: string='';
   txtEstado: string = this.Estado;
 
+  hoy: number = Date.now();
+  sHoy = '';
+
   dataSource1!: MatTableDataSource<any>;
   dataSource2!: MatTableDataSource<any>;
 
@@ -34,6 +39,7 @@ export class ListarportipoComponent implements OnInit {
   constructor(public service: AdministrarEquiposService, config: NgbModalConfig, private modalService: NgbModal) {
       config.backdrop = 'static';
       config.keyboard = false;
+      this.sHoy = formatDate(this.hoy,'yyyy-MM-dd','en-US');
    }
 
   ngOnInit(): void {
@@ -55,6 +61,7 @@ export class ListarportipoComponent implements OnInit {
   open(content:any) {
     this.modalService.open(content);
     this.service.registerEquipo.modelo = this.idModelo;
+    this.service.registerEquipo.fecha = this.sHoy;
   }
   getCEstados(){
     this.service.getCountEstados(this.idModelo).subscribe((response: any) => {

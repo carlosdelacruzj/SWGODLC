@@ -7,7 +7,6 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 import {formatDate } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-listarportipo',
@@ -70,38 +69,53 @@ export class ListarportipoComponent implements OnInit {
     });
   }
   addEquipo(equipoForm: NgForm) {
-    let data = {
-      idEquipo: equipoForm.value.idEquipo,
-      fecha: equipoForm.value.fecha,
-      modelo: equipoForm.value.modelo
-    };
-    this.service.rEquipo(data).subscribe(
-      (res) => {
-      this.clear(equipoForm);
-      this.getEquipoMarcaModeloAll();
-      this.getCEstados();
-      swal.fire({
-        text: 'Registro exitoso',
-        icon: 'success',
-        showCancelButton: false,
-        customClass: {
-            confirmButton: 'btn btn-success',
-        },
-        buttonsStyling: false
-    });
-    },
-      (err) => {console.error(err)
+    swal.fire({
+      title: 'Esta seguro del registro?',
+      text: "El equipo se registrara con el modelo " + this.Modelo,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, registrar ahora!',
+      cancelButtonText: 'Cancelar'
+    }).then((options) => {
+      if(options.isConfirmed){
         swal.fire({
-          text: 'Ocurrió un error, volver a intentar.',
-          icon: 'warning',
+          text: 'Registro exitoso',
+          icon: 'success',
           showCancelButton: false,
           customClass: {
-              confirmButton: 'btn btn-warning',
+              confirmButton: 'btn btn-success',
           },
           buttonsStyling: false
-      });
+      })
+      let data = {
+        idEquipo: equipoForm.value.idEquipo,
+        fecha: equipoForm.value.fecha,
+        modelo: equipoForm.value.modelo
+      };
+      this.service.rEquipo(data).subscribe(
+        (res) => {
+        this.clear(equipoForm);
+        this.getEquipoMarcaModeloAll();
+        this.getCEstados();
+
+      },
+        (err) => {console.error(err)
+          swal.fire({
+            text: 'Ocurrió un error, volver a intentar.',
+            icon: 'warning',
+            showCancelButton: false,
+            customClass: {
+                confirmButton: 'btn btn-warning',
+            },
+            buttonsStyling: false
+        });
+        }
+      );
       }
-    );
+    })
+
   }
   clear(equipoForm: NgForm){
     equipoForm.reset();

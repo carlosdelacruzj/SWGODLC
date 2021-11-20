@@ -156,7 +156,14 @@
               <div class="form-group">
                 <label class='col-form-label1'>N° Serie</label>
                 <input  type="text" class="form-control form-control-sm"
-                name="idEquipo" #idEquipo="ngModel" [(ngModel)]="service.registerEquipo.idEquipo">
+                name="idEquipo" #idEquipo="ngModel" [(ngModel)]="service.registerEquipo.idEquipo"
+                [pattern]="seriePattern" required>
+                <div *ngIf="idEquipo.errors?.pattern">
+                  <p>*Sólo se acepta el formato: AAA-000</p>
+                </div>
+                <div *ngIf="idEquipo.errors?.required">
+                  <p>*Campo Requerido</p>
+                </div>
               </div>
               <div class="form-group">
                 <label class='col-form-label1'>Fecha</label>

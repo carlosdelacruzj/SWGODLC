@@ -26,6 +26,8 @@ export class ListarportipoComponent implements OnInit {
   Estado: string='';
   txtEstado: string = this.Estado;
 
+  seriePattern="^[A-Z]{3,3}[-]{1,1}[0-9]{3,3}$"
+
   hoy: number = Date.now();
   sHoy = '';
 

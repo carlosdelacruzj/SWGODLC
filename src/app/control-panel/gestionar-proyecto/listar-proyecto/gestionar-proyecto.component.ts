@@ -95,7 +95,9 @@ export class GestionarProyectoComponent implements OnInit {
   getPedidoID(valor: number) {
     this.service2.getAllNombresID(valor).subscribe((responde) => {
       this.service2.selectPedido2 = responde[0];
-      // console.log(this.service2.selectPedido2);
+      console.log(valor);
+      console.log(responde);
+      console.log(this.service2.selectPedido2);
     });
   }
   getProyectoID(valor: number) {
@@ -156,32 +158,5 @@ export class GestionarProyectoComponent implements OnInit {
         });
       }
     )
-    //   this.service.updateEmpleado(EmpleadoForm.value).subscribe(
-    //      (res) => { 
-    //        this.getEmpleados();
-    //       this.getEmpleadoView(EmpleadoForm.value.ID);
-
-    //      swal.fire({
-    //        text: 'Se actulizó al empleado exitosamente',
-    //        icon: 'success',
-    //        showCancelButton: false,
-    //        customClass: {
-    //            confirmButton: 'btn btn-success' ,
-    //        },
-    //        buttonsStyling: false
-    //    });
-    //    },
-    //      (err) => {console.error(err)
-    //        swal.fire({
-    //          text: 'Ocurrió un error, volver a intentar.',
-    //          icon: 'warning',
-    //          showCancelButton: false,
-    //          customClass: {
-    //              confirmButton: 'btn btn-warning',
-    //          },
-    //          buttonsStyling: false
-    //      });
-    //      }
-    //    );
   }
 }

@@ -13,31 +13,26 @@
 
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>N de pedido</mat-label>
-                        <input matInput type="text" name="ID" #ID="ngModel"
-                            [(ngModel)]="service2.selectPedido2.N_Pedido" disabled>
+                        <input matInput type="text" name="ID" #ID="ngModel" [(ngModel)]="service2.selectPedido2.N_Pedido" disabled>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Evento</mat-label>
-                        <input matInput type="text" name="Evento" #Evento="ngModel"
-                            [(ngModel)]="service2.selectPedido2.Evento" disabled>
+                        <input matInput type="text" name="Evento" #Evento="ngModel" [(ngModel)]="service2.selectPedido2.Evento" disabled>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                         <mat-label>Fecha de registro</mat-label>
-                        <input matInput type="text" name="Fecha" #Fecha="ngModel"
-                            [(ngModel)]="service2.selectPedido2.F_Registro" disabled>
+                        <input matInput type="text" name="Fecha" #Fecha="ngModel" [(ngModel)]="service2.selectPedido2.F_Registro" disabled>
                         <mat-datepicker-toggle matSuffix [for]="picker" disabled></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Cliente</mat-label>
-                        <input matInput type="text" name="Cliente" #Cliente="ngModel"
-                            [(ngModel)]="service2.selectPedido2.Cliente" disabled>
+                        <input matInput type="text" name="Cliente" #Cliente="ngModel" [(ngModel)]="service2.selectPedido2.Cliente" disabled>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Nombre del Pedido</mat-label>
-                        <input matInput type="text" name="NombrePedido" #NombrePedido="ngModel"
-                            [(ngModel)]="service2.selectPedido2.NombrePedido" disabled>
+                        <input matInput type="text" name="NombrePedido" #NombrePedido="ngModel" [(ngModel)]="service2.selectPedido2.NombrePedido" disabled>
                     </mat-form-field>
 
 
@@ -46,8 +41,7 @@
                 <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                         <mat-label>Descripción</mat-label>
-                        <textarea matInput type="text" name="Descripcion" #Descripcion="ngModel"
-                            [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
+                        <textarea matInput type="text" name="Descripcion" #Descripcion="ngModel" [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
                     </mat-form-field>
                 </div>
 
@@ -66,8 +60,7 @@
                 <div class="form-row">
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                         <mat-label>Fecha-Inicio</mat-label>
-                        <input matInput type="text" name="F_Evento" #F_Evento="ngModel"
-                            [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
+                        <input matInput type="text" name="F_Evento" #F_Evento="ngModel" [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
 
                         <mat-datepicker-toggle matSuffix [for]="picker2" disabled></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
@@ -80,7 +73,7 @@
                     </mat-form-field>
 
                 </div>
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Aqui se se agrega un enlace</mat-label>
                         <input matInput placeholder="001" disabled>
@@ -90,13 +83,13 @@
                         <mat-label>Multimedia 001</mat-label>
                         <input matInput placeholder="001" disabled>
                     </mat-form-field>
-                </div>
-                <div class="form-row">
+                </div> -->
+                <!-- <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                         <mat-label>Observación del cliente</mat-label>
                         <textarea matInput placeholder="Observaciones..." disabled></textarea>
                     </mat-form-field>
-                </div>
+                </div> -->
             </mat-card-content>
         </mat-card>
 
@@ -109,8 +102,7 @@
                 <div class="form-row">
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                         <mat-label>Fecha</mat-label>
-                        <input matInput type="text" name="F_Evento" #F_Evento="ngModel"
-                            [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
+                        <input matInput type="text" name="F_Evento" #F_Evento="ngModel" [(ngModel)]="service2.selectPedido2.F_Evento" disabled>
                         <mat-datepicker-toggle matSuffix [for]="picker4" disabled></mat-datepicker-toggle>
                         <mat-datepicker #picker4></mat-datepicker>
                     </mat-form-field>
@@ -118,25 +110,16 @@
 
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                         <mat-label>Hora</mat-label>
-                        <input matInput type="text" name="Hora_Evento" #Hora_Evento="ngModel"
-                            [(ngModel)]="service2.selectPedido2.Hora_Evento" disabled>
+                        <input matInput type="text" name="Hora_Evento" #Hora_Evento="ngModel" [(ngModel)]="service2.selectPedido2.Hora_Evento" disabled>
 
                     </mat-form-field>
 
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Ubicación</mat-label>
-                        <input matInput type="text" name="Direccion" #Direccion="ngModel"
-                            [(ngModel)]="service2.selectPedido2.Direccion" disabled>
+                        <input matInput type="text" name="Direccion" #Direccion="ngModel" [(ngModel)]="service2.selectPedido2.Direccion" disabled>
                     </mat-form-field>
 
                 </div>
-                <div class="form-row">
-                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
-                        <mat-label>aqui deberia haber un boton</mat-label>
-                        <input matInput placeholder="001">
-                    </mat-form-field>
-                </div>
-
             </mat-card-content>
         </mat-card>
 

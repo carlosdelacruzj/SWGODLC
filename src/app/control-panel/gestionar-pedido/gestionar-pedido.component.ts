@@ -218,7 +218,7 @@ export class GestionarPedidoComponent implements OnInit {
   }
 
   postPedido() {
-    alert(this.fechaActual)
+    
     this.fechaActual = this.fechaActual.substr(6) + this.fechaActual.substr(2, 4) + this.fechaActual.substr(0, 2);
     this.fechaRegis = this.fechaRegis.substr(6) + this.fechaRegis.substr(2, 4) + this.fechaRegis.substr(0, 2);
     console.log(this.fechaActual);

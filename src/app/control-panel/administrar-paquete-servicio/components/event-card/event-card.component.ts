@@ -20,7 +20,7 @@ export class EventCardComponent implements OnInit {
   
   cambioVista(){
     this.emitAccion.emit(this.id);
-    alert(this.id);
+
   }
 }
 

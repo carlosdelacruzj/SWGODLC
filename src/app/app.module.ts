@@ -44,6 +44,16 @@ import { ListarportipoComponent } from './control-panel/administrar-equipos/list
 
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
+import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin  from '@fullcalendar/interaction';
+import { DialogComponent } from './control-panel/ver-calendario/dialog/dialog.component'; // a plugin!
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 
 @NgModule({
@@ -70,6 +80,8 @@ import { ContratoComponent } from './control-panel/generar-contrato/contrato/con
     RegistrarPagoComponent,
     GenerarContratoComponent,
     ContratoComponent,
+    VerCalendarioComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +94,8 @@ import { ContratoComponent } from './control-panel/generar-contrato/contrato/con
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    FullCalendarModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

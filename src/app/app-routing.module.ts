@@ -16,6 +16,7 @@ import { AdministrarEquiposComponent } from './control-panel/administrar-equipos
 import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
+import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -47,6 +48,8 @@ const routes: Routes = [
 
   //LISTAR EQUIPO
   { path: 'administrar-equipos/listarportipo', component: ListarportipoComponent },
+
+  { path: 'ver-calendario', component: VerCalendarioComponent },
 
 
   { path: 'registrar-pago', component: RegistrarPagoComponent },

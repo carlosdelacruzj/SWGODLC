@@ -3,6 +3,11 @@ import { PersonalService } from '../service/personal.service';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 
+interface Cargo {
+  ID: string;
+  Nombre: string;
+}
+
 @Component({
   selector: 'app-agregar-personal',
   templateUrl: './agregar-personal.component.html',
@@ -18,8 +23,9 @@ export class AgregarPersonalComponent implements OnInit {
   correoPattern = "^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"; 
 
   constructor( public service: PersonalService) { }
-  
+  cargos: Cargo[]=[];
   ngOnInit(): void {
+    this.getCargos();
   }
   AddEmpleado(EmpleadoForm: NgForm) {
     let data = {
@@ -64,5 +70,11 @@ export class AgregarPersonalComponent implements OnInit {
   clear(EmpleadoForm: NgForm){
    EmpleadoForm.reset();
 }
+  getCargos() {
+      this.service.getCargos().subscribe(
+        response =>{
+          this.cargos=response;
+      });
+    }
 
 }

@@ -99,39 +99,20 @@
                 </select>
                     </div>
 
-
-
-
-
                 </mat-card-content>
             </mat-card>
 
-            <div style="text-align: center;">
-                <button class="btn btn-outline-dark" type="submit" [disabled]="EmpleadoForm.invalid">Registrar</button>
-                <button class="btn btn-danger btn-lg" id="botonGuardar" [routerLink]="['/gestionar-personal']" (click)="clear(EmpleadoForm)">Atrás</button>
+            <div class="row" style="text-align: center;">
+                <div class="col-6" style="text-align: right;">
+                    <button type="button" class="btn btn-outline-dark" [disabled]="EmpleadoForm.invalid">Registrar</button>
+                </div>
+                <div class="col-6" style="text-align: left;">
+                    <button type="button" class="btn btn-outline-dark" [routerLink]="['/gestionar-personal']" (click)="clear(EmpleadoForm)">Atrás</button>
+                </div>
             </div>
 
-            <<<<<<< HEAD </form>
+        </form>
 
 
     </div>
 </div>
-=======
-</mat-card-content>
-</mat-card>
-
-<div class="row" style="text-align: center;">
-    <div class="col-6" style="text-align: right;">
-        <button type="button" class="btn btn-outline-dark" [disabled]="EmpleadoForm.invalid">Registrar</button>
-    </div>
-    <div class="col-6" style="text-align: left;">
-        <button type="button" class="btn btn-outline-dark" [routerLink]="['/gestionar-personal']" (click)="clear(EmpleadoForm)">Atrás</button>
-    </div>
-</div>
-
-</form>
-
-
-</div>
-</div>
->>>>>>> katya

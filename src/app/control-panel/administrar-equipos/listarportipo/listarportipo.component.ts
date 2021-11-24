@@ -26,6 +26,8 @@ export class ListarportipoComponent implements OnInit {
   Estado: string='';
   txtEstado: string = this.Estado;
 
+  existe: number=0;
+
   seriePattern="^[A-Z]{3,3}[-]{1,1}[0-9]{3,3}$"
 
   hoy: number = Date.now();
@@ -47,7 +49,7 @@ export class ListarportipoComponent implements OnInit {
     this.getEquipoMarcaModeloAll();
     this.getCEstados();
   }
-  //Muestra la tabla
+  //Muestra la tabla por agupacion de datos de TIPO DE EQUIPO | MARCA | MODELO
   getEquipoMarcaModeloAll(){
     this.service.getEquipoMarcaModelo(this.idEquipo,this.idMarca,this.idModelo).subscribe((response: any) => {
       this.dataSource1 = new MatTableDataSource(response);
@@ -59,70 +61,85 @@ export class ListarportipoComponent implements OnInit {
   filterData($event: any) {
     this.dataSource1.filter = $event.target.value;
   }
+  // Modal para el registro del equipo.
   open(content:any) {
     this.modalService.open(content);
     this.service.registerEquipo.modelo = this.idModelo;
     this.service.registerEquipo.fecha = this.sHoy;
   }
+  //Contador de estados de los equipos por MODELO
   getCEstados(){
     this.service.getCountEstados(this.idModelo).subscribe((response: any) => {
       this.dataSource2 = new MatTableDataSource(response);
       this.dataSource2.sort = this.matSort2;
     });
   }
+  //Registro de equipo
   addEquipo(equipoForm: NgForm) {
-    swal.fire({
-      title: 'Esta seguro del registro?',
-      text: "El equipo se registrara con el modelo " + this.Modelo,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, registrar ahora!',
-      cancelButtonText: 'Cancelar'
-    }).then((options) => {
-      if(options.isConfirmed){
-        swal.fire({
-          text: 'Registro exitoso',
-          icon: 'success',
-          showCancelButton: false,
-          customClass: {
-              confirmButton: 'btn btn-success',
-          },
-          buttonsStyling: false
-      })
-      let data = {
-        idEquipo: equipoForm.value.idEquipo,
-        fecha: equipoForm.value.fecha,
-        modelo: equipoForm.value.modelo
-      };
-      this.service.rEquipo(data).subscribe(
-        (res) => {
-        this.clear(equipoForm);
-        this.getEquipoMarcaModeloAll();
-        this.getCEstados();
-
-      },
-        (err) => {console.error(err)
+    this.getSerie(equipoForm.value.idEquipo);
+    if(this.existe=1){
+      swal.fire({
+        text: 'La serie ingresada ya existe',
+        icon: 'warning',
+        showCancelButton: false,
+        customClass: {
+            confirmButton: 'btn btn-warning',
+        },
+        buttonsStyling: false
+    });
+    } else if(this.existe=0){
+      swal.fire({
+        title: 'Esta seguro del registro?',
+        text: "El equipo se registrara con el modelo " + this.Modelo,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, registrar ahora!',
+        cancelButtonText: 'Cancelar'
+      }).then((options) => {
+        if(options.isConfirmed){
           swal.fire({
-            text: 'Ocurrió un error, volver a intentar.',
-            icon: 'warning',
+            text: 'Registro exitoso',
+            icon: 'success',
             showCancelButton: false,
             customClass: {
-                confirmButton: 'btn btn-warning',
+                confirmButton: 'btn btn-success',
             },
             buttonsStyling: false
-        });
-        }
-      );
-      }
-    })
+        })
+        let data = {
+          idEquipo: equipoForm.value.idEquipo,
+          fecha: equipoForm.value.fecha,
+          modelo: equipoForm.value.modelo
+        };
+        this.service.rEquipo(data).subscribe(
+          (res) => {
+          this.clear(equipoForm);
+          this.getEquipoMarcaModeloAll();
+          this.getCEstados();
 
+        },
+          (err) => {console.error(err)
+            swal.fire({
+              text: 'Ocurrió un error, volver a intentar.',
+              icon: 'warning',
+              showCancelButton: false,
+              customClass: {
+                  confirmButton: 'btn btn-warning',
+              },
+              buttonsStyling: false
+          });
+          }
+        );
+        }
+      })
+    }
   }
   clear(equipoForm: NgForm){
     equipoForm.reset();
   }
-
+  //Cambiar el estado de un equipo mediante su numero de serie.
   putStatus(idEquipo: string){
     console.log("Ejecutandose");
     this.service.updateStatus(idEquipo).subscribe((response: any) => {
@@ -130,11 +147,17 @@ export class ListarportipoComponent implements OnInit {
       this.getCEstados();
     });
   }
-
+  //Control de botones de estado. Habilitados unicamente para En Uso y No disponible
   isDisable(Estado: string){
     if(Estado === 'En Uso'||Estado === 'No Disponible'){
       return true;
     }
     return false;
+  }
+  //Selector de seria devuelve. Existe = 1 | No existe = 0
+  getSerie(idEquipo: string){
+    this.service.getExisteSerie(idEquipo).subscribe((response) => {
+      this.existe = response;
+    });
   }
 }

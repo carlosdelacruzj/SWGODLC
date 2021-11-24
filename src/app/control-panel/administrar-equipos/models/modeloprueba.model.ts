@@ -74,3 +74,9 @@ export class updateStatus {
     public idEquipo: string,
   ){}
 }
+
+export class existeSerie{
+  constructor(
+    public existe: number,
+    ){}
+}

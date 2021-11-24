@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { countEstadosPorModelo, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, updateStatus } from '../models/modeloprueba.model';
+import { countEstadosPorModelo, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, existeSerie, updateStatus } from '../models/modeloprueba.model';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +72,10 @@ export class AdministrarEquiposService {
     idEquipo: ''
   }
 
+  esSerie: existeSerie = {
+    existe: 0
+  }
+
   private EQUIPO_TIPOALL =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllTipoEquipo';
 
@@ -101,6 +105,9 @@ export class AdministrarEquiposService {
 
   private PUT_STATUS =
     'https://tp2021database.herokuapp.com/equipo/actualiza/putEstadoEquipo';
+
+  private EXI_SERIE =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getExistEquipo'
 
   constructor(private http: HttpClient) {}
 
@@ -134,6 +141,10 @@ export class AdministrarEquiposService {
       idEquipo
     };
     return this.http.put(`${this.PUT_STATUS}`,body);
+  }
+  //Existe serie o no
+  public getExisteSerie(idEquipo: string): Observable<any> {
+    return this.http.get(`${this.EXI_SERIE}/${idEquipo}`);
   }
   //registro de un nuevo equipo uwu
   public rEquipo(data:any): Observable<any> {

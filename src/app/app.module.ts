@@ -24,7 +24,6 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 
-
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { EventCardComponent } from './control-panel/administrar-paquete-servicio/components/event-card/event-card.component';
 import { EventServiceComponent } from './control-panel/administrar-paquete-servicio/components/event-service/event-service.component';
@@ -40,10 +39,9 @@ import { GestionarPersonalComponent } from './control-panel/gestionar-personal/g
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
 
-
-
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
+import { AgregarPedidoComponent } from './control-panel/gestionar-pedido/agregar-pedido/agregar-pedido.component';
 
 
 @NgModule({
@@ -70,6 +68,7 @@ import { ContratoComponent } from './control-panel/generar-contrato/contrato/con
     RegistrarPagoComponent,
     GenerarContratoComponent,
     ContratoComponent,
+    AgregarPedidoComponent,
   ],
   imports: [
     BrowserModule,

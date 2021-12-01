@@ -21,7 +21,6 @@ interface Car {
 
 export class GestionarPedidoComponent implements OnInit {
 
-
   //SELECTEDITARPEDIDO
   cars: Car[] = [
     { value: '1', viewValue: 'Solicitado' },
@@ -307,6 +306,7 @@ export class GestionarPedidoComponent implements OnInit {
 
     hoy = dd + '/' + mm + '/' + yyyy;
     this.fechaActual = hoy;
+    
   }
 
   filterData($event: any) {

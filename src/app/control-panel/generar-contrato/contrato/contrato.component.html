@@ -19,17 +19,12 @@
     </div>
 
     <form #contratoForm="ngForm"(ngSubmit)="createPdf(contratoForm)">
-        <!-- card numero 1 -->
         <mat-card class="card">
             <mat-card-header class="card-header">
                 <mat-card-title>Detalle de Pedido</mat-card-title>
-
             </mat-card-header>
             <mat-card-content class="card-body">
-
-
                 <div class="form-row">
-
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>N de pedido</mat-label>
                         <input matInput type="text" name="ID" #ID="ngModel" [(ngModel)]="service2.selectPedido2.N_Pedido"
@@ -40,7 +35,6 @@
                         <input matInput type="text" name="Evento" #Evento="ngModel"
                             [(ngModel)]="service2.selectPedido2.Evento" disabled>
                     </mat-form-field>
-
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                         <mat-label>Fecha de registro</mat-label>
                         <input matInput type="text" name="Fecha" #Fecha="ngModel"
@@ -58,23 +52,20 @@
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Servicio</mat-label>
-                        <input matInput type="text" name="Servicio" #NombrePedido="ngModel"
+                        <input matInput type="text" name="Servicio" #Servicio="ngModel"
                             [(ngModel)]="service2.selectPedido2.Servicio" disabled>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Costo total</mat-label>
-                        <input matInput type="text" name="Costo_Total" #NombrePedido="ngModel"
+                        <input matInput type="text" name="Costo_Total" #Costo_Total="ngModel"
                             [(ngModel)]="service2.selectPedido2.Costo_Total" disabled>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>A cuenta</mat-label>
-                        <input matInput type="text" name="Acuenta" #NombrePedido="ngModel"
+                        <input matInput type="text" name="Acuenta" #Acuenta="ngModel"
                             [(ngModel)]="service2.selectPedido2.Acuenta" disabled>
                     </mat-form-field>
-
-
                 </div>
-
                 <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                         <mat-label>Descripción</mat-label>
@@ -82,8 +73,6 @@
                         [(ngModel)]="service2.selectPedido2.Descripcion" disabled></textarea>
                     </mat-form-field>
                 </div>
-
-
             </mat-card-content>
         </mat-card>
 

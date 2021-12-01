@@ -14,14 +14,7 @@ import { NgForm } from '@angular/forms';
 })
 export class GestionarClienteComponent implements OnInit {
 
-  displayedColumns = [
-    'PK_Pro_Cod',
-    'Pro_Nombre',
-    'FK_P_Cod',
-    'EPro_Fecha_Inicio_Edicion',
-    'Pro_Fecha_Fin_Edicion',
-    'actions',
-  ];
+  clientes: Cliente[]
   displayedColumns2 = [
     'id',
     'nombre',
@@ -45,17 +38,16 @@ export class GestionarClienteComponent implements OnInit {
     private modalService: NgbModal
   ) {}
   fechaActual = '';
-  ngOnInit(): void {
-    this.getAllClientes();
+  async ngOnInit(){
+    await this.getAllClientes();
   }
  
 
-  getAllClientes() {
-    this.service.getAllClientes().subscribe((response: any) => {
-      this.dataSource2 = new MatTableDataSource(response);
-      this.dataSource2.paginator = this.paginator;
-      this.dataSource2.sort = this.matSort;
-    });
+  async getAllClientes(){
+    var data = await this.service.getAllClientes();
+    this.dataSource2 = new MatTableDataSource(data);
+    this.dataSource2.paginator = this.paginator;
+    this.dataSource2.sort = this.matSort;
   }
   // para hacer los filtros
   filterData($event: any) {
@@ -75,5 +67,12 @@ export class GestionarClienteComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  public getByIdCliente(id : number){
+    this.service.getByIdCliente(id).subscribe((responde) => {
+      this.service.selectCliente = responde[0];
+      console.log(this.service.selectCliente);
+    });
   }
 }

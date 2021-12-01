@@ -28,35 +28,71 @@
                 <div class="form-row">
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Nombre</mat-label>
-                        <input matInput type="text" name="nombre">
+                        <input matInput type="text" name="nombre" #nombre="ngModel" ngModel [pattern]="nombrePattern" required>
+                        <div *ngIf="nombre.errors?.pattern">
+                            <p>*Sólo letras</p>
+                        </div>
+                        <div *ngIf="nombre.errors?.required">
+                            <p>*Campo Requerido</p>
+                        </div>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Apellido</mat-label>
-                        <input matInput type="text" name="apellido">
+                        <input matInput type="text" name="apellido" #apellido="ngModel" ngModel [pattern]="apellidoPattern" required>
+                        <div *ngIf="apellido.errors?.pattern">
+                            <p>*Sólo letras</p>
+                        </div>
+                        <div *ngIf="apellido.errors?.required">
+                            <p>*Campo Requerido</p>
+                        </div>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                         <mat-label>Correo</mat-label>
-                        <input matInput type="text" name="correo">
+                        <input matInput type="text" name="correo" #correo="ngModel" ngModel [pattern]="correoPattern" required>
+                        <div *ngIf="correo.errors?.pattern">
+                            <p>*Ingrese un email correcto</p>
+                        </div>
+                        <div *ngIf="correo.errors?.required">
+                            <p>*Campo Requerido</p>
+                        </div>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Número de documento</mat-label>
-                        <input matInput type="text" name="numDoc">
+                        <input matInput type="text" name="doc" #doc="ngModel" ngModel [pattern]="docPattern" required>
+                        <div *ngIf="doc.errors?.pattern">
+                            <p>*Sólo números</p>
+                        </div>
+                        <div *ngIf="doc.errors?.required">
+                            <p>*Campo Requerido</p>
+                        </div>
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Celular</mat-label>
-                        <input matInput type="text" name="celular">
+                        <input matInput type="text" name="celular" #celular="ngModel" ngModel [pattern]="celularPattern" required>
+                        <div *ngIf="celular.errors?.pattern">
+                            <p>*Sólo números</p>
+                        </div>
+                        <div *ngIf="celular.errors?.required">
+                            <p>*Campo Requerido</p>
+                        </div>
                     </mat-form-field>
                 </div>
                 <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                         <mat-label>Dirección</mat-label>
-                        <textarea matInput  type="text" name="direccion" #direccion></textarea>
+                        <textarea matInput  type="text" name="direccion" #direccion="ngModel" ngModel required></textarea>
+                        <div *ngIf="direccion.errors?.pattern">
+                            <p>*Ingrese una dirección correcta</p>
+                        </div>
+                        <div *ngIf="direccion.errors?.required">
+                            <p>*Campo Requerido</p>
+                        </div>
                     </mat-form-field>
                 </div>
             </mat-card-content>
         </mat-card>
-        <button class="btn btn-primary mb-2 mr-1" type="submit"> 
+        <button class="btn btn-primary mb-2 mr-1" type="submit" [disabled]="clienteForm.invalid"> 
             Registrar
         </button>
     </form>

@@ -51,7 +51,7 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
                         <td mat-cell *matCellDef="let element">
-                            <button mat-raised-button color="primary">
+                            <button mat-raised-button color="primary" (click)="getByIdCliente(element.id)" [routerLink]="['/gestionar-cliente/editar-cliente']">
                                 <span class="fas fa-edit"></span>
                             </button>
                         </td>

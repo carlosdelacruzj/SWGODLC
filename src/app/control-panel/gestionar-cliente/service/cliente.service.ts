@@ -8,13 +8,13 @@ import { Cliente } from '../model/cliente.model';
 })
 export class ClienteService {
 
-selectContrato: Cliente = {
-  id: 0,
+selectCliente: Cliente = {
+  ID: 0,
   nombre: '',
   apellido: '',
   correo: '',
   celular: '',
-  numDoc: '',
+  doc: '',
   direccion: '',
   estado: '',
   ECli_Nombre: ''
@@ -24,16 +24,21 @@ selectContrato: Cliente = {
     'https://tp2021database.herokuapp.com/cliente/consulta/getAllCliente';
   constructor(private http: HttpClient) {}
 
-  public getAllClientes(): Observable<any> {
-    return this.http.get(this.API_PRUEBA);
+  public getAllClientes(): Promise<any> {
+    return this.http.get(this.API_PRUEBA).toPromise();
   }
 
   public addCliente(data:any): Observable<any> {
-
-    console.log('Probando');
-
-    const url = 'https://tp2021database.herokuapp.com/proyecto/registro/postProyecto';
+    const url = 'https://tp2021database.herokuapp.com/cliente/registro/postCliente';
     return this.http.post(url, data);
   }
 
+  public getByIdCliente(id:any): Observable<any>{
+    return this.http.get('https://tp2021database.herokuapp.com/cliente/consulta/getByIdCliente/'+id);
+  }
+
+  public putClienteById(data: any): Observable<any> {
+    const url = 'https://tp2021database.herokuapp.com/cliente/actualiza/putClienteById';
+    return this.http.put<any>(url, data);
+  }
 }

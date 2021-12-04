@@ -16,44 +16,21 @@ import { AdministrarEquiposComponent } from './control-panel/administrar-equipos
 import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
+import { ValidarTokenGuard } from './guards/validar-token.guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'gestionar-equipos', component: GestionarEquiposComponent },
-  { path: 'gestionar-proyecto', component: GestionarProyectoComponent },
   {
-    path: 'gestionar-proyecto/agregar-proyecto',
-    component: AgregarProyectoComponent,
+    path: 'auth',
+    loadChildren:() => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'administrar-paquete-servicio/editar-servicio',
-    component: EditarServicioComponent,
+    path: 'home',loadChildren:() => import('./control-panel/control-panel.module').then(m => m.ControlPanelModule),
+    canActivate:[ValidarTokenGuard],
+    canLoad: [ValidarTokenGuard]
   },
-  { path: 'gestionar-pedido', component: GestionarPedidoComponent },
   {
-    path: 'administrar-paquete-servicio',
-    component: AdministrarPaqueteServicioComponent,
-  },
-  { path: 'administrar-equipos', component: AdministrarEquiposComponent },
-  { path: 'gestionar-proyecto/agregar-proyecto', component: AgregarProyectoComponent },
-  { path: 'administrar-paquete-servicio/editar-servicio', component: EditarServicioComponent },
-
-  { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent },
-  //PEDIDO RUTAS
-  { path: 'gestionar-pedido', component: GestionarPedidoComponent },
-  //PERSONAL RUTAS
-  { path: 'gestionar-personal', component: GestionarPersonalComponent },
-  { path: 'gestionar-personal/agregar', component: AgregarPersonalComponent },
-
-  //LISTAR EQUIPO
-  { path: 'administrar-equipos/listarportipo', component: ListarportipoComponent },
-
-
-  { path: 'registrar-pago', component: RegistrarPagoComponent },
-  { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent},
-  { path: 'generar-contrato', component: GenerarContratoComponent },
-  { path: 'generar-contrato/contrato', component: ContratoComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
+    path: '**', redirectTo: 'auth'
+  }
 ];
 
 @NgModule({

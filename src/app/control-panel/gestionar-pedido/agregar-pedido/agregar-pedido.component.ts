@@ -86,8 +86,7 @@ export class AgregarPedidoComponent implements OnInit {
     this.getEventoxServicio();}
 
   asignarDescripcion(id: number) {
-    this.desID = id;
-    console.log(this.desID);}
+    this.desID = id;}
 
   getEventoxServicio() {
     this.visualizarService

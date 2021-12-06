@@ -19,7 +19,6 @@ export class DetallePedidoComponent implements OnInit {
 
     
   ngOnInit(): void {
-    console.log(this._route.snapshot.paramMap.get('id'));
     this.getDetallePedidoView(Number(this.ID));
   }
 

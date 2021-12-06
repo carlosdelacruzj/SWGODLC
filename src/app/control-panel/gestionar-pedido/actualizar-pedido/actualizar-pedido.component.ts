@@ -50,10 +50,8 @@ export class ActualizarPedidoComponent implements OnInit {
     this.visualizarService.getPedidoID(ID).subscribe(
       response =>{
         
-        console.log(response[0].F_Evento);
         this.visualizarService.selectProyecto=response[0];
         this.visualizarService.selectProyecto.F_Evento = (response[0].F_Evento);
-        console.log(this.visualizarService.selectProyecto.F_Evento);
         
     });
   }

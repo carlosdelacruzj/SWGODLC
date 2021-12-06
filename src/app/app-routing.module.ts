@@ -17,6 +17,8 @@ import { GestionarPersonalComponent } from './control-panel/gestionar-personal/g
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
 import { AgregarPedidoComponent } from './control-panel/gestionar-pedido/agregar-pedido/agregar-pedido.component';
+import { DetallePedidoComponent } from './control-panel/gestionar-pedido/detalle-pedido/detalle-pedido.component';
+import { ActualizarPedidoComponent } from './control-panel/gestionar-pedido/actualizar-pedido/actualizar-pedido.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -43,6 +45,10 @@ const routes: Routes = [
   //PEDIDO RUTAS
   { path: 'gestionar-pedido', component: GestionarPedidoComponent },
   { path: 'gestionar-pedido/agregar', component: AgregarPedidoComponent },
+  { path: 'gestionar-pedido/actualizar/:id', component: ActualizarPedidoComponent },
+  { path: 'gestionar-pedido/detalle/:id', component: DetallePedidoComponent },
+
+
   //PERSONAL RUTAS
   { path: 'gestionar-personal', component: GestionarPersonalComponent },
   { path: 'gestionar-personal/agregar', component: AgregarPersonalComponent },

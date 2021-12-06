@@ -35,7 +35,7 @@ export class VisualizarService {
   };
 
   selectAgregarPedido: AgregarPedido = {
-    Nombre: '',
+    NombrePedido: '',
     ExS: 0,
     doc: '',
     fechaCreate: '',

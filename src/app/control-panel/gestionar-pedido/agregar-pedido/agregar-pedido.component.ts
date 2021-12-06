@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { PedidoService } from '../service/pedido.service';
 import { VisualizarService } from '../service/visualizar.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-pedido',
@@ -10,8 +11,7 @@ import { VisualizarService } from '../service/visualizar.service';
 })
 export class AgregarPedidoComponent implements OnInit {
 
-
-  columnsToDisplay = ['Ubicacion','Direccion','Coordenadas','Quitar'];
+  columnsToDisplay = ['Direccion','Quitar'];
   columnsToDisplay1 = ['Descripcion','Precio', 'Seleccionar'];
   eventoxsevicio: any[] = [];
   servicios: any[] = [];
@@ -23,15 +23,16 @@ export class AgregarPedidoComponent implements OnInit {
   desID = 0;
   infoCliente = { Nombre: '-', Apellido: '-' };
   dniCliente: any;
+  Direccion:any;
   fechaCreate: Date = new Date();
   minimo: string;
   maximo: string;
-
+  ubicacion=[{ID: 0, Direccion: ''}];
+  lat:any;
+  lng:any;
   selectedDescripcion;
   
-  constructor(
-    public pedidoService: PedidoService,
-    public visualizarService: VisualizarService,) { }
+  constructor(public pedidoService: PedidoService,public visualizarService: VisualizarService,) { }
     
   ngOnInit(): void {
     this.getEventos();
@@ -74,20 +75,19 @@ export class AgregarPedidoComponent implements OnInit {
 
   asignarServicio(event: number) {
     this.servicioSeleccionado = event;
-    this.getEventoxServicio();
-  }
+    this.getEventoxServicio();}
 
   getEventos() {
     this.pedidoService.getEventos().subscribe((responde) => {
-      this.evento = responde; });
-  }
+      this.evento = responde; });}
 
   asignarEvento(event: number) {
     this.eventoSeleccionado = event;
     this.getEventoxServicio();}
 
   asignarDescripcion(id: number) {
-    this.desID = id;}
+    this.desID = id;
+    console.log(this.desID);}
 
   getEventoxServicio() {
     this.visualizarService
@@ -96,9 +96,48 @@ export class AgregarPedidoComponent implements OnInit {
         this.dataSource1 = new MatTableDataSource(res);
       });}
 
+  radioSelected () {
+    this.asignarDescripcion(this.selectedDescripcion);}
 
-      radioSelected () {
-        this.asignarDescripcion(this.selectedDescripcion);
-    }
+  addListUbicacion(direccion : string){
+    var cualEliminar = {ID: 0, Direccion: ''}
+    
+    this.ubicacion =  this.ubicacion.filter((item)=>{
+      return item.ID != cualEliminar.ID && item.Direccion != cualEliminar.Direccion
+    });
+    if(this.ubicacion.length<2){
+      let i=1;
+        this.ubicacion.push({ID:i, Direccion:direccion});
+      i++;
+      this.dataSource = new MatTableDataSource(this.ubicacion);
+    }else{
+      this.ubicacion;}}
 
+  postPedido() {
+    this.visualizarService
+      .postPedidos(this.visualizarService.selectAgregarPedido.NombrePedido, 
+        this.desID, this.dniCliente.toString(), 
+        this.fechaCreate.toDateString(), 
+        this.visualizarService.selectAgregarPedido.fechaEvent, 
+        this.visualizarService.selectAgregarPedido.horaEvent, 
+        1, this.ubicacion[0].Direccion, this.visualizarService.selectAgregarPedido.Observacion)
+      .subscribe(
+        (res) => { swal.fire({
+          text: 'Registro exitoso',
+          icon: 'success',
+          showCancelButton: false,
+          customClass: {
+              confirmButton: 'btn btn-success',},
+          buttonsStyling: false
+      });},
+        (err) => {console.error(err)
+          swal.fire({
+            text: 'Ocurrió un error, volver a intentar.',
+            icon: 'warning',
+            showCancelButton: false,
+            customClass: {
+                confirmButton: 'btn btn-warning',},
+            buttonsStyling: false
+        });});
+  }
 }

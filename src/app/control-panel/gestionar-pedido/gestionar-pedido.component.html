@@ -1,177 +1,36 @@
-<div class="dashboard-ecommerce">
-
-  <div class="container-fluid dashboard-content ">
-
-
-    <div class="forms" *ngIf="!botonRegistrar">
-
-      <div>
+<div class="container-fluid dashboard-content ">
+    <div class="container-fluid">
         <div>
-          <label>Datos Pedido</label>
-          <hr>
-          <mat-form-field appearance="fill">
-            <mat-label>Nombre Pedido</mat-label>
-            <input matInput [(ngModel)]="nombrePedido">
-          </mat-form-field>
-
-          &nbsp;&nbsp;&nbsp;
-          <mat-form-field appearance="fill">
-            <mat-label>Codigo Empleado</mat-label>
-            <input matInput disabled>1
-          </mat-form-field>
-          &nbsp;&nbsp;&nbsp;
-          <mat-form-field appearance="fill">
-            <mat-label>Fecha Registro</mat-label>
-            <input matInput [(ngModel)]="fechaActual" disabled>
-          </mat-form-field>
-          <hr>
+            <h1>Pedidos</h1>
         </div>
-        <div>
-          <label>Datos Cliente</label>
-          <hr>
-          <mat-form-field appearance="fill">
-            <mat-label>Dni</mat-label>
-            <input matInput [(ngModel)]="dniCliente">
-          </mat-form-field>
-          &nbsp;&nbsp;&nbsp;
-          <button (click)="buscarCliente(dniCliente)" type="button" class="btn btn-primary">BUSCAR</button>
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label>Nombre</mat-label>
-            <input matInput [(ngModel)]="infoCliente.Nombre" disabled>
-          </mat-form-field>
-          &nbsp;&nbsp;&nbsp;
-          <mat-form-field appearance="fill">
-            <mat-label>Apellidos</mat-label>
-            <input matInput [(ngModel)]="infoCliente.Apellido" disabled>
-          </mat-form-field>
+        <div class="row">
+            <div class="col-8">
+                <mat-form-field appearance="standard">
+                    <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <div style="text-align:right">
+                    <button class="btn btn-primary btn-lg" [routerLink]="['/gestionar-pedido/agregar']">
+                      Registrar pedido</button>
+                </div>
+            </div>
         </div>
-        <div>
-          <label>Datos del Evento</label>
-          <hr>
-          <mat-form-field appearance="fill">
-            <mat-label>Hora</mat-label>
-            <input matInput [(ngModel)]="horaRegis">
-          </mat-form-field>
-          &nbsp;&nbsp;&nbsp;
-
-          <!-- <mat-form-field appearance="fill">
-            <mat-label>FechaEvento1</mat-label>
-            <input matInput (dateChange)="registrarFecha2" [(ngModel)]="fechaRegis" >
-          </mat-form-field>
-          &nbsp;&nbsp;&nbsp; -->
-
-          <!-- <mat-form-field appearance="fill">
-            <mat-label>Fecha Evento</mat-label>
-            <input matInput [matDatepicker]="picker2" (dateChange)="registrarFecha2('change',$event)" [(ngModel)]="fechaRegis">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field> -->
-          <mat-form-field appearance="fill" class="example-form-field">
-            <mat-label>Fecha Evento</mat-label>
-            <input matInput [matDatepicker]="datepicker" (dateChange)="registrarFecha2('change',$event)"
-              [(ngModel)]="fechaRegis">{{this.fechaRegis}}
-            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-            <mat-datepicker #datepicker>
-              <mat-datepicker-actions>
-                <button mat-button matDatepickerCancel>Cancelar</button>
-                <button mat-raised-button color="primary" matDatepickerApply>Aceptar</button>
-              </mat-datepicker-actions>
-            </mat-datepicker>
-          </mat-form-field>
-
-          &nbsp;&nbsp;&nbsp;
-          <mat-form-field appearance="fill">
-            <mat-label>Ubicacion</mat-label>
-            <input matInput [(ngModel)]="ubicacionRegis">
-          </mat-form-field>
-          <hr>
-        </div>
-        <div>
-          <select [(ngModel)]="servicioSeleccionado" (ngModelChange)="asignarServicio($event)">
-            <option *ngFor="let servicio of servicios" [value]="servicio.ID">{{servicio.Nombre}}
-            </option>
-          </select>
-        </div>
-        <div>
-          <select [(ngModel)]="eventoSeleccionado" (ngModelChange)="asignarEvento($event)">
-            <option *ngFor="let data of evento" [value]="data.PK_E_Cod">{{data.E_Nombre}}
-            </option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <table class="table">
-          <thead>
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Seleccionar</th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let des of descripciones">
-              <th>{{des.Descripcion}}</th>
-              <th>{{des.Precio}}</th>
-              <th>
-                <mat-radio-group>
-                  <mat-radio-button value={des.ID} (click)="asignarDescripcion(des.ID)"></mat-radio-button>
-                </mat-radio-group>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-
-
-      <div>
-        <hr>
-        <button type="submit" class="btn btn-primary" (click)="postPedido()">REGISTRAR</button> &nbsp;&nbsp;&nbsp;
-        <button (click)="cerrarDetalles()" class="btn btn-danger">Cancelar</button>
-      </div>
-
-    </div>
-
-
-    <!-- INTERFAZ LISTA PEDIDOS -->
-    <div class="container-fluid" *ngIf="botonVisualizar && botonRegistrar">
-
-
-
-      <!-- btn Registrar -->
-      <div style="text-align:right">
-        <p>
-          <button type="button" (click)="mostrarRegistro()" class="btn btn-primary">Registro</button>
-        </p>
-      </div>
-      <br>
-      <!-- titulo -->
-      <h1>PEDIDO</h1>
-      <mat-divider></mat-divider>
       <!-- LISTA DE PEDIDOS -->
-
-
-
-      <mat-form-field appearance="standard">
-        <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
-      </mat-form-field>
       <table mat-table [dataSource]="dataSource" matSort class="table">
         <!-- ID -->
         <ng-container matColumnDef="ID">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> ID </th>
+          <th mat-header-cell *matHeaderCellDef> ID </th>
           <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
         </ng-container>
-
         <!-- Nombre A REVISION -->
         <ng-container matColumnDef="Nombre">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
           <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
         </ng-container>
-
         <!-- Fecha Evento -->
         <ng-container matColumnDef="Fecha">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Fecha </th>
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
           <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
         </ng-container>
         <!-- Servicio -->
@@ -194,11 +53,15 @@
           <th mat-header-cell *matHeaderCellDef> Estado </th>
           <td mat-cell *matCellDef="let element"> {{element.Estado}} </td>
         </ng-container>
-        <!-- Boton Visualizar -->
+        <!-- Boton Acciones -->
         <ng-container matColumnDef="Visualizar">
-          <th mat-header-cell *matHeaderCellDef> Visualizar </th>
-          <td mat-cell *matCellDef="let element"> <button (click)="mostrarDetalles(element.ID)" class="btn mx-auto"
-              style="background-color:transparent"><i class="fas fa-eye fa-2x"></i></button> </td>
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element"> 
+              <button mat-button style="background-color:transparent" [routerLink]="['/gestionar-pedido/actualizar',element.ID]"><i
+                class="fas fa-edit fa-2x"></i></button>
+            <button mat-button style="background-color:transparent" [routerLink]="['/gestionar-pedido/detalle',element.ID]"><i
+                    class="fas fa-eye fa-2x"></i></button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
@@ -207,7 +70,14 @@
       <mat-paginator #paginator [pageSize]="25" [pageSizeOptions]="[10, 25, 100]">
       </mat-paginator>
     </div>
-    <!-- INTERFAZ VISUALIZAR -->
+  </div>
+
+
+
+<!-- 
+
+     INTERFAZ VISUALIZAR 
+
     <div class="container-fluid" *ngIf="!botonVisualizar">
       <h1>{{pedido.NombrePedido}}</h1>
       <mat-divider></mat-divider>
@@ -377,7 +247,7 @@
             <mat-divider></mat-divider>
             <br>
 
-            <!-- MODALEDITARPEDIDO -->
+             MODALEDITARPEDIDO 
             <ng-template #content let-modal>
               <div class="modal-header">
                 <h2 class="modal-title" id="modal-basic-title">EDITAR PEDIDO</h2>
@@ -440,9 +310,6 @@
         </div>
 
       </div>
-    </div>
-    <!-- FIN MODAL -->
+    </div> -->
 
     <!-- //final -->
-  </div>
-</div>

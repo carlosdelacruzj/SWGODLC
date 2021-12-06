@@ -23,7 +23,7 @@ import {
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
-
+import { AgmCoreModule } from '@agm/core';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { EventCardComponent } from './control-panel/administrar-paquete-servicio/components/event-card/event-card.component';
 import { EventServiceComponent } from './control-panel/administrar-paquete-servicio/components/event-service/event-service.component';
@@ -42,6 +42,8 @@ import { ListarportipoComponent } from './control-panel/administrar-equipos/list
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
 import { AgregarPedidoComponent } from './control-panel/gestionar-pedido/agregar-pedido/agregar-pedido.component';
+import { DetallePedidoComponent } from './control-panel/gestionar-pedido/detalle-pedido/detalle-pedido.component';
+import { ActualizarPedidoComponent } from './control-panel/gestionar-pedido/actualizar-pedido/actualizar-pedido.component';
 
 
 @NgModule({
@@ -69,6 +71,8 @@ import { AgregarPedidoComponent } from './control-panel/gestionar-pedido/agregar
     GenerarContratoComponent,
     ContratoComponent,
     AgregarPedidoComponent,
+    DetallePedidoComponent,
+    ActualizarPedidoComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +85,10 @@ import { AgregarPedidoComponent } from './control-panel/gestionar-pedido/agregar
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs'
+    })
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

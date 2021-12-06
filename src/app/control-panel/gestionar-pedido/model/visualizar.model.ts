@@ -41,7 +41,7 @@ public id:number
  export class AgregarPedido {
   constructor(
  
-public Nombre:string,
+public NombrePedido:string,
 public ExS :number,
 public doc : string,
 public fechaCreate : string,

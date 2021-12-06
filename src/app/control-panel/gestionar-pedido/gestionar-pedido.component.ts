@@ -135,26 +135,26 @@ export class GestionarPedidoComponent implements OnInit {
     }
   }
 
-  editarModal() {
-    let day = this.fechaEditada.day.toString();
-    let month = this.fechaEditada.month.toString();
-    let year = this.fechaEditada.year.toString();
-    let fecha = year + '-' + month + '-' + day;
+  // editarModal() {
+  //   let day = this.fechaEditada.day.toString();
+  //   let month = this.fechaEditada.month.toString();
+  //   let year = this.fechaEditada.year.toString();
+  //   let fecha = year + '-' + month + '-' + day;
 
 
-    this.service2.putPedido(this.estadoEditado, fecha, this.horaEditada, this.idPedido).subscribe({
-      next: (res) => {
-        alert(JSON.stringify(res));
-        this.getPedido();
-        this.getPedidoID(this.idPedido);
+  //   this.service2.putPedido(this.estadoEditado, fecha, this.horaEditada, this.idPedido).subscribe({
+  //     next: (res) => {
+  //       alert(JSON.stringify(res));
+  //       this.getPedido();
+  //       this.getPedidoID(this.idPedido);
 
-      },
-      error: (error) => {
-        alert(JSON.stringify(error));
-      },
-    });
+  //     },
+  //     error: (error) => {
+  //       alert(JSON.stringify(error));
+  //     },
+  //   });
 
-  }
+  // }
 
   filterData($event: any) {
     this.dataSource.filter = $event.target.value;

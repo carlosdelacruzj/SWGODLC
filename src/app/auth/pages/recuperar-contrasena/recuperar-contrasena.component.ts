@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class RecuperarContrasenaComponent implements OnInit {
 
+  favoriteSeason: string;
+  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   miFormulario: FormGroup = this.fb.group({
     correo: ['', [Validators.required, Validators.email]],
   });

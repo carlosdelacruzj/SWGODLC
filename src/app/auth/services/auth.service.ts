@@ -6,6 +6,7 @@ import { catchError, map, tap } from "rxjs/operators";
 import { AuthResponse, Usuario } from '../interfaces/auth.interface';
 import { Observable, of } from 'rxjs';
 import Swal from 'sweetalert2'
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -61,10 +62,10 @@ export class AuthService {
         })
       )
   }
-  // logout(){
-  //   // this.router.navigateByUrl('/auth');
-  //   localStorage.clear();
-  //   localStorage.setItem('ga','gaa');
-  // }
+  logout(){
+ 
+    localStorage.clear();
+
+  }
 
 }

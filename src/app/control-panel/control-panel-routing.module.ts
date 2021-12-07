@@ -15,7 +15,9 @@ import { AgregarProyectoComponent } from './gestionar-proyecto/agregar-proyecto/
 import { GestionarProyectoComponent } from './gestionar-proyecto/listar-proyecto/gestionar-proyecto.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrarPagoComponent } from './registrar-pago/registrar-pago.component';
-
+import { DetallePedidoComponent } from './gestionar-pedido/detalle-pedido/detalle-pedido.component';
+import { ActualizarPedidoComponent } from './gestionar-pedido/actualizar-pedido/actualizar-pedido.component';
+import { AgregarPedidoComponent } from './gestionar-pedido/agregar-pedido/agregar-pedido.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,10 @@ const routes: Routes = [
       { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent },
       //PEDIDO RUTAS
       { path: 'gestionar-pedido', component: GestionarPedidoComponent },
+      { path: 'gestionar-pedido/agregar', component: AgregarPedidoComponent },
+      { path: 'gestionar-pedido/actualizar/:id', component: ActualizarPedidoComponent },
+      { path: 'gestionar-pedido/detalle/:id', component: DetallePedidoComponent },
+    
       //PERSONAL RUTAS
       { path: 'gestionar-personal', component: GestionarPersonalComponent },
       { path: 'gestionar-personal/agregar', component: AgregarPersonalComponent },

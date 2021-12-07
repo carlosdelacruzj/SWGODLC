@@ -3,61 +3,57 @@
         <h1>Detalle de pedido: {{visualizarService.selectProyecto.NombrePedido}}</h1>
 
         <form #EmpleadoForm="ngForm">
-                <div class="row">
-                    <div class="col ms-auto">
-                        <mat-card class="card">
-                            <mat-card-header>
-                                <mat-card-title>Datos del pedido</mat-card-title>
-                            </mat-card-header>
-                            <mat-card-content class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label class='col-form-label'>Pedido</label>
-                                            <input type="text" class="form-control" name="NombrePedido"  
-                                            [(ngModel)]="visualizarService.selectProyecto.NombrePedido"  disabled>                              
-                                          </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label class='col-form-label'>Fecha de registro</label>
-                                            <input type="text" class="form-control" name="F_Registro"  [(ngModel)]="visualizarService.selectProyecto.F_Registro" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col ms-auto">
-                                        <div class="form-group">
-                                            <label class='col-form-label'>Estado</label>
-                                            <input type="text" class="form-control" name="EstadoPedido"  [(ngModel)]="visualizarService.selectProyecto.EstadoPedido" disabled>
-                                        </div>
+            <div class="row">
+                <div class="col ms-auto">
+                    <mat-card class="card">
+                        <mat-card-header>
+                            <mat-card-title>Datos del pedido</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class='col-form-label'>Pedido</label>
+                                        <input type="text" class="form-control" name="NombrePedido" [(ngModel)]="visualizarService.selectProyecto.NombrePedido" disabled>
                                     </div>
                                 </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label class='col-form-label'>Empleado</label>
-                                                <input type="text" class="form-control"
-                                                name="Empleado"  
-                                                [(ngModel)]="visualizarService.selectProyecto.Empleado" disabled> 
-                                            </div>
-                                        </div>
-                                        <div class="col ms-auto">
-                                            <div class="form-group">
-                                                <label class='col-form-label'>Nombres</label>
-                                                <input type="text" class="form-control" name="Cliente"  
-                                                [(ngModel)]="visualizarService.selectProyecto.Cliente" disabled>
-                                        
-                                            </div>
-                                        </div>
-                                    </div> 
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class='col-form-label'>Fecha de registro</label>
+                                        <input type="text" class="form-control" name="F_Registro" [(ngModel)]="visualizarService.selectProyecto.F_Registro" disabled>
+                                    </div>
+                                </div>
+                                <div class="col ms-auto">
+                                    <div class="form-group">
+                                        <label class='col-form-label'>Estado</label>
+                                        <input type="text" class="form-control" name="EstadoPedido" [(ngModel)]="visualizarService.selectProyecto.EstadoPedido" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class='col-form-label'>Empleado</label>
+                                        <input type="text" class="form-control" name="Empleado" [(ngModel)]="visualizarService.selectProyecto.Empleado" disabled>
+                                    </div>
+                                </div>
+                                <div class="col ms-auto">
+                                    <div class="form-group">
+                                        <label class='col-form-label'>Nombres</label>
+                                        <input type="text" class="form-control" name="Cliente" [(ngModel)]="visualizarService.selectProyecto.Cliente" disabled>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
                 </div>
-                
+            </div>
 
 
 
-                <mat-card class="card">
+
+            <mat-card class="card">
                 <mat-card-header>
                     <mat-card-title>Datos del evento</mat-card-title>
                 </mat-card-header>
@@ -66,17 +62,13 @@
                         <div class="col ms-auto">
                             <div class="form-group">
                                 <label class='col-form-label'>Hora</label>
-                                <input type="time" class="form-control" name="Hora_Evento"  
-                                [(ngModel)]="visualizarService.selectProyecto.Hora_Evento"
-                                disabled>
+                                <input type="time" class="form-control" name="Hora_Evento" [(ngModel)]="visualizarService.selectProyecto.Hora_Evento" disabled>
                             </div>
                         </div>
                         <div class="col ms-auto">
                             <div class="form-group">
                                 <label class='col-form-label'>Fecha</label>
-                                <input type="text" class="form-control" 
-                                name="F_Evento"  
-                                [(ngModel)]="visualizarService.selectProyecto.F_Evento" disabled>
+                                <input type="text" class="form-control" name="F_Evento" [(ngModel)]="visualizarService.selectProyecto.F_Evento" disabled>
                             </div>
                         </div>
                     </div>
@@ -85,8 +77,7 @@
                             <div class="form-group">
                                 <label class='col-form-label'>Ubicacion</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="Direccion"  
-                                    [(ngModel)]="visualizarService.selectProyecto.Direccion" disabled>
+                                    <input type="text" class="form-control" name="Direccion" [(ngModel)]="visualizarService.selectProyecto.Direccion" disabled>
                                 </div>
                             </div>
                         </div>
@@ -102,31 +93,27 @@
                         <div class="col ms-auto">
                             <div class="form-group">
                                 <label class='col-form-label'>Servicio</label>
-                                <input type="text" class="form-control" name="Servicio"  
-                                [(ngModel)]="visualizarService.selectProyecto.Servicio" disabled>
+                                <input type="text" class="form-control" name="Servicio" [(ngModel)]="visualizarService.selectProyecto.Servicio" disabled>
                             </div>
                         </div>
                         <div class="col ms-auto">
                             <div class="form-group">
                                 <label class='col-form-label'>Evento</label>
-                                <input type="text" class="form-control" name="Evento"  
-                                [(ngModel)]="visualizarService.selectProyecto.Evento" disabled>
+                                <input type="text" class="form-control" name="Evento" [(ngModel)]="visualizarService.selectProyecto.Evento" disabled>
                             </div>
                         </div>
                     </div>
-                        <div class="form-group">
-                                <label class='col-form-label'>Observaciones</label>
-                                <textarea role="textbox" rows="5" class="form-control" name="Descripcion" 
-                                [(ngModel)]="visualizarService.selectProyecto.Descripcion" disabled></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label class='col-form-label'>Observaciones</label>
+                        <textarea role="textbox" rows="5" class="form-control" name="Descripcion" [(ngModel)]="visualizarService.selectProyecto.Descripcion" disabled></textarea>
+                    </div>
                 </mat-card-content>
             </mat-card>
             <div class="row" style="text-align: center;">
                 <div class="col-6" style="text-align: left;">
-                    <button type="button" class="btn btn-outline-dark" [routerLink]="['/gestionar-pedido']">Atrás</button>
+                    <button type="button" class="btn btn-outline-dark" [routerLink]="['/home/gestionar-pedido']">Atrás</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-

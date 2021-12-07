@@ -58,13 +58,15 @@ export class ActualizarPedidoComponent implements OnInit {
   putPedido(){
     let data={
         "EP_Cod": this.visualizarService.selectProyecto.EstadoPedido,
-        "fecha": this.visualizarService.selectProyecto.F_Evento,
+        "fecha": (this.visualizarService.selectProyecto.F_Evento),
         "hora": this.visualizarService.selectProyecto.Hora_Evento,
         "ubicacion": this.visualizarService.selectProyecto.Direccion,
         "lugar": null, "latitud": null,"longitud": null,"fecha2": null,
         "hora2": null,"ubicacion2": null, "lugar2": null, "latitud2": null,
         "longitud2": null, "id": this.ID
     }
+    console.log('fecha 1',data.fecha , 'fecha 2', data.fecha2);
+    
     this.visualizarService
       .putPedido(data)
       .subscribe(

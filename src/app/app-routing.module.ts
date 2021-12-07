@@ -6,6 +6,7 @@ import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/l
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
+import { ReportesEstadisticosComponent } from './control-panel/reportes-estadisticos/reportes-estadisticos.component';
 
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { DetalleServiciosComponent } from './control-panel/administrar-paquete-servicio/components/detalle-servicios/detalle-servicios.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
     component: AdministrarPaqueteServicioComponent,
   },
   { path: 'registrar-pago', component: RegistrarPagoComponent },
+  { path: 'reportes-estadisticos', component: ReportesEstadisticosComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 ];
 

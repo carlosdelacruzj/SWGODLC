@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -16,6 +18,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './shared/angular-material/spanish-paginator-intl';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import {
   NgxMatDatetimePickerModule,
@@ -35,6 +38,7 @@ import { ActualizarProyectoComponent } from './control-panel/gestionar-proyecto/
 import { DatePipe } from '@angular/common';
 import { EditarServicioComponent } from './control-panel/administrar-paquete-servicio/components/editar-servicio/editar-servicio.component';
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
+import { ReportesEstadisticosComponent } from './control-panel/reportes-estadisticos/reportes-estadisticos.component';
 
 
 @NgModule({
@@ -55,6 +59,7 @@ import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar
     ActualizarProyectoComponent,
     EditarServicioComponent,
     RegistrarPagoComponent,
+    ReportesEstadisticosComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,8 +71,12 @@ import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    ReactiveFormsModule, 
-    NgbModule
+    ReactiveFormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    NgxChartsModule,NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

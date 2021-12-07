@@ -35,7 +35,7 @@ export class VisualizarService {
   };
 
   selectAgregarPedido: AgregarPedido = {
-    Nombre: '',
+    NombrePedido: '',
     ExS: 0,
     doc: '',
     fechaCreate: '',
@@ -69,13 +69,8 @@ export class VisualizarService {
   public getEventosServicio(evento:number,servicio:number):Observable<any>{
     return this.http.get(this.GET_EVENTO_BY_SERVICIOS + `${evento}` + '/' + `${servicio}`);
   }
-  public putPedido(estado: number, fecha: string, hora: string, id: number): Observable<any> {
-    return this.http.put(this.API_EDITARPEDIDO, {
-      "EP_Cod": estado,
-      "fecha": fecha,
-      "hora": hora,
-      "id": id
-    })
+  public putPedido(data:any): Observable<any> {
+    return this.http.put(this.API_EDITARPEDIDO, data)
   }
 
 

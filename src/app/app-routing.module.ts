@@ -6,6 +6,7 @@ import { GestionarProyectoComponent } from './control-panel/gestionar-proyecto/l
 import { AgregarProyectoComponent } from './control-panel/gestionar-proyecto/agregar-proyecto/agregar-proyecto.component';
 import { GestionarPedidoComponent } from './control-panel/gestionar-pedido/gestionar-pedido.component';
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
+import { ReportesEstadisticosComponent } from './control-panel/reportes-estadisticos/reportes-estadisticos.component';
 
 import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';

@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 import { AppComponent } from './app.component';
 // import { HeaderComponent } from './shared/header/header.component';
 // import { FooterComponent } from './shared/footer/footer.component';
@@ -16,6 +18,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getSpanishPaginatorIntl } from './shared/angular-material/spanish-paginator-intl';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import {
   NgxMatDatetimePickerModule,
@@ -44,6 +47,7 @@ import { ContratoComponent } from './control-panel/generar-contrato/contrato/con
 import { AgregarPedidoComponent } from './control-panel/gestionar-pedido/agregar-pedido/agregar-pedido.component';
 import { DetallePedidoComponent } from './control-panel/gestionar-pedido/detalle-pedido/detalle-pedido.component';
 import { ActualizarPedidoComponent } from './control-panel/gestionar-pedido/actualizar-pedido/actualizar-pedido.component';
+import { ReportesEstadisticosComponent } from './control-panel/reportes-estadisticos/reportes-estadisticos.component';
 
     // HeaderComponent,
     // FooterComponent,
@@ -72,6 +76,7 @@ import { ActualizarPedidoComponent } from './control-panel/gestionar-pedido/actu
     AgregarPedidoComponent,
     DetallePedidoComponent,
     ActualizarPedidoComponent,
+    ReportesEstadisticosComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +91,9 @@ import { ActualizarPedidoComponent } from './control-panel/gestionar-pedido/actu
     ReactiveFormsModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs'
+      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs',
+    NgxChartsModule,NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
     })
   ],
   providers: [

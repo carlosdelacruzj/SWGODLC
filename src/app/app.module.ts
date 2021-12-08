@@ -91,7 +91,8 @@ import { ReportesEstadisticosComponent } from './control-panel/reportes-estadist
     ReactiveFormsModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs',
+      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs'
+    }),
     NgxChartsModule,NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })

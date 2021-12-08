@@ -26,7 +26,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
 
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: ReportesEstadisticosComponent },
       { path: 'gestionar-equipos', component: GestionarEquiposComponent },
       { path: 'gestionar-proyecto', component: GestionarProyectoComponent },
       {
@@ -65,7 +65,6 @@ const routes: Routes = [
       { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent },
       { path: 'generar-contrato', component: GenerarContratoComponent },
       { path: 'generar-contrato/contrato', component: ContratoComponent },
-      { path: 'reportes-estadisticos', component: ReportesEstadisticosComponent },
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
     ]
   }

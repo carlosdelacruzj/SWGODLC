@@ -23,15 +23,25 @@ export class VisualizarService {
     Direccion: '',
     Descripcion: '',
     NombrePedido: '',
+    Ubicacion:''
 
   };
 
-  putEditarPedido: EditarPedido = {
+  selectEditarPedido: EditarPedido = {
     EP_Cod: 0,
     fecha: '',
     hora: '',
-    id: 0,
-
+    ubicacion:'',
+    lugar: '',
+    latitud: '',
+    longitud: '',
+    fecha2: '',
+    hora2: '',
+    ubicacion2: '',
+    lugar2: '',
+    latitud2: '',
+    longitud2: '',
+    id: 0
   };
 
   selectAgregarPedido: AgregarPedido = {
@@ -69,7 +79,7 @@ export class VisualizarService {
   public getEventosServicio(evento:number,servicio:number):Observable<any>{
     return this.http.get(this.GET_EVENTO_BY_SERVICIOS + `${evento}` + '/' + `${servicio}`);
   }
-  public putPedido(data:any): Observable<any> {
+  public putPedido(data:any): Observable<any> {console.log(data)
     return this.http.put(this.API_EDITARPEDIDO, data)
   }
 
@@ -88,6 +98,7 @@ export class VisualizarService {
       horaEvent: horaEvent,
       CodEmp: CodEmp,
       Direccion: Direccion,
+      Ubicacion: Direccion,
       Observacion:Observacion,
     })
   }

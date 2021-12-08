@@ -16,6 +16,8 @@ export class ActualizarPedidoComponent implements OnInit {
   minimo: string;
   maximo: string;
   fechaCreate: Date = new Date();
+  fechaEvento:any;
+  estado:any;
   estados: any[] = [
     { value: '2', viewValue: 'Aceptado' },
     { value: '3', viewValue: 'Cancelado' },
@@ -51,27 +53,28 @@ export class ActualizarPedidoComponent implements OnInit {
       response =>{
         
         this.visualizarService.selectProyecto=response[0];
-        this.visualizarService.selectProyecto.F_Evento = (response[0].F_Evento);
-        
+        this.visualizarService.selectProyecto.F_Evento = (response[0].F_Evento).split("-").reverse().join("-");
+        this.estado=response[0].EstadoPedido
+        this.fechaEvento=(response[0].F_Evento);
     });
   }
   putPedido(){
-    let data={
-        "EP_Cod": this.visualizarService.selectProyecto.EstadoPedido,
-        "fecha": (this.visualizarService.selectProyecto.F_Evento),
-        "hora": this.visualizarService.selectProyecto.Hora_Evento,
-        "ubicacion": this.visualizarService.selectProyecto.Direccion,
-        "lugar": null, "latitud": null,"longitud": null,"fecha2": null,
-        "hora2": null,"ubicacion2": null, "lugar2": null, "latitud2": null,
-        "longitud2": null, "id": this.ID
-    }
-    console.log('fecha 1',data.fecha , 'fecha 2', data.fecha2);
+    let idEstado =this.estados.find(e => e =this.visualizarService.selectProyecto.EstadoPedido)
     
+    let data={
+        'EP_Cod': (Number)(this.visualizarService.selectEditarPedido.EP_Cod)!= 0 ? (Number)(this.visualizarService.selectEditarPedido.EP_Cod): (Number)(idEstado.value),
+        'fecha': this.visualizarService.selectProyecto.F_Evento,
+        'hora': this.visualizarService.selectProyecto.Hora_Evento,
+        'ubicacion': this.visualizarService.selectProyecto.Ubicacion,
+        'lugar': this.visualizarService.selectProyecto.Ubicacion, 'latitud': null,'longitud': null,'fecha2': null,
+        'hora2': null,'ubicacion2': null, 'lugar2': null, 'latitud2': null,
+        'longitud2': null, "id": (Number)(this.ID)
+    }
     this.visualizarService
       .putPedido(data)
       .subscribe(
         (res) => { swal.fire({
-          text: 'Registro exitoso',
+          text: 'Actualización exitoso',
           icon: 'success',
           showCancelButton: false,
           customClass: {

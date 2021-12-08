@@ -18,6 +18,7 @@ import { RegistrarPagoComponent } from './registrar-pago/registrar-pago.componen
 import { DetallePedidoComponent } from './gestionar-pedido/detalle-pedido/detalle-pedido.component';
 import { ActualizarPedidoComponent } from './gestionar-pedido/actualizar-pedido/actualizar-pedido.component';
 import { AgregarPedidoComponent } from './gestionar-pedido/agregar-pedido/agregar-pedido.component';
+import { ReportesEstadisticosComponent } from './reportes-estadisticos/reportes-estadisticos.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,7 @@ const routes: Routes = [
       { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent },
       { path: 'generar-contrato', component: GenerarContratoComponent },
       { path: 'generar-contrato/contrato', component: ContratoComponent },
+      { path: 'reportes-estadisticos', component: ReportesEstadisticosComponent },
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
     ]
   }

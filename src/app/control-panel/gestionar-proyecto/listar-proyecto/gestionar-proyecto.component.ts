@@ -64,8 +64,8 @@ export class GestionarProyectoComponent implements OnInit {
   //Para las fechas
 
   fechaValidate(date) {
-    this.minimo = this.addDaysToDate(date, 1);
-    this.maximo = this.addDaysToDate(date, 2);
+    this.minimo = this.addDaysToDate(date, 14);
+    this.maximo = this.addDaysToDate(date, 365);
   }
 
   addDaysToDate(date, days) {

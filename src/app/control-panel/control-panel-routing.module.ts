@@ -19,6 +19,12 @@ import { DetallePedidoComponent } from './gestionar-pedido/detalle-pedido/detall
 import { ActualizarPedidoComponent } from './gestionar-pedido/actualizar-pedido/actualizar-pedido.component';
 import { AgregarPedidoComponent } from './gestionar-pedido/agregar-pedido/agregar-pedido.component';
 import { ReportesEstadisticosComponent } from './reportes-estadisticos/reportes-estadisticos.component';
+import { GestionarClienteComponent } from './gestionar-cliente/gestionar-cliente.component';
+import { RegistrarClienteComponent } from './gestionar-cliente/registrar-cliente/registrar-cliente.component';
+import { EditarClienteComponent } from './gestionar-cliente/editar-cliente/editar-cliente.component';
+import { GestionarPerfilesComponent } from './gestionar-perfiles/gestionar-perfiles.component';
+import { RegistrarPerfilComponent } from './gestionar-perfiles/registrar-perfil/registrar-perfil.component';
+import { EditarPerfilComponent } from './gestionar-perfiles/editar-perfil/editar-perfil.component';
 
 const routes: Routes = [
   {
@@ -65,6 +71,15 @@ const routes: Routes = [
       { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent },
       { path: 'generar-contrato', component: GenerarContratoComponent },
       { path: 'generar-contrato/contrato', component: ContratoComponent },
+
+      //Clientes y perfiles
+
+      { path: 'gestionar-cliente', component: GestionarClienteComponent },
+      { path: 'gestionar-cliente/registrar-cliente', component: RegistrarClienteComponent },
+       { path: 'gestionar-cliente/editar-cliente', component: EditarClienteComponent},
+       { path: 'gestionar-perfiles', component: GestionarPerfilesComponent},
+       { path: 'gestionar-perfiles/registrar-perfil', component: RegistrarPerfilComponent},
+       { path: 'gestionar-perfiles/editar-perfil', component: EditarPerfilComponent},
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
     ]
   }

@@ -26,9 +26,9 @@
             </mat-card-header>
             <mat-card-content class="card-body">
                 <div class="form-row">
-                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
+                    <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 input-disabled" appearance="fill">
                         <mat-label>ID</mat-label>
-                        <input matInput type="text" name="ID" #ID="ngModel" [(ngModel)]="service.selectCliente.ID" disabled>
+                        <input matInput type="text" name="ID" #ID="ngModel" [(ngModel)]="service.selectCliente.ID" [readonly]="true">
                     </mat-form-field>
                     <mat-form-field class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 " appearance="fill">
                         <mat-label>Nombre</mat-label>

@@ -37,6 +37,9 @@ import { ContratoComponent } from './control-panel/generar-contrato/contrato/con
 import { GestionarClienteComponent } from './control-panel/gestionar-cliente/gestionar-cliente.component';
 import { RegistrarClienteComponent } from './control-panel/gestionar-cliente/registrar-cliente/registrar-cliente.component';
 import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar-cliente/editar-cliente.component';
+import { GestionarPerfilesComponent } from './control-panel/gestionar-perfiles/gestionar-perfiles.component';
+import { RegistrarPerfilComponent } from './control-panel/gestionar-perfiles/registrar-perfil/registrar-perfil.component';
+import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar-perfil/editar-perfil.component';
 
 
 @NgModule({
@@ -60,6 +63,9 @@ import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar
     GestionarClienteComponent,
     RegistrarClienteComponent,
     EditarClienteComponent,
+    GestionarPerfilesComponent,
+    RegistrarPerfilComponent,
+    EditarPerfilComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,9 @@ import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar
 import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
+import { GestionarPerfilesComponent } from './control-panel/gestionar-perfiles/gestionar-perfiles.component';
+import { RegistrarPerfilComponent } from './control-panel/gestionar-perfiles/registrar-perfil/registrar-perfil.component';
+import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar-perfil/editar-perfil.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'gestionar-proyecto/agregar-proyecto', component: AgregarProyectoComponent },
   { path: 'gestionar-cliente/registrar-cliente', component: RegistrarClienteComponent },
   { path: 'gestionar-cliente/editar-cliente', component: EditarClienteComponent},
+  { path: 'gestionar-perfiles', component: GestionarPerfilesComponent},
+  { path: 'gestionar-perfiles/registrar-perfil', component: RegistrarPerfilComponent},
+  { path: 'gestionar-perfiles/editar-perfil', component: EditarPerfilComponent},
   { path: 'gestionar-pedido', component: GestionarPedidoComponent },
   { path: 'administrar-paquete-servicio', component: AdministrarPaqueteServicioComponent},
   { path: 'generar-contrato', component: GenerarContratoComponent },

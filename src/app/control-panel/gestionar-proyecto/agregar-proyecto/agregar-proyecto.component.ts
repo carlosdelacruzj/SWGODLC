@@ -20,6 +20,7 @@ interface Food {
   styleUrls: ['./agregar-proyecto.component.css'],
 })
 export class AgregarProyectoComponent implements OnInit {
+
   fechaOk = '';
   proyectos = [];
   btnDisabled = false;

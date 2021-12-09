@@ -17,6 +17,7 @@ export class AgregarPedidoComponent implements OnInit {
   servicios: any[] = [];
   servicioSeleccionado = 1;
   eventoSeleccionado = 1;
+  CodigoEmpleado: number = 1;
   evento: any[] = [];
   dataSource!: MatTableDataSource<any>;
   dataSource1!: MatTableDataSource<any>;
@@ -56,6 +57,9 @@ export class AgregarPedidoComponent implements OnInit {
       res.setDate(res.getDate() + days);
      return this.convert(res);}
 
+
+
+     
   getDataCliente(dni: number) {
     this.pedidoService.getDni(dni).subscribe((res) => {
         if(res.length==0){

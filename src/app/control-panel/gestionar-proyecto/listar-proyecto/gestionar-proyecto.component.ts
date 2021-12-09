@@ -16,6 +16,9 @@ import swal from 'sweetalert2';
   styleUrls: ['./gestionar-proyecto.component.css'],
 })
 export class GestionarProyectoComponent implements OnInit {
+  minimo: string;
+  maximo: string;
+  fechaFinEdicion: Date = new Date();
   fechaOk = '';
   displayedColumns = [
     'PK_Pro_Cod',
@@ -54,7 +57,27 @@ export class GestionarProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.getProyecto();
     this.getPedido();
+    // this.service.selectProyecto.Pro_Fecha_Fin_Edicion = this.fechaFinEdicion.toDateString();
+    this.fechaValidate(this.fechaFinEdicion);
+  }
 
+  //Para las fechas
+
+  fechaValidate(date) {
+    this.minimo = this.addDaysToDate(date, 1);
+    this.maximo = this.addDaysToDate(date, 2);
+  }
+
+  addDaysToDate(date, days) {
+    var res = new Date(date);
+    res.setDate(res.getDate() + days);
+    return this.convert(res);
+  }
+  convert(str) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
   }
 
   // para llenar las tablas
@@ -95,15 +118,17 @@ export class GestionarProyectoComponent implements OnInit {
   getPedidoID(valor: number) {
     this.service2.getAllNombresID(valor).subscribe((responde) => {
       this.service2.selectPedido2 = responde[0];
-      console.log(valor);
-      console.log(responde);
-      console.log(this.service2.selectPedido2);
+
+      // console.log(valor);
+      // console.log(responde);
+      // console.log(this.service2.selectPedido2);
     });
   }
   getProyectoID(valor: number) {
     this.service.getProyectoID(valor).subscribe((responde) => {
       this.service.selectProyecto = responde[0];
-      // console.log(this.service.selectProyecto)
+      this.service.selectProyecto.Pro_Fecha_Fin_Edicion = (responde[0].Pro_Fecha_Fin_Edicion).split("-").reverse().join("-");
+      console.log(this.service.selectProyecto)
 
     })
   }
@@ -119,11 +144,14 @@ export class GestionarProyectoComponent implements OnInit {
   }
 
   UpdateEmpleado(EmpleadoForm: NgForm, fecha: string, id: number) {
-    this.fechaOk = fecha.substr(6) + fecha.substr(2, 4) + fecha.substr(0, 2); //yyyy-MM-dd
-    console.log(id)
-    console.log(fecha);
+    // this.fechaOk = fecha.substr(6) + fecha.substr(2, 4) + fecha.substr(0, 2); //yyyy-MM-dd
+    // console.log(id)
+    // console.log(fecha);
+
+    console.log(this.fechaFinEdicion);
+
     let data = {
-      finFecha: this.fechaOk,
+      finFecha: this.service.selectProyecto.Pro_Fecha_Fin_Edicion,
       multimedia: 1,
       edicion: 1,
       enlace: EmpleadoForm.value.enlace,

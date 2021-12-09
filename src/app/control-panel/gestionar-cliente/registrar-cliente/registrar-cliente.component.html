@@ -3,8 +3,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
                 <h2 class="pageheader-title">Form Validations </h2>
-                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet
-                    vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                 <div class="page-breadcrumb">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -81,7 +80,7 @@
                 <div class="form-row">
                     <mat-form-field class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-12 " appearance="fill">
                         <mat-label>Dirección</mat-label>
-                        <textarea matInput  type="text" name="direccion" #direccion="ngModel" ngModel required></textarea>
+                        <textarea matInput type="text" name="direccion" #direccion="ngModel" ngModel required></textarea>
                         <div *ngIf="direccion.errors?.pattern">
                             <p>*Ingrese una dirección correcta</p>
                         </div>
@@ -94,6 +93,9 @@
         </mat-card>
         <button class="btn btn-primary mb-2 mr-1" type="submit" [disabled]="clienteForm.invalid"> 
             Registrar
+        </button>
+        <button class="btn btn-primary mb-2 mr-1" type="button" [routerLink]="['/home/gestionar-cliente']"> 
+            atras
         </button>
     </form>
 </div>

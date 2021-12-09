@@ -113,10 +113,12 @@ export class AgregarPedidoComponent implements OnInit {
       this.ubicacion;}}
 
   postPedido() {
+    console.log(this.visualizarService.selectAgregarPedido.fechaEvent);
+    console.log(this.convert(this.fechaCreate));
     this.visualizarService
       .postPedidos(this.visualizarService.selectAgregarPedido.NombrePedido, 
         this.desID, this.dniCliente.toString(), 
-        this.fechaCreate.toDateString(), 
+        this.convert(this.fechaCreate), 
         this.visualizarService.selectAgregarPedido.fechaEvent, 
         this.visualizarService.selectAgregarPedido.horaEvent, 
         1, this.ubicacion[0].Direccion, this.visualizarService.selectAgregarPedido.Observacion)

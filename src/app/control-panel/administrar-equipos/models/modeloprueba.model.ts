@@ -80,3 +80,43 @@ export class existeSerie{
     public existe: number,
     ){}
 }
+
+export class equiposAlquilados{
+  constructor(
+    public tipoEquipo: string,
+    public serie: string,
+    public proyectoAsig: string,
+    public empleadoAsig: string,
+    public estado: string,
+    public id: number,
+  ){}
+}
+
+export class detalleEquipoAlquilado{
+  constructor(
+    public tipoEquipo: string,
+    public marca: string,
+    public modelo: string,
+    public serie: string,
+    public fechaEntrada: string,
+    public fechaSalida: string,
+    public estado: string,
+    public proyectoAsig: string,
+    public empleadoAsig: string,
+    public id: number
+  ){}
+}
+
+export class rAlquilado{
+  constructor(
+    public tipoEquipo: string,
+    public marca: string,
+    public modelo: string,
+    public serie: string,
+    public fechaEntrada: string,
+    public fechaSalida: string,
+    public fk_Pro_Cod: number,
+    public fk_Empleado_Cod: number,
+    public estado: string
+  ) {}
+}

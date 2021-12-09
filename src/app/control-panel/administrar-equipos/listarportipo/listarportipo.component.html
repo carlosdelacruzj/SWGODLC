@@ -1,26 +1,21 @@
-<div class="dashboard-ecommerce">
-  <div class="container-fluid dashboard-content">
-
-    <div class="container-fluid">
-      <div style="margin-bottom: 28px;">
-        <h3>Equipos del Modelo:
-            {{Modelo}}
-           </h3>
-      </div>
+<div class="container-fluid dashboard-content">
+  <h3>Equipos del Modelo:
+        {{Modelo}}
+       </h3>
+    <div class="dashboard-ecommerce">
     <div class="row">
-      <div class="col-8">
+      <!-- Buscador general -->
+      <div class="col-9">
         <mat-form-field appearance="standard">
           <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
         </mat-form-field>
       </div>
       <!-- Boton para el registro de equipo -->
-      <div class="col-4">
-        <div style="text-align:right">
+        <div class="col-3">
           <button class="btn btn-primary btn-lg"
           (click)="open(contentCreate)">
               Registrar Equipo</button>
         </div>
-      </div>
        <!-- Leyenda -->
        <table mat-table [dataSource]="dataSource2"  class="table" style="width: 50%;">
         <ng-container matColumnDef="disponible">
@@ -64,6 +59,8 @@
       </table>
 
     </div>
+    <div class="container-fluid">
+      <!-- TABLA -->
       <table mat-table [dataSource]="dataSource1"  class="table">
         <!-- Tipo de Equipo -->
         <ng-container matColumnDef="equipo">

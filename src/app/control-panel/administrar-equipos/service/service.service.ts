@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { countEstadosPorModelo, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, existeSerie, updateStatus } from '../models/modeloprueba.model';
+import { countEstadosPorModelo, detalleEquipoAlquilado, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, equiposAlquilados, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, existeSerie, rAlquilado, updateStatus } from '../models/modeloprueba.model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +76,40 @@ export class AdministrarEquiposService {
     existe: 0
   }
 
+  allAquilados: equiposAlquilados = {
+    tipoEquipo: '',
+    serie: '',
+    proyectoAsig: '',
+    empleadoAsig: '',
+    estado: '',
+    id: 0
+  }
+
+  infoAlquilado: detalleEquipoAlquilado = {
+    tipoEquipo: '',
+    marca: '',
+    modelo: '',
+    serie: '',
+    fechaEntrada: '',
+    fechaSalida: '',
+    estado: '',
+    proyectoAsig: '',
+    empleadoAsig: '',
+    id: 0
+  }
+
+  postAlquilado: rAlquilado = {
+    tipoEquipo: '',
+    marca: '',
+    modelo: '',
+    serie: '',
+    fechaEntrada: '',
+    fechaSalida: '',
+    fk_Pro_Cod: 0,
+    fk_Empleado_Cod: 0,
+    estado: ''
+  }
+
   private EQUIPO_TIPOALL =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllTipoEquipo';
 
@@ -86,7 +120,7 @@ export class AdministrarEquiposService {
     'https://tp2021database.herokuapp.com/equipo/consulta/getByTipoEquipo/';
 
   private EQUIPO_TIPOIDMARCAMODELO =
-    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup'; //FECHA?
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup';
 
   private EQUIPO_ALLGROUP =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposGroup';
@@ -107,7 +141,17 @@ export class AdministrarEquiposService {
     'https://tp2021database.herokuapp.com/equipo/actualiza/putEstadoEquipo';
 
   private EXI_SERIE =
-    'https://tp2021database.herokuapp.com/equipo/consulta/getExistEquipo'
+    'https://tp2021database.herokuapp.com/equipo/consulta/getExistEquipo';
+
+  private GET_EQUIPOSA =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/consulta/getAllEquiposAlquilado';
+
+  private GET_DETALLESA =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/consulta/getEquipoAlquiladoByID';
+
+  private R_EQUIPO_A =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/registro/postEquipoAlquilado';
+
 
   constructor(private http: HttpClient) {}
 
@@ -127,7 +171,7 @@ export class AdministrarEquiposService {
   public getMarcaEquipo(): Observable<any> {
     return this.http.get(this.EQUIPO_ALLMARCA);
   }
-  // POR EQUIPO MARCA MODELO https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup/1/1/1
+  // POR EQUIPO MARCA MODELO
   public getEquipoMarcaModelo(idEquipo: number,idMarca:number,idModelo:number): Observable<any> {
     return this.http.get(`${this.EQUIPO_TIPOIDMARCAMODELO}/${idEquipo}/${idMarca}/${idModelo}`);
   }
@@ -149,5 +193,17 @@ export class AdministrarEquiposService {
   //registro de un nuevo equipo uwu
   public rEquipo(data:any): Observable<any> {
     return this.http.post(this.REGISTER_EQUIPO,data);
+  }
+  //r e a
+  public rEquipoA(data:any): Observable<any> {
+    return this.http.post(this.R_EQUIPO_A,data)
+  }
+  //Listar Equipos Alquilados
+  public getEquiposAlquilados(): Observable<any> {
+    return this.http.get(this.GET_EQUIPOSA);
+  }
+  //Detalles del equipo alquilado por su id
+  public getDetallesAlquilado(id: number): Observable<any> {
+    return this.http.get(`${this.GET_DETALLESA}/${id}`);
   }
 }

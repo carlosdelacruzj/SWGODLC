@@ -38,6 +38,7 @@ import { AdministrarEquiposComponent } from './control-panel/administrar-equipos
 import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
+import { DetallesAlquiladoComponent } from './control-panel/administrar-equipos/detalles-alquilado/detalles-alquilado.component';
 
 
 
@@ -62,6 +63,7 @@ import { ListarportipoComponent } from './control-panel/administrar-equipos/list
     GestionarPersonalComponent,
     AgregarPersonalComponent,
     ListarportipoComponent,
+    DetallesAlquiladoComponent,
   ],
   imports: [
     BrowserModule,

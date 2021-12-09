@@ -14,6 +14,9 @@ export class ReportesEstadisticosComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerEquipos();
     this.obtenerProyectos();
+    this.obtenerServicios();
+    this.obtenerEstados();
+    this.obtenerGanacias();
   }
 
   equipos: Equipos[] = [];
@@ -22,12 +25,20 @@ export class ReportesEstadisticosComponent implements OnInit {
   single2: any[] = [];
   view: any[] = [200, 200];
 
+  proyectosReady: boolean = false;
+  serviciosReady: boolean = false;
+  estadosReady: boolean = false;
+  gananciasReady: boolean = false;
+
   single4: any[] = [];
   Ganancias: boolean = false;
 
   proyectos: Proyecto = {} as Proyecto;
 
-  data : any[] = [];
+  data: any[] = [];
+  dataServicios: any[] = [];
+  dataEstados: any[] = [];
+  dataGanancias: any[] = [];
 
   // options
   gradient: boolean = true;
@@ -49,12 +60,7 @@ export class ReportesEstadisticosComponent implements OnInit {
   showYAxisLabel = true;
   yAxisLabel = 'Mes';
 
-  constructor(private service: ReportesEstadisticos) {
-    Object.assign(this, { single });
-    Object.assign(this, { single3 });
-    Object.assign(this, { single2 });
-    Object.assign(this, { single4 });
-  }
+  constructor(private service: ReportesEstadisticos) {}
 
   obtenerEquipos() {
     this.service.getEquipos().subscribe((res) => {
@@ -62,20 +68,62 @@ export class ReportesEstadisticosComponent implements OnInit {
     });
   }
 
+  obtenerServicios() {
+    this.service.getEventos().subscribe((res) => {
+      const values = Object.values(res);
+      for (let i = 0; i < values.length; i++) {
+        var obj = {
+          name: `${values[i].servicio} - ${values[i].evento} - ${values[i].nombre}`,
+          value: values[i].cantidad,
+        };
+        this.dataServicios.push(obj);
+      }
+      this.serviciosReady = true;
+    });
+  }
+
   obtenerProyectos() {
     this.service.getProyectos().subscribe((res) => {
-      this.proyectos = res[0];
-      const values = Object.values(res[0])
-
-      for(let i = 0 ; i < 6 ; i++){
+      const values = Object.values(res[0]);
+      for (let i = 0; i < values.length; i++) {
         var obj = {
-          name : 'mes'+ (i+1).toString(),
-          value : values[i]
-        }
-        this.data.push(obj)
+          name: 'mes' + (i + 1).toString(),
+          value: values[i],
+        };
+        this.data.push(obj);
       }
-      console.log(this.data)
+      this.proyectosReady = true;
+    });
+  }
 
+  obtenerEstados() {
+    this.service.getEstados().subscribe((res) => {
+      const values = Object.values(res);
+      const keys = Object.keys(values[0]);
+      for (let i = 0; i < keys.length; i++) {
+        var obj = {
+          name: keys[i],
+          value: values[0][keys[i]],
+        };
+        this.dataEstados.push(obj);
+      }
+      this.estadosReady = true;
+    });
+  }
+
+  obtenerGanacias() {
+    this.service.getGanancias().subscribe((res) => {
+      const values = Object.values(res);
+      const keys = Object.keys(values[0]);
+      for (let i = 0; i < keys.length; i++) {
+        var obj = {
+          name: keys[i],
+          value: values[0][keys[i]] == null ? 0 : values[0][keys[i]],
+        };
+        this.dataGanancias.push(obj);
+      }
+      console.log(this.dataGanancias);
+      this.gananciasReady = true;
     });
   }
 

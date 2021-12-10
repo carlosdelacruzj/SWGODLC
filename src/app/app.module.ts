@@ -6,9 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppComponent } from './app.component';
-// import { HeaderComponent } from './shared/header/header.component';
-// import { FooterComponent } from './shared/footer/footer.component';
-// import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/gestionar-equipos.component';
 import { DashboardComponent } from './control-panel/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +38,7 @@ import { AdministrarEquiposComponent } from './control-panel/administrar-equipos
 import { GestionarPersonalComponent } from './control-panel/gestionar-personal/gestionar-personal.component';
 import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agregar-personal/agregar-personal.component';
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
+import { DetallesAlquiladoComponent } from './control-panel/administrar-equipos/detalles-alquilado/detalles-alquilado.component';
 
 import { RegistrarPagoComponent } from './control-panel/registrar-pago/registrar-pago.component';
 import { ContratoComponent } from './control-panel/generar-contrato/contrato/contrato.component';
@@ -54,6 +52,7 @@ import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar
 import { GestionarPerfilesComponent } from './control-panel/gestionar-perfiles/gestionar-perfiles.component';
 import { RegistrarPerfilComponent } from './control-panel/gestionar-perfiles/registrar-perfil/registrar-perfil.component';
 import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar-perfil/editar-perfil.component';
+import { detalleEquipoAlquilado } from './control-panel/administrar-equipos/models/modeloprueba.model';
 
     // HeaderComponent,
     // FooterComponent,
@@ -89,6 +88,8 @@ import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar
     GestionarPerfilesComponent,
     RegistrarPerfilComponent,
     EditarPerfilComponent,
+    DetallesAlquiladoComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -102,12 +103,7 @@ import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar
     NgxMatNativeDateModule,
     ReactiveFormsModule,
     NgbModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs'
-    }),
-    NgxChartsModule,NgxEchartsModule.forRoot({
-      echarts: () => import('echarts')
-    })
+
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

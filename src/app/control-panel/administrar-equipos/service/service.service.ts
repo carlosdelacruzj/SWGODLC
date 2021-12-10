@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { countEstadosPorModelo, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, updateStatus } from '../models/modeloprueba.model';
+import { countEstadosPorModelo, detalleEquipoAlquilado, empleadosAll, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, equiposAlquilados, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, existeSerie, lProyectos, rAlquilado, updateAlquilados, updateStatus } from '../models/modeloprueba.model';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +72,73 @@ export class AdministrarEquiposService {
     idEquipo: ''
   }
 
+  esSerie: existeSerie = {
+    existe: 0
+  }
+
+  allAquilados: equiposAlquilados = {
+    tipoEquipo: '',
+    serie: '',
+    proyectoAsig: '',
+    empleadoAsig: '',
+    estado: '',
+    id: 0
+  }
+
+  infoAlquilado: detalleEquipoAlquilado = {
+    tipoEquipo: '',
+    marca: '',
+    modelo: '',
+    serie: '',
+    fechaEntrada: '',
+    fechaSalida: '',
+    estado: '',
+    proyectoAsig: '',
+    empleadoAsig: '',
+    id: 0
+  }
+
+  postAlquilado: rAlquilado = {
+    tipoEquipo: '',
+    marca: '',
+    modelo: '',
+    serie: '',
+    fechaEntrada: '',
+    fechaSalida: '',
+    fk_Pro_Cod: 0,
+    fk_Empleado_Cod: 0,
+    estado: ''
+  }
+
+  listarProyectos: lProyectos = {
+    ID: 0,
+    Nombre: '',
+    Fecha: '',
+    Servicio: '',
+    Evento: '',
+    Estado: 0
+  }
+
+  listarEmpledos: empleadosAll = {
+    ID: 0,
+    Nombre: '',
+    Apellido: '',
+    Car_Nombre: '',
+    DNI: '',
+    Celular: '',
+    Correo: '',
+    Autonomo: 0,
+    Cargo: '',
+    Estado: ''
+  }
+
+  upAlquilados: updateAlquilados = {
+    proyecto: 0,
+    fechaSalida: '',
+    empleado: 0,
+    codigo: 0
+  }
+
   private EQUIPO_TIPOALL =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllTipoEquipo';
 
@@ -82,7 +149,7 @@ export class AdministrarEquiposService {
     'https://tp2021database.herokuapp.com/equipo/consulta/getByTipoEquipo/';
 
   private EQUIPO_TIPOIDMARCAMODELO =
-    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup'; //FECHA?
+    'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup';
 
   private EQUIPO_ALLGROUP =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposGroup';
@@ -102,8 +169,38 @@ export class AdministrarEquiposService {
   private PUT_STATUS =
     'https://tp2021database.herokuapp.com/equipo/actualiza/putEstadoEquipo';
 
+  private EXI_SERIE =
+    'https://tp2021database.herokuapp.com/equipo/consulta/getExistEquipo';
+
+  private GET_EQUIPOSA =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/consulta/getAllEquiposAlquilado';
+
+  private GET_DETALLESA =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/consulta/getEquipoAlquiladoByID';
+
+  private R_EQUIPO_A =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/registro/postEquipoAlquilado';
+
+  private ALL_PROYECTOS =
+    'https://tp2021database.herokuapp.com/proyecto/consulta/getAllAsignarEquipos';
+
+  private ALL_EMPLEADOS =
+    'https://tp2021database.herokuapp.com/empleado/consulta/getAllEmpleados';
+
+  private PUT_ALQUILADO =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/put_equiposAlquilado_actualiza_putEquipoAlquilado'
+
   constructor(private http: HttpClient) {}
 
+  public putEAlquilado(data:any): Observable<any> {
+    return this.http.put(this.PUT_ALQUILADO,data)
+  }
+  public getAllProyectos(): Observable<any>{
+    return this.http.get(this.ALL_PROYECTOS);
+  }
+  public getAllEmpleados(): Observable<any>{
+    return this.http.get(this.ALL_EMPLEADOS);
+  }
   // definir los gets
   public getAll(): Observable<any> {
     return this.http.get(this.EQUIPO_ALL);
@@ -120,7 +217,7 @@ export class AdministrarEquiposService {
   public getMarcaEquipo(): Observable<any> {
     return this.http.get(this.EQUIPO_ALLMARCA);
   }
-  // POR EQUIPO MARCA MODELO https://tp2021database.herokuapp.com/equipo/consulta/getAllEquiposByIdGroup/1/1/1
+  // POR EQUIPO MARCA MODELO
   public getEquipoMarcaModelo(idEquipo: number,idMarca:number,idModelo:number): Observable<any> {
     return this.http.get(`${this.EQUIPO_TIPOIDMARCAMODELO}/${idEquipo}/${idMarca}/${idModelo}`);
   }
@@ -135,8 +232,24 @@ export class AdministrarEquiposService {
     };
     return this.http.put(`${this.PUT_STATUS}`,body);
   }
+  //Existe serie o no
+  public getExisteSerie(idEquipo: string): Observable<any> {
+    return this.http.get(`${this.EXI_SERIE}/${idEquipo}`);
+  }
   //registro de un nuevo equipo uwu
   public rEquipo(data:any): Observable<any> {
     return this.http.post(this.REGISTER_EQUIPO,data);
+  }
+  //r e a
+  public rEquipoA(data:any): Observable<any> {
+    return this.http.post(this.R_EQUIPO_A,data)
+  }
+  //Listar Equipos Alquilados
+  public getEquiposAlquilados(): Observable<any> {
+    return this.http.get(this.GET_EQUIPOSA);
+  }
+  //Detalles del equipo alquilado por su id
+  public getDetallesAlquilado(id: number): Observable<any> {
+    return this.http.get(`${this.GET_DETALLESA}/${id}`);
   }
 }

@@ -1,3 +1,6 @@
+import { NumberSymbol } from "@angular/common";
+import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
+
 export class EquipoTipoAll { //Filtro
   constructor(
     public PK_TE_Cod: number,
@@ -72,5 +75,86 @@ export class countEstadosPorModelo {
 export class updateStatus {
   constructor(
     public idEquipo: string,
+  ){}
+}
+
+export class existeSerie{
+  constructor(
+    public existe: number,
+    ){}
+}
+
+export class equiposAlquilados{
+  constructor(
+    public tipoEquipo: string,
+    public serie: string,
+    public proyectoAsig: string,
+    public empleadoAsig: string,
+    public estado: string,
+    public id: number,
+  ){}
+}
+
+export class detalleEquipoAlquilado{
+  constructor(
+    public tipoEquipo: string,
+    public marca: string,
+    public modelo: string,
+    public serie: string,
+    public fechaEntrada: string,
+    public fechaSalida: string,
+    public estado: string,
+    public proyectoAsig: string,
+    public empleadoAsig: string,
+    public id: number
+  ){}
+}
+
+export class rAlquilado{
+  constructor(
+    public tipoEquipo: string,
+    public marca: string,
+    public modelo: string,
+    public serie: string,
+    public fechaEntrada: string,
+    public fechaSalida: string,
+    public fk_Pro_Cod: number,
+    public fk_Empleado_Cod: number,
+    public estado: string
+  ) {}
+}
+
+export class lProyectos{
+  constructor(
+    public ID: number,
+    public Nombre: string,
+    public Fecha: string,
+    public Servicio: string,
+    public Evento: string,
+    public Estado: number
+  ){}
+}
+
+export class empleadosAll{
+  constructor(
+    public ID: number,
+    public Nombre: string,
+    public Apellido: string,
+    public Car_Nombre: string,
+    public DNI: string,
+    public Celular: string,
+    public Correo: string,
+    public Autonomo: number,
+    public Cargo: string,
+    public Estado: string
+  ) {}
+}
+
+export class updateAlquilados{
+  constructor(
+    public proyecto: number,
+    public fechaSalida: string,
+    public empleado: number,
+    public codigo: number
   ){}
 }

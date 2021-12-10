@@ -28,6 +28,7 @@ export class AuthService {
         tap(resp => {
           if (resp[0].token) {
             localStorage.setItem('token', resp[0].token);
+            // localStorage.setItem('codigo',resp)
             localStorage.setItem('correo', correo);
             this._usuario = {
               nombre: resp[0].nombre,

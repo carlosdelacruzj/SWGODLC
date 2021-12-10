@@ -122,7 +122,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgxChartsModule,NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
-    // FullCalendarModule
+    FullCalendarModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

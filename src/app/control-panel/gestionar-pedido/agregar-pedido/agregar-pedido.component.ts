@@ -102,15 +102,16 @@ export class AgregarPedidoComponent implements OnInit {
 
   addListUbicacion(direccion : string, fecha:string, hora:string){
     var cualEliminar = {ID: 0, Direccion: ''}
-    
+    console.log(direccion,fecha,hora)
     this.ubicacion =  this.ubicacion.filter((item)=>{
       return item.ID != cualEliminar.ID && item.Direccion != cualEliminar.Direccion
     });
     if(this.ubicacion.length<2){
-      let i=1;
+        let i=1;;
         this.ubicacion.push({ID:i, Direccion:direccion, Fecha:fecha, Hora:hora});
       i++;
       this.dataSource = new MatTableDataSource(this.ubicacion);
+
     }else{
       this.ubicacion;}}
 

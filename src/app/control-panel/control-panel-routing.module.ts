@@ -25,6 +25,7 @@ import { EditarClienteComponent } from './gestionar-cliente/editar-cliente/edita
 import { GestionarPerfilesComponent } from './gestionar-perfiles/gestionar-perfiles.component';
 import { RegistrarPerfilComponent } from './gestionar-perfiles/registrar-perfil/registrar-perfil.component';
 import { EditarPerfilComponent } from './gestionar-perfiles/editar-perfil/editar-perfil.component';
+import { VerCalendarioComponent } from './ver-calendario/ver-calendario.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,8 @@ const routes: Routes = [
        { path: 'gestionar-perfiles/registrar-perfil', component: RegistrarPerfilComponent},
        { path: 'gestionar-perfiles/editar-perfil', component: EditarPerfilComponent},
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
+
+      { path: 'ver-calendario', component: VerCalendarioComponent },
     ]
   }
 ];

@@ -27,6 +27,7 @@ export class DetallePedidoComponent implements OnInit {
     this.visualizarService.getPedidoID(ID).subscribe(
       response =>{
         this.visualizarService.selectProyecto=response[0];
+        console.log( this.visualizarService.selectProyecto);
     });
   }
 }

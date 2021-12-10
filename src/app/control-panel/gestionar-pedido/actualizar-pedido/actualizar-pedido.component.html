@@ -54,6 +54,7 @@
                 </mat-card-header>
                 <mat-card-content class="card-body">
                     <div class="row">
+                        <label class='col-form-label'>Ubicacion 1:</label>
                         <div class="col ms-auto">
                             <div class="form-group">
                                 <label class='col-form-label'>Hora</label>
@@ -71,6 +72,29 @@
                                 <label class='col-form-label'>Ubicacion</label>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" name="Ubicacion" [(ngModel)]="visualizarService.selectProyecto.Direccion" [(ngModel)]="visualizarService.selectProyecto.Ubicacion">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class='col-form-label'>Ubicacion 2:</label>
+                        <div class="col ms-auto">
+                            <div class="form-group">
+                                <label class='col-form-label'>Hora</label>
+                                <input type="time" class="form-control" name="Hora_Evento2" [(ngModel)]="visualizarService.selectProyecto.Hora_Evento2" enabled>
+                            </div>
+                        </div>
+                        <div class="col ms-auto">
+                            <div class="form-group">
+                                <label class='col-form-label'>Fecha</label>
+                                <input type="text" id="fechaDate" class="form-control" onfocus="(this.type='date')" name="F_Evento2" min="{{minimo}}" max="{{maximo}}" [(ngModel)]="visualizarService.selectProyecto.F_Evento2" enabled>
+                            </div>
+                        </div>
+                        <div class="col ms-auto">
+                            <div class="form-group">
+                                <label class='col-form-label'>Ubicacion</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="Ubicacion2" [(ngModel)]="visualizarService.selectProyecto.Direccion2" [(ngModel)]="visualizarService.selectProyecto.Ubicacion2">
                                 </div>
                             </div>
                         </div>

@@ -66,8 +66,8 @@ export class ActualizarPedidoComponent implements OnInit {
         'fecha': this.visualizarService.selectProyecto.F_Evento,
         'hora': this.visualizarService.selectProyecto.Hora_Evento,
         'ubicacion': this.visualizarService.selectProyecto.Ubicacion,
-        'lugar': this.visualizarService.selectProyecto.Ubicacion, 'latitud': null,'longitud': null,'fecha2': null,
-        'hora2': null,'ubicacion2': null, 'lugar2': null, 'latitud2': null,
+        'lugar': this.visualizarService.selectProyecto.Ubicacion, 'latitud': null,'longitud': null,'fecha2': this.visualizarService.selectProyecto.F_Evento2,
+        'hora2': this.visualizarService.selectProyecto.Hora_Evento2,'ubicacion2': this.visualizarService.selectProyecto.Ubicacion2, 'lugar2': this.visualizarService.selectProyecto.Ubicacion2, 'latitud2': null,
         'longitud2': null, "id": (Number)(this.ID)
     }
     this.visualizarService

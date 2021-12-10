@@ -1,5 +1,3 @@
-import { Time } from "@angular/common";
-
 export class Proyecto {
   constructor(
 
@@ -19,6 +17,14 @@ export class Proyecto {
     public  Descripcion :String,
     public  NombrePedido : String,
     public  Ubicacion :String,
+    public Latitud: null,
+    public Longitud: null,
+    public F_Evento2: String,
+    public Hora_Evento2: String,
+    public Direccion2: String,
+    public Ubicacion2: String,
+    public Latitud2: null,
+    public Longitud2: null
    
 
  ){}

@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PedidoService } from '../service/pedido.service';
 import { VisualizarService } from '../service/visualizar.service';
 import swal from 'sweetalert2';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-agregar-pedido',
@@ -11,7 +12,7 @@ import swal from 'sweetalert2';
 })
 export class AgregarPedidoComponent implements OnInit {
 
-  columnsToDisplay = ['Direccion','Quitar'];
+  columnsToDisplay = ['Fecha','Hora','Direccion','Quitar'];
   columnsToDisplay1 = ['Descripcion','Precio', 'Seleccionar'];
   eventoxsevicio: any[] = [];
   servicios: any[] = [];
@@ -28,7 +29,7 @@ export class AgregarPedidoComponent implements OnInit {
   fechaCreate: Date = new Date();
   minimo: string;
   maximo: string;
-  ubicacion=[{ID: 0, Direccion: ''}];
+  ubicacion=[{ID: 0, Direccion: '', Fecha: '', Hora:''}];
   lat:any;
   lng:any;
   selectedDescripcion;
@@ -57,9 +58,6 @@ export class AgregarPedidoComponent implements OnInit {
       res.setDate(res.getDate() + days);
      return this.convert(res);}
 
-
-
-     
   getDataCliente(dni: number) {
     this.pedidoService.getDni(dni).subscribe((res) => {
         if(res.length==0){
@@ -102,7 +100,7 @@ export class AgregarPedidoComponent implements OnInit {
   radioSelected () {
     this.asignarDescripcion(this.selectedDescripcion);}
 
-  addListUbicacion(direccion : string){
+  addListUbicacion(direccion : string, fecha:string, hora:string){
     var cualEliminar = {ID: 0, Direccion: ''}
     
     this.ubicacion =  this.ubicacion.filter((item)=>{
@@ -110,23 +108,51 @@ export class AgregarPedidoComponent implements OnInit {
     });
     if(this.ubicacion.length<2){
       let i=1;
-        this.ubicacion.push({ID:i, Direccion:direccion});
+        this.ubicacion.push({ID:i, Direccion:direccion, Fecha:fecha, Hora:hora});
       i++;
       this.dataSource = new MatTableDataSource(this.ubicacion);
     }else{
       this.ubicacion;}}
 
+      deleteElement(p:any, c :any){
+        console.log(p,c);
+        let indexToDelete;
+        this.ubicacion.filter((item, index) => {
+           if (item.Hora == c && item.Direccion == p) {
+              indexToDelete = index;
+              console.log(indexToDelete);
+             
+            }
+          });
+          this.ubicacion.splice((Number)(indexToDelete), 1 );
+          this.dataSource = new MatTableDataSource(this.ubicacion);
+          console.log(this.ubicacion);
+      }
+
   postPedido() {
     console.log(this.visualizarService.selectAgregarPedido.fechaEvent);
     console.log(this.convert(this.fechaCreate));
-    this.visualizarService
-      .postPedidos(this.visualizarService.selectAgregarPedido.NombrePedido, 
-        this.desID, this.dniCliente.toString(), 
-        this.convert(this.fechaCreate), 
-        this.visualizarService.selectAgregarPedido.fechaEvent, 
-        this.visualizarService.selectAgregarPedido.horaEvent, 
-        1, this.ubicacion[0].Direccion, this.visualizarService.selectAgregarPedido.Observacion)
-      .subscribe(
+    let data ={
+      Nombre: this.visualizarService.selectAgregarPedido.NombrePedido,
+      ExS: this.desID,
+      doc:  this.dniCliente.toString(),
+      fechaCreate:this.convert(this.fechaCreate),
+      fechaEvent: this.visualizarService.selectAgregarPedido.fechaEvent,
+      horaEvent: this.visualizarService.selectAgregarPedido.horaEvent,
+      CodEmp: 1,
+      Direccion: this.ubicacion[0].Direccion,
+      Ubicacion: this.ubicacion[0].Direccion,
+      Latitud: null,
+      Longitud: null,
+      fechaEvent2: "2021-12-09T23:08:53.820Z",
+      horaEvent2: null,
+      Direccion2: null,
+      Ubicacion2: null,
+      Latitud2: null,
+      Longitud2: null,
+      Observacion: this.visualizarService.selectAgregarPedido.Observacion
+    }
+    this.visualizarService.postPedidos(data).subscribe(
         (res) => { swal.fire({
           text: 'Registro exitoso',
           icon: 'success',

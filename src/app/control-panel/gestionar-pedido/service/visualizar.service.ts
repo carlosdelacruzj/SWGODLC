@@ -23,7 +23,15 @@ export class VisualizarService {
     Direccion: '',
     Descripcion: '',
     NombrePedido: '',
-    Ubicacion:''
+    Ubicacion:'',
+    Latitud: null,
+    Longitud: null,
+    F_Evento2: '',
+    Hora_Evento2: '',
+    Direccion2: '',
+    Ubicacion2: '',
+    Latitud2: null,
+    Longitud2: null
 
   };
 
@@ -82,25 +90,8 @@ export class VisualizarService {
   public putPedido(data:any): Observable<any> {console.log(data)
     return this.http.put(this.API_EDITARPEDIDO, data)
   }
-
-
-  // public postPedido(Nombre: string, ExS:number,doc: string, fechaCreate: string, fechaEvent: string, horaEvent: string, CodEmp: number, Direccion: string): Observable<any> {
-  //   return this.http.post<AddPedido>(this.API_AGREGARPEDIDO + "/gestionar-pedido", AddPedido);
-  // }
-
-  public postPedidos(Nombre: string, ExS: number, doc: string, fechaCreate: string, fechaEvent: string, horaEvent: string, CodEmp: number, Direccion: string, Observacion:string) {
-    return this.http.post(this.API_AGREGARPEDIDO, {
-      Nombre: Nombre,
-      ExS: ExS,
-      doc: doc,
-      fechaCreate: fechaCreate,
-      fechaEvent: fechaEvent,
-      horaEvent: horaEvent,
-      CodEmp: CodEmp,
-      Direccion: Direccion,
-      Ubicacion: Direccion,
-      Observacion:Observacion,
-    })
+  public postPedidos(data :any) {
+    return this.http.post(this.API_AGREGARPEDIDO, data)
   }
 
 }

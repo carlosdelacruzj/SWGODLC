@@ -190,7 +190,8 @@ export class AdministrarEquiposComponent implements OnInit {
   //Registro de equipo Alquilado
   addAlquilado(equipoForm: NgForm) {
     this.getSerie(equipoForm.value.serie);
-    if ((this.existe = 1)) {
+    console.log(this.existe, equipoForm.value.serie);
+    if ((this.existe = 2)) {
       swal.fire({
         text: 'La serie ingresada ya existe',
         icon: 'warning',
@@ -235,6 +236,7 @@ export class AdministrarEquiposComponent implements OnInit {
             };
             this.service.rEquipoA(data).subscribe(
               (res) => {
+                console.log('DATA: ', res);
                 this.clear(equipoForm);
                 this.getEquipos();
                 this.getEquiposAlquilados();

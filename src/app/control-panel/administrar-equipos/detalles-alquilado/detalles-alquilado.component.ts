@@ -103,51 +103,51 @@ export class DetallesAlquiladoComponent implements OnInit {
   //Actualizar equipo
   updateAlquilado(equipoForm: NgForm) {
     swal
-        .fire({
-          title: 'Esta seguro del cambio?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, actualizar ahora!',
-          cancelButtonText: 'Cancelar',
-        })
-        .then((options) => {
-          if (options.isConfirmed) {
-            swal.fire({
-              text: 'Cambio exitoso',
-              icon: 'success',
-              showCancelButton: false,
-              customClass: {
-                confirmButton: 'btn btn-success',
-              },
-              buttonsStyling: false,
-            });
-            let data = {
-              proyecto: equipoForm.value.nProyecto,
-              fechaSalida: equipoForm.value.fechaSalida,
-              empleado: equipoForm.value.nEmpleado,
-              codigo: equipoForm.value.ID,
-            };
-            this.service.rEquipoA(data).subscribe(
-              (res) => {
-                this.clear(equipoForm);
-                this.getDetalleEquipoAlquilado();
-              },
-              (err) => {
-                console.error(err);
-                swal.fire({
-                  text: 'Ocurrió un error, volver a intentar.',
-                  icon: 'warning',
-                  showCancelButton: false,
-                  customClass: {
-                    confirmButton: 'btn btn-warning',
-                  },
-                  buttonsStyling: false,
-                });
-              }
-            );
-          }
-        });
+      .fire({
+        title: 'Esta seguro del cambio?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, actualizar ahora!',
+        cancelButtonText: 'Cancelar',
+      })
+      .then((options) => {
+        if (options.isConfirmed) {
+          swal.fire({
+            text: 'Cambio exitoso',
+            icon: 'success',
+            showCancelButton: false,
+            customClass: {
+              confirmButton: 'btn btn-success',
+            },
+            buttonsStyling: false,
+          });
+          let data = {
+            proyecto: equipoForm.value.nProyecto,
+            fechaSalida: equipoForm.value.fechaSalida,
+            empleado: equipoForm.value.nEmpleado,
+            codigo: equipoForm.value.ID,
+          };
+          this.service.putEAlquilado(data).subscribe(
+            (res) => {
+              this.clear(equipoForm);
+              this.getDetalleEquipoAlquilado();
+            },
+            (err) => {
+              console.error(err);
+              swal.fire({
+                text: 'Ocurrió un error, volver a intentar.',
+                icon: 'warning',
+                showCancelButton: false,
+                customClass: {
+                  confirmButton: 'btn btn-warning',
+                },
+                buttonsStyling: false,
+              });
+            }
+          );
+        }
+      });
   }
 }

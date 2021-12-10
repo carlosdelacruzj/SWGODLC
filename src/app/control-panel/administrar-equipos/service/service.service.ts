@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { countEstadosPorModelo, detalleEquipoAlquilado, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, equiposAlquilados, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, existeSerie, rAlquilado, updateStatus } from '../models/modeloprueba.model';
+import { countEstadosPorModelo, detalleEquipoAlquilado, empleadosAll, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, equiposAlquilados, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, existeSerie, lProyectos, rAlquilado, updateAlquilados, updateStatus } from '../models/modeloprueba.model';
 
 @Injectable({
   providedIn: 'root'
@@ -110,6 +110,35 @@ export class AdministrarEquiposService {
     estado: ''
   }
 
+  listarProyectos: lProyectos = {
+    ID: 0,
+    Nombre: '',
+    Fecha: '',
+    Servicio: '',
+    Evento: '',
+    Estado: 0
+  }
+
+  listarEmpledos: empleadosAll = {
+    ID: 0,
+    Nombre: '',
+    Apellido: '',
+    Car_Nombre: '',
+    DNI: '',
+    Celular: '',
+    Correo: '',
+    Autonomo: 0,
+    Cargo: '',
+    Estado: ''
+  }
+
+  upAlquilados: updateAlquilados = {
+    proyecto: 0,
+    fechaSalida: '',
+    empleado: 0,
+    codigo: 0
+  }
+
   private EQUIPO_TIPOALL =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllTipoEquipo';
 
@@ -152,9 +181,26 @@ export class AdministrarEquiposService {
   private R_EQUIPO_A =
     'https://tp2021database.herokuapp.com/equiposAlquilado/registro/postEquipoAlquilado';
 
+  private ALL_PROYECTOS =
+    'https://tp2021database.herokuapp.com/proyecto/consulta/getAllAsignarEquipos';
+
+  private ALL_EMPLEADOS =
+    'https://tp2021database.herokuapp.com/empleado/consulta/getAllEmpleados';
+
+  private PUT_ALQUILADO =
+    'https://tp2021database.herokuapp.com/equiposAlquilado/put_equiposAlquilado_actualiza_putEquipoAlquilado'
 
   constructor(private http: HttpClient) {}
 
+  public putEAlquilado(data:any): Observable<any> {
+    return this.http.put(this.PUT_ALQUILADO,data)
+  }
+  public getAllProyectos(): Observable<any>{
+    return this.http.get(this.ALL_PROYECTOS);
+  }
+  public getAllEmpleados(): Observable<any>{
+    return this.http.get(this.ALL_EMPLEADOS);
+  }
   // definir los gets
   public getAll(): Observable<any> {
     return this.http.get(this.EQUIPO_ALL);

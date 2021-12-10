@@ -141,7 +141,6 @@ export class ListarportipoComponent implements OnInit {
   }
   //Cambiar el estado de un equipo mediante su numero de serie.
   putStatus(idEquipo: string){
-    console.log("Ejecutandose");
     this.service.updateStatus(idEquipo).subscribe((response: any) => {
       this.getEquipoMarcaModeloAll();
       this.getCEstados();

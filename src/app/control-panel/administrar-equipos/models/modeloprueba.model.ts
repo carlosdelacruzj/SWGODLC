@@ -1,3 +1,6 @@
+import { NumberSymbol } from "@angular/common";
+import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
+
 export class EquipoTipoAll { //Filtro
   constructor(
     public PK_TE_Cod: number,
@@ -119,4 +122,39 @@ export class rAlquilado{
     public fk_Empleado_Cod: number,
     public estado: string
   ) {}
+}
+
+export class lProyectos{
+  constructor(
+    public ID: number,
+    public Nombre: string,
+    public Fecha: string,
+    public Servicio: string,
+    public Evento: string,
+    public Estado: number
+  ){}
+}
+
+export class empleadosAll{
+  constructor(
+    public ID: number,
+    public Nombre: string,
+    public Apellido: string,
+    public Car_Nombre: string,
+    public DNI: string,
+    public Celular: string,
+    public Correo: string,
+    public Autonomo: number,
+    public Cargo: string,
+    public Estado: string
+  ) {}
+}
+
+export class updateAlquilados{
+  constructor(
+    public proyecto: number,
+    public fechaSalida: string,
+    public empleado: number,
+    public codigo: number
+  ){}
 }

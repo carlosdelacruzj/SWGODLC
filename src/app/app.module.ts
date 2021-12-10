@@ -55,6 +55,16 @@ import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar
 import { GestionarPerfilesComponent } from './control-panel/gestionar-perfiles/gestionar-perfiles.component';
 import { RegistrarPerfilComponent } from './control-panel/gestionar-perfiles/registrar-perfil/registrar-perfil.component';
 import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar-perfil/editar-perfil.component';
+import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin  from '@fullcalendar/interaction';
+import { DialogComponent } from './control-panel/ver-calendario/dialog/dialog.component'; // a plugin!
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
     // HeaderComponent,
     // FooterComponent,
@@ -90,7 +100,9 @@ import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar
     GestionarPerfilesComponent,
     RegistrarPerfilComponent,
     EditarPerfilComponent,
-    DetallesAlquiladoComponent
+    DetallesAlquiladoComponent,
+    VerCalendarioComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +121,8 @@ import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar
     }),
     NgxChartsModule,NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
-    })
+    }),
+    // FullCalendarModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

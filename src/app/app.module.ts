@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppComponent } from './app.component';
+// import { HeaderComponent } from './shared/header/header.component';
+// import { FooterComponent } from './shared/footer/footer.component';
+// import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { GestionarEquiposComponent } from './control-panel/gestionar-equipos/gestionar-equipos.component';
 import { DashboardComponent } from './control-panel/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -52,7 +55,6 @@ import { EditarClienteComponent } from './control-panel/gestionar-cliente/editar
 import { GestionarPerfilesComponent } from './control-panel/gestionar-perfiles/gestionar-perfiles.component';
 import { RegistrarPerfilComponent } from './control-panel/gestionar-perfiles/registrar-perfil/registrar-perfil.component';
 import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar-perfil/editar-perfil.component';
-import { detalleEquipoAlquilado } from './control-panel/administrar-equipos/models/modeloprueba.model';
 
     // HeaderComponent,
     // FooterComponent,
@@ -88,8 +90,7 @@ import { detalleEquipoAlquilado } from './control-panel/administrar-equipos/mode
     GestionarPerfilesComponent,
     RegistrarPerfilComponent,
     EditarPerfilComponent,
-    DetallesAlquiladoComponent,
-    
+    DetallesAlquiladoComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +104,12 @@ import { detalleEquipoAlquilado } from './control-panel/administrar-equipos/mode
     NgxMatNativeDateModule,
     ReactiveFormsModule,
     NgbModule,
-
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs'
+    }),
+    NgxChartsModule,NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },

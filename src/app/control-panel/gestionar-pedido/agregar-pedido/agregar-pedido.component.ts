@@ -44,7 +44,7 @@ export class AgregarPedidoComponent implements OnInit {
     this.fechaValidate(this.fechaCreate);
 }
   fechaValidate(date){
-  this.minimo= this.addDaysToDate(date, 14);
+  this.minimo= this.addDaysToDate(date, -10);
   this.maximo= this.addDaysToDate(date, 365); }
 
   convert(str) { 

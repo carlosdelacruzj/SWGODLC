@@ -81,9 +81,9 @@ const routes: Routes = [
        { path: 'gestionar-perfiles', component: GestionarPerfilesComponent},
        { path: 'gestionar-perfiles/registrar-perfil', component: RegistrarPerfilComponent},
        { path: 'gestionar-perfiles/editar-perfil', component: EditarPerfilComponent},
+       { path: 'ver-calendario', component: VerCalendarioComponent },
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' },
 
-      { path: 'ver-calendario', component: VerCalendarioComponent },
     ]
   }
 ];

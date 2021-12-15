@@ -156,6 +156,7 @@
               class="form-control form-control-sm"
               name="fechaSalida"
               #fechaSalida="ngModel"
+              min="{{minimo}}" max="{{maximo}}"
               [(ngModel)]="service.upAlquilados.fechaSalida"
             />
           </div>
@@ -181,7 +182,7 @@
               name="nProyecto"
               #nProyecto="ngModel"
               [(ngModel)]="service.upAlquilados.proyecto"
-              style="display: none"
+              reandoly
             />
           </div>
           <div class="form-group">
@@ -206,10 +207,10 @@
               name="nEmpleado"
               #nEmpleado="ngModel"
               [(ngModel)]="service.upAlquilados.empleado"
-              style="display: none"
+              reandoly
             />
           </div>
-          <div class="form-group" style="display: none">
+          <div class="form-group">
             <label class="col-form-label1">ID</label>
             <input
               type="text"

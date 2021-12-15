@@ -88,11 +88,17 @@ export class ListarportipoComponent implements OnInit {
       this.dataSource2.sort = this.matSort2;
     });
   }
+  //Selector de seria devuelve. Existe = 1 | No existe = 0
+  getSerie2(idEquipo: string) {
+    this.service.getExisteSerie(idEquipo).subscribe((response: any) => {
+      this.existe = response;
+    });
+  }
   //Registro de equipo
   addEquipo(equipoForm: NgForm) {
-    this.getSerie(equipoForm.value.idEquipo);
-    console.log(this.existe, equipoForm.value.idEquipo);
-    if (this.existe = 1) {
+    this.getSerie2(equipoForm.value.idEquipo)
+    console.log(this.existe, equipoForm.value.idEquipo)
+    if (this.existe === 1) {
       swal.fire({
         text: 'La serie ingresada ya existe',
         icon: 'warning',
@@ -102,7 +108,7 @@ export class ListarportipoComponent implements OnInit {
         },
         buttonsStyling: false
       })
-    } else if (this.existe = 0) {
+    } else if (this.existe === 0) {
       swal
         .fire({
           title: 'Esta seguro del registro?',
@@ -171,10 +177,5 @@ export class ListarportipoComponent implements OnInit {
     }
     return false;
   }
-  //Selector de seria devuelve. Existe = 1 | No existe = 0
-  getSerie(idEquipo: string) {
-    this.service.getExisteSerie(idEquipo).subscribe((response) => {
-      this.existe = response;
-    });
-  }
+
 }

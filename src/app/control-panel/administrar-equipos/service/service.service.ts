@@ -206,7 +206,7 @@ export class AdministrarEquiposService {
     'https://tp2021database.herokuapp.com/empleado/consulta/getAllEmpleados';
 
   private PUT_ALQUILADO =
-    'https://tp2021database.herokuapp.com/equiposAlquilado/put_equiposAlquilado';
+    'https://tp2021database.herokuapp.com/equiposAlquilado/actualiza/putEquipoAlquilado';
 
   constructor(private http: HttpClient) {}
 

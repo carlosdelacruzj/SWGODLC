@@ -55,6 +55,11 @@ export class AdministrarEquiposComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   dataSourceA!: MatTableDataSource<any>;
 
+  //VALIDACION DE FECHA
+  minimo: string = '';
+  maximo: string = '';
+  fechaFinEdicion: Date = new Date();
+
   @Input() estado = 'ALQUILADO';
 
   proyecto: Proyecto[] = [];
@@ -105,7 +110,28 @@ export class AdministrarEquiposComponent implements OnInit {
     this.getEquiposAlquilados();
     this.getTipoEquipos();
     this.getMarcaEquipos();
+    //VALIDACION DE FECHA
+    this.fechaValidate(this.fechaFinEdicion);
   }
+  //VALIDACION DE FECHA
+  fechaValidate(date:any) {
+
+    this.minimo = this.addDaysToDate(date, 1);
+    this.maximo = this.addDaysToDate(date, 365);
+  }
+
+  addDaysToDate(date:any, days:any) {
+    var res = new Date(date);
+    res.setDate(res.getDate() + days);
+    return this.convert(res);
+  }
+  convert(str:any) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+  }
+  //FIN VALIDACION DE FECHA
   //Muestra de tabla equipos adquiridos
   getEquipos() {
     this.service.getAllGroup().subscribe((response: any) => {
@@ -179,9 +205,10 @@ export class AdministrarEquiposComponent implements OnInit {
     this.service.postAlquilado.fechaEntrada = this.sHoy;
   }
   //Selector de seria devuelve. Existe = 1 | No existe = 0
-  getSerie(idEquipo: string) {
+  getSerie1(idEquipo: string) {
     this.service.getExisteSerie(idEquipo).subscribe((response) => {
       this.existe = response;
+      console.log(this.existe)
     });
   }
   clear(equipoForm: NgForm) {
@@ -189,8 +216,10 @@ export class AdministrarEquiposComponent implements OnInit {
   }
   //Registro de equipo Alquilado
   addAlquilado(equipoForm: NgForm) {
-    this.getSerie(equipoForm.value.serie);
-    if ((this.existe = 1)) {
+    this.getSerie1(equipoForm.value.serie)
+    console.log(this.existe)
+    //inicio
+    if (this.existe === 1) {
       swal.fire({
         text: 'La serie ingresada ya existe',
         icon: 'warning',
@@ -200,7 +229,7 @@ export class AdministrarEquiposComponent implements OnInit {
         },
         buttonsStyling: false,
       });
-    } else if ((this.existe = 0)) {
+    } else if (this.existe === 0) {//FINNNN
       swal
         .fire({
           title: 'Esta seguro del registro?',
@@ -235,6 +264,7 @@ export class AdministrarEquiposComponent implements OnInit {
             };
             this.service.rEquipoA(data).subscribe(
               (res) => {
+                console.log('DATA: ', res);
                 this.clear(equipoForm);
                 this.getEquipos();
                 this.getEquiposAlquilados();
@@ -256,6 +286,8 @@ export class AdministrarEquiposComponent implements OnInit {
             );
           }
         });
-    }
+        //INICIO
+      }
+      //FINNNNNNNNNN
   }
 }

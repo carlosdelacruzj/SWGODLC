@@ -1,10 +1,9 @@
-import { NumberSymbol } from "@angular/common";
-import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
+import { NumberSymbol } from '@angular/common';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
-export class EquipoTipoAll { //Filtro
-  constructor(
-    public PK_TE_Cod: number,
-    public TE_Nombre: string) {}
+export class EquipoTipoAll {
+  //Filtro
+  constructor(public PK_TE_Cod: number, public TE_Nombre: string) {}
 }
 
 export class EquipoAll {
@@ -12,27 +11,32 @@ export class EquipoAll {
     public Nombre: string,
     public Marca: string,
     public Modelo: string,
-    public Estado: string,
+    public Estado: string
   ) {}
 }
 //Como manejaria el estado?
-export class EquipoTipoAllID { //Filtro
+export class EquipoTipoAllID {
+  //Filtro
   constructor(
     public Codigo: string,
     public Marca: string,
     public Modelo: string,
-    public Estado: string) {}
+    public Estado: string
+  ) {}
 }
-export class EquipoTipoAllIDMARCAMODELO { //Filtro 3 ids
+export class EquipoTipoAllIDMARCAMODELO {
+  //Filtro 3 ids
   constructor(
     public Equipo: String,
     public Marca: string,
     public Modelo: string,
     public Serie: String,
     public Fecha: String,
-    public Estado: string) {}
+    public Estado: string
+  ) {}
 }
-export class EquipoAllGroup { //PRIMERA VISTA | EQUIPO MARCA MODELO ¿VER?
+export class EquipoAllGroup {
+  //PRIMERA VISTA | EQUIPO MARCA MODELO ¿VER?
   constructor(
     public Equipo: string,
     public Marca: string,
@@ -44,23 +48,23 @@ export class EquipoAllGroup { //PRIMERA VISTA | EQUIPO MARCA MODELO ¿VER?
   ) {}
 }
 
-export class EquipoAllMARCA { //Filtro
-  constructor(
-    public Id: number,
-    public Nombre: string) {}
+export class EquipoAllMARCA {
+  //Filtro
+  constructor(public Id: number, public Nombre: string) {}
 }
 
-export class EquipoAllMarcaTipo { //Filtro
-  constructor(
-    public Id: number,
-    public Nombre: string) {}
+export class EquipoAllMarcaTipo {
+  //Filtro
+  constructor(public Id: number, public Nombre: string) {}
 }
 
-export class EquipoRegistrar { //registrar nuevo equipo
+export class EquipoRegistrar {
+  //registrar nuevo equipo
   constructor(
     public idEquipo: string,
     public fecha: string,
-    public modelo: number) {}
+    public modelo: number
+  ) {}
 }
 
 export class countEstadosPorModelo {
@@ -69,33 +73,29 @@ export class countEstadosPorModelo {
     public EnUso: number,
     public Mantenimiento: number,
     public NoDisponible: number
-    ){}
+  ) {}
 }
 
 export class updateStatus {
-  constructor(
-    public idEquipo: string,
-  ){}
+  constructor(public idEquipo: string) {}
 }
 
-export class existeSerie{
-  constructor(
-    public existe: number,
-    ){}
+export class existeSerie {
+  constructor(public existe: number) {}
 }
 
-export class equiposAlquilados{
+export class equiposAlquilados {
   constructor(
     public tipoEquipo: string,
     public serie: string,
     public proyectoAsig: string,
     public empleadoAsig: string,
     public estado: string,
-    public id: number,
-  ){}
+    public id: number
+  ) {}
 }
 
-export class detalleEquipoAlquilado{
+export class detalleEquipoAlquilado {
   constructor(
     public tipoEquipo: string,
     public marca: string,
@@ -107,10 +107,10 @@ export class detalleEquipoAlquilado{
     public proyectoAsig: string,
     public empleadoAsig: string,
     public id: number
-  ){}
+  ) {}
 }
 
-export class rAlquilado{
+export class rAlquilado {
   constructor(
     public tipoEquipo: string,
     public marca: string,
@@ -124,7 +124,7 @@ export class rAlquilado{
   ) {}
 }
 
-export class lProyectos{
+export class lProyectos {
   constructor(
     public ID: number,
     public Nombre: string,
@@ -132,10 +132,10 @@ export class lProyectos{
     public Servicio: string,
     public Evento: string,
     public Estado: number
-  ){}
+  ) {}
 }
 
-export class empleadosAll{
+export class empleadosAll {
   constructor(
     public ID: number,
     public Nombre: string,
@@ -150,11 +150,11 @@ export class empleadosAll{
   ) {}
 }
 
-export class updateAlquilados{
+export class updateAlquilados {
   constructor(
     public proyecto: number,
     public fechaSalida: string,
     public empleado: number,
     public codigo: number
-  ){}
+  ) {}
 }

@@ -1,29 +1,47 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { countEstadosPorModelo, detalleEquipoAlquilado, empleadosAll, EquipoAll, EquipoAllGroup, EquipoAllMARCA, EquipoAllMarcaTipo, EquipoRegistrar, equiposAlquilados, EquipoTipoAll, EquipoTipoAllID, EquipoTipoAllIDMARCAMODELO, existeSerie, lProyectos, rAlquilado, updateAlquilados, updateStatus } from '../models/modeloprueba.model';
+import {
+  countEstadosPorModelo,
+  detalleEquipoAlquilado,
+  empleadosAll,
+  EquipoAll,
+  EquipoAllGroup,
+  EquipoAllMARCA,
+  EquipoAllMarcaTipo,
+  EquipoRegistrar,
+  equiposAlquilados,
+  EquipoTipoAll,
+  EquipoTipoAllID,
+  EquipoTipoAllIDMARCAMODELO,
+  existeSerie,
+  lProyectos,
+  rAlquilado,
+  updateAlquilados,
+  updateStatus,
+} from '../models/modeloprueba.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdministrarEquiposService {
   selectTipoAll: EquipoTipoAll = {
     PK_TE_Cod: 0,
-    TE_Nombre: ''
+    TE_Nombre: '',
   };
 
   selectAll: EquipoAll = {
     Nombre: '',
     Marca: '',
     Modelo: '',
-    Estado: ''
+    Estado: '',
   };
 
   selectTipoAllID: EquipoTipoAllID = {
     Codigo: '',
     Marca: '',
     Modelo: '',
-    Estado: ''
+    Estado: '',
   };
 
   selectTipoAllIDMARCAMODELO: EquipoTipoAllIDMARCAMODELO = {
@@ -32,7 +50,7 @@ export class AdministrarEquiposService {
     Modelo: '',
     Serie: '',
     Fecha: '',
-    Estado: ''
+    Estado: '',
   };
 
   selectGroup: EquipoAllGroup = {
@@ -42,39 +60,39 @@ export class AdministrarEquiposService {
     IdEquipo: 0,
     IdMarca: 0,
     IdModelo: 0,
-    Cantidad: 0
+    Cantidad: 0,
   };
 
   selectAllMarca: EquipoAllMARCA = {
     Id: 0,
-    Nombre: ''
-  }
+    Nombre: '',
+  };
 
   selectMarcaTipo: EquipoAllMarcaTipo = {
     Id: 0,
-    Nombre: ''
-  }
+    Nombre: '',
+  };
 
   registerEquipo: EquipoRegistrar = {
     idEquipo: '',
     fecha: '',
-    modelo: 0
+    modelo: 0,
   };
 
   cEstadosModelo: countEstadosPorModelo = {
     Disponible: 0,
     EnUso: 0,
     Mantenimiento: 0,
-    NoDisponible: 0
-  }
+    NoDisponible: 0,
+  };
 
   putStatus: updateStatus = {
-    idEquipo: ''
-  }
+    idEquipo: '',
+  };
 
   esSerie: existeSerie = {
-    existe: 0
-  }
+    existe: 0,
+  };
 
   allAquilados: equiposAlquilados = {
     tipoEquipo: '',
@@ -82,8 +100,8 @@ export class AdministrarEquiposService {
     proyectoAsig: '',
     empleadoAsig: '',
     estado: '',
-    id: 0
-  }
+    id: 0,
+  };
 
   infoAlquilado: detalleEquipoAlquilado = {
     tipoEquipo: '',
@@ -95,8 +113,8 @@ export class AdministrarEquiposService {
     estado: '',
     proyectoAsig: '',
     empleadoAsig: '',
-    id: 0
-  }
+    id: 0,
+  };
 
   postAlquilado: rAlquilado = {
     tipoEquipo: '',
@@ -107,8 +125,8 @@ export class AdministrarEquiposService {
     fechaSalida: '',
     fk_Pro_Cod: 0,
     fk_Empleado_Cod: 0,
-    estado: ''
-  }
+    estado: '',
+  };
 
   listarProyectos: lProyectos = {
     ID: 0,
@@ -116,8 +134,8 @@ export class AdministrarEquiposService {
     Fecha: '',
     Servicio: '',
     Evento: '',
-    Estado: 0
-  }
+    Estado: 0,
+  };
 
   listarEmpledos: empleadosAll = {
     ID: 0,
@@ -129,15 +147,15 @@ export class AdministrarEquiposService {
     Correo: '',
     Autonomo: 0,
     Cargo: '',
-    Estado: ''
-  }
+    Estado: '',
+  };
 
   upAlquilados: updateAlquilados = {
     proyecto: 0,
     fechaSalida: '',
     empleado: 0,
-    codigo: 0
-  }
+    codigo: 0,
+  };
 
   private EQUIPO_TIPOALL =
     'https://tp2021database.herokuapp.com/equipo/consulta/getAllTipoEquipo';
@@ -188,17 +206,17 @@ export class AdministrarEquiposService {
     'https://tp2021database.herokuapp.com/empleado/consulta/getAllEmpleados';
 
   private PUT_ALQUILADO =
-    'https://tp2021database.herokuapp.com/equiposAlquilado/put_equiposAlquilado_actualiza_putEquipoAlquilado'
+    'https://tp2021database.herokuapp.com/equiposAlquilado/actualiza/putEquipoAlquilado';
 
   constructor(private http: HttpClient) {}
 
-  public putEAlquilado(data:any): Observable<any> {
-    return this.http.put(this.PUT_ALQUILADO,data)
+  public putEAlquilado(data: any): Observable<any> {
+    return this.http.put(this.PUT_ALQUILADO, data);
   }
-  public getAllProyectos(): Observable<any>{
+  public getAllProyectos(): Observable<any> {
     return this.http.get(this.ALL_PROYECTOS);
   }
-  public getAllEmpleados(): Observable<any>{
+  public getAllEmpleados(): Observable<any> {
     return this.http.get(this.ALL_EMPLEADOS);
   }
   // definir los gets
@@ -218,31 +236,37 @@ export class AdministrarEquiposService {
     return this.http.get(this.EQUIPO_ALLMARCA);
   }
   // POR EQUIPO MARCA MODELO
-  public getEquipoMarcaModelo(idEquipo: number,idMarca:number,idModelo:number): Observable<any> {
-    return this.http.get(`${this.EQUIPO_TIPOIDMARCAMODELO}/${idEquipo}/${idMarca}/${idModelo}`);
+  public getEquipoMarcaModelo(
+    idEquipo: number,
+    idMarca: number,
+    idModelo: number
+  ): Observable<any> {
+    return this.http.get(
+      `${this.EQUIPO_TIPOIDMARCAMODELO}/${idEquipo}/${idMarca}/${idModelo}`
+    );
   }
   //Para sacar la leyenda de estados recibe el ID del modelo
-  public getCountEstados(idModelo:number): Observable<any> {
+  public getCountEstados(idModelo: number): Observable<any> {
     return this.http.get(`${this.COUNT_ESTADOS}/${idModelo}`);
   }
   //Actualizar estado por serie=idequipo, se envia cambia de estado entre disponible o mantenimieto
   public updateStatus(idEquipo: string): Observable<any> {
     const body = {
-      idEquipo
+      idEquipo,
     };
-    return this.http.put(`${this.PUT_STATUS}`,body);
+    return this.http.put(`${this.PUT_STATUS}`, body);
   }
   //Existe serie o no
   public getExisteSerie(idEquipo: string): Observable<any> {
     return this.http.get(`${this.EXI_SERIE}/${idEquipo}`);
   }
   //registro de un nuevo equipo uwu
-  public rEquipo(data:any): Observable<any> {
-    return this.http.post(this.REGISTER_EQUIPO,data);
+  public rEquipo(data: any): Observable<any> {
+    return this.http.post(this.REGISTER_EQUIPO, data);
   }
   //r e a
-  public rEquipoA(data:any): Observable<any> {
-    return this.http.post(this.R_EQUIPO_A,data)
+  public rEquipoA(data: any): Observable<any> {
+    return this.http.post(this.R_EQUIPO_A, data);
   }
   //Listar Equipos Alquilados
   public getEquiposAlquilados(): Observable<any> {

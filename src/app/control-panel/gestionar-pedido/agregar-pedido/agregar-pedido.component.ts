@@ -33,7 +33,8 @@ export class AgregarPedidoComponent implements OnInit {
   lat:any;
   lng:any;
   selectedDescripcion;
-  
+  btnDisabled = false;
+
   constructor(public pedidoService: PedidoService,public visualizarService: VisualizarService,) { }
     
   ngOnInit(): void {
@@ -44,7 +45,7 @@ export class AgregarPedidoComponent implements OnInit {
     this.fechaValidate(this.fechaCreate);
 }
   fechaValidate(date){
-  this.minimo= this.addDaysToDate(date, -10);
+  this.minimo= this.addDaysToDate(date, 14);
   this.maximo= this.addDaysToDate(date, 365); }
 
   convert(str) { 
@@ -154,7 +155,9 @@ export class AgregarPedidoComponent implements OnInit {
       Observacion: this.visualizarService.selectAgregarPedido.Observacion
     }
     this.visualizarService.postPedidos(data).subscribe(
-        (res) => { swal.fire({
+        (res) => { 
+          this.btnDisabled = true;
+          swal.fire({
           text: 'Registro exitoso',
           icon: 'success',
           showCancelButton: false,

@@ -20,7 +20,7 @@ export class DetalleServiciosComponent implements OnInit {
   @Input() ID: number = 0;
   @Input() Nombre: string = '';
 
-  sServicio: sServicios[] = [];
+  sServicio=["filmacion","fotografia","Filmación y Fotografia"];
 
   constructor(
     public service: EventoAllServiciosService,
@@ -37,7 +37,8 @@ export class DetalleServiciosComponent implements OnInit {
   getSelect() {
     this.service.getAllServicios().subscribe(
       (res) => {
-        this.sServicio = res;
+        // this.sServicio = res;
+        console.log(res)
       },
       (err) => console.error(err)
     );
@@ -46,7 +47,7 @@ export class DetalleServiciosComponent implements OnInit {
   addServicio(ServicioForm: NgForm) {
     let data = {
       evento: this.data, //COLOCAR EL ID POR EL EVENTO A REGISTRAR
-      servicio: ServicioForm.value.Servicio,
+      servicio: 1,
       precio: ServicioForm.value.Precio,
       titulo: ServicioForm.value.Titulo,
       descripcion: ServicioForm.value.Descripcion,

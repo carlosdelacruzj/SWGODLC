@@ -27,8 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'home',loadChildren:() => import('./control-panel/control-panel.module').then(m => m.ControlPanelModule),
-    canActivate:[ValidarTokenGuard],
-    canLoad: [ValidarTokenGuard]
+    /*canActivate:[ValidarTokenGuard],
+    canLoad: [ValidarTokenGuard] */
   },
   {
     path: '**', redirectTo: 'auth'

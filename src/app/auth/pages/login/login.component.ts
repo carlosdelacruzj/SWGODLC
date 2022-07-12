@@ -22,13 +22,13 @@ export class LoginComponent {
     this.authService.login(email, password)
       .subscribe(resp => {
         console.log(resp);
-        if (resp === false) {
+        // if (resp === false) {
 
-          Swal.fire('Error', 'El Correo o la contraseña son incorrectas', 'error')
+        //   Swal.fire('Error', 'El Correo o la contraseña son incorrectas', 'error')
 
-        } else {
+        // } else {
           this.router.navigateByUrl('/home')
-        }
+        // }
       });
 
   }

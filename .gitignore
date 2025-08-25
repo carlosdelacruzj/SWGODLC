@@ -45,3 +45,7 @@ testem.log
 Thumbs.db
 package-lock.json
 package-lock.json
+
+.angular/
+dist/
+node_modules/

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-nueva-ccontrasena',
@@ -8,8 +8,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class NuevaCContrasenaComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
-  miFormulario: FormGroup = this.fb.group({
+  constructor(private fb: UntypedFormBuilder) { }
+  miFormulario: UntypedFormGroup = this.fb.group({
     correo: ['', [Validators.required, Validators.email]],
   });
   ngOnInit(): void {

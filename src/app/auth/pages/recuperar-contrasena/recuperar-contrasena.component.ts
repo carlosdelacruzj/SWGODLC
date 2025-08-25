@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -12,10 +12,10 @@ export class RecuperarContrasenaComponent implements OnInit {
 
   favoriteSeason: string;
   seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
-  miFormulario: FormGroup = this.fb.group({
+  miFormulario: UntypedFormGroup = this.fb.group({
     correo: ['', [Validators.required, Validators.email]],
   });
-  constructor(private fb: FormBuilder,private authService: AuthService,private router:Router) { }
+  constructor(private fb: UntypedFormBuilder,private authService: AuthService,private router:Router) { }
 
   ngOnInit(): void {
   }

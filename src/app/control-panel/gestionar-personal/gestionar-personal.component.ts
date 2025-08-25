@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PersonalService } from './service/personal.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 
 interface Cargo {
@@ -32,8 +32,8 @@ export class GestionarPersonalComponent implements OnInit {
 
   cargos: Cargo[]=[];
   dataSource!: MatTableDataSource<any>;
-  form = new FormGroup({
-    cargoF: new FormControl(null, Validators.required)
+  form = new UntypedFormGroup({
+    cargoF: new UntypedFormControl(null, Validators.required)
   });
 
   public data: any;

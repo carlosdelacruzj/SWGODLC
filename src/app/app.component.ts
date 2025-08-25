@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Routes, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, GuardsCheckStart, GuardsCheckEnd } from '@angular/router';
+import { Router, Routes, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, GuardsCheckStart, GuardsCheckEnd, Route } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     // A) dump de TODA la config de rutas (incluye children y guards)
     const dump = (routes: Routes, prefix = '') => {
       routes.forEach(r => {
-        const info = {
+        const info: Route = {
           path: r.path,
           redirectTo: r.redirectTo,
           pathMatch: r.pathMatch,

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PerfilService } from '../service/perfil.service';
-import { FormGroup, NgForm, NgModel, FormControl, Validators } from '@angular/forms';
+import { FormGroup, NgForm, NgModel, UntypedFormControl, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Perfil } from '../model/perfil.model';
 import { DateAdapter } from '@angular/material/core';
@@ -19,7 +19,7 @@ export class EditarPerfilComponent implements OnInit {
 
   rol=[];
   roles: roles[] = [];
-  selectFormControl = new FormControl('', Validators.required);
+  selectFormControl = new UntypedFormControl('', Validators.required);
   nombrePattern = "^[a-zA-Z ]{2,20}$"; 
   apellidoPattern = "^[a-zA-Z ]{2,30}$"; 
   docPattern = "^[0-9]{1}[0-9]{7}$"; 

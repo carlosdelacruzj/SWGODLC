@@ -1,5 +1,4 @@
-import { NumberSymbol } from '@angular/common';
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
+export type StringMap = Record<string, string>; // o { [key: string]: string }
 
 export class EquipoTipoAll {
   //Filtro

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Routes, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, GuardsCheckStart, GuardsCheckEnd, Route } from '@angular/router';
+import { Router, Routes, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, GuardsCheckStart, GuardsCheckEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  // 👇 usamos inline template para ignorar app.component.html (ahí sale ese "1")
+  // mantenemos el inline template para evitar el "1"
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent implements OnInit {
@@ -14,16 +14,17 @@ export class AppComponent implements OnInit {
     // A) dump de TODA la config de rutas (incluye children y guards)
     const dump = (routes: Routes, prefix = '') => {
       routes.forEach(r => {
-        const info: Route = {
+        // NO tipar como Route; usamos un POJO de resumen
+        const info = {
           path: r.path,
           redirectTo: r.redirectTo,
-          pathMatch: r.pathMatch,
-          component: (r as any).component?.name,
-          loadChildren: !!r.loadChildren,
+          pathMatch: r.pathMatch as string | undefined,
+          component: (r as any).component?.name as string | undefined, // solo nombre para log
+          hasLoadChildren: !!r.loadChildren,                            // <— aquí el cambio clave
           canActivate: (r.canActivate || []).map(g => (g as any).name),
           canLoad: (r.canLoad || []).map(g => (g as any).name),
           canActivateChild: (r.canActivateChild || []).map(g => (g as any).name),
-          resolve: r.resolve ? Object.keys(r.resolve) : [],
+          resolveKeys: r.resolve ? Object.keys(r.resolve) : [],
         };
         console.log(prefix + '🧭 Route ->', info);
         if (r.children) dump(r.children, prefix + '  ');
@@ -44,7 +45,12 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         let node = this.router.routerState.root;
         while (node.firstChild) node = node.firstChild;
-        console.log('➡️ Ruta activada:', node.snapshot.routeConfig?.path || '(vacía)', 'params:', node.snapshot.params, 'data:', node.snapshot.data);
+        console.log(
+          '➡️ Ruta activada:',
+          node.snapshot.routeConfig?.path || '(vacía)',
+          'params:', node.snapshot.params,
+          'data:', node.snapshot.data
+        );
       });
   }
 }

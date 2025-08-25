@@ -33,6 +33,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
@@ -58,8 +59,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1500kb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "1700kb",
+                  "maximumError": "2200kb"
                 },
                 {
                   "type": "anyComponentStyle",

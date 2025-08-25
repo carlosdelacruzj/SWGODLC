@@ -27,7 +27,9 @@
     "@fullcalendar/daygrid": "^5.10.1",
     "@fullcalendar/interaction": "^5.10.1",
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
+    "@popperjs/core": "^2.11.8",
     "@swimlane/ngx-charts": "^19.1.0",
+    "bootstrap": "^5.3.7",
     "echarts": "^5.2.2",
     "form-data": "^4.0.0",
     "fs": "^0.0.1-security",
@@ -36,7 +38,7 @@
     "nodemailer": "^6.7.0",
     "pdfkit": "^0.13.0",
     "pdfmake": "^0.2.2",
-    "rxjs": "~6.6.0",
+    "rxjs": "~7.8.2",
     "sweetalert2": "^11.2.1",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

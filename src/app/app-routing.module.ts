@@ -19,7 +19,7 @@ import { AgregarPersonalComponent } from './control-panel/gestionar-personal/agr
 import { ListarportipoComponent } from './control-panel/administrar-equipos/listarportipo/listarportipo.component';
 import { ValidarTokenGuard } from './guards/validar-token.guard';
 import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
-
+/* 
 const routes: Routes = [
   {
     path: 'auth',
@@ -28,11 +28,25 @@ const routes: Routes = [
   {
     path: 'home',loadChildren:() => import('./control-panel/control-panel.module').then(m => m.ControlPanelModule),
     /*canActivate:[ValidarTokenGuard],
-    canLoad: [ValidarTokenGuard] */
+    canLoad: [ValidarTokenGuard] 
   },
   {
     path: '**', redirectTo: 'auth'
   }
+]; */
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'auth' },   // 👈 añade esto
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./control-panel/control-panel.module').then(m => m.ControlPanelModule),
+    // canActivate: [ValidarTokenGuard],
+    // canLoad: [ValidarTokenGuard],
+  },
+  { path: '**', redirectTo: 'auth' }
 ];
 
 @NgModule({

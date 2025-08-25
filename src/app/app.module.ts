@@ -26,7 +26,6 @@ import {
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
-import { AgmCoreModule } from '@agm/core';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { EventCardComponent } from './control-panel/administrar-paquete-servicio/components/event-card/event-card.component';
 import { EventServiceComponent } from './control-panel/administrar-paquete-servicio/components/event-service/event-service.component';
@@ -116,9 +115,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgxMatNativeDateModule,
     ReactiveFormsModule,
     NgbModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCIRto-Fj487WdO78ipedrZtfxGq8g9VJs'
-    }),
     NgxChartsModule,NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),

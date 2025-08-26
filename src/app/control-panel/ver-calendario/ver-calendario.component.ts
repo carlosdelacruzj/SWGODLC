@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/common';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import { CitaCalendario } from './model/calendario.model';
 import { CalendarioService } from './service/calendario.service';
 import esLocale from '@fullcalendar/core/locales/es';
@@ -19,8 +21,9 @@ export class VerCalendarioComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     eventClick: this.eventClick.bind(this),
+    plugins: [dayGridPlugin, interactionPlugin],
     locale: esLocale,
-    titleFormat : { year: 'numeric', month: 'long' } ,
+    titleFormat: { year: 'numeric', month: 'long' },
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -38,12 +41,12 @@ export class VerCalendarioComponent implements OnInit {
     public service: CalendarioService,
     public dialog: MatDialog
   ) {
- 
+
   }
 
-  openDialog(model : EventoDetailModel) {
+  openDialog(model: EventoDetailModel) {
     this.dialog.open(DialogComponent, {
-      data : model[0]
+      data: model[0]
     });
   }
 
@@ -65,7 +68,7 @@ export class VerCalendarioComponent implements OnInit {
     }
   }
 
-  async eventClick(arg: any)  {
+  async eventClick(arg: any) {
     const detalle = await this.service.getDetalleID(arg.event.id);
     this.openDialog(detalle);
   }

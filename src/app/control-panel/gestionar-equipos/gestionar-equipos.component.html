@@ -8,7 +8,7 @@
             </div>
 
 
-            <mat-form-field appearance="standard">
+            <mat-form-field appearance="fill">
                 <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
             </mat-form-field>
 
@@ -110,7 +110,7 @@
                 <mat-card-content class="card-body">
                     <div *ngIf="cantidad_asigacion!==0">
 
-                        <mat-form-field appearance="standard">
+                        <mat-form-field appearance="fill">
                             <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
                         </mat-form-field>
                         <table mat-table [dataSource]="dataSource2" class="table">
@@ -190,7 +190,7 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance="fill">
                     <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData3($event)">
                 </mat-form-field>
                 <table mat-table [dataSource]="dataSource3" class="table">

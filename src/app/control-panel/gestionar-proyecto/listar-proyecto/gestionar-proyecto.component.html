@@ -2,7 +2,7 @@
     <mat-tab-group>
         <mat-tab label="Pedidos">
 
-            <mat-form-field appearance="standard">
+            <mat-form-field appearance="fill">
                 <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData2($event)">
             </mat-form-field>
             <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8 table">
@@ -62,7 +62,7 @@
         </mat-tab>
         <mat-tab label="Proyectos">
 
-            <mat-form-field appearance="standard">
+            <mat-form-field appearance="fill">
                 <input matInput placeholder="Buscar" autocomplete="off" (keyup)="filterData($event)">
             </mat-form-field>
 

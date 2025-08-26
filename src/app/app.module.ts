@@ -55,15 +55,12 @@ import { GestionarPerfilesComponent } from './control-panel/gestionar-perfiles/g
 import { RegistrarPerfilComponent } from './control-panel/gestionar-perfiles/registrar-perfil/registrar-perfil.component';
 import { EditarPerfilComponent } from './control-panel/gestionar-perfiles/editar-perfil/editar-perfil.component';
 import { VerCalendarioComponent } from './control-panel/ver-calendario/ver-calendario.component';
-import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin  from '@fullcalendar/interaction';
 import { DialogComponent } from './control-panel/ver-calendario/dialog/dialog.component'; // a plugin!
 
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  interactionPlugin
-]);
+
 
     // HeaderComponent,
     // FooterComponent,

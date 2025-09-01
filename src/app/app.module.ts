@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -66,62 +66,56 @@ import { DialogComponent } from './control-panel/ver-calendario/dialog/dialog.co
     // HeaderComponent,
     // FooterComponent,
     // SidebarComponent,
-@NgModule({
-  declarations: [
-    AppComponent,
-    GestionarProyectoComponent,
-    GestionarEquiposComponent,
-    DashboardComponent,
-    AgregarProyectoComponent,
-    GestionarPedidoComponent,
-    AdministrarPaqueteServicioComponent,
-    EventCardComponent,
-    EventServiceComponent,
-    DetalleServiciosComponent,
-    ActualizarProyectoComponent,
-    EditarServicioComponent,
-    AdministrarEquiposComponent,
-    GestionarPersonalComponent,
-    AgregarPersonalComponent,
-    ListarportipoComponent,
-    RegistrarPagoComponent,
-    GenerarContratoComponent,
-    ContratoComponent,
-    AgregarPedidoComponent,
-    DetallePedidoComponent,
-    ActualizarPedidoComponent,
-    ReportesEstadisticosComponent,
-    GestionarClienteComponent,
-    RegistrarClienteComponent,
-    EditarClienteComponent,
-    GestionarPerfilesComponent,
-    RegistrarPerfilComponent,
-    EditarPerfilComponent,
-    DetallesAlquiladoComponent,
-    VerCalendarioComponent,
-    DialogComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    AngularMaterialModule,
-    // NgxMatDatetimePickerModule,
-    // NgxMatTimepickerModule,
-    // NgxMatNativeDateModule,
-    ReactiveFormsModule,
-    NgbModule,
-    NgxChartsModule,NgxEchartsModule.forRoot({
-      echarts: () => import('echarts')
-    }),
-    FullCalendarModule
-  ],
-  providers: [
-    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
-    DatePipe
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        GestionarProyectoComponent,
+        GestionarEquiposComponent,
+        DashboardComponent,
+        AgregarProyectoComponent,
+        GestionarPedidoComponent,
+        AdministrarPaqueteServicioComponent,
+        EventCardComponent,
+        EventServiceComponent,
+        DetalleServiciosComponent,
+        ActualizarProyectoComponent,
+        EditarServicioComponent,
+        AdministrarEquiposComponent,
+        GestionarPersonalComponent,
+        AgregarPersonalComponent,
+        ListarportipoComponent,
+        RegistrarPagoComponent,
+        GenerarContratoComponent,
+        ContratoComponent,
+        AgregarPedidoComponent,
+        DetallePedidoComponent,
+        ActualizarPedidoComponent,
+        ReportesEstadisticosComponent,
+        GestionarClienteComponent,
+        RegistrarClienteComponent,
+        EditarClienteComponent,
+        GestionarPerfilesComponent,
+        RegistrarPerfilComponent,
+        EditarPerfilComponent,
+        DetallesAlquiladoComponent,
+        VerCalendarioComponent,
+        DialogComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        AngularMaterialModule,
+        // NgxMatDatetimePickerModule,
+        // NgxMatTimepickerModule,
+        // NgxMatNativeDateModule,
+        ReactiveFormsModule,
+        NgbModule,
+        NgxChartsModule, NgxEchartsModule.forRoot({
+            echarts: () => import('echarts')
+        }),
+        FullCalendarModule], providers: [
+        { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
+        DatePipe,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {}

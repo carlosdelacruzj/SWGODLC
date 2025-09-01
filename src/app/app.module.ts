@@ -20,11 +20,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxEchartsModule } from 'ngx-echarts';
 
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-  NgxMatTimepickerModule
-} from '@angular-material-components/datetime-picker';
+
+// import {
+//   NgxMatDatetimePickerModule,
+//   NgxMatNativeDateModule,
+//   NgxMatTimepickerModule
+// } from '@angular-material-components/datetime-picker';
 import { GenerarContratoComponent } from './control-panel/generar-contrato/generar-contrato.component';
 import { AdministrarPaqueteServicioComponent } from './control-panel/administrar-paquete-servicio/administrar-paquete-servicio.component';
 import { EventCardComponent } from './control-panel/administrar-paquete-servicio/components/event-card/event-card.component';
@@ -107,9 +108,9 @@ import { DialogComponent } from './control-panel/ver-calendario/dialog/dialog.co
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule,
-    NgxMatNativeDateModule,
+    // NgxMatDatetimePickerModule,
+    // NgxMatTimepickerModule,
+    // NgxMatNativeDateModule,
     ReactiveFormsModule,
     NgbModule,
     NgxChartsModule,NgxEchartsModule.forRoot({
